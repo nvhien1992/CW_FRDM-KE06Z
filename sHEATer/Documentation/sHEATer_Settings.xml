@@ -1,0 +1,1731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PE_PROJECT_SETTINGS_DOCUMENTATION>
+  <PE_product_version v="version 10.3 for Freescale Microcontrollers" />
+  <PE_core_version v="Processor Expert Version 0509" />
+  <CPU_Bean name="Cpu" type="MKE06Z128LK4">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Cpu" />
+      <CPU_type v="MKE06Z128VLK4" />
+      <list name="Shared Internal properties" v="1">
+        <EmptySection_DummyValue />
+      </list>
+      <list name="Shared Clock settings" v="1">
+        <group name="Clock settings">
+          <group name="Internal oscillator">
+            <Slow_internal_reference_clock__kHz_ v="32.768000000000" />
+            <boolgroup name="Initialize slow trim value" v="no" />
+          </group>
+          <boolgroup name="System oscillator" v="Disabled" />
+          <list name="Clock source settings" v="1">
+            <group name="Clock source setting 0">
+              <group name="Internal reference clock">
+                <ICSIRCLK_clock v="Enabled" />
+                <ICSIRCLK_in_stop v="Disabled" />
+                <ICSIRCLK_clock__MHz_ v="0.032768000000" />
+              </group>
+              <group name="External reference clock">
+                <OSCERCLK_in_stop v="Disabled" />
+                <OSCERCLK_clock__MHz_ v="0" />
+              </group>
+              <group name="ICS settings">
+                <enumgroup name="ICS mode" v="FEI">
+                  <EmptySection_DummyValue />
+                </enumgroup>
+                <ICS_external_ref__clock__MHz_ v="0" />
+                <Clock_monitor v="Disabled" />
+                <group name="FLL settings">
+                  <FLL_module v="Enabled" />
+                  <FLL_output__MHz_ v="41.943040000000" />
+                  <ICSFFCLK_clock__kHz_ v="32.768000000000" />
+                  <enumgroup name="Reference clock source" v="Slow internal clock">
+                    <EmptySection_DummyValue />
+                  </enumgroup>
+                  <FLL_reference_clock__kHz_ v="32.768000000000" />
+                  <Multiplication_factor v="Auto select" />
+                  <Loss_of_lock_interrupt v="Disabled" />
+                </group>
+                <ICS_output v="FLL clock" />
+                <ICS_output_prescaler v="Auto select" />
+                <ICS_output_clock v="20.971520000000" />
+              </group>
+            </group>
+          </list>
+          <list name="Clock configurations" v="1">
+            <group name="Clock configuration 0">
+              <enumgroup name="Clock source setting" v="configuration 0">
+                <ICS_mode v="FEI" />
+                <ICS_output__MHz_ v="20.971520000000" />
+                <ICSIRCLK_clock__MHz_ v="0.032768" />
+                <ICSFFCLK__kHz_ v="32.768" />
+                <OSCERCLK_clock__MHz_ v="0" />
+              </enumgroup>
+              <group name="System clocks">
+                <Core_clock_prescaler v="Auto select" />
+                <Core_clock v="20.971520000000" />
+                <Bus_clock_prescaler v="Auto select" />
+                <Bus_clock v="20.971520000000" />
+                <Timer_clock_prescaler v="Auto select" />
+                <Timer_clock v="20.971520000000" />
+              </group>
+            </group>
+          </list>
+        </group>
+      </list>
+      <list name="Shared Low Power Settings" v="1">
+        <group name="Operation mode settings">
+          <group name="WAIT operation mode">
+            <Return_to_wait_after_ISR v="no" />
+          </group>
+          <group name="SLEEP operation mode">
+            <Return_to_stop_after_ISR v="no" />
+          </group>
+          <boolgroup name="STOP operation mode" v="Disabled" />
+        </group>
+      </list>
+      <group name="Common settings">
+        <Initialization_priority v="interrupts enabled" />
+        <Watchdog_disable v="yes" />
+        <Utilize_after_reset_values v="default" />
+        <list name="Shared NMI settings" v="1">
+          <boolgroup name="NMI pin" v="Enabled">
+            <NMI_Pin v="PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b" />
+          </boolgroup>
+        </list>
+        <list name="Shared Reset settings" v="1">
+          <boolgroup name="Reset pin" v="Enabled">
+            <Reset_Pin v="PTA5/KBI0_P5/IRQ/TCLK0/RESET_b" />
+          </boolgroup>
+        </list>
+        <list name="Shared SWD settings" v="1">
+          <group name="Debug interface (SWD)">
+            <boolgroup name="DIO pin" v="Enabled">
+              <DIO_Pin v="PTA4/KBI0_P4/ACMP0_OUT/SWD_DIO" />
+            </boolgroup>
+            <boolgroup name="CLK pin" v="Enabled">
+              <CLK_Pin v="PTC4/KBI0_P20/RTCO/FTM1_CH0/ACMP0_IN2/SWD_CLK" />
+            </boolgroup>
+          </group>
+        </list>
+        <list name="Shared Flash memory organization" v="1">
+          <group name="Flash memory organization">
+            <list name="Shared FLASH settings" v="1">
+              <EmptySection_DummyValue />
+            </list>
+            <list name="Flash blocks" v="1">
+              <group name="Flash block 0">
+                <Address v="0" />
+                <Size v="131072" />
+                <Write_unit_size v="4" />
+                <Erase_unit_size v="512" />
+                <Protection_unit_size v="4096" />
+              </group>
+            </list>
+          </group>
+        </list>
+        <list name="Shared Flash Config settings" v="1">
+          <boolgroup name="Flash configuration field" v="Enabled">
+            <group name="Security settings">
+              <Flash_security v="Unsecured" />
+              <Backdoor_key v="Disabled (11)" />
+              <Backdoor_key_0 v="255" />
+              <Backdoor_key_1 v="255" />
+              <Backdoor_key_2 v="255" />
+              <Backdoor_key_3 v="255" />
+              <Backdoor_key_4 v="255" />
+              <Backdoor_key_5 v="255" />
+              <Backdoor_key_6 v="255" />
+              <Backdoor_key_7 v="255" />
+            </group>
+            <group name="Protection regions">
+              <group name="Flash protection settings">
+                <enumgroup name="Protection scenario" v="No protection">
+                  <EmptySection_DummyValue />
+                </enumgroup>
+              </group>
+            </group>
+          </boolgroup>
+        </list>
+      </group>
+      <list name="Shared CPU interrupts/resets" v="1">
+        <group name="CPU interrupts/resets">
+          <boolgroup name="Non-maskable interrupt" v="Enabled">
+            <Interrupt v="INT_NMI" />
+            <ISR_Name v="Cpu_INT_NMIInterrupt" />
+          </boolgroup>
+          <boolgroup name="Hard fault" v="Disabled" />
+          <boolgroup name="Supervisor call" v="Disabled" />
+          <boolgroup name="Pendable service" v="Disabled" />
+          <boolgroup name="ICS Loss of lock" v="Disabled" />
+        </group>
+      </list>
+    </Properties>
+    <Methods>
+      <list name="CPUCond" v="1">
+        <SetClockConfiguration v="don&amp;apos;t generate code" />
+        <GetClockConfiguration v="don&amp;apos;t generate code" />
+        <SetOperationMode v="don&amp;apos;t generate code" />
+        <EnableInt v="don&amp;apos;t generate code" />
+        <DisableInt v="don&amp;apos;t generate code" />
+        <SystemReset v="don&amp;apos;t generate code" />
+      </list>
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <list name="EvntsShrdGrp" v="1">
+        <event name="OnReset" v="don&amp;apos;t generate code" />
+        <event name="OnNMI" v="generate code">
+          <Event_procedure_name v="Cpu_OnNMI" />
+        </event>
+        <event name="OnHardFault" v="don&amp;apos;t generate code" />
+        <event name="OnSupervisorCall" v="don&amp;apos;t generate code" />
+        <event name="OnPendableService" v="don&amp;apos;t generate code" />
+        <event name="OnLossOfLock" v="don&amp;apos;t generate code" />
+      </list>
+    </Events>
+    <Compiler v="GNU C Compiler" />
+    <CompilerProperties>
+      <Compiler v="GNU C Compiler" />
+      <enumgroup name="Unhandled vectors" v="One handler for all">
+        <Unhandled_int_code>
+          <StrgList><![CDATA[/* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
+PE_DEBUGHALT();
+]]></StrgList>
+        </Unhandled_int_code>
+      </enumgroup>
+      <boolgroup name="Generate debugger files" v="yes">
+        <Generate_mem_file v="yes" />
+      </boolgroup>
+      <group name="Startup">
+        <Add_startup_file v="no" />
+      </group>
+      <boolgroup name="Generate linker file" v="yes">
+        <Stack_size v="1024" />
+        <Heap_size v="0" />
+        <Set_memory_segments_to_default v="Click to set default &amp;gt;" />
+        <Default_memory_for_interrupts v="INTERNAL FLASH" />
+        <Default_memory_for_code v="INTERNAL FLASH" />
+        <Default_memory_for_data v="INTERNAL RAM" />
+        <list name="ROM/RAM Areas" v="4">
+          <group name="MemoryArea0">
+            <boolgroup name="ROM/RAM Area" v="Enabled">
+              <Name v="m_interrupts" />
+              <Qualifier v="RX" />
+              <Address v="0" />
+              <Size v="192" />
+            </boolgroup>
+          </group>
+          <group name="MemoryArea1">
+            <boolgroup name="ROM/RAM Area" v="Disabled" />
+          </group>
+          <group name="MemoryArea2">
+            <boolgroup name="ROM/RAM Area" v="Enabled">
+              <Name v="m_text" />
+              <Qualifier v="RX" />
+              <Address v="1040" />
+              <Size v="130032" />
+            </boolgroup>
+          </group>
+          <group name="MemoryArea3">
+            <boolgroup name="ROM/RAM Area" v="Enabled">
+              <Name v="m_data" />
+              <Qualifier v="RW" />
+              <Address v="536866816" />
+              <Size v="16384" />
+            </boolgroup>
+          </group>
+        </list>
+      </boolgroup>
+    </CompilerProperties>
+  </CPU_Bean>
+  <Bean name="Pins1" type="PinSettings">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Pins1" />
+      <PinSettings_IP_Block v="PinSettings" />
+      <Processor v="MKE06Z128LK4" />
+      <list name="ProcessorSpecificItem" v="1">
+        <group name="Pin settings">
+          <group name="Routing">
+            <group name="Peripheral Type ACMP">
+              <Custom_name v="ACMP0" />
+              <ACMP0__Comparator_negative_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_negative_input_1 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_negative_input_2 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_negative_input_3 v="DAC6b0_output" />
+              <ACMP0__Comparator_output v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_positive_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_positive_input_1 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_positive_input_2 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP0__Comparator_positive_input_3 v="DAC6b0_output" />
+              <Custom_name v="ACMP1" />
+              <ACMP1__Comparator_negative_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_negative_input_1 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_negative_input_2 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_negative_input_3 v="DAC6b1_output" />
+              <ACMP1__Comparator_output v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_positive_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_positive_input_1 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_positive_input_2 v="&amp;lt;Automatic&amp;gt;" />
+              <ACMP1__Comparator_positive_input_3 v="DAC6b1_output" />
+            </group>
+            <group name="Peripheral Type ADC">
+              <Custom_name v="ADC" />
+              <ADC__ADC_analog_channel_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_1 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_2 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_3 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_4 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_5 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_6 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_7 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_8 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_9 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_10 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_11 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_12 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_13 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_14 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_15 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_22 v="TempSensor" />
+              <ADC__ADC_analog_channel_23 v="IntBandgap" />
+              <ADC__ADC_analog_channel_29 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_30 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_trigger_input v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__Voltage_reference_high v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__Voltage_reference_low v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type BP">
+              <EmptySection_DummyValue />
+            </group>
+            <group name="Peripheral Type CRC">
+              <Custom_name v="CRC" />
+            </group>
+            <group name="Peripheral Type CoreDebug">
+              <CoreDebug__SWD_clock v="&amp;lt;Automatic&amp;gt;" />
+              <CoreDebug__SWD_input_output v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type DWT">
+              <EmptySection_DummyValue />
+            </group>
+            <group name="Peripheral Type FGPIO">
+              <EmptySection_DummyValue />
+            </group>
+            <group name="Peripheral Type FTM">
+              <Custom_name v="FTM0" />
+              <FTM0__FTM_channel_0 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM0__FTM_channel_1 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM0__External_clock_input v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="FTM1" />
+              <FTM1__FTM_channel_0 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM1__FTM_channel_1 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM1__External_clock_input v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="FTM2" />
+              <FTM2__FTM_channel_0 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_channel_1 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_channel_2 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_channel_3 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_channel_4 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_channel_5 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__External_clock_input v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_fault_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_fault_input_1 v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_fault_input_2 v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_fault_input_3 v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_trigger_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <FTM2__FTM_trigger_input_1 v="FTM0_CH0_output" />
+              <FTM2__FTM_trigger_input_3 v="FTM_sync" />
+            </group>
+            <group name="Peripheral Type FTMRE">
+              <Custom_name v="FTMRE" />
+            </group>
+            <group name="Peripheral Type GPIO">
+              <Custom_name v="GPIOA" />
+              <GPIOA__General_purpose_I_O_pin_0 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_1 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_2 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_3 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_4 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_5 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_6 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_7 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_8 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_9 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_10 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_11 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_12 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_13 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_14 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_15 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_17 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_18 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_19 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_20 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_21 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_22 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_23 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_24 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_25 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_26 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_27 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_28 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_29 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_30 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOA__General_purpose_I_O_pin_31 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="GPIOB" />
+              <GPIOB__General_purpose_I_O_pin_0 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_1 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_2 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_3 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_4 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_5 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_6 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_7 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_8 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_9 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_10 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_11 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_12 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_13 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_14 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_15 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_17 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_18 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_19 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_20 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_21 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_22 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_23 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_24 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_25 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_26 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_27 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_28 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_29 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_30 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_31 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="GPIOC" />
+              <GPIOC__General_purpose_I_O_pin_0 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_1 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_2 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_3 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_4 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_5 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_6 v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type I2C">
+              <Custom_name v="I2C0" />
+              <I2C0__I2C_serial_clock v="&amp;lt;Automatic&amp;gt;" />
+              <I2C0__I2C_serial_clock_line_output v="&amp;lt;Automatic&amp;gt;" />
+              <I2C0__I2C_serial_data v="&amp;lt;Automatic&amp;gt;" />
+              <I2C0__I2C_serial_data_line_output v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="I2C1" />
+              <I2C1__I2C_serial_clock v="&amp;lt;Automatic&amp;gt;" />
+              <I2C1__I2C_serial_data v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type ICS">
+              <Custom_name v="ICS" />
+            </group>
+            <group name="Peripheral Type IRQ">
+              <Custom_name v="IRQ" />
+              <IRQ__Interrupt_request v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type KBI">
+              <Custom_name v="KBI0" />
+              <KBI0__KBI_pin_0 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_1 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_2 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_3 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_4 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_5 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_6 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_7 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_8 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_9 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_10 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_11 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_12 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_13 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_14 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_15 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_17 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_18 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_19 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_20 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_21 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_22 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_23 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_24 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_25 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_26 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_27 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_28 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_29 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_30 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI0__KBI_pin_31 v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="KBI1" />
+              <KBI1__KBI_pin_0 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_1 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_2 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_3 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_4 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_5 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_6 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_7 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_8 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_9 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_10 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_11 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_12 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_13 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_14 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_15 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_17 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_18 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_19 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_20 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_21 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_22 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_23 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_24 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_25 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_26 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_27 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_28 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_29 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_30 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_31 v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type MCM">
+              <Custom_name v="MCM" />
+            </group>
+            <group name="Peripheral Type MSCAN">
+              <Custom_name v="MSCAN" />
+              <MSCAN__CAN_receive_data v="&amp;lt;Automatic&amp;gt;" />
+              <MSCAN__CAN_transmit_data v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type NV">
+              <Custom_name v="FTMRE_FlashConfig" />
+            </group>
+            <group name="Peripheral Type NVIC">
+              <Custom_name v="NVIC" />
+            </group>
+            <group name="Peripheral Type OSC">
+              <Custom_name v="OSC" />
+              <OSC__Oscillator_input_pin v="&amp;lt;Automatic&amp;gt;" />
+              <OSC__Oscillator_output_pin v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type PIT">
+              <Custom_name v="PIT" />
+            </group>
+            <group name="Peripheral Type PMC">
+              <Custom_name v="PMC" />
+            </group>
+            <group name="Peripheral Type PORT">
+              <Custom_name v="PORT" />
+            </group>
+            <group name="Peripheral Type PWT">
+              <Custom_name v="PWT" />
+              <PWT__PWT_input_0 v="&amp;lt;Automatic&amp;gt;" />
+              <PWT__PWT_input_1 v="&amp;lt;Automatic&amp;gt;" />
+              <PWT__PWT_input_2 v="&amp;lt;Automatic&amp;gt;" />
+              <PWT__PWT_input_3 v="&amp;lt;Automatic&amp;gt;" />
+              <PWT__External_clock_input v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type ROM">
+              <EmptySection_DummyValue />
+            </group>
+            <group name="Peripheral Type RTC">
+              <Custom_name v="RTC" />
+              <RTC__RTC_output v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type SCB">
+              <Custom_name v="SystemControl" />
+            </group>
+            <group name="Peripheral Type SIM">
+              <Custom_name v="SIM" />
+              <SIM__Bus_clok_output v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type SPI">
+              <Custom_name v="SPI0" />
+              <SPI0__SPI_master_data_in__slave_data_out v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <SPI0__SPI_master_data_out__slave_data_in v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <SPI0__SPI_serial_clock_output v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <SPI0__SPI_peripheral_chip_select_ v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="SPI1" />
+              <SPI1__SPI_master_data_in__slave_data_out v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <SPI1__SPI_master_data_out__slave_data_in v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <SPI1__SPI_serial_clock_output v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+              <SPI1__SPI_peripheral_chip_select_ v="&amp;lt;Automatic&amp;gt;" />
+              <Direction v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type SysTick">
+              <Custom_name v="SysTick" />
+            </group>
+            <group name="Peripheral Type UART">
+              <Custom_name v="UART0" />
+              <UART0__UART_receive_data v="&amp;lt;Automatic&amp;gt;" />
+              <UART0__UART_transmit_data v="&amp;lt;Automatic&amp;gt;" />
+              <UART0__UART_Tx_modulator_input v="FTM0_CH0_output" />
+              <Custom_name v="UART1" />
+              <UART1__UART_receive_data v="&amp;lt;Automatic&amp;gt;" />
+              <UART1__UART_transmit_data v="&amp;lt;Automatic&amp;gt;" />
+              <Custom_name v="UART2" />
+              <UART2__UART_receive_data v="&amp;lt;Automatic&amp;gt;" />
+              <UART2__UART_transmit_data v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Peripheral Type WDOG">
+              <Custom_name v="WDOG" />
+            </group>
+            <group name="Non-peripheral pins">
+              <NMI v="&amp;lt;Automatic&amp;gt;" />
+              <RESET v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+          </group>
+          <group name="Electrical properties">
+            <group name="Pin 1: PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI">
+              <Custom_name__Signal_name v="PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 2: PTD0/KBI0_P24/FTM2_CH2/SPI1_SCK">
+              <Custom_name__Signal_name v="PTD0/KBI0_P24/FTM2_CH2/SPI1_SCK" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 3: PTH7/KBI1_P31/PWT_IN1">
+              <Custom_name__Signal_name v="PTH7/KBI1_P31/PWT_IN1" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 4: PTH6/KBI1_P30">
+              <Custom_name__Signal_name v="PTH6/KBI1_P30" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 5: PTH5/KBI1_P29">
+              <Custom_name__Signal_name v="PTH5/KBI1_P29" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 6: PTE7/KBI1_P7/TCLK2/FTM1_CH1/CAN0_TX">
+              <Custom_name__Signal_name v="PTE7/KBI1_P7/TCLK2/FTM1_CH1/CAN0_TX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 7: PTH2/KBI1_P26/BUSOUT/FTM1_CH0/CAN0_RX">
+              <Custom_name__Signal_name v="PTH2/KBI1_P26/BUSOUT/FTM1_CH0/CAN0_RX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 8: VDD8">
+              <Custom_name__Signal_name v="VDD8" />
+            </group>
+            <group name="Pin 9: VREFH/VDDA">
+              <Custom_name__Signal_name v="VREFH/VDDA" />
+            </group>
+            <group name="Pin 10: VREFH">
+              <Custom_name__Signal_name v="VREFH" />
+            </group>
+            <group name="Pin 11: VREFL">
+              <Custom_name__Signal_name v="VREFL" />
+            </group>
+            <group name="Pin 12: VSSA/VSS">
+              <Custom_name__Signal_name v="VSSA/VSS" />
+            </group>
+            <group name="Pin 13: PTB7/KBI0_P15/I2C0_SCL/EXTAL">
+              <Custom_name__Signal_name v="PTB7/KBI0_P15/I2C0_SCL/EXTAL" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 14: PTB6/KBI0_P14/I2C0_SDA/XTAL">
+              <Custom_name__Signal_name v="PTB6/KBI0_P14/I2C0_SDA/XTAL" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 15: PTI4/IRQ">
+              <Custom_name__Signal_name v="PTI4/IRQ" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 16: PTI1/IRQ/UART2_TX">
+              <Custom_name__Signal_name v="PTI1/IRQ/UART2_TX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 17: PTI0/IRQ/UART2_RX">
+              <Custom_name__Signal_name v="PTI0/IRQ/UART2_RX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 18: PTH1/KBI1_P25/FTM2_CH1">
+              <Custom_name__Signal_name v="PTH1/KBI1_P25/FTM2_CH1" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 19: PTH0/KBI1_P24/FTM2_CH0">
+              <Custom_name__Signal_name v="PTH0/KBI1_P24/FTM2_CH0" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 20: PTE6/KBI1_P6">
+              <Custom_name__Signal_name v="PTE6/KBI1_P6" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 21: PTE5/KBI1_P5">
+              <Custom_name__Signal_name v="PTE5/KBI1_P5" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 22: PTB5/KBI0_P13/FTM2_CH5/SPI0_PCS/ACMP1_OUT">
+              <Custom_name__Signal_name v="PTB5/KBI0_P13/FTM2_CH5/SPI0_PCS/ACMP1_OUT" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 23: PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b">
+              <Custom_name__Signal_name v="PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 24: PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11">
+              <Custom_name__Signal_name v="PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 25: PTC2/KBI0_P18/FTM2_CH2/ADC0_SE10">
+              <Custom_name__Signal_name v="PTC2/KBI0_P18/FTM2_CH2/ADC0_SE10" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 26: PTD7/KBI0_P31/UART2_TX">
+              <Custom_name__Signal_name v="PTD7/KBI0_P31/UART2_TX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 27: PTD6/KBI0_P30/UART2_RX">
+              <Custom_name__Signal_name v="PTD6/KBI0_P30/UART2_RX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 28: PTD5/KBI0_P29/PWT_IN0">
+              <Custom_name__Signal_name v="PTD5/KBI0_P29/PWT_IN0" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 29: PTI6/IRQ">
+              <Custom_name__Signal_name v="PTI6/IRQ" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 30: PTI5/IRQ">
+              <Custom_name__Signal_name v="PTI5/IRQ" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 31: PTC1/KBI0_P17/FTM2_CH1/ADC0_SE9">
+              <Custom_name__Signal_name v="PTC1/KBI0_P17/FTM2_CH1/ADC0_SE9" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 32: PTC0/KBI0_P16/FTM2_CH0/ADC0_SE8">
+              <Custom_name__Signal_name v="PTC0/KBI0_P16/FTM2_CH0/ADC0_SE8" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 33: PTH4/KBI1_P28/I2C1_SCL">
+              <Custom_name__Signal_name v="PTH4/KBI1_P28/I2C1_SCL" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 34: PTH3/KBI1_P27/I2C1_SDA">
+              <Custom_name__Signal_name v="PTH3/KBI1_P27/I2C1_SDA" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 35: PTF7/KBI1_P15/ADC0_SE15">
+              <Custom_name__Signal_name v="PTF7/KBI1_P15/ADC0_SE15" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 36: PTF6/KBI1_P14/ADC0_SE14">
+              <Custom_name__Signal_name v="PTF6/KBI1_P14/ADC0_SE14" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 37: PTF5/KBI1_P13/ADC0_SE13">
+              <Custom_name__Signal_name v="PTF5/KBI1_P13/ADC0_SE13" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 38: PTF4/KBI1_P12/ADC0_SE12">
+              <Custom_name__Signal_name v="PTF4/KBI1_P12/ADC0_SE12" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 39: PTB3/KBI0_P11/SPI0_MOSI/FTM0_CH1/ADC0_SE7">
+              <Custom_name__Signal_name v="PTB3/KBI0_P11/SPI0_MOSI/FTM0_CH1/ADC0_SE7" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 40: PTB2/KBI0_P10/SPI0_SCK/FTM0_CH0/ADC0_SE6">
+              <Custom_name__Signal_name v="PTB2/KBI0_P10/SPI0_SCK/FTM0_CH0/ADC0_SE6" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 41: PTB1/KBI0_P9/UART0_TX/ADC0_SE5">
+              <Custom_name__Signal_name v="PTB1/KBI0_P9/UART0_TX/ADC0_SE5" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 42: PTB0/KBI0_P8/UART0_RX/PWT_IN1/ADC0_SE4">
+              <Custom_name__Signal_name v="PTB0/KBI0_P8/UART0_RX/PWT_IN1/ADC0_SE4" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 43: PTF3/KBI1_P11/UART1_TX">
+              <Custom_name__Signal_name v="PTF3/KBI1_P11/UART1_TX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 44: PTF2/KBI1_P10/UART1_RX">
+              <Custom_name__Signal_name v="PTF2/KBI1_P10/UART1_RX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 45: PTA7/KBI0_P7/FTM2_FLT2/ACMP1_IN1/ADC0_SE3">
+              <Custom_name__Signal_name v="PTA7/KBI0_P7/FTM2_FLT2/ACMP1_IN1/ADC0_SE3" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 46: PTA6/KBI0_P6/FTM2_FLT1/ACMP1_IN0/ADC0_SE2">
+              <Custom_name__Signal_name v="PTA6/KBI0_P6/FTM2_FLT1/ACMP1_IN0/ADC0_SE2" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 47: PTE4/KBI1_P4">
+              <Custom_name__Signal_name v="PTE4/KBI1_P4" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 48: VSS48">
+              <Custom_name__Signal_name v="VSS48" />
+            </group>
+            <group name="Pin 49: VDD49">
+              <Custom_name__Signal_name v="VDD49" />
+            </group>
+            <group name="Pin 50: PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS">
+              <Custom_name__Signal_name v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 51: PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO">
+              <Custom_name__Signal_name v="PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 52: PTG5/KBI1_P21/FTM2_CH3/SPI1_MOSI">
+              <Custom_name__Signal_name v="PTG5/KBI1_P21/FTM2_CH3/SPI1_MOSI" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 53: PTG4/KBI1_P20/FTM2_CH2/SPI1_SCK">
+              <Custom_name__Signal_name v="PTG4/KBI1_P20/FTM2_CH2/SPI1_SCK" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 54: PTF1/KBI1_P9/FTM2_CH1">
+              <Custom_name__Signal_name v="PTF1/KBI1_P9/FTM2_CH1" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 55: PTF0/KBI1_P8/FTM2_CH0">
+              <Custom_name__Signal_name v="PTF0/KBI1_P8/FTM2_CH0" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 56: PTD4/KBI0_P28">
+              <Custom_name__Signal_name v="PTD4/KBI0_P28" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 57: PTD3/KBI0_P27/SPI1_PCS">
+              <Custom_name__Signal_name v="PTD3/KBI0_P27/SPI1_PCS" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 58: PTD2/KBI0_P26/SPI1_MISO">
+              <Custom_name__Signal_name v="PTD2/KBI0_P26/SPI1_MISO" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 59: PTA3/KBI0_P3/UART0_TX/I2C0_SCL">
+              <Custom_name__Signal_name v="PTA3/KBI0_P3/UART0_TX/I2C0_SCL" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 60: PTA2/KBI0_P2/UART0_RX/I2C0_SDA">
+              <Custom_name__Signal_name v="PTA2/KBI0_P2/UART0_RX/I2C0_SDA" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 61: PTA1/KBI0_P1/FTM0_CH1/I2C0_4WSDAOUT/ACMP0_IN1/ADC0_SE1">
+              <Custom_name__Signal_name v="PTA1/KBI0_P1/FTM0_CH1/I2C0_4WSDAOUT/ACMP0_IN1/ADC0_SE1" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 62: PTA0/KBI0_P0/FTM0_CH0/I2C0_4WSCLOUT/ACMP0_IN0/ADC0_SE0">
+              <Custom_name__Signal_name v="PTA0/KBI0_P0/FTM0_CH0/I2C0_4WSCLOUT/ACMP0_IN0/ADC0_SE0" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 63: PTC7/KBI0_P23/UART1_TX/CAN0_TX">
+              <Custom_name__Signal_name v="PTC7/KBI0_P23/UART1_TX/CAN0_TX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 64: PTC6/KBI0_P22/UART1_RX/CAN0_RX">
+              <Custom_name__Signal_name v="PTC6/KBI0_P22/UART1_RX/CAN0_RX" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 65: PTI3/IRQ">
+              <Custom_name__Signal_name v="PTI3/IRQ" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 66: PTI2/IRQ">
+              <Custom_name__Signal_name v="PTI2/IRQ" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 67: PTE3/KBI1_P3/SPI0_PCS">
+              <Custom_name__Signal_name v="PTE3/KBI1_P3/SPI0_PCS" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 68: PTE2/KBI1_P2/SPI0_MISO/PWT_IN0">
+              <Custom_name__Signal_name v="PTE2/KBI1_P2/SPI0_MISO/PWT_IN0" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 69: VSS69">
+              <Custom_name__Signal_name v="VSS69" />
+            </group>
+            <group name="Pin 70: VDD70">
+              <Custom_name__Signal_name v="VDD70" />
+            </group>
+            <group name="Pin 71: PTG3/KBI1_P19">
+              <Custom_name__Signal_name v="PTG3/KBI1_P19" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 72: PTG2/KBI1_P18">
+              <Custom_name__Signal_name v="PTG2/KBI1_P18" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 73: PTG1/KBI1_P17">
+              <Custom_name__Signal_name v="PTG1/KBI1_P17" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 74: PTG0/KBI1_P16">
+              <Custom_name__Signal_name v="PTG0/KBI1_P16" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 75: PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL">
+              <Custom_name__Signal_name v="PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 76: PTE0/KBI1_P0/SPI0_SCK/TCLK1/I2C1_SDA">
+              <Custom_name__Signal_name v="PTE0/KBI1_P0/SPI0_SCK/TCLK1/I2C1_SDA" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 77: PTC5/KBI0_P21/FTM1_CH1/RTCO">
+              <Custom_name__Signal_name v="PTC5/KBI0_P21/FTM1_CH1/RTCO" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 78: PTC4/KBI0_P20/RTCO/FTM1_CH0/ACMP0_IN2/SWD_CLK">
+              <Custom_name__Signal_name v="PTC4/KBI0_P20/RTCO/FTM1_CH0/ACMP0_IN2/SWD_CLK" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 79: PTA5/KBI0_P5/IRQ/TCLK0/RESET_b">
+              <Custom_name__Signal_name v="PTA5/KBI0_P5/IRQ/TCLK0/RESET_b" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+            <group name="Pin 80: PTA4/KBI0_P4/ACMP0_OUT/SWD_DIO">
+              <Custom_name__Signal_name v="PTA4/KBI0_P4/ACMP0_OUT/SWD_DIO" />
+              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+            </group>
+          </group>
+        </group>
+      </list>
+    </Properties>
+    <Methods>
+      <list name="ProcessorSpecificMethods" v="1">
+        <Init v="don&amp;apos;t generate code" />
+      </list>
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="MQX1" type="MQXLite">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="MQX1" />
+      <MQX_Lite_version v="V1.1.1" />
+      <boolgroup name="Copy source files to project" v="yes">
+        <EmptySection_DummyValue />
+      </boolgroup>
+      <inhrbean type="TimerUnit_LDD">
+        <Enabled v="Y" />
+        <Template v="SystemTimer" />
+        <Properties>
+          <Component_name v="SystemTimer1" />
+          <Module_name v="SysTick" />
+          <Counter v="SYST_CVR" />
+          <Counter_direction v="Down" />
+          <Counter_width v="24 bits" />
+          <Value_type v="Optimal" />
+          <enumgroup name="Input clock source" v="Internal">
+            <Counter_frequency v="Auto select" />
+          </enumgroup>
+          <enumgroup name="Counter restart" v="On-match">
+            <Period_device v="SYST_RVR" />
+            <Period v="5 ms" />
+            <boolgroup name="Interrupt" v="Enabled">
+              <Interrupt v="INT_SysTick" />
+              <Interrupt_priority v="medium priority" />
+              <ISR_Name v="SystemTimer1_Interrupt" />
+            </boolgroup>
+          </enumgroup>
+          <list name="Channel list" v="0">
+            <EmptySection_DummyValue />
+          </list>
+          <group name="Initialization">
+            <Enabled_in_init__code v="no" />
+            <list name="Auto Initialization" v="1">
+              <Auto_initialization v="no" />
+            </list>
+            <group name="Event mask">
+              <OnCounterRestart v="Enabled" />
+              <OnChannel0 v="Disabled" />
+              <OnChannel1 v="Disabled" />
+              <OnChannel2 v="Disabled" />
+              <OnChannel3 v="Disabled" />
+              <OnChannel4 v="Disabled" />
+              <OnChannel5 v="Disabled" />
+              <OnChannel6 v="Disabled" />
+              <OnChannel7 v="Disabled" />
+            </group>
+          </group>
+          <list name="CPU clock/configuration selection (included)" v="1">
+            <group name="CPU clock/configuration selection">
+              <Clock_configuration_0 v="This component enabled" />
+              <Clock_configuration_1 v="This component disabled" />
+              <Clock_configuration_2 v="This component disabled" />
+              <Clock_configuration_3 v="This component disabled" />
+              <Clock_configuration_4 v="This component disabled" />
+              <Clock_configuration_5 v="This component disabled" />
+              <Clock_configuration_6 v="This component disabled" />
+              <Clock_configuration_7 v="This component disabled" />
+            </group>
+          </list>
+        </Properties>
+        <Methods>
+          <Init v="generate code" />
+          <Deinit v="generate code" />
+          <Enable v="generate code" />
+          <Disable v="generate code" />
+          <SetEventMask v="don&amp;apos;t generate code" />
+          <GetEventMask v="don&amp;apos;t generate code" />
+          <GetEventStatus v="don&amp;apos;t generate code" />
+          <SelectInputFrequency v="don&amp;apos;t generate code" />
+          <GetInputFrequencyReal v="don&amp;apos;t generate code" />
+          <GetInputFrequency v="generate code" />
+          <SetPeriodTicks v="don&amp;apos;t generate code" />
+          <GetPeriodTicks v="generate code" />
+          <ResetCounter v="generate code" />
+          <GetCounterValue v="generate code" />
+          <SetOffsetTicks v="don&amp;apos;t generate code" />
+          <GetOffsetTicks v="don&amp;apos;t generate code" />
+          <GetCaptureValue v="don&amp;apos;t generate code" />
+          <SelectOutputAction v="don&amp;apos;t generate code" />
+          <SelectCaptureEdge v="don&amp;apos;t generate code" />
+          <ConnectPin v="don&amp;apos;t generate code" />
+          <SetOperationMode v="don&amp;apos;t generate code" />
+          <GetDriverState v="don&amp;apos;t generate code" />
+        </Methods>
+        <Events>
+          <Event_module_name v="Events" />
+          <event name="OnCounterRestart" v="generate code">
+            <Event_procedure_name v="SystemTimer1_OnCounterRestart" />
+          </event>
+          <event name="OnChannel0" v="don&amp;apos;t generate code" />
+          <event name="OnChannel1" v="don&amp;apos;t generate code" />
+          <event name="OnChannel2" v="don&amp;apos;t generate code" />
+          <event name="OnChannel3" v="don&amp;apos;t generate code" />
+          <event name="OnChannel4" v="don&amp;apos;t generate code" />
+          <event name="OnChannel5" v="don&amp;apos;t generate code" />
+          <event name="OnChannel6" v="don&amp;apos;t generate code" />
+          <event name="OnChannel7" v="don&amp;apos;t generate code" />
+        </Events>
+      </inhrbean>
+      <list name="Task Template List" v="2">
+        <boolgroup name="Task1" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="CTRL" />
+              <Entry_point_function v="Ctrl_task" />
+              <Stack_size v="1024" />
+              <Priority v="8" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Enabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="Ctrl_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
+        <boolgroup name="Task2" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="ADC" />
+              <Entry_point_function v="ADC_task" />
+              <Stack_size v="1024" />
+              <Priority v="8" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Enabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="ADC_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
+      </list>
+      <group name="Configuration parameters">
+        <group name="Components">
+          <Lightweight_Semaphores v="yes" />
+          <Lightweight_Events v="no" />
+          <Lightweight_Message_Queues v="no" />
+          <Mutexes v="no" />
+          <Lightweight_Timer v="no" />
+          <Kernel_Logging v="no" />
+          <Lightweight_Memory_Allocation v="no" />
+          <Floating_point_context_saving v="no" />
+        </group>
+        <group name="Interrupts">
+          <Interrupt_stack_size v="256" />
+        </group>
+        <group name="Idle Task">
+          <Use_Idle_Task v="yes" />
+          <Enable_sleep_in_idle v="no" />
+          <Enable_idle_counters v="no" />
+        </group>
+        <group name="User settings">
+          <Definitions>
+            <StrgList><![CDATA[/* Additional settings can be defined in the property User Definitions > Definitions of the MQXLite RTOS component */
+]]></StrgList>
+          </Definitions>
+        </group>
+      </group>
+      <boolgroup name="Manage allocated interrupts" v="Automatically" />
+      <group name="MQX functions">
+        <group name="Critical section">
+          <boolgroup name="User function for entering critical section" v="no" />
+          <boolgroup name="User function for exiting critical section" v="no" />
+        </group>
+      </group>
+    </Properties>
+    <Methods>
+      <_int_default_isr v="generate code" />
+      <_int_disable v="generate code" />
+      <_int_enable v="generate code" />
+      <_int_exception_isr v="generate code" />
+      <_int_get_default_isr v="generate code" />
+      <_int_get_exception_handler v="generate code" />
+      <_int_get_isr v="generate code" />
+      <_int_get_isr_depth v="generate code" />
+      <_int_get_isr_data v="generate code" />
+      <_int_get_kernel_isr v="generate code" />
+      <_int_get_previous_vector_table v="generate code" />
+      <_int_get_vector_table v="generate code" />
+      <_int_install_default_isr v="generate code" />
+      <_int_install_kernel_isr v="generate code" />
+      <_int_install_isr v="generate code" />
+      <_int_install_exception_isr v="generate code" />
+      <_int_install_unexpected_isr v="generate code" />
+      <_int_kernel_isr v="generate code" />
+      <_int_set_exception_handler v="generate code" />
+      <_int_set_isr_data v="generate code" />
+      <_int_set_vector_table v="generate code" />
+      <_int_unexpected_isr v="generate code" />
+      <_klog_create_at v="generate code" />
+      <_klog_get_interrupt_stack_usage v="generate code" />
+      <_klog_get_task_stack_usage v="generate code" />
+      <_klog_control v="generate code" />
+      <_klog_disable_logging_task v="generate code" />
+      <_klog_display v="generate code" />
+      <_klog_enable_logging_task v="generate code" />
+      <_klog_show_stack_usage v="generate code" />
+      <_lwsem_create v="generate code" />
+      <_lwsem_destroy v="generate code" />
+      <_lwsem_poll v="generate code" />
+      <_lwsem_post v="generate code" />
+      <_lwsem_test v="generate code" />
+      <_lwsem_wait v="generate code" />
+      <_lwsem_wait_ticks v="generate code" />
+      <_lwsem_wait_for v="generate code" />
+      <_lwsem_wait_until v="generate code" />
+      <_mem_zero v="generate code" />
+      <_mem_test_and_set v="generate code" />
+      <_mqx_exit v="generate code" />
+      <_mqx_fatal_error v="generate code" />
+      <_mqx_get_counter v="generate code" />
+      <_mqx_get_cpu_type v="generate code" />
+      <_mqx_get_initialization v="generate code" />
+      <_mqx_get_kernel_data v="generate code" />
+      <_mqx_get_exit_handler v="generate code" />
+      <_mqx_get_system_task_id v="generate code" />
+      <_mqx_get_tad_data v="generate code" />
+      <_mqx_idle_task v="generate code" />
+      <_mqx_set_cpu_type v="generate code" />
+      <_mqx_set_exit_handler v="generate code" />
+      <_sched_get_max_priority v="generate code" />
+      <_sched_get_min_priority v="generate code" />
+      <_sched_yield v="generate code" />
+      <_task_abort v="generate code" />
+      <_task_block v="generate code" />
+      <_task_check_stack v="generate code" />
+      <_task_create_at v="generate code" />
+      <_task_destroy v="generate code" />
+      <_task_disable_fp v="generate code" />
+      <_task_enable_fp v="generate code" />
+      <_task_get_creator v="generate code" />
+      <_task_get_environment v="generate code" />
+      <_task_get_exception_handler v="generate code" />
+      <_task_get_error v="generate code" />
+      <_task_get_error_ptr v="generate code" />
+      <_task_get_exit_handler v="generate code" />
+      <_task_get_id_from_name v="generate code" />
+      <_task_get_index_from_id v="generate code" />
+      <_task_get_parameter v="generate code" />
+      <_task_get_parameter_for v="generate code" />
+      <_task_get_processor v="generate code" />
+      <_task_get_priority v="generate code" />
+      <_task_get_td v="generate code" />
+      <_task_get_template_index v="generate code" />
+      <_task_ready v="generate code" />
+      <_task_restart v="generate code" />
+      <_task_set_environment v="generate code" />
+      <_task_set_error v="generate code" />
+      <_task_set_exception_handler v="generate code" />
+      <_task_set_exit_handler v="generate code" />
+      <_task_set_parameter v="generate code" />
+      <_task_set_parameter_for v="generate code" />
+      <_task_set_priority v="generate code" />
+      <_task_stop_preemption v="generate code" />
+      <_task_start_preemption v="generate code" />
+      <_taskq_create v="generate code" />
+      <_taskq_destroy v="generate code" />
+      <_taskq_resume v="generate code" />
+      <_taskq_suspend v="generate code" />
+      <_taskq_suspend_task v="generate code" />
+      <_taskq_test v="generate code" />
+      <_taskq_get_value v="generate code" />
+      <_time_delay_ticks v="generate code" />
+      <_time_diff_ticks v="generate code" />
+      <_time_get_elapsed_ticks v="generate code" />
+      <_time_get_hwticks v="generate code" />
+      <_time_get_hwticks_per_tick v="generate code" />
+      <_time_get_ticks v="generate code" />
+      <_time_get_ticks_per_sec v="generate code" />
+      <_time_init_ticks v="generate code" />
+      <_time_notify_kernel v="generate code" />
+      <_time_set_hwtick_function v="generate code" />
+      <_time_set_hwticks_per_tick v="generate code" />
+      <_time_set_resolution v="generate code" />
+      <_time_set_ticks v="generate code" />
+      <_time_set_ticks_per_sec v="generate code" />
+      <_time_set_timer_vector v="generate code" />
+      <_lwevent_create v="generate code" />
+      <_lwevent_destroy v="generate code" />
+      <_lwevent_set v="generate code" />
+      <_lwevent_set_auto_clear v="generate code" />
+      <_lwevent_clear v="generate code" />
+      <_lwevent_wait_for v="generate code" />
+      <_lwevent_wait_ticks v="generate code" />
+      <_lwevent_wait_until v="generate code" />
+      <_lwevent_get_signalled v="generate code" />
+      <_lwevent_test v="generate code" />
+      <_mutatr_destroy v="generate code" />
+      <_mutatr_get_priority_ceiling v="generate code" />
+      <_mutatr_get_sched_protocol v="generate code" />
+      <_mutatr_get_spin_limit v="generate code" />
+      <_mutatr_get_wait_protocol v="generate code" />
+      <_mutatr_set_priority_ceiling v="generate code" />
+      <_mutatr_set_sched_protocol v="generate code" />
+      <_mutatr_set_spin_limit v="generate code" />
+      <_mutatr_set_wait_protocol v="generate code" />
+      <_mutatr_init v="generate code" />
+      <_mutex_create_component v="generate code" />
+      <_mutex_destroy v="generate code" />
+      <_mutex_get_priority_ceiling v="generate code" />
+      <_mutex_get_wait_count v="generate code" />
+      <_mutex_init v="generate code" />
+      <_mutex_set_priority_ceiling v="generate code" />
+      <_mutex_test v="generate code" />
+      <_mutex_unlock v="generate code" />
+      <_mutex_try_lock v="generate code" />
+      <_lwlog_calculate_size v="generate code" />
+      <_lwlog_create_at v="generate code" />
+      <_lwlog_create_component v="generate code" />
+      <_lwlog_destroy v="generate code" />
+      <_lwlog_disable v="generate code" />
+      <_lwlog_enable v="generate code" />
+      <_lwlog_read v="generate code" />
+      <_lwlog_reset v="generate code" />
+      <_lwlog_test v="generate code" />
+      <_lwlog_write v="generate code" />
+      <_lwmsgq_init v="generate code" />
+      <_lwmsgq_send v="generate code" />
+      <_lwmsgq_receive v="generate code" />
+      <_lwtimer_add_timer_to_queue v="generate code" />
+      <_lwtimer_cancel_period v="generate code" />
+      <_lwtimer_cancel_timer v="generate code" />
+      <_lwtimer_create_periodic_queue v="generate code" />
+      <_lwtimer_test v="generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="AD1" type="ADC_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="AD1" />
+      <A_D_converter v="ADC" />
+      <Discontinuous_mode v="no" />
+      <boolgroup name="Interrupt service/event" v="Disabled" />
+      <list name="A/D channel list" v="1">
+        <group name="Channel 0">
+          <enumgroup name="Channel mode" v="Single Ended">
+            <group name="Input">
+              <A_D_channel__pin_ v="PTF7/KBI1_P15/ADC0_SE15" />
+            </group>
+          </enumgroup>
+        </group>
+      </list>
+      <boolgroup name="Static sample groups" v="Disabled" />
+      <A_D_resolution v="12 bits" />
+      <Low_power_mode v="Disabled" />
+      <Sample_time v="3.5 clock periods" />
+      <Conversion_time v="7.629395 &amp;#181;s" />
+      <ADC_clock v="2.621 MHz (381.47 ns)" />
+      <Single_conversion_time___Single_ended v="9.012 us" />
+      <Single_conversion_time___Differential v="Differential mode not supported" />
+      <Additional_conversion_time___Single_ended v="7.629 us" />
+      <Additional_conversion_time___Differential v="Differential mode not supported" />
+      <Result_type v="unsigned 16 bits, right justified" />
+      <boolgroup name="Trigger" v="Disabled" />
+      <group name="Voltage reference">
+        <group name="High voltage reference">
+          <Volt__ref__pin v="VREFH" />
+        </group>
+        <group name="Low voltage reference">
+          <Volt__ref__pin v="VREFL" />
+        </group>
+      </group>
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <list name="Auto Initialization" v="1">
+          <Auto_initialization v="no" />
+        </list>
+        <group name="Event mask">
+          <OnMeasurementComplete v="Enabled" />
+        </group>
+      </group>
+      <list name="CPU clock/configuration selection (included)" v="1">
+        <group name="CPU clock/configuration selection">
+          <Clock_configuration_0 v="This component enabled" />
+          <Clock_configuration_1 v="This component disabled" />
+          <Clock_configuration_2 v="This component disabled" />
+          <Clock_configuration_3 v="This component disabled" />
+          <Clock_configuration_4 v="This component disabled" />
+          <Clock_configuration_5 v="This component disabled" />
+          <Clock_configuration_6 v="This component disabled" />
+          <Clock_configuration_7 v="This component disabled" />
+        </group>
+      </list>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <GetEventMask v="don&amp;apos;t generate code" />
+      <SetEventMask v="don&amp;apos;t generate code" />
+      <StartSingleMeasurement v="generate code" />
+      <StartLoopMeasurement v="don&amp;apos;t generate code" />
+      <StartSingleTriggeredMeasurement v="don&amp;apos;t generate code" />
+      <StartLoopTriggeredMeasurement v="don&amp;apos;t generate code" />
+      <CancelMeasurement v="don&amp;apos;t generate code" />
+      <GetMeasuredValues v="generate code" />
+      <SelectSampleGroup v="don&amp;apos;t generate code" />
+      <CreateSampleGroup v="generate code" />
+      <GetMeasurementCompleteStatus v="don&amp;apos;t generate code" />
+      <EnableAutoCompare v="don&amp;apos;t generate code" />
+      <DisableAutoCompare v="don&amp;apos;t generate code" />
+      <SetOperationMode v="don&amp;apos;t generate code" />
+      <GetDriverState v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <Main v="generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="OnMeasurementComplete" v="generate code">
+        <Event_procedure_name v="AD1_OnMeasurementComplete" />
+      </event>
+    </Events>
+  </Bean>
+  <Bean name="PWM1" type="PWM_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="PWM1" />
+      <Period_device v="FTM2_MOD" />
+      <Duty_device v="FTM2_C5V" />
+      <Output_pin v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
+      <Counter v="FTM2_CNT" />
+      <boolgroup name="Interrupt service/event" v="Disabled" />
+      <Period v="50 ms" />
+      <Starting_pulse_width v="3.124952 ms" />
+      <Initial_polarity v="low" />
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <list name="Auto Initialization" v="1">
+          <Auto_initialization v="no" />
+        </list>
+        <group name="Event mask">
+          <OnEnd v="Disabled" />
+        </group>
+      </group>
+      <list name="CPU clock/configuration selection (included)" v="1">
+        <group name="CPU clock/configuration selection">
+          <Clock_configuration_0 v="This component enabled" />
+          <Clock_configuration_1 v="This component disabled" />
+          <Clock_configuration_2 v="This component disabled" />
+          <Clock_configuration_3 v="This component disabled" />
+          <Clock_configuration_4 v="This component disabled" />
+          <Clock_configuration_5 v="This component disabled" />
+          <Clock_configuration_6 v="This component disabled" />
+          <Clock_configuration_7 v="This component disabled" />
+        </group>
+      </list>
+      <group name="Referenced components">
+        <Linked_component v="TU1" />
+      </group>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <SetEventMask v="don&amp;apos;t generate code" />
+      <GetEventMask v="don&amp;apos;t generate code" />
+      <GetEventStatus v="don&amp;apos;t generate code" />
+      <SetRatio8 v="don&amp;apos;t generate code" />
+      <SetRatio16 v="generate code" />
+      <SetDutyUS v="don&amp;apos;t generate code" />
+      <SetDutyMS v="generate code" />
+      <SetDutySec v="don&amp;apos;t generate code" />
+      <SetDutyReal v="don&amp;apos;t generate code" />
+      <SetValue v="don&amp;apos;t generate code" />
+      <ClearValue v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <SetOperationMode v="don&amp;apos;t generate code" />
+      <GetDriverState v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="OnEnd" v="don&amp;apos;t generate code" />
+    </Events>
+  </Bean>
+  <Bean name="TU1" type="TimerUnit_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="TU1" />
+      <Module_name v="FTM2" />
+      <Counter v="FTM2_CNT" />
+      <Counter_direction v="Up" />
+      <Counter_width v="16 bits" />
+      <Value_type v="uint16_t" />
+      <enumgroup name="Input clock source" v="Internal">
+        <Counter_frequency v="Auto select" />
+      </enumgroup>
+      <enumgroup name="Counter restart" v="On-match">
+        <Period_device v="FTM2_MOD" />
+        <Period v="50 ms" />
+        <boolgroup name="Interrupt" v="Disabled" />
+      </enumgroup>
+      <list name="Channel list" v="1">
+        <group name="Channel 0">
+          <enumgroup name="Mode" v="Compare">
+            <Compare v="FTM2_C5V" />
+            <Offset v="3.124952 ms" />
+            <enumgroup name="Output on compare" v="Set">
+              <Output_on_overrun v="Clear" />
+              <Initial_state v="Low" />
+              <Output_pin v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
+            </enumgroup>
+            <boolgroup name="Interrupt" v="Disabled" />
+          </enumgroup>
+        </group>
+      </list>
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <list name="Auto Initialization" v="1">
+          <Auto_initialization v="no" />
+        </list>
+        <group name="Event mask">
+          <OnCounterRestart v="Disabled" />
+          <OnChannel0 v="Disabled" />
+          <OnChannel1 v="Disabled" />
+          <OnChannel2 v="Disabled" />
+          <OnChannel3 v="Disabled" />
+          <OnChannel4 v="Disabled" />
+          <OnChannel5 v="Disabled" />
+          <OnChannel6 v="Disabled" />
+          <OnChannel7 v="Disabled" />
+        </group>
+      </group>
+      <list name="CPU clock/configuration selection (included)" v="1">
+        <group name="CPU clock/configuration selection">
+          <Clock_configuration_0 v="This component enabled" />
+          <Clock_configuration_1 v="This component disabled" />
+          <Clock_configuration_2 v="This component disabled" />
+          <Clock_configuration_3 v="This component disabled" />
+          <Clock_configuration_4 v="This component disabled" />
+          <Clock_configuration_5 v="This component disabled" />
+          <Clock_configuration_6 v="This component disabled" />
+          <Clock_configuration_7 v="This component disabled" />
+        </group>
+      </list>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <SetEventMask v="don&amp;apos;t generate code" />
+      <GetEventMask v="don&amp;apos;t generate code" />
+      <GetEventStatus v="don&amp;apos;t generate code" />
+      <SelectInputFrequency v="don&amp;apos;t generate code" />
+      <GetInputFrequencyReal v="don&amp;apos;t generate code" />
+      <GetInputFrequency v="don&amp;apos;t generate code" />
+      <SetPeriodTicks v="don&amp;apos;t generate code" />
+      <GetPeriodTicks v="generate code" />
+      <ResetCounter v="don&amp;apos;t generate code" />
+      <GetCounterValue v="generate code" />
+      <SetOffsetTicks v="generate code" />
+      <GetOffsetTicks v="generate code" />
+      <GetCaptureValue v="don&amp;apos;t generate code" />
+      <SelectOutputAction v="generate code" />
+      <SelectCaptureEdge v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <SetOperationMode v="don&amp;apos;t generate code" />
+      <GetDriverState v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="OnCounterRestart" v="don&amp;apos;t generate code" />
+      <event name="OnChannel0" v="don&amp;apos;t generate code" />
+      <event name="OnChannel1" v="don&amp;apos;t generate code" />
+      <event name="OnChannel2" v="don&amp;apos;t generate code" />
+      <event name="OnChannel3" v="don&amp;apos;t generate code" />
+      <event name="OnChannel4" v="don&amp;apos;t generate code" />
+      <event name="OnChannel5" v="don&amp;apos;t generate code" />
+      <event name="OnChannel6" v="don&amp;apos;t generate code" />
+      <event name="OnChannel7" v="don&amp;apos;t generate code" />
+    </Events>
+  </Bean>
+  <Bean name="CsIO1" type="ConsoleIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="CsIO1" />
+      <inhrbean type="Serial_LDD">
+        <Enabled v="Y" />
+        <Template v="ConsoleIO_Serial_LDD" />
+        <Properties>
+          <Component_name v="IO1" />
+          <Device v="UART1" />
+          <boolgroup name="Interrupt service/event" v="Disabled" />
+          <group name="Settings">
+            <Data_width v="8 bits" />
+            <Parity v="None" />
+            <Stop_bits v="1" />
+            <Loop_mode v="Normal" />
+            <Baud_rate v="9600 baud" />
+            <Wakeup_condition v="Idle line wakeup" />
+            <Stop_in_wait_mode v="no" />
+            <Idle_line_mode v="Starts after start bit" />
+            <Transmitter_output v="Not inverted" />
+            <Receiver_input v="Not inverted" />
+            <Break_generation_length v="10/11 bits" />
+            <boolgroup name="Receiver" v="Enabled">
+              <RxD v="PTC6/KBI0_P22/UART1_RX/CAN0_RX" />
+            </boolgroup>
+            <boolgroup name="Transmitter" v="Enabled">
+              <TxD v="PTC7/KBI0_P23/UART1_TX/CAN0_TX" />
+            </boolgroup>
+            <enumgroup name="Flow control" v="None">
+              <EmptySection_DummyValue />
+            </enumgroup>
+          </group>
+          <group name="Initialization">
+            <Enabled_in_init__code v="yes" />
+            <list name="Auto Initialization" v="1">
+              <Auto_initialization v="yes" />
+            </list>
+            <group name="Event mask">
+              <OnBlockSent v="Disabled" />
+              <OnBlockReceived v="Disabled" />
+              <OnTxComplete v="Disabled" />
+              <OnError v="Disabled" />
+              <OnBreak v="Disabled" />
+            </group>
+          </group>
+          <list name="CPU clock/configuration selection (included)" v="1">
+            <group name="CPU clock/configuration selection">
+              <Clock_configuration_0 v="This component enabled" />
+              <Clock_configuration_1 v="This component enabled" />
+              <Clock_configuration_2 v="This component enabled" />
+              <Clock_configuration_3 v="This component enabled" />
+              <Clock_configuration_4 v="This component enabled" />
+              <Clock_configuration_5 v="This component enabled" />
+              <Clock_configuration_6 v="This component enabled" />
+              <Clock_configuration_7 v="This component enabled" />
+            </group>
+          </list>
+        </Properties>
+        <Methods>
+          <Init v="generate code" />
+          <Deinit v="don&amp;apos;t generate code" />
+          <Enable v="don&amp;apos;t generate code" />
+          <Disable v="don&amp;apos;t generate code" />
+          <SendBlock v="don&amp;apos;t generate code" />
+          <ReceiveBlock v="don&amp;apos;t generate code" />
+          <CancelBlockTransmission v="don&amp;apos;t generate code" />
+          <CancelBlockReception v="don&amp;apos;t generate code" />
+          <GetError v="don&amp;apos;t generate code" />
+          <GetSentDataNum v="don&amp;apos;t generate code" />
+          <GetReceivedDataNum v="don&amp;apos;t generate code" />
+          <GetTxCompleteStatus v="don&amp;apos;t generate code" />
+          <SetEventMask v="don&amp;apos;t generate code" />
+          <GetEventMask v="don&amp;apos;t generate code" />
+          <SelectBaudRate v="don&amp;apos;t generate code" />
+          <GetSelectedBaudRate v="don&amp;apos;t generate code" />
+          <SetParity v="don&amp;apos;t generate code" />
+          <GetParity v="don&amp;apos;t generate code" />
+          <SetDataWidth v="don&amp;apos;t generate code" />
+          <GetDataWidth v="don&amp;apos;t generate code" />
+          <SetStopBitLength v="don&amp;apos;t generate code" />
+          <GetStopBitLength v="don&amp;apos;t generate code" />
+          <SetLoopMode v="don&amp;apos;t generate code" />
+          <GetLoopMode v="don&amp;apos;t generate code" />
+          <GetStats v="don&amp;apos;t generate code" />
+          <ClearStats v="don&amp;apos;t generate code" />
+          <SendBreak v="don&amp;apos;t generate code" />
+          <GetBreak v="don&amp;apos;t generate code" />
+          <TurnTxOn v="don&amp;apos;t generate code" />
+          <TurnTxOff v="don&amp;apos;t generate code" />
+          <TurnRxOn v="don&amp;apos;t generate code" />
+          <TurnRxOff v="don&amp;apos;t generate code" />
+          <ConnectPin v="don&amp;apos;t generate code" />
+          <Main v="generate code" />
+          <SetOperationMode v="don&amp;apos;t generate code" />
+          <GetDriverState v="don&amp;apos;t generate code" />
+        </Methods>
+        <Events>
+          <Event_module_name v="Events" />
+          <event name="OnBlockReceived" v="don&amp;apos;t generate code" />
+          <event name="OnBlockSent" v="don&amp;apos;t generate code" />
+          <event name="OnBreak" v="don&amp;apos;t generate code" />
+          <event name="OnError" v="don&amp;apos;t generate code" />
+          <event name="OnTxComplete" v="don&amp;apos;t generate code" />
+        </Events>
+      </inhrbean>
+      <Wait_until_at_least_one_char_is_received v="no" />
+      <group name="New line sequence settings">
+        <Rx_new_line_sequence_ v="LF" />
+        <Tx_new_line_sequence_ v="CRLF" />
+      </group>
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+</PE_PROJECT_SETTINGS_DOCUMENTATION>
+
