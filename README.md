@@ -1,2 +1,2 @@
 # CW_FRMD-KE06Z
-FRDM-KE06Z FreeScale
+Projects on the FreeScale FRDM-KE06Z board.
