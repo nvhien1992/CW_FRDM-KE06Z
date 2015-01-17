@@ -43,9 +43,9 @@
       <File Name="MQXLITE/include/lwsem.h" FileDate="2015-01-17, 11:17:36" FileAge="1421468256841" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/psp_tisu.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258954" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/include/lwmem_prv.h" FileDate="2015-01-17, 11:17:36" FileAge="1421468256809" FileType="16384" CompNumb="4" />
-      <File Name="Documentation/doxygen/PWM1.txt" FileDate="2015-01-17, 11:24:37" FileAge="1421468677306" FileType="45637" CompNumb="11" />
-      <File Name="Documentation/doxygen/AD1.txt" FileDate="2015-01-17, 11:24:37" FileAge="1421468677343" FileType="45637" CompNumb="10" />
-      <File Name="Sources/mqx_tasks.c" FileDate="2015-01-17, 11:20:06" FileAge="1421468406414" FileType="131328" />
+      <File Name="Documentation/doxygen/PWM1.txt" FileDate="2015-01-17, 17:03:36" FileAge="1421489016147" FileType="45637" CompNumb="11" />
+      <File Name="Documentation/doxygen/AD1.txt" FileDate="2015-01-17, 16:48:57" FileAge="1421488137411" FileType="45637" CompNumb="10" />
+      <File Name="Sources/mqx_tasks.c" FileDate="2015-01-17, 17:03:02" FileAge="1421488982068" FileType="131328" />
       <File Name="MQXLITE/psp/cortex_m/sc_irdyq.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258964" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/include/lwmsgq_prv.h" FileDate="2015-01-17, 11:17:36" FileAge="1421468256835" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/System/Vectors.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
@@ -59,11 +59,11 @@
       <File Name="MQXLITE/include/lwtimer_prv.h" FileDate="2015-01-17, 11:17:36" FileAge="1421468256902" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/IO1.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677289" FileType="45637" CompNumb="15" />
       <File Name="MQXLITE/psp/cortex_m/int_kisr.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258591" FileType="16384" CompNumb="4" />
-      <File Name="MQXLITE/config/user_config.h" FileDate="2015-01-17, 11:17:42" FileAge="1421468262325" FileType="45637" CompNumb="4" />
+      <File Name="MQXLITE/config/user_config.h" FileDate="2015-01-17, 15:25:48" FileAge="1421483148219" FileType="45637" CompNumb="4" />
       <File Name="Generated_Code/IO1.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677272" FileType="45637" CompNumb="15" />
       <File Name="Generated_Code/PDD/PWT_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PDD/FTM_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/Vectors_Config.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677619" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/Vectors_Config.h" FileDate="2015-01-17, 16:48:57" FileAge="1421488137443" FileType="45637" CompNumb="2" />
       <File Name="MQXLITE/include/mqxlite_prv.h" FileDate="2015-01-17, 11:17:37" FileAge="1421468257629" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/PDD/PDD_Types.h" FileDate="2013-04-18, 00:55:42" FileAge="1366221342000" FileType="262144" />
       <File Name="Generated_Code/PE_Error.h" FileDate="2015-01-17, 11:17:42" FileAge="1421468262283" FileType="45637" />
@@ -86,15 +86,15 @@
       <File Name="MQXLITE/psp/cortex_m/compiler/cwgcc/comp.h" FileDate="2015-01-17, 11:17:39" FileAge="1421468259236" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/psp_supp.h" FileDate="2015-01-17, 11:17:38" FileAge="1421468258860" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/PDD/SPI_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Documentation/sHEATer_Settings.xml" FileDate="2015-01-17, 11:24:37" FileAge="1421468677886" FileType="3072" />
+      <File Name="Documentation/sHEATer_Settings.xml" FileDate="2015-01-17, 17:03:36" FileAge="1421489016306" FileType="3072" />
       <File Name="MQXLITE/psp/cortex_m/psp_supp.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258844" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/core/M0/psp_prv.inc" FileDate="2015-01-17, 11:17:39" FileAge="1421468259197" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/psplite.h" FileDate="2015-01-17, 11:17:38" FileAge="1421468258719" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/kinetis.h" FileDate="2015-01-17, 11:17:38" FileAge="1421468258674" FileType="16384" CompNumb="4" />
       <File Name="Project_Settings/Debugger/mqx.tad" FileDate="2015-01-17, 11:17:37" FileAge="1421468257825" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/TU1.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677336" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/TU1.h" FileDate="2015-01-17, 17:03:36" FileAge="1421489016074" FileType="45637" CompNumb="12" />
       <File Name="MQXLITE/include/lwmsgq.h" FileDate="2015-01-17, 11:17:36" FileAge="1421468256818" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/TU1.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677330" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/TU1.c" FileDate="2015-01-17, 17:03:36" FileAge="1421489016086" FileType="45637" CompNumb="12" />
       <File Name="Documentation/doxygen/SystemTimer1.txt" FileDate="2015-01-17, 11:17:42" FileAge="1421468262359" FileType="45637" CompNumb="5" />
       <File Name="MQXLITE/include/mqx_str.h" FileDate="2015-01-17, 11:17:37" FileAge="1421468257715" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/core/M0/dispatch.S" FileDate="2015-01-17, 11:17:39" FileAge="1421468259180" FileType="16384" CompNumb="4" />
@@ -108,8 +108,8 @@
       <File Name="MQXLITE/psp/cortex_m/types.inc" FileDate="2015-01-17, 11:17:39" FileAge="1421468259105" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/kernel/task.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258380" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/config/task_template_list.h" FileDate="2015-01-17, 11:20:06" FileAge="1421468406352" FileType="45637" CompNumb="4" />
-      <File Name="Documentation/sHEATer.txt" FileDate="2015-01-17, 11:24:37" FileAge="1421468677972" FileType="3072" />
-      <File Name="MQXLITE/config/task_template_list.c" FileDate="2015-01-17, 11:20:06" FileAge="1421468406314" FileType="45637" CompNumb="4" />
+      <File Name="Documentation/sHEATer.txt" FileDate="2015-01-17, 16:48:57" FileAge="1421488137550" FileType="3072" />
+      <File Name="MQXLITE/config/task_template_list.c" FileDate="2015-01-17, 17:00:11" FileAge="1421488811201" FileType="45637" CompNumb="4" />
       <File Name="Generated_Code/PDD/NVIC_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PDD/I2C_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="MQXLITE/psp/cortex_m/stack_de.c" FileDate="2015-01-17, 11:17:39" FileAge="1421468259028" FileType="16384" CompNumb="4" />
@@ -134,9 +134,9 @@
       <File Name="Project_Settings/Linker_Files/ProcessorExpert.ld" FileDate="2015-01-17, 11:17:42" FileAge="1421468262243" FileType="8" CompNumb="2" />
       <File Name="MQXLITE/psp/cortex_m/core/M0/boot.S" FileDate="2015-01-17, 11:17:39" FileAge="1421468259149" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/int_pvta.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258608" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/PWM1.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677317" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/PWM1.h" FileDate="2015-01-17, 17:03:35" FileAge="1421489015985" FileType="45637" CompNumb="11" />
       <File Name="MQXLITE/psp/cortex_m/psp_ticks.h" FileDate="2015-01-17, 11:17:38" FileAge="1421468258902" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/PWM1.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677312" FileType="45637" CompNumb="11" />
+      <File Name="Generated_Code/PWM1.c" FileDate="2015-01-17, 17:03:36" FileAge="1421489016131" FileType="45637" CompNumb="11" />
       <File Name="MQXLITE/include/mutex.h" FileDate="2015-01-17, 11:17:37" FileAge="1421468257734" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/kernel/lwlog.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258029" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/psp_cpu.h" FileDate="2015-01-17, 11:17:38" FileAge="1421468258765" FileType="16384" CompNumb="4" />
@@ -146,14 +146,14 @@
       <File Name="MQXLITE/include/mqx_cpudef.h" FileDate="2015-01-17, 11:17:37" FileAge="1421468257680" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/kernel/idletask.c" FileDate="2015-01-17, 11:17:37" FileAge="1421468257870" FileType="16384" CompNumb="4" />
       <File Name="Documentation/doxygen/IO1.txt" FileDate="2015-01-17, 11:24:37" FileAge="1421468677265" FileType="45637" CompNumb="15" />
-      <File Name="Sources/main.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677542" FileType="128" />
+      <File Name="Sources/main.c" FileDate="2015-01-17, 15:12:24" FileAge="1421482344405" FileType="128" />
       <File Name="MQXLITE/psp/cortex_m/int_unx.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258617" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/PE_LDD.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677593" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/PE_LDD.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677561" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/PDD/CRC_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Sources/Events.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677716" FileType="131328" />
       <File Name="MQXLITE/psp/cortex_m/psp_tiad.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258882" FileType="16384" CompNumb="4" />
-      <File Name="Sources/Events.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677733" FileType="131328" />
+      <File Name="Sources/Events.c" FileDate="2015-01-17, 15:47:13" FileAge="1421484433062" FileType="131328" />
       <File Name="MQXLITE/psp/cortex_m/psp_iinit.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258817" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Pins1.h" FileDate="2015-01-17, 11:17:42" FileAge="1421468262387" FileType="45637" CompNumb="3" />
       <File Name="MQXLITE/kernel/sched.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258333" FileType="16384" CompNumb="4" />
@@ -186,13 +186,13 @@
       <File Name="Documentation/doxygen/sHEATer.txt" FileDate="2015-01-17, 11:24:37" FileAge="1421468677637" FileType="45637" CompNumb="2" />
       <File Name="MQXLITE/include/lwtimer.h" FileDate="2015-01-17, 11:17:36" FileAge="1421468256882" FileType="16384" CompNumb="4" />
       <File Name="Documentation/doxygen/pex.doxyfile" FileDate="2015-01-17, 11:17:42" FileAge="1421468262162" FileType="45637" CompNumb="2" />
-      <File Name="Documentation/doxygen/TU1.txt" FileDate="2015-01-17, 11:24:37" FileAge="1421468677323" FileType="45637" CompNumb="12" />
-      <File Name="Generated_Code/AD1.h" FileDate="2015-01-17, 11:24:37" FileAge="1421468677412" FileType="45637" CompNumb="10" />
+      <File Name="Documentation/doxygen/TU1.txt" FileDate="2015-01-17, 17:03:36" FileAge="1421489016117" FileType="45637" CompNumb="12" />
+      <File Name="Generated_Code/AD1.h" FileDate="2015-01-17, 16:48:57" FileAge="1421488137394" FileType="45637" CompNumb="10" />
       <File Name="Generated_Code/PDD/CMP_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/AD1.c" FileDate="2015-01-17, 11:24:37" FileAge="1421468677348" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/AD1.c" FileDate="2015-01-17, 16:48:57" FileAge="1421488137401" FileType="45637" CompNumb="10" />
       <File Name="MQXLITE/kernel/time_ticks.c" FileDate="2015-01-17, 11:17:38" FileAge="1421468258409" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/compiler/cwgcc/asm_mac.h" FileDate="2015-01-17, 11:17:39" FileAge="1421468259226" FileType="16384" CompNumb="4" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>5</CodeGenReference>
+  <CodeGenReference>16</CodeGenReference>
 </CodeGenerationInfo>

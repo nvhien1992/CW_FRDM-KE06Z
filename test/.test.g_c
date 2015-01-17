@@ -569,7 +569,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>35</ProjectModificationStamp>
+    <ProjectModificationStamp>36</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>

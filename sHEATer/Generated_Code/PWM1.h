@@ -6,7 +6,7 @@
 **     Component   : PWM_LDD
 **     Version     : Component 01.013, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-17, 17:03, # CodeGen: 15
 **     Abstract    :
 **          This component implements a pulse-width modulation generator
 **          that generates signal with variable duty and fixed cycle.
@@ -21,7 +21,7 @@
 **          Output pin signal                              : 
 **          Counter                                        : FTM2_CNT
 **          Interrupt service/event                        : Disabled
-**          Period                                         : 50 ms
+**          Period                                         : 6.25 ms
 **          Starting pulse width                           : 3.124952 ms
 **          Initial polarity                               : low
 **          Initialization                                 : 

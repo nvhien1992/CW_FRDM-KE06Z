@@ -6,7 +6,7 @@
 **     Component   : PWM_LDD
 **     Version     : Component 01.013, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-17, 17:03, # CodeGen: 15
 **     Abstract    :
 **          This component implements a pulse-width modulation generator
 **          that generates signal with variable duty and fixed cycle.
@@ -21,7 +21,7 @@
 **          Output pin signal                              : 
 **          Counter                                        : FTM2_CNT
 **          Interrupt service/event                        : Disabled
-**          Period                                         : 50 ms
+**          Period                                         : 6.25 ms
 **          Starting pulse width                           : 3.124952 ms
 **          Initial polarity                               : low
 **          Initialization                                 : 
@@ -149,7 +149,7 @@ LDD_TDeviceData* PWM1_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   DeviceDataPrv->EnUser = TRUE;        /* Set the flag "device enabled" */
-  DeviceDataPrv->RatioStore = 0x1000U; /* Ratio after initialization */
+  DeviceDataPrv->RatioStore = 0x7FFFU; /* Ratio after initialization */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_PWM1_ID,DeviceDataPrv);
   DeviceDataPrv->LinkedDeviceDataPtr = TU1_Init((LDD_TUserData *)NULL);
@@ -230,10 +230,10 @@ LDD_TError PWM1_SetDutyMS(LDD_TDeviceData *DeviceDataPtr, uint16_t Time)
 
   /* Time test - this test can be disabled by setting the "Ignore range checking"
      property to the "yes" value in the "Configuration inspector" */
-  if (Time > 0x32U) {                  /* Is the given value out of range? */
+  if (Time > 0x06U) {                  /* Is the given value out of range? */
     return ERR_PARAM_RANGE;            /* If yes then error */
   }
-  rtval = Time * 1310.72F;             /* Multiply given value and actual clock configuration coefficient */
+  rtval = Time * 10485.76F;            /* Multiply given value and actual clock configuration coefficient */
   if (rtval > 0xFFFFUL) {              /* Is the result greater than 65535 ? */
     DeviceDataPrv->RatioStore = 0xFFFFU; /* If yes then use maximal possible value */
   }

@@ -180,34 +180,34 @@
       <File Name="Documentation/doxygen/IO1.txt" FileDate="2015-01-11, 23:14:48" FileAge="1420992888772" FileType="45637" CompNumb="16" />
       <File Name="Documentation/doxygen/RoutingReport.txt" FileDate="2015-01-15, 21:27:55" FileAge="1421332075877" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/PDD/MSCAN_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="MQXLITE/kernel/lwsem.c" FileDate="2015-01-10, 20:34:27" FileAge="1420896867765" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/config/user_config.h" FileDate="2015-01-11, 16:37:13" FileAge="1420969033058" FileType="45637" CompNumb="4" />
+      <File Name="MQXLITE/kernel/lwsem.c" FileDate="2015-01-10, 20:34:27" FileAge="1420896867765" FileType="16384" CompNumb="4" />
       <File Name="Project_Settings/Debugger/MQXDeviceDescription.tad" FileDate="2015-01-10, 20:34:34" FileAge="1420896874375" FileType="45637" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/ACMP1_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PDD/PWT_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Project_Settings/Debugger/perftoolimages/event.gif" FileDate="2015-01-10, 20:34:26" FileAge="1420896866768" FileType="16384" CompNumb="4" />
       <File Name="Project_Settings/Debugger/perftoolimages/semaphore.gif" FileDate="2015-01-10, 20:34:26" FileAge="1420896866971" FileType="16384" CompNumb="4" />
-      <File Name="Project_Settings/Debugger/mqx.tad" FileDate="2015-01-10, 20:34:27" FileAge="1420896867315" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/ACMP1_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Project_Settings/Debugger/mqx.tad" FileDate="2015-01-10, 20:34:27" FileAge="1420896867315" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/include/mqx_str.h" FileDate="2015-01-10, 20:34:26" FileAge="1420896866518" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/psp_iinit.c" FileDate="2015-01-10, 20:34:29" FileAge="1420896869171" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/include/lwmem.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865632" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/MQX1.h" FileDate="2015-01-15, 21:34:43" FileAge="1421332483238" FileType="45637" CompNumb="4" />
       <File Name="MQXLITE/config/task_template_list.h" FileDate="2015-01-15, 21:52:53" FileAge="1421333573031" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/MQX1.h" FileDate="2015-01-15, 21:34:43" FileAge="1421332483238" FileType="45637" CompNumb="4" />
       <File Name="MQXLITE/include/lwmsgq.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865648" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/KBI0_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/Peripherals/FTM1_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/MQX1.c" FileDate="2015-01-15, 21:34:43" FileAge="1421332483269" FileType="45637" CompNumb="4" />
       <File Name="MQXLITE/config/task_template_list.c" FileDate="2015-01-15, 22:17:38" FileAge="1421335058556" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/MQX1.c" FileDate="2015-01-15, 21:34:43" FileAge="1421332483269" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Peripherals/FTM1_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PDD/SPI_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/Peripherals/SPI0_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/PE_LDD.h" FileDate="2015-01-15, 21:27:55" FileAge="1421332075355" FileType="45637" CompNumb="2" />
-      <File Name="Generated_Code/Peripherals/KBI0_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PDD/FTMRE_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/Peripherals/FTM1_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/Peripherals/KBI0_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/PE_LDD.h" FileDate="2015-01-15, 21:27:55" FileAge="1421332075355" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/PE_Const.h" FileDate="2015-01-10, 20:34:34" FileAge="1420896874266" FileType="45637" />
-      <File Name="Generated_Code/Peripherals/GPIOA_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/Peripherals/FTM1_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/Peripherals/SPI0_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/Peripherals/GPIOA_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PE_LDD.c" FileDate="2015-01-15, 21:27:55" FileAge="1421332075308" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/Peripherals/PMC_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/System/CPU_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
@@ -216,8 +216,8 @@
       <File Name="Generated_Code/System/CPU_Init.c" FileDate="2014-06-10, 10:56:24" FileAge="1402372584000" FileType="262144" />
       <File Name="Generated_Code/Peripherals/SIM_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="MQXLITE/psp/cortex_m/stack_de.c" FileDate="2015-01-10, 20:34:29" FileAge="1420896869405" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/Peripherals/SIM_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/PDD/MCM_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/Peripherals/SIM_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="MQXLITE/psp/cortex_m/cortex.h" FileDate="2015-01-10, 20:34:28" FileAge="1420896868499" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/include/lwlog_prv.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865617" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/psp_cpu.h" FileDate="2015-01-10, 20:34:29" FileAge="1420896869077" FileType="16384" CompNumb="4" />
@@ -226,31 +226,31 @@
       <File Name="MQXLITE/psp/cortex_m/int_xcpt.c" FileDate="2015-01-10, 20:34:28" FileAge="1420896868843" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/SystemControl_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/Peripherals/PORT_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="MQXLITE/kernel/int.c" FileDate="2015-01-10, 20:34:27" FileAge="1420896867518" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/SystemControl_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Sources/mqx_tasks.h" FileDate="2015-01-15, 21:34:43" FileAge="1421332483347" FileType="131328" />
+      <File Name="MQXLITE/kernel/int.c" FileDate="2015-01-10, 20:34:27" FileAge="1420896867518" FileType="16384" CompNumb="4" />
       <File Name="Documentation/doxygen/SystemTimer1.txt" FileDate="2015-01-10, 20:34:34" FileAge="1420896874562" FileType="45637" CompNumb="5" />
+      <File Name="Sources/mqx_tasks.h" FileDate="2015-01-15, 21:34:43" FileAge="1421332483347" FileType="131328" />
       <File Name="Generated_Code/SystemTimer1.h" FileDate="2015-01-10, 20:34:34" FileAge="1420896874656" FileType="45637" CompNumb="5" />
-      <File Name="Sources/mqx_tasks.c" FileDate="2015-01-15, 22:14:13" FileAge="1421334853344" FileType="131328" />
-      <File Name="MQXLITE/include/mqx_inc.h" FileDate="2015-01-10, 20:34:26" FileAge="1420896866440" FileType="16384" CompNumb="4" />
+      <File Name="Sources/mqx_tasks.c" FileDate="2015-01-15, 22:19:07" FileAge="1421335147064" FileType="131328" />
       <File Name="Generated_Code/SystemTimer1.c" FileDate="2015-01-10, 20:34:34" FileAge="1420896874594" FileType="45637" CompNumb="5" />
+      <File Name="MQXLITE/include/mqx_inc.h" FileDate="2015-01-10, 20:34:26" FileAge="1420896866440" FileType="16384" CompNumb="4" />
       <File Name="Project_Settings/Debugger/perftoolimages/message.gif" FileDate="2015-01-10, 20:34:26" FileAge="1420896866799" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/PE_Types.h" FileDate="2015-01-15, 21:27:54" FileAge="1421332074911" FileType="45637" />
       <File Name="MQXLITE/kernel/qu_test.c" FileDate="2015-01-10, 20:34:28" FileAge="1420896868077" FileType="16384" CompNumb="4" />
-      <File Name="MQXLITE/kernel/lwlog.c" FileDate="2015-01-10, 20:34:27" FileAge="1420896867655" FileType="16384" CompNumb="4" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2015-01-15, 21:27:54" FileAge="1421332074911" FileType="45637" />
       <File Name="Generated_Code/Peripherals/I2C0_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Project_Settings/Debugger/MKE06Z128.mem" FileDate="2015-01-10, 20:34:34" FileAge="1420896874141" FileType="45637" CompNumb="2" />
+      <File Name="MQXLITE/kernel/lwlog.c" FileDate="2015-01-10, 20:34:27" FileAge="1420896867655" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/int_unx.c" FileDate="2015-01-10, 20:34:28" FileAge="1420896868765" FileType="16384" CompNumb="4" />
+      <File Name="Project_Settings/Debugger/MKE06Z128.mem" FileDate="2015-01-10, 20:34:34" FileAge="1420896874141" FileType="45637" CompNumb="2" />
       <File Name="Generated_Code/Peripherals/DAC6b1_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="MQXLITE/include/queue.h" FileDate="2015-01-10, 20:34:26" FileAge="1420896866674" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/I2C0_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="MQXLITE/include/queue.h" FileDate="2015-01-10, 20:34:26" FileAge="1420896866674" FileType="16384" CompNumb="4" />
       <File Name="MQXLITE/psp/cortex_m/compiler/cwgcc/comp.h" FileDate="2015-01-10, 20:34:29" FileAge="1420896869546" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/DAC6b1_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Documentation/doxygen/TU1.txt" FileDate="2015-01-15, 21:27:54" FileAge="1421332074076" FileType="45637" CompNumb="30" />
       <File Name="Generated_Code/Peripherals/IRQ_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Documentation/doxygen/TU1.txt" FileDate="2015-01-15, 21:27:54" FileAge="1421332074076" FileType="45637" CompNumb="30" />
       <File Name="MQXLITE/psp/cortex_m/core/M0/boot.S" FileDate="2015-01-10, 20:34:29" FileAge="1420896869452" FileType="16384" CompNumb="4" />
-      <File Name="Generated_Code/Peripherals/IRQ_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/IO_Map/MKE06Z4.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/Peripherals/IRQ_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Documentation/doxygen/pex.css" FileDate="2015-01-10, 20:34:30" FileAge="1420896870562" FileType="16384" CompNumb="2" />
       <File Name="MQXLITE/psp/cortex_m/core/M0/psp_prv.inc" FileDate="2015-01-10, 20:34:29" FileAge="1420896869499" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/PDD/IRQ_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
@@ -270,14 +270,14 @@
       <File Name="Generated_Code/Peripherals/UART0_Init.c" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
       <File Name="Generated_Code/Pins1.h" FileDate="2015-01-10, 20:34:34" FileAge="1420896874797" FileType="45637" CompNumb="3" />
       <File Name="MQXLITE/kernel/time_ticks.c" FileDate="2015-01-10, 20:34:28" FileAge="1420896868327" FileType="16384" CompNumb="4" />
-      <File Name="MQXLITE/include/lwtimer_prv.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865695" FileType="16384" CompNumb="4" />
-      <File Name="MQXLITE/include/lwsem.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865663" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/Peripherals/KBI1_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="Generated_Code/Pins1.c" FileDate="2015-01-10, 20:34:34" FileAge="1420896874750" FileType="45637" CompNumb="3" />
-      <File Name="Generated_Code/Peripherals/FTM2_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
-      <File Name="MQXLITE/kernel/sched.c" FileDate="2015-01-10, 20:34:28" FileAge="1420896868171" FileType="16384" CompNumb="4" />
+      <File Name="MQXLITE/include/lwsem.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865663" FileType="16384" CompNumb="4" />
+      <File Name="MQXLITE/include/lwtimer_prv.h" FileDate="2015-01-10, 20:34:25" FileAge="1420896865695" FileType="16384" CompNumb="4" />
       <File Name="Generated_Code/PDD/I2C_PDD.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="MQXLITE/kernel/sched.c" FileDate="2015-01-10, 20:34:28" FileAge="1420896868171" FileType="16384" CompNumb="4" />
+      <File Name="Generated_Code/Peripherals/FTM2_Init.h" FileDate="2014-02-20, 13:18:46" FileAge="1392877126000" FileType="262144" />
+      <File Name="Generated_Code/Pins1.c" FileDate="2015-01-10, 20:34:34" FileAge="1420896874750" FileType="45637" CompNumb="3" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>38</CodeGenReference>
+  <CodeGenReference>39</CodeGenReference>
 </CodeGenerationInfo>

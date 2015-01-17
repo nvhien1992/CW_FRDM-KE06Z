@@ -1144,10 +1144,10 @@ PE_DEBUGHALT();
               <Name v="ADC" />
               <Entry_point_function v="ADC_task" />
               <Stack_size v="1024" />
-              <Priority v="8" />
+              <Priority v="7" />
               <Creation_parameter v="0" />
               <group name="Attributes">
-                <MQX_AUTO_START_TASK v="Enabled" />
+                <MQX_AUTO_START_TASK v="Disabled" />
                 <MQX_FLOATING_POINT_TASK v="Disabled" />
               </group>
             </Properties>
@@ -1166,8 +1166,8 @@ PE_DEBUGHALT();
       <group name="Configuration parameters">
         <group name="Components">
           <Lightweight_Semaphores v="yes" />
-          <Lightweight_Events v="no" />
-          <Lightweight_Message_Queues v="no" />
+          <Lightweight_Events v="yes" />
+          <Lightweight_Message_Queues v="yes" />
           <Mutexes v="no" />
           <Lightweight_Timer v="no" />
           <Kernel_Logging v="no" />
@@ -1366,12 +1366,16 @@ PE_DEBUGHALT();
       <Component_name v="AD1" />
       <A_D_converter v="ADC" />
       <Discontinuous_mode v="no" />
-      <boolgroup name="Interrupt service/event" v="Disabled" />
+      <boolgroup name="Interrupt service/event" v="Enabled">
+        <A_D_interrupt v="INT_ADC" />
+        <A_D_interrupt_priority v="medium priority" />
+        <ISR_Name v="AD1_MeasurementCompleteInterrupt" />
+      </boolgroup>
       <list name="A/D channel list" v="1">
         <group name="Channel 0">
           <enumgroup name="Channel mode" v="Single Ended">
             <group name="Input">
-              <A_D_channel__pin_ v="PTF7/KBI1_P15/ADC0_SE15" />
+              <A_D_channel__pin_ v="PTF6/KBI1_P14/ADC0_SE14" />
             </group>
           </enumgroup>
         </group>
@@ -1439,7 +1443,7 @@ PE_DEBUGHALT();
       <SetOperationMode v="don&amp;apos;t generate code" />
       <GetDriverState v="don&amp;apos;t generate code" />
       <ConnectPin v="don&amp;apos;t generate code" />
-      <Main v="generate code" />
+      <Main v="don&amp;apos;t generate code" />
     </Methods>
     <Events>
       <Event_module_name v="Events" />
@@ -1457,7 +1461,7 @@ PE_DEBUGHALT();
       <Output_pin v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
       <Counter v="FTM2_CNT" />
       <boolgroup name="Interrupt service/event" v="Disabled" />
-      <Period v="50 ms" />
+      <Period v="6.25 ms" />
       <Starting_pulse_width v="3.124952 ms" />
       <Initial_polarity v="low" />
       <group name="Initialization">
@@ -1524,7 +1528,7 @@ PE_DEBUGHALT();
       </enumgroup>
       <enumgroup name="Counter restart" v="On-match">
         <Period_device v="FTM2_MOD" />
-        <Period v="50 ms" />
+        <Period v="6.25 ms" />
         <boolgroup name="Interrupt" v="Disabled" />
       </enumgroup>
       <list name="Channel list" v="1">

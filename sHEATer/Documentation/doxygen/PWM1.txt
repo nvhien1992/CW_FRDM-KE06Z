@@ -24,7 +24,7 @@ by the component.
     0x00000004
  </td><td>FTM2_MODE register, peripheral PWM1.</td></tr>
 <tr><td>0x4003A000</td><td>FTM2_SC</td><td>
-    0x0000000C
+    0x00000009
  </td><td>FTM2_SC register, peripheral PWM1.</td></tr>
 <tr><td>0x4003A04C</td><td>FTM2_CNTIN</td><td>
     0x00000000
@@ -54,7 +54,7 @@ by the component.
     0x0000FFFF
  </td><td>FTM2_MOD register, peripheral PWM1.</td></tr>
 <tr><td>0x4003A038</td><td>FTM2_C5V</td><td>
-    0x00001000
+    0x00007FFF
  </td><td>FTM2_C5V register, peripheral PWM1.</td></tr>
 <tr><td>0x40048010</td><td>SIM_PINSEL1</td><td>
     0x00000200
@@ -243,14 +243,14 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003A000</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0000000C</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000009</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>7</td><td>TOF</td><td>0x00</td><td>Timer Overflow Flag</td>
 <tr><td>6</td><td>TOIE</td><td>0x00</td><td>Timer Overflow Interrupt Enable</td>
 <tr><td>5</td><td>CPWMS</td><td>0x00</td><td>Center-Aligned PWM Select</td>
 <tr><td>3 - 4</td><td>CLKS</td><td>0x00</td><td>Clock Source Selection</td>
-<tr><td>0 - 2</td><td>PS</td><td>0x04</td><td>Prescale Factor Selection</td>
+<tr><td>0 - 2</td><td>PS</td><td>0x00</td><td>Prescale Factor Selection</td>
 </tr></table>
 <div class="reghdr1">FTM2_CNTIN</div>
 <div class="regdiag">
@@ -783,7 +783,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003A038</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00001000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00007FFF</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 15</td><td>VAL</td><td>0x00</td><td>Channel Value</td>
@@ -862,7 +862,7 @@ registers of the peripheral(s) configured by the component.
 **          Output pin signal                              : 
 **          Counter                                        : FTM2_CNT
 **          Interrupt service/event                        : Disabled
-**          Period                                         : 50 ms
+**          Period                                         : 6.25 ms
 **          Starting pulse width                           : 3.124952 ms
 **          Initial polarity                               : low
 **          Initialization                                 : 

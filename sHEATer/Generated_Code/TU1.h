@@ -6,7 +6,7 @@
 **     Component   : TimerUnit_LDD
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-17, 17:03, # CodeGen: 15
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -21,7 +21,7 @@
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match
 **            Period device                                : FTM2_MOD
-**            Period                                       : 50 ms
+**            Period                                       : 6.25 ms
 **            Interrupt                                    : Disabled
 **          Channel list                                   : 1
 **            Channel 0                                    : 
@@ -131,14 +131,14 @@ extern "C" {
 #define __BWUserType_TU1_TValueType
   typedef uint16_t TU1_TValueType ;    /* Type for data parameters of methods */
 #endif
-#define TU1_CNT_INP_FREQ_U_0 0x00140000UL /* Counter input frequency in Hz */
-#define TU1_CNT_INP_FREQ_R_0 1310720.778463285F /* Counter input frequency in Hz */
+#define TU1_CNT_INP_FREQ_U_0 0x00A00000UL /* Counter input frequency in Hz */
+#define TU1_CNT_INP_FREQ_R_0 10485807.459603427F /* Counter input frequency in Hz */
 #define TU1_CNT_INP_FREQ_COUNT 0U      /* Count of predefined counter input frequencies */
 #define TU1_PERIOD_TICKS   0x00010000UL /* Initialization value of period in 'counter ticks' */
 #define TU1_NUMBER_OF_CHANNELS 0x01U   /* Count of predefined channels */
 #define TU1_COUNTER_WIDTH  0x10U       /* Counter width in bits  */
 #define TU1_COUNTER_DIR    DIR_UP      /* Direction of counting */
-#define TU1_OFFSET_0_TICKS 0x1000ul    /* Initialization value of offset as 'counter ticks' for channel 0 */
+#define TU1_OFFSET_0_TICKS 0x7FFFul    /* Initialization value of offset as 'counter ticks' for channel 0 */
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define TU1_PRPH_BASE_ADDRESS  0x4003A000U
   

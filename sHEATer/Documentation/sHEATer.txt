@@ -254,10 +254,6 @@ Module "AD1"       (component ADC_LDD)
                 method in parameter SampleGroupPtr. The number of samples is defined by parameter SampleCount. Once any group 
                 is prepared, the measurement can be started multiple times. Note: This method works only with the sample groups 
                 defined during run-time. For design-time defined groups use <SelectSampleGroup()> method.
-   - AD1_Main -This method is available only in the polling mode (Interrupt service/event = 'no'). If interrupt service is 
-                disabled this method replaces the interrupt handler. This method should be called if measurement was invoked 
-                before in order to get result into the internal buffer. The <OnMeasurementComplete> event is called in the same 
-                way as if interrupts are enabled.
 
 Module "PWM1"      (component PWM_LDD)
    - PWM1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 

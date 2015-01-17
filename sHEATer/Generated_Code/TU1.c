@@ -6,7 +6,7 @@
 **     Component   : TimerUnit_LDD
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-17, 17:03, # CodeGen: 15
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -21,7 +21,7 @@
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match
 **            Period device                                : FTM2_MOD
-**            Period                                       : 50 ms
+**            Period                                       : 6.25 ms
 **            Interrupt                                    : Disabled
 **          Channel list                                   : 1
 **            Channel 0                                    : 
@@ -208,12 +208,12 @@ LDD_TDeviceData* TU1_Init(LDD_TUserData *UserDataPtr)
   FTM2_MOD = FTM_MOD_MOD(0xFFFF);      /* Set up modulo register */
   /* FTM2_C5SC: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,CHF=0,CHIE=0,MSB=1,MSA=0,ELSB=1,ELSA=1,??=0,??=0 */
   FTM2_C5SC = (FTM_CnSC_MSB_MASK | FTM_CnSC_ELSB_MASK | FTM_CnSC_ELSA_MASK); /* Set up channel status and control register */
-  /* FTM2_C5V: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,VAL=0x1000 */
-  FTM2_C5V = FTM_CnV_VAL(0x1000);      /* Set up channel value register */
+  /* FTM2_C5V: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,VAL=0x7FFF */
+  FTM2_C5V = FTM_CnV_VAL(0x7FFF);      /* Set up channel value register */
   /* SIM_PINSEL1: FTM2PS5=1 */
   SIM_PINSEL1 |= SIM_PINSEL1_FTM2PS5_MASK;
-  /* FTM2_SC: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,TOF=0,TOIE=0,CPWMS=0,CLKS=1,PS=4 */
-  FTM2_SC = (FTM_SC_CLKS(0x01) | FTM_SC_PS(0x04)); /* Set up status and control register */
+  /* FTM2_SC: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,TOF=0,TOIE=0,CPWMS=0,CLKS=1,PS=1 */
+  FTM2_SC = (FTM_SC_CLKS(0x01) | FTM_SC_PS(0x01)); /* Set up status and control register */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_TU1_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv); /* Return pointer to the device data structure */

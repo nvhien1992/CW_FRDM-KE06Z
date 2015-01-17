@@ -207,9 +207,9 @@
       <GenExtraFileSrcDir6>lib\mqxlite\V1.1.1\source\psp\cortex_m\core\M0\</GenExtraFileSrcDir6>
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
-      <XtraAge1>1177639555</XtraAge1>
+      <XtraAge1>1177651205</XtraAge1>
       <XtraAge2>1177639555</XtraAge2>
-      <XtraAge3>1177639477</XtraAge3>
+      <XtraAge3>1177647928</XtraAge3>
       <XtraAge4>1177639475</XtraAge4>
       <XtraAge5>1177639475</XtraAge5>
       <XtraAge7>1177639475</XtraAge7>
@@ -286,7 +286,7 @@
       <XtraAge80>1177639474</XtraAge80>
       <XtraAge87>1177639698</XtraAge87>
       <XtraAge88>1177639698</XtraAge88>
-      <XtraAge90>1177639698</XtraAge90>
+      <XtraAge90>1177650716</XtraAge90>
       <XtraAge91>1177639477</XtraAge91>
       <XtraAge92>1177639477</XtraAge92>
       <GenExtraFileType96>5</GenExtraFileType96>
@@ -461,7 +461,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>5</ProjectModificationStamp>
+    <ProjectModificationStamp>15</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -1097,8 +1097,8 @@
     <GenComponentVersion>01.183</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1177639698</HeaderAge>
-    <CodeAge>1177639698</CodeAge>
+    <HeaderAge>1177650716</HeaderAge>
+    <CodeAge>1177650716</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>21</GenNumMethods>
     <Init>true</Init>
@@ -1121,11 +1121,12 @@
     <SetOperationMode>false</SetOperationMode>
     <GetDriverState>false</GetDriverState>
     <ConnectPin>false</ConnectPin>
-    <Main>true</Main>
+    <Main>false</Main>
     <GenNumEvents>1</GenNumEvents>
     <OnMeasurementComplete_Selected>3</OnMeasurementComplete_Selected>
     <OnMeasurementComplete_Name>AD1_OnMeasurementComplete</OnMeasurementComplete_Name>
     <OnMeasurementComplete_Priority>interrupts disabled</OnMeasurementComplete_Priority>
+    <ISR_MeasurementCompleteInterruptISRHandle>AD1_MeasurementCompleteInterrupt</ISR_MeasurementCompleteInterruptISRHandle>
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1134,71 +1135,71 @@
       <MethodPos0>Init</MethodPos0>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>187</LineBeg>
-      <LineEnd>211</LineEnd>
+      <LineBeg>188</LineBeg>
+      <LineEnd>212</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos1>StartSingleMeasurement</MethodPos1>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>212</LineBeg>
-      <LineEnd>251</LineEnd>
+      <LineBeg>213</LineBeg>
+      <LineEnd>252</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos2>CreateSampleGroup</MethodPos2>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>252</LineBeg>
-      <LineEnd>294</LineEnd>
+      <LineBeg>253</LineBeg>
+      <LineEnd>295</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos3>GetMeasuredValues</MethodPos3>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>295</LineBeg>
-      <LineEnd>328</LineEnd>
+      <LineBeg>296</LineBeg>
+      <LineEnd>329</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos4>Main</MethodPos4>
+      <MethodPos4>MeasurementCompleteInterrupt</MethodPos4>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>329</LineBeg>
-      <LineEnd>347</LineEnd>
+      <LineBeg>330</LineBeg>
+      <LineEnd>341</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos5>Init</MethodPos5>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>142</LineBeg>
-      <LineEnd>201</LineEnd>
+      <LineBeg>145</LineBeg>
+      <LineEnd>220</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos6>StartSingleMeasurement</MethodPos6>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>202</LineBeg>
-      <LineEnd>254</LineEnd>
+      <LineBeg>221</LineBeg>
+      <LineEnd>273</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos7>CreateSampleGroup</MethodPos7>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>255</LineBeg>
-      <LineEnd>323</LineEnd>
+      <LineBeg>274</LineBeg>
+      <LineEnd>342</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos8>GetMeasuredValues</MethodPos8>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>324</LineBeg>
-      <LineEnd>369</LineEnd>
+      <LineBeg>343</LineBeg>
+      <LineEnd>388</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos9>Main</MethodPos9>
-      <MethodType>method</MethodType>
+      <MethodPos9>MeasurementCompleteInterrupt</MethodPos9>
+      <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>370</LineBeg>
-      <LineEnd>399</LineEnd>
+      <LineBeg>389</LineBeg>
+      <LineEnd>410</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>1</GenExtraFilesCount>
     <ExtraFile0>Documentation\doxygen\AD1.txt</ExtraFile0>
@@ -1209,8 +1210,8 @@
     <GenComponentVersion>01.013</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1177639698</HeaderAge>
-    <CodeAge>1177639698</CodeAge>
+    <HeaderAge>1177651313</HeaderAge>
+    <CodeAge>1177651314</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>18</GenNumMethods>
     <Init>true</Init>
@@ -1304,8 +1305,8 @@
     <GenComponentVersion>01.164</GenComponentVersion>
     <GenDriverVersion>01.11</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1177639698</HeaderAge>
-    <CodeAge>1177639698</CodeAge>
+    <HeaderAge>1177651314</HeaderAge>
+    <CodeAge>1177651314</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>22</GenNumMethods>
     <Init>true</Init>
@@ -1816,21 +1817,20 @@
     <SrcFile200>Drivers\Kinetis\Static_Kinetis_InterruptVectorTable.prg=1127381294</SrcFile200>
     <SrcFile201>Drivers\VAR\InitPinProperty.prg=1123044898</SrcFile201>
     <SrcFile202>Drivers\Common\KinetisAbstract.inc=1116866294</SrcFile202>
-    <SrcFile203>Drivers\Common\ADC_LDDMain.inc=1124477581</SrcFile203>
-    <SrcFile204>Drivers\Kinetis\TimerUnit_LDD.drv=1146382935</SrcFile204>
-    <SrcFile205>Drivers\Kinetis\IsSupported_SIM_PDD.prg=1146382935</SrcFile205>
-    <SrcFile206>Drivers\Kinetis\IsSupported_COP_PDD.prg=1146382935</SrcFile206>
-    <SrcFile207>Drivers\Common\PWM_LDDSettings.inc=1146382935</SrcFile207>
-    <SrcFile208>Drivers\Kinetis\IsSupported_NVIC_PDD.prg=1146382935</SrcFile208>
-    <SrcFile209>Drivers\Kinetis\InitInterrupt.prg=1123044898</SrcFile209>
-    <SrcFile210>Drivers\Common\TimerUnit_LDDSetOffsetTicks.inc=1117935863</SrcFile210>
-    <SrcFile211>Drivers\Common\Doxy_CollectRegInitInfo.prg=1116866294</SrcFile211>
-    <SrcFile212>Drivers\MQXLite.src=1146389079</SrcFile212>
-    <SrcFile213>Drivers\Kinetis\InitIntRequestPDD2.prg=1146382935</SrcFile213>
-    <SrcFile214>Drivers\Kinetis\IsSupported_OSC_PDD.prg=1146382935</SrcFile214>
-    <SrcFile215>Drivers\Kinetis\IsSupported_FTMRE_PDD.prg=1146382935</SrcFile215>
-    <SrcFile216>Drivers\Common\IO_MapSettings.inc=1116866294</SrcFile216>
-    <SrcFile217>Drivers\Common\GeneralReturnNothing.inc=1116866294</SrcFile217>
-    <SrcFile218>Drivers\Serial_LDD.src=1116866294</SrcFile218>
+    <SrcFile203>Drivers\Kinetis\TimerUnit_LDD.drv=1146382935</SrcFile203>
+    <SrcFile204>Drivers\Kinetis\IsSupported_SIM_PDD.prg=1146382935</SrcFile204>
+    <SrcFile205>Drivers\Kinetis\IsSupported_COP_PDD.prg=1146382935</SrcFile205>
+    <SrcFile206>Drivers\Common\PWM_LDDSettings.inc=1146382935</SrcFile206>
+    <SrcFile207>Drivers\Kinetis\IsSupported_NVIC_PDD.prg=1146382935</SrcFile207>
+    <SrcFile208>Drivers\Kinetis\InitInterrupt.prg=1123044898</SrcFile208>
+    <SrcFile209>Drivers\Common\TimerUnit_LDDSetOffsetTicks.inc=1117935863</SrcFile209>
+    <SrcFile210>Drivers\Common\Doxy_CollectRegInitInfo.prg=1116866294</SrcFile210>
+    <SrcFile211>Drivers\MQXLite.src=1146389079</SrcFile211>
+    <SrcFile212>Drivers\Kinetis\InitIntRequestPDD2.prg=1146382935</SrcFile212>
+    <SrcFile213>Drivers\Kinetis\IsSupported_OSC_PDD.prg=1146382935</SrcFile213>
+    <SrcFile214>Drivers\Kinetis\IsSupported_FTMRE_PDD.prg=1146382935</SrcFile214>
+    <SrcFile215>Drivers\Common\IO_MapSettings.inc=1116866294</SrcFile215>
+    <SrcFile216>Drivers\Common\GeneralReturnNothing.inc=1116866294</SrcFile216>
+    <SrcFile217>Drivers\Serial_LDD.src=1116866294</SrcFile217>
   </UsedSrcFiles>
 </GenerationInfo_G_C>

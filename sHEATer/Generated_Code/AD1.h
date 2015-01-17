@@ -6,7 +6,7 @@
 **     Component   : ADC_LDD
 **     Version     : Component 01.183, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-17, 16:48, # CodeGen: 10
 **     Abstract    :
 **         This device "ADC_LDD" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -14,12 +14,15 @@
 **          Component name                                 : AD1
 **          A/D converter                                  : ADC
 **          Discontinuous mode                             : no
-**          Interrupt service/event                        : Disabled
+**          Interrupt service/event                        : Enabled
+**            A/D interrupt                                : INT_ADC
+**            A/D interrupt priority                       : medium priority
+**            ISR Name                                     : AD1_MeasurementCompleteInterrupt
 **          A/D channel list                               : 1
 **            Channel 0                                    : 
 **              Channel mode                               : Single Ended
 **                Input                                    : 
-**                  A/D channel (pin)                      : PTF7/KBI1_P15/ADC0_SE15
+**                  A/D channel (pin)                      : PTF6/KBI1_P14/ADC0_SE14
 **                  A/D channel (pin) signal               : 
 **          Static sample groups                           : Disabled
 **          A/D resolution                                 : 12 bits
@@ -59,7 +62,6 @@
 **         StartSingleMeasurement - LDD_TError AD1_StartSingleMeasurement(LDD_TDeviceData *DeviceDataPtr);
 **         GetMeasuredValues      - LDD_TError AD1_GetMeasuredValues(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
 **         CreateSampleGroup      - LDD_TError AD1_CreateSampleGroup(LDD_TDeviceData *DeviceDataPtr,...
-**         Main                   - void AD1_Main(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -134,7 +136,6 @@ extern "C" {
 #define AD1_StartSingleMeasurement_METHOD_ENABLED /*!< StartSingleMeasurement method of the component AD1 is enabled (generated) */
 #define AD1_GetMeasuredValues_METHOD_ENABLED /*!< GetMeasuredValues method of the component AD1 is enabled (generated) */
 #define AD1_CreateSampleGroup_METHOD_ENABLED /*!< CreateSampleGroup method of the component AD1 is enabled (generated) */
-#define AD1_Main_METHOD_ENABLED        /*!< Main method of the component AD1 is enabled (generated) */
 
 /* Events configuration constants - generated for all enabled component's events */
 #define AD1_OnMeasurementComplete_EVENT_ENABLED /*!< OnMeasurementComplete event of the component AD1 is enabled (generated) */
@@ -329,22 +330,15 @@ LDD_TError AD1_GetMeasuredValues(LDD_TDeviceData *DeviceDataPtr, LDD_TData *Buff
 
 /*
 ** ===================================================================
-**     Method      :  AD1_Main (component ADC_LDD)
+**     Method      :  AD1_MeasurementCompleteInterrupt (component ADC_LDD)
+**
+**     Description :
+**         Measurement complete interrupt handler
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
 */
-/*!
-**     @brief
-**         This method is available only in the polling mode (Interrupt
-**         service/event = 'no'). If interrupt service is disabled this
-**         method replaces the interrupt handler. This method should be
-**         called if measurement was invoked before in order to get
-**         result into the internal buffer. The [OnMeasurementComplete]
-**         event is called in the same way as if interrupts are enabled.
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by [Init] method.
-*/
-/* ===================================================================*/
-void AD1_Main(LDD_TDeviceData *DeviceDataPtr);
+/* {MQXLite RTOS Adapter} ISR function prototype */
+void AD1_MeasurementCompleteInterrupt(LDD_RTOS_TISRParameter _isrParameter);
 
 /* END AD1. */
 

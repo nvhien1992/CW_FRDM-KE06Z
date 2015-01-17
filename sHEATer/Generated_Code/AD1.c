@@ -6,7 +6,7 @@
 **     Component   : ADC_LDD
 **     Version     : Component 01.183, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-17, 16:48, # CodeGen: 10
 **     Abstract    :
 **         This device "ADC_LDD" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -14,12 +14,15 @@
 **          Component name                                 : AD1
 **          A/D converter                                  : ADC
 **          Discontinuous mode                             : no
-**          Interrupt service/event                        : Disabled
+**          Interrupt service/event                        : Enabled
+**            A/D interrupt                                : INT_ADC
+**            A/D interrupt priority                       : medium priority
+**            ISR Name                                     : AD1_MeasurementCompleteInterrupt
 **          A/D channel list                               : 1
 **            Channel 0                                    : 
 **              Channel mode                               : Single Ended
 **                Input                                    : 
-**                  A/D channel (pin)                      : PTF7/KBI1_P15/ADC0_SE15
+**                  A/D channel (pin)                      : PTF6/KBI1_P14/ADC0_SE14
 **                  A/D channel (pin) signal               : 
 **          Static sample groups                           : Disabled
 **          A/D resolution                                 : 12 bits
@@ -59,7 +62,6 @@
 **         StartSingleMeasurement - LDD_TError AD1_StartSingleMeasurement(LDD_TDeviceData *DeviceDataPtr);
 **         GetMeasuredValues      - LDD_TError AD1_GetMeasuredValues(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
 **         CreateSampleGroup      - LDD_TError AD1_CreateSampleGroup(LDD_TDeviceData *DeviceDataPtr,...
-**         Main                   - void AD1_Main(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -122,8 +124,8 @@ extern "C" {
 #define AD1_AVAILABLE_VOLT_REF_PIN_MASK (LDD_ADC_LOW_VOLT_REF_PIN | LDD_ADC_HIGH_VOLT_REF_PIN) /*!< Mask of all allocated voltage reference pins */
 
 static const uint8_t ChannelToPin[] = { /* Channel to pin conversion table */
-  /* ADC_SC1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,COCO=0,AIEN=1,ADCO=0,ADCH=0x0F */
-  0x4FU                                /* Status and control register value */
+  /* ADC_SC1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,COCO=0,AIEN=1,ADCO=0,ADCH=0x0E */
+  0x4EU                                /* Status and control register value */
 };
 
 typedef struct {
@@ -132,6 +134,7 @@ typedef struct {
 } TStaticSampleGroup;
 
 typedef struct {
+  LDD_RTOS_TISRVectorSettings SavedISRSettings_MeasurementComplete; /* {MQXLite RTOS Adapter} Saved settings of allocated interrupt vector */
   LDD_TUserData *UserData;             /* RTOS device data structure */
   uint16_t IntBuffer[AD1_MAX_HW_SAMPLE_COUNT]; /* Internal buffer for storing the results */
   TStaticSampleGroup *GroupPtr;        /* Pointer to actual sample group address */
@@ -177,16 +180,32 @@ LDD_TDeviceData* AD1_Init(LDD_TUserData *UserDataPtr)
   for (index = 0U; index < AD1_MAX_HW_SAMPLE_COUNT; index++){
     DeviceDataPrv->IntBuffer[index] = 0U; /* Initialization of the internal buffer */
   }
+  /* Interrupt vector(s) allocation */
+  /* {MQXLite RTOS Adapter} Save old and set new interrupt vector (function handler and ISR parameter) */
+  /* Note: Exception handler for interrupt is not saved, because it is not modified */
+  DeviceDataPrv->SavedISRSettings_MeasurementComplete.isrData = _int_get_isr_data(LDD_ivIndex_INT_ADC);
+  DeviceDataPrv->SavedISRSettings_MeasurementComplete.isrFunction = _int_install_isr(LDD_ivIndex_INT_ADC, AD1_MeasurementCompleteInterrupt, DeviceDataPrv);
   /* SIM_SCGC: ADC=1 */
   SIM_SCGC |= SIM_SCGC_ADC_MASK;
+  /* Interrupt vector(s) priority setting */
+  /* NVIC_IPR3: PRI_15=1 */
+  NVIC_IPR3 = (uint32_t)((NVIC_IPR3 & (uint32_t)~(uint32_t)(
+               NVIC_IP_PRI_15(0x02)
+              )) | (uint32_t)(
+               NVIC_IP_PRI_15(0x01)
+              ));
+  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=1,SETENA14=0,SETENA13=0,SETENA12=0,SETENA11=0,SETENA10=0,SETENA9=0,SETENA8=0,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
+  NVIC_ISER = NVIC_ISER_SETENA15_MASK;
+  /* NVIC_ICER: CLRENA31=0,CLRENA30=0,CLRENA29=0,CLRENA28=0,CLRENA27=0,CLRENA26=0,CLRENA25=0,CLRENA24=0,CLRENA23=0,CLRENA22=0,CLRENA21=0,CLRENA20=0,CLRENA19=0,CLRENA18=0,CLRENA17=0,CLRENA16=0,CLRENA15=0,CLRENA14=0,CLRENA13=0,CLRENA12=0,CLRENA11=0,CLRENA10=0,CLRENA9=0,CLRENA8=0,CLRENA7=0,CLRENA6=0,CLRENA5=0,CLRENA4=0,CLRENA3=0,CLRENA2=0,CLRENA1=0,CLRENA0=0 */
+  NVIC_ICER = 0x00U;
   /* Enable device clock gate */
   /* SIM_SCGC: ADC=1 */
   SIM_SCGC |= SIM_SCGC_ADC_MASK;
   /* Initialization of pin routing */
   /* ADC_SC2: REFSEL=0 */
   ADC_SC2 &= (uint32_t)~(uint32_t)(ADC_SC2_REFSEL(0x03));
-  /* ADC_APCTL1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADPC=0x8000 */
-  ADC_APCTL1 = ADC_APCTL1_ADPC(0x8000);
+  /* ADC_APCTL1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADPC=0x4000 */
+  ADC_APCTL1 = ADC_APCTL1_ADPC(0x4000);
   /* ADC_SC3: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADLPC=0,ADIV=3,ADLSMP=0,MODE=2,ADICLK=0 */
   ADC_SC3 = (ADC_SC3_ADIV(0x03) | ADC_SC3_MODE(0x02) | ADC_SC3_ADICLK(0x00));
   /* ADC_SC2: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADACT=0,ADTRG=0,ACFE=0,ACFGT=0,FEMPTY=0,FFULL=0,REFSEL=0 */
@@ -370,25 +389,17 @@ LDD_TError AD1_GetMeasuredValues(LDD_TDeviceData *DeviceDataPtr, LDD_TData *Buff
 
 /*
 ** ===================================================================
-**     Method      :  AD1_Main (component ADC_LDD)
+**     Method      :  AD1_MeasurementCompleteInterrupt (component ADC_LDD)
+**
+**     Description :
+**         Measurement complete interrupt handler
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
 */
-/*!
-**     @brief
-**         This method is available only in the polling mode (Interrupt
-**         service/event = 'no'). If interrupt service is disabled this
-**         method replaces the interrupt handler. This method should be
-**         called if measurement was invoked before in order to get
-**         result into the internal buffer. The [OnMeasurementComplete]
-**         event is called in the same way as if interrupts are enabled.
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by [Init] method.
-*/
-/* ===================================================================*/
-void AD1_Main(LDD_TDeviceData *DeviceDataPtr)
+void AD1_MeasurementCompleteInterrupt(LDD_RTOS_TISRParameter _isrParameter)
 {
-  AD1_TDeviceDataPtr DeviceDataPrv = (AD1_TDeviceDataPtr)DeviceDataPtr;
-
+  /* {MQXLite RTOS Adapter} ISR parameter is passed as parameter from RTOS interrupt dispatcher */
+  AD1_TDeviceDataPtr DeviceDataPrv = (AD1_TDeviceDataPtr)_isrParameter;
     uint8_t Sample;
   /* Copy values from result registers defined in the active sample
   group to the internal buffer */

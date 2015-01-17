@@ -20,11 +20,20 @@ by the component.
 <tr><td>0x40048014</td><td>SIM_SCGC</td><td>
     0x20000000
  </td><td>SIM_SCGC register, peripheral AD1.</td></tr>
+<tr><td>0xE000E40C</td><td>NVIC_IPR3</td><td>
+    0x40000000
+ </td><td>NVIC_IPR3 register, peripheral AD1.</td></tr>
+<tr><td>0xE000E100</td><td>NVIC_ISER</td><td>
+    0x00008000
+ </td><td>NVIC_ISER register, peripheral AD1.</td></tr>
+<tr><td>0xE000E180</td><td>NVIC_ICER</td><td>
+    0x00000000
+ </td><td>NVIC_ICER register, peripheral AD1.</td></tr>
 <tr><td>0x4003B004</td><td>ADC_SC2</td><td>
     0x00000008
  </td><td>ADC_SC2 register, peripheral AD1.</td></tr>
 <tr><td>0x4003B018</td><td>ADC_APCTL1</td><td>
-    0x00008000
+    0x00004000
  </td><td>ADC_APCTL1 register, peripheral AD1.</td></tr>
 <tr><td>0x4003B008</td><td>ADC_SC3</td><td>
     0x00000068
@@ -169,6 +178,225 @@ registers of the peripheral(s) configured by the component.
 <tr><td>1</td><td>PIT</td><td>0x00</td><td>PIT Clock Gate Control</td>
 <tr><td>0</td><td>RTC</td><td>0x00</td><td>RTC Clock Gate Control</td>
 </tr></table>
+<div class="reghdr1">NVIC_IPR3</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td>
+<td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="2" rowspan="2">PRI_15</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="2" rowspan="2">PRI_14</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td>
+<td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="2" rowspan="2">PRI_13</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="2" rowspan="2">PRI_12</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E40C</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x40000000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>30 - 31</td><td>PRI_15</td><td>0x00</td><td>Priority of the Analog-to-Digital Converter 0 interrupt</td>
+<tr><td>22 - 23</td><td>PRI_14</td><td>0x00</td><td>Priority of the UART2 status and error interrupt</td>
+<tr><td>14 - 15</td><td>PRI_13</td><td>0x00</td><td>Priority of the UART1 status and error interrupt</td>
+<tr><td>6 - 7</td><td>PRI_12</td><td>0x00</td><td>Priority of the UART0 status and error interrupt</td>
+</tr></table>
+<div class="reghdr1">NVIC_ISER</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td>
+<td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">SETENA31</td><td colspan="1" rowspan="2">SETENA30</td>
+<td colspan="1" rowspan="2">SETENA29</td><td colspan="1" rowspan="2">SETENA28</td><td colspan="1" rowspan="2">SETENA27</td>
+<td colspan="1" rowspan="2">SETENA26</td><td colspan="1" rowspan="2">SETENA25</td><td colspan="1" rowspan="2">SETENA24</td>
+<td colspan="1" rowspan="2">SETENA23</td><td colspan="1" rowspan="2">SETENA22</td><td colspan="1" rowspan="2">SETENA21</td>
+<td colspan="1" rowspan="2">SETENA20</td><td colspan="1" rowspan="2">SETENA19</td><td colspan="1" rowspan="2">SETENA18</td>
+<td colspan="1" rowspan="2">SETENA17</td><td colspan="1" rowspan="2">SETENA16</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td>
+<td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">SETENA15</td><td colspan="1" rowspan="2">SETENA14</td>
+<td colspan="1" rowspan="2">SETENA13</td><td colspan="1" rowspan="2">SETENA12</td><td colspan="1" rowspan="2">SETENA11</td>
+<td colspan="1" rowspan="2">SETENA10</td><td colspan="1" rowspan="2">SETENA9</td><td colspan="1" rowspan="2">SETENA8</td>
+<td colspan="1" rowspan="2">SETENA7</td><td colspan="1" rowspan="2">SETENA6</td><td colspan="1" rowspan="2">SETENA5</td>
+<td colspan="1" rowspan="2">SETENA4</td><td colspan="1" rowspan="2">SETENA3</td><td colspan="1" rowspan="2">SETENA2</td>
+<td colspan="1" rowspan="2">SETENA1</td><td colspan="1" rowspan="2">SETENA0</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E100</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00008000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>31</td><td>SETENA31</td><td>0x00</td><td>Freescale&apos;s Scalable Controller Area Network Tx and error interrupt set-enable bit</td>
+<tr><td>30</td><td>SETENA30</td><td>0x00</td><td>Freescale&apos;s Scalable Controller Area Network Rx interrupt set-enable bit</td>
+<tr><td>29</td><td>SETENA29</td><td>0x00</td><td>Pulse width timer interrupt set-enable bit</td>
+<tr><td>28</td><td>SETENA28</td><td>0x00</td><td>WDOG interrupt set-enable bit</td>
+<tr><td>27</td><td>SETENA27</td><td>0x00</td><td>Clock loss of lock interrupt set-enable bit</td>
+<tr><td>26</td><td>SETENA26</td><td>0x00</td><td>Reserved iv 42 interrupt set-enable bit</td>
+<tr><td>25</td><td>SETENA25</td><td>0x00</td><td>Keyboard interrupt interrupt set-enable bit</td>
+<tr><td>24</td><td>SETENA24</td><td>0x00</td><td>Keyboard interrupt interrupt set-enable bit</td>
+<tr><td>23</td><td>SETENA23</td><td>0x00</td><td>Periodic timer overflow channel 1 interrupt set-enable bit</td>
+<tr><td>22</td><td>SETENA22</td><td>0x00</td><td>Periodic timer overflow channel 0 interrupt set-enable bit</td>
+<tr><td>21</td><td>SETENA21</td><td>0x00</td><td>Analog comparator 1 interrupt interrupt set-enable bit</td>
+<tr><td>20</td><td>SETENA20</td><td>0x00</td><td>Real-time counter interrupt set-enable bit</td>
+<tr><td>19</td><td>SETENA19</td><td>0x00</td><td>FlexTimer Module 2 interrupt set-enable bit</td>
+<tr><td>18</td><td>SETENA18</td><td>0x00</td><td>FlexTimer Module 1 interrupt set-enable bit</td>
+<tr><td>17</td><td>SETENA17</td><td>0x00</td><td>FlexTimer Module 0 interrupt set-enable bit</td>
+<tr><td>16</td><td>SETENA16</td><td>0x00</td><td>Analog comparator 0 interrupt interrupt set-enable bit</td>
+<tr><td>15</td><td>SETENA15</td><td>0x01</td><td>Analog-to-Digital Converter 0 interrupt set-enable bit</td>
+<tr><td>14</td><td>SETENA14</td><td>0x00</td><td>UART2 status and error interrupt set-enable bit</td>
+<tr><td>13</td><td>SETENA13</td><td>0x00</td><td>UART1 status and error interrupt set-enable bit</td>
+<tr><td>12</td><td>SETENA12</td><td>0x00</td><td>UART0 status and error interrupt set-enable bit</td>
+<tr><td>11</td><td>SETENA11</td><td>0x00</td><td>Serial Peripheral Interface 1 interrupt set-enable bit</td>
+<tr><td>10</td><td>SETENA10</td><td>0x00</td><td>Serial Peripheral Interface 0 interrupt set-enable bit</td>
+<tr><td>9</td><td>SETENA9</td><td>0x00</td><td>Inter-Integrated Circuit 1 interrupt set-enable bit</td>
+<tr><td>8</td><td>SETENA8</td><td>0x00</td><td>Inter-Integrated Circuit 0 interrupt set-enable bit</td>
+<tr><td>7</td><td>SETENA7</td><td>0x00</td><td>External Interrupt interrupt set-enable bit</td>
+<tr><td>6</td><td>SETENA6</td><td>0x00</td><td>Low-voltage detect, low-voltage warning interrupt set-enable bit</td>
+<tr><td>5</td><td>SETENA5</td><td>0x00</td><td>Command complete and read collision interrupt set-enable bit</td>
+<tr><td>4</td><td>SETENA4</td><td>0x00</td><td>Reserved iv 20 interrupt set-enable bit</td>
+<tr><td>3</td><td>SETENA3</td><td>0x00</td><td>Reserved iv 19 interrupt set-enable bit</td>
+<tr><td>2</td><td>SETENA2</td><td>0x00</td><td>Reserved iv 18 interrupt set-enable bit</td>
+<tr><td>1</td><td>SETENA1</td><td>0x00</td><td>Reserved iv 17 interrupt set-enable bit</td>
+<tr><td>0</td><td>SETENA0</td><td>0x00</td><td>Reserved iv 16 interrupt set-enable bit</td>
+</tr></table>
+<div class="reghdr1">NVIC_ICER</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td>
+<td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">CLRENA31</td><td colspan="1" rowspan="2">CLRENA30</td>
+<td colspan="1" rowspan="2">CLRENA29</td><td colspan="1" rowspan="2">CLRENA28</td><td colspan="1" rowspan="2">CLRENA27</td>
+<td colspan="1" rowspan="2">CLRENA26</td><td colspan="1" rowspan="2">CLRENA25</td><td colspan="1" rowspan="2">CLRENA24</td>
+<td colspan="1" rowspan="2">CLRENA23</td><td colspan="1" rowspan="2">CLRENA22</td><td colspan="1" rowspan="2">CLRENA21</td>
+<td colspan="1" rowspan="2">CLRENA20</td><td colspan="1" rowspan="2">CLRENA19</td><td colspan="1" rowspan="2">CLRENA18</td>
+<td colspan="1" rowspan="2">CLRENA17</td><td colspan="1" rowspan="2">CLRENA16</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td>
+<td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">CLRENA15</td><td colspan="1" rowspan="2">CLRENA14</td>
+<td colspan="1" rowspan="2">CLRENA13</td><td colspan="1" rowspan="2">CLRENA12</td><td colspan="1" rowspan="2">CLRENA11</td>
+<td colspan="1" rowspan="2">CLRENA10</td><td colspan="1" rowspan="2">CLRENA9</td><td colspan="1" rowspan="2">CLRENA8</td>
+<td colspan="1" rowspan="2">CLRENA7</td><td colspan="1" rowspan="2">CLRENA6</td><td colspan="1" rowspan="2">CLRENA5</td>
+<td colspan="1" rowspan="2">CLRENA4</td><td colspan="1" rowspan="2">CLRENA3</td><td colspan="1" rowspan="2">CLRENA2</td>
+<td colspan="1" rowspan="2">CLRENA1</td><td colspan="1" rowspan="2">CLRENA0</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E180</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>31</td><td>CLRENA31</td><td>0x00</td><td>Freescale&apos;s Scalable Controller Area Network Tx and error interrupt clear-enable bit</td>
+<tr><td>30</td><td>CLRENA30</td><td>0x00</td><td>Freescale&apos;s Scalable Controller Area Network Rx interrupt clear-enable bit</td>
+<tr><td>29</td><td>CLRENA29</td><td>0x00</td><td>Pulse width timer interrupt clear-enable bit</td>
+<tr><td>28</td><td>CLRENA28</td><td>0x00</td><td>WDOG interrupt clear-enable bit</td>
+<tr><td>27</td><td>CLRENA27</td><td>0x00</td><td>Clock loss of lock interrupt clear-enable bit</td>
+<tr><td>26</td><td>CLRENA26</td><td>0x00</td><td>Reserved iv 42 interrupt clear-enable bit</td>
+<tr><td>25</td><td>CLRENA25</td><td>0x00</td><td>Keyboard interrupt interrupt clear-enable bit</td>
+<tr><td>24</td><td>CLRENA24</td><td>0x00</td><td>Keyboard interrupt interrupt clear-enable bit</td>
+<tr><td>23</td><td>CLRENA23</td><td>0x00</td><td>Periodic timer overflow channel 1 interrupt clear-enable bit</td>
+<tr><td>22</td><td>CLRENA22</td><td>0x00</td><td>Periodic timer overflow channel 0 interrupt clear-enable bit</td>
+<tr><td>21</td><td>CLRENA21</td><td>0x00</td><td>Analog comparator 1 interrupt interrupt clear-enable bit</td>
+<tr><td>20</td><td>CLRENA20</td><td>0x00</td><td>Real-time counter interrupt clear-enable bit</td>
+<tr><td>19</td><td>CLRENA19</td><td>0x00</td><td>FlexTimer Module 2 interrupt clear-enable bit</td>
+<tr><td>18</td><td>CLRENA18</td><td>0x00</td><td>FlexTimer Module 1 interrupt clear-enable bit</td>
+<tr><td>17</td><td>CLRENA17</td><td>0x00</td><td>FlexTimer Module 0 interrupt clear-enable bit</td>
+<tr><td>16</td><td>CLRENA16</td><td>0x00</td><td>Analog comparator 0 interrupt interrupt clear-enable bit</td>
+<tr><td>15</td><td>CLRENA15</td><td>0x00</td><td>Analog-to-Digital Converter 0 interrupt clear-enable bit</td>
+<tr><td>14</td><td>CLRENA14</td><td>0x00</td><td>UART2 status and error interrupt clear-enable bit</td>
+<tr><td>13</td><td>CLRENA13</td><td>0x00</td><td>UART1 status and error interrupt clear-enable bit</td>
+<tr><td>12</td><td>CLRENA12</td><td>0x00</td><td>UART0 status and error interrupt clear-enable bit</td>
+<tr><td>11</td><td>CLRENA11</td><td>0x00</td><td>Serial Peripheral Interface 1 interrupt clear-enable bit</td>
+<tr><td>10</td><td>CLRENA10</td><td>0x00</td><td>Serial Peripheral Interface 0 interrupt clear-enable bit</td>
+<tr><td>9</td><td>CLRENA9</td><td>0x00</td><td>Inter-Integrated Circuit 1 interrupt clear-enable bit</td>
+<tr><td>8</td><td>CLRENA8</td><td>0x00</td><td>Inter-Integrated Circuit 0 interrupt clear-enable bit</td>
+<tr><td>7</td><td>CLRENA7</td><td>0x00</td><td>External Interrupt interrupt clear-enable bit</td>
+<tr><td>6</td><td>CLRENA6</td><td>0x00</td><td>Low-voltage detect, low-voltage warning interrupt clear-enable bit</td>
+<tr><td>5</td><td>CLRENA5</td><td>0x00</td><td>Command complete and read collision interrupt clear-enable bit</td>
+<tr><td>4</td><td>CLRENA4</td><td>0x00</td><td>Reserved iv 20 interrupt clear-enable bit</td>
+<tr><td>3</td><td>CLRENA3</td><td>0x00</td><td>Reserved iv 19 interrupt clear-enable bit</td>
+<tr><td>2</td><td>CLRENA2</td><td>0x00</td><td>Reserved iv 18 interrupt clear-enable bit</td>
+<tr><td>1</td><td>CLRENA1</td><td>0x00</td><td>Reserved iv 17 interrupt clear-enable bit</td>
+<tr><td>0</td><td>CLRENA0</td><td>0x00</td><td>Reserved iv 16 interrupt clear-enable bit</td>
+</tr></table>
 <div class="reghdr1">ADC_SC2</div>
 <div class="regdiag">
 <table class="regtbl">
@@ -269,10 +497,10 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003B018</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00008000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00004000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
-<tr><td>0 - 15</td><td>ADPC</td><td>0x8000</td><td>ADC Pin Control</td>
+<tr><td>0 - 15</td><td>ADPC</td><td>0x00</td><td>ADC Pin Control</td>
 </tr></table>
 <div class="reghdr1">ADC_SC3</div>
 <div class="regdiag">
@@ -443,12 +671,15 @@ registers of the peripheral(s) configured by the component.
 **          Component name                                 : AD1
 **          A/D converter                                  : ADC
 **          Discontinuous mode                             : no
-**          Interrupt service/event                        : Disabled
+**          Interrupt service/event                        : Enabled
+**            A/D interrupt                                : INT_ADC
+**            A/D interrupt priority                       : medium priority
+**            ISR Name                                     : AD1_MeasurementCompleteInterrupt
 **          A/D channel list                               : 1
 **            Channel 0                                    : 
 **              Channel mode                               : Single Ended
 **                Input                                    : 
-**                  A/D channel (pin)                      : PTF7/KBI1_P15/ADC0_SE15
+**                  A/D channel (pin)                      : PTF6/KBI1_P14/ADC0_SE14
 **                  A/D channel (pin) signal               : 
 **          Static sample groups                           : Disabled
 **          A/D resolution                                 : 12 bits

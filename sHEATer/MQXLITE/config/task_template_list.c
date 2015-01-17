@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:20, # CodeGen: 2
+**     Date/Time   : 2015-01-17, 17:00, # CodeGen: 14
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -70,9 +70,9 @@ const TASK_TEMPLATE_STRUCT MQX_template_list[] =
   /* Task number                      */  ADC_TASK,
   /* Entry point                      */  (TASK_FPTR)ADC_task,
   /* Stack size                       */  ADC_TASK_STACK_SIZE,
-  /* Task priority                    */  8U,
+  /* Task priority                    */  7U,
   /* Task name                        */  "adc",
-  /* Task attributes                  */  (MQX_AUTO_START_TASK),
+  /* Task attributes                  */  (0),
   /* Task parameter                   */  (uint32_t)(0)
   },
   TASK_TEMPLATE_LIST_END

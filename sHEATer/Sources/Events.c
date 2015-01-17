@@ -82,6 +82,10 @@ void Cpu_OnNMI(void)
 void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr)
 {
   /* Write your code here ... */
+	LWEVENT_STRUCT *lwevent = (LWEVENT_STRUCT*)UserDataPtr;
+    if (_lwevent_set(lwevent, 0x01) != MQX_OK) {
+       puts("Set Event failed\n");
+    }
 }
 
 /* END Events */
