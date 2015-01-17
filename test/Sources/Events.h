@@ -40,6 +40,9 @@
 #include "GPIO1.h"
 #include "CsIO1.h"
 #include "IO1.h"
+#include "AD1.h"
+#include "PWM1.h"
+#include "TU1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,6 +63,29 @@ extern "C" {
 /* ===================================================================*/
 void Cpu_OnNMI(void);
 
+
+/*
+** ===================================================================
+**     Event       :  AD1_OnMeasurementComplete (module Events)
+**
+**     Component   :  AD1 [ADC_LDD]
+*/
+/*!
+**     @brief
+**         Called after measurement is done, [Interrupt service/event]
+**         is enabled, OnMeasurementComplete event is enabled and ADC
+**         device is enabled. See [SetEventMask()] method or [Event
+**         mask] property group to enable this event and [Enable]
+**         method or [Enabled in init. code] property to enable ADC
+**         device. If DMA is enabled , this event is called after the
+**         configured number of measurements and DMA transfer is done.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. The pointer is passed
+**                           as the parameter of Init method. 
+*/
+/* ===================================================================*/
+void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
 
 /* END Events */
 

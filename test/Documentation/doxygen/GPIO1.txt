@@ -134,7 +134,7 @@ registers of the peripheral(s) configured by the component.
 **                    Initial output state                 : 0
 **                  Initial pin event                      : Disabled
 **          Initialization                                 : 
-**            Auto initialization                          : yes
+**            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnPortEvent                                : Disabled
 \endcode

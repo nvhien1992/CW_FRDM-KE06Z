@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-11, 16:37, # CodeGen: 4
+**     Date/Time   : 2015-01-15, 21:34, # CodeGen: 31
 **     Abstract    :
 **         MQX Lite RTOS Adapter component.
 **     Settings    :
@@ -60,11 +60,15 @@
 
 
 /* Task stacks definition */
-uint8_t Test_task_stack[TEST_TASK_STACK_SIZE];
+uint8_t gpio_task_stack[GPIO_TASK_STACK_SIZE];
+uint8_t adc_task_stack[ADC_TASK_STACK_SIZE];
+uint8_t pwm_task_stack[PWM_TASK_STACK_SIZE];
 
 /* Task stacks array of pointers */
 const uint8_t * mqx_task_stack_pointers[] = {
-/* "Test" task                         */  Test_task_stack,
+/* "gpio" task                         */  gpio_task_stack,
+/* "adc" task                          */  adc_task_stack,
+/* "pwm" task                          */  pwm_task_stack,
 /* Stack array end                     */  NULL
 };
 

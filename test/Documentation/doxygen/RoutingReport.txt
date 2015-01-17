@@ -60,12 +60,14 @@
 <TR><TD>9</TD><TD>VREFH/VDDA</TD><TD><small><i>same</i></small></TD>
 <TD></TD><TD></TD><TD></TD><TD></TD>
 </TR>
-<TR><TD>10</TD><TD>VREFH</TD><TD><small><i>same</i></small></TD>
-<TD></TD><TD></TD><TD></TD><TD></TD>
+<TR><TD rowspan='2'>10</TD><TD rowspan='2'>VREFH</TD><TD rowspan='2'><small><i>same</i></small></TD>
+<TD bgcolor='#F8FF9A'>ADC</TD><TD bgcolor='#F8FF9A'>adc_vrefh</TD><TD bgcolor='#F8FF9A'>alt6</TD><TD bgcolor='#F8FF9A'>Input</TD>
 </TR>
-<TR><TD>11</TD><TD>VREFL</TD><TD><small><i>same</i></small></TD>
-<TD></TD><TD></TD><TD></TD><TD></TD>
+<TR bgcolor='#F8FF9A'><TD>ADC</TD><TD>adc_se29</TD><TD>alt6</TD><TD>Input</TD></TR>
+<TR><TD rowspan='2'>11</TD><TD rowspan='2'>VREFL</TD><TD rowspan='2'><small><i>same</i></small></TD>
+<TD bgcolor='#F8FF9A'>ADC</TD><TD bgcolor='#F8FF9A'>adc_vrefl</TD><TD bgcolor='#F8FF9A'>alt6</TD><TD bgcolor='#F8FF9A'>Input</TD>
 </TR>
+<TR bgcolor='#F8FF9A'><TD>ADC</TD><TD>adc_se30</TD><TD>alt6</TD><TD>Input</TD></TR>
 <TR><TD>12</TD><TD>VSSA/VSS</TD><TD><small><i>same</i></small></TD>
 <TD></TD><TD></TD><TD></TD><TD></TD>
 </TR>
@@ -181,7 +183,7 @@
 <TD bgcolor='#969696'>non-peripheral</TD><TD bgcolor='#969696'>NC</TD><TD bgcolor='#969696'>alt0</TD><TD bgcolor='#969696'>Not Specified</TD>
 </TR>
 <TR><TD>50</TD><TD>PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port23</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#CEFFFF'>FTM2</TD><TD bgcolor='#CEFFFF'>tmr_ch5</TD><TD bgcolor='#CEFFFF'>alt2</TD><TD bgcolor='#CEFFFF'>Output</TD>
 </TR>
 <TR><TD>51</TD><TD>PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port22</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1066,12 +1068,14 @@
 <TR><TD>9</TD><TD>VREFH/VDDA</TD><TD><small><i>same</i></small></TD>
 <TD></TD><TD></TD><TD></TD><TD></TD>
 </TR>
-<TR><TD>10</TD><TD>VREFH</TD><TD><small><i>same</i></small></TD>
-<TD></TD><TD></TD><TD></TD><TD></TD>
+<TR><TD rowspan='2'>10</TD><TD rowspan='2'>VREFH</TD><TD rowspan='2'><small><i>same</i></small></TD>
+<TD bgcolor='#F8FF9A'>ADC</TD><TD bgcolor='#F8FF9A'>adc_vrefh</TD><TD bgcolor='#F8FF9A'>alt6</TD><TD bgcolor='#F8FF9A'>Input</TD>
 </TR>
-<TR><TD>11</TD><TD>VREFL</TD><TD><small><i>same</i></small></TD>
-<TD></TD><TD></TD><TD></TD><TD></TD>
+<TR bgcolor='#F8FF9A'><TD>ADC</TD><TD>adc_se29</TD><TD>alt6</TD><TD>Input</TD></TR>
+<TR><TD rowspan='2'>11</TD><TD rowspan='2'>VREFL</TD><TD rowspan='2'><small><i>same</i></small></TD>
+<TD bgcolor='#F8FF9A'>ADC</TD><TD bgcolor='#F8FF9A'>adc_vrefl</TD><TD bgcolor='#F8FF9A'>alt6</TD><TD bgcolor='#F8FF9A'>Input</TD>
 </TR>
+<TR bgcolor='#F8FF9A'><TD>ADC</TD><TD>adc_se30</TD><TD>alt6</TD><TD>Input</TD></TR>
 <TR><TD>12</TD><TD>VSSA/VSS</TD><TD><small><i>same</i></small></TD>
 <TD></TD><TD></TD><TD></TD><TD></TD>
 </TR>
@@ -1187,7 +1191,7 @@
 <TD bgcolor='#969696'>non-peripheral</TD><TD bgcolor='#969696'>NC</TD><TD bgcolor='#969696'>alt0</TD><TD bgcolor='#969696'>Not Specified</TD>
 </TR>
 <TR><TD>50</TD><TD>PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port23</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#CEFFFF'>FTM2</TD><TD bgcolor='#CEFFFF'>tmr_ch5</TD><TD bgcolor='#CEFFFF'>alt2</TD><TD bgcolor='#CEFFFF'>Output</TD>
 </TR>
 <TR><TD>51</TD><TD>PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port22</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>

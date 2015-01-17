@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-11, 16:37, # CodeGen: 4
+**     Date/Time   : 2015-01-15, 22:17, # CodeGen: 37
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -55,13 +55,33 @@
 /* MQX task template list */
 const TASK_TEMPLATE_STRUCT MQX_template_list[] =
 {
-  /* Task: Test */
+  /* Task: gpio */
   {
-  /* Task number                      */  TEST_TASK,
-  /* Entry point                      */  (TASK_FPTR)Test_task,
-  /* Stack size                       */  TEST_TASK_STACK_SIZE,
+  /* Task number                      */  GPIO_TASK,
+  /* Entry point                      */  (TASK_FPTR)gpio_task,
+  /* Stack size                       */  GPIO_TASK_STACK_SIZE,
+  /* Task priority                    */  7U,
+  /* Task name                        */  "gpio",
+  /* Task attributes                  */  (MQX_AUTO_START_TASK),
+  /* Task parameter                   */  (uint32_t)(0)
+  },
+  /* Task: adc */
+  {
+  /* Task number                      */  ADC_TASK,
+  /* Entry point                      */  (TASK_FPTR)adc_task,
+  /* Stack size                       */  ADC_TASK_STACK_SIZE,
   /* Task priority                    */  8U,
-  /* Task name                        */  "test",
+  /* Task name                        */  "adc",
+  /* Task attributes                  */  (MQX_AUTO_START_TASK),
+  /* Task parameter                   */  (uint32_t)(0)
+  },
+  /* Task: pwm */
+  {
+  /* Task number                      */  PWM_TASK,
+  /* Entry point                      */  (TASK_FPTR)pwm_task,
+  /* Stack size                       */  PWM_TASK_STACK_SIZE,
+  /* Task priority                    */  6U,
+  /* Task name                        */  "pwm",
   /* Task attributes                  */  (MQX_AUTO_START_TASK),
   /* Task parameter                   */  (uint32_t)(0)
   },

@@ -37,6 +37,9 @@
 #include "GPIO1.h"
 #include "CsIO1.h"
 #include "IO1.h"
+#include "AD1.h"
+#include "PWM1.h"
+#include "TU1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"

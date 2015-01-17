@@ -6,7 +6,7 @@
 **     Component   : GPIO_LDD
 **     Version     : Component 01.128, Driver 01.08, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-11, 17:02, # CodeGen: 8
+**     Date/Time   : 2015-01-15, 21:39, # CodeGen: 32
 **     Abstract    :
 **         The HAL GPIO component will provide a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -31,7 +31,7 @@
 **                    Initial output state                 : 0
 **                  Initial pin event                      : Disabled
 **          Initialization                                 : 
-**            Auto initialization                          : yes
+**            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnPortEvent                                : Disabled
 **     Contents    :
@@ -114,9 +114,6 @@ extern "C" {
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define GPIO1_PRPH_BASE_ADDRESS  0x400FF040U
   
-/*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
-#define GPIO1_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_GPIO1_ID))
-
 /* Methods configuration constants - generated for all enabled component's methods */
 #define GPIO1_Init_METHOD_ENABLED      /*!< Init method of the component GPIO1 is enabled (generated) */
 #define GPIO1_SetFieldValue_METHOD_ENABLED /*!< SetFieldValue method of the component GPIO1 is enabled (generated) */

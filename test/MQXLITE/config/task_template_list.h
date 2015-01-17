@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-11, 16:37, # CodeGen: 4
+**     Date/Time   : 2015-01-15, 21:52, # CodeGen: 33
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -52,10 +52,14 @@
 #define __task_template_list_h__
 
 /* MQX Lite task IDs */
-#define TEST_TASK            1U
+#define GPIO_TASK            1U
+#define ADC_TASK             2U
+#define PWM_TASK             3U
 
 /* MQX Lite task stack sizes */
-#define TEST_TASK_STACK_SIZE (sizeof(TD_STRUCT) + 1024 + PSP_STACK_ALIGNMENT + 1)
+#define GPIO_TASK_STACK_SIZE (sizeof(TD_STRUCT) + 1024 + PSP_STACK_ALIGNMENT + 1)
+#define ADC_TASK_STACK_SIZE  (sizeof(TD_STRUCT) + 1024 + PSP_STACK_ALIGNMENT + 1)
+#define PWM_TASK_STACK_SIZE  (sizeof(TD_STRUCT) + 1024 + PSP_STACK_ALIGNMENT + 1)
 
 
 #endif /* __task_template_list_h__ */

@@ -11,7 +11,7 @@
 **         Put your event handler code here.
 **     Settings    :
 **     Contents    :
-**         Test_task - void Test_task(uint32_t task_init_data);
+**         gpio_task - void gpio_task(uint32_t task_init_data);
 **
 ** ###################################################################*/
 /*!
@@ -40,6 +40,9 @@
 #include "GPIO1.h"
 #include "CsIO1.h"
 #include "IO1.h"
+#include "AD1.h"
+#include "PWM1.h"
+#include "TU1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,7 +50,7 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  Test_task (module mqx_tasks)
+**     Event       :  gpio_task (module mqx_tasks)
 **
 **     Component   :  Task1 [MQXLite_task]
 **     Description :
@@ -59,8 +62,40 @@ extern "C" {
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Test_task(uint32_t task_init_data);
+void gpio_task(uint32_t task_init_data);
 
+
+/*
+** ===================================================================
+**     Event       :  adc_task (module mqx_tasks)
+**
+**     Component   :  Task2 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void adc_task(uint32_t task_init_data);
+
+/*
+** ===================================================================
+**     Event       :  pwm_task (module mqx_tasks)
+**
+**     Component   :  Task3 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void pwm_task(uint32_t task_init_data);
 
 /* END mqx_tasks */
 
