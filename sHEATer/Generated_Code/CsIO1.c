@@ -6,7 +6,7 @@
 **     Component   : ConsoleIO
 **     Version     : Component 01.016, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-01-21, 22:15, # CodeGen: 23
 **     Abstract    :
 **         This component generates low-level methods for redirecting console I/O to the selected UART.
 **         These methods are typically used by printf()/scanf() methods.
@@ -86,9 +86,9 @@ int __read_console(__file_handle handle, unsigned char* buffer, size_t * count)
     if ((UART_PDD_ReadInterruptStatusReg(UART1_BASE_PTR) & UART_S1_RDRF_MASK) == 0x00) { /* Any data in receiver buffer */
       if (CharCnt != 0x00) {           /* No, at least one char received? */
         break;                         /* Yes, return received char(s) */
-      } else {
-        return (__io_EOF);
-      }  
+      } else {                         /* Wait until a char is received */
+        while ((UART_PDD_ReadInterruptStatusReg(UART1_BASE_PTR) & UART_S1_RDRF_MASK) == 0x00) {};
+      }
     }
     CharCnt++;                         /* Increase char counter */
     /* Save character received by UARTx device into the receive buffer */
@@ -174,9 +174,9 @@ int _read (int fd, const void *buf, size_t count)
     if ((UART_PDD_ReadInterruptStatusReg(UART1_BASE_PTR) & UART_S1_RDRF_MASK) == 0x00) { /* Any data in receiver buffer */
       if (CharCnt != 0x00) {           /* No, at least one char received? */
         break;                         /* Yes, return received char(s) */
-      } else {
-        return (__io_EOF);
-      }  
+      } else {                         /* Wait until a char is received */
+        while ((UART_PDD_ReadInterruptStatusReg(UART1_BASE_PTR) & UART_S1_RDRF_MASK) == 0x00) {};
+      }
     }
     CharCnt++;                         /* Increase char counter */
     /* Save character received by UARTx device into the receive buffer */

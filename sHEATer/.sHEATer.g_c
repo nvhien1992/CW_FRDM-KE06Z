@@ -207,7 +207,7 @@
       <GenExtraFileSrcDir6>lib\mqxlite\V1.1.1\source\psp\cortex_m\core\M0\</GenExtraFileSrcDir6>
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
-      <XtraAge1>1177651205</XtraAge1>
+      <XtraAge1>1177988293</XtraAge1>
       <XtraAge2>1177639555</XtraAge2>
       <XtraAge3>1177647928</XtraAge3>
       <XtraAge4>1177639475</XtraAge4>
@@ -385,6 +385,7 @@
       <GenExtraFileType3>4</GenExtraFileType3>
       <GenExtraFileType2>4</GenExtraFileType2>
       <GenExtraFileType1>4</GenExtraFileType1>
+      <GenExtraFileType0>4</GenExtraFileType0>
       <GenLinkedFiles lines_count="31">
         <Line>Generated_Code\System\CPU_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</Line>
         <Line>Generated_Code\System\CPU_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</Line>
@@ -461,7 +462,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>15</ProjectModificationStamp>
+    <ProjectModificationStamp>32</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -1457,7 +1458,7 @@
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
     <HeaderAge>1177639698</HeaderAge>
-    <CodeAge>1177639698</CodeAge>
+    <CodeAge>1177924069</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>0</GenNumMethods>
     <GenNumEvents>0</GenNumEvents>
@@ -1626,13 +1627,13 @@
     <SrcFile9>Drivers\Common\CommonSubroutines.prg=1116866294</SrcFile9>
     <SrcFile10>Drivers\Common\ADC_LDDOnMeasurementComplete.inc=1124477581</SrcFile10>
     <SrcFile11>Drivers\Common\GenInitConfigSequence.prg=1123053043</SrcFile11>
-    <SrcFile12>Drivers\Kinetis\Static_Kinetis_ICS.prg=1154058051</SrcFile12>
+    <SrcFile12>Drivers\Kinetis\Static_Kinetis_ICS.prg=1154056003</SrcFile12>
     <SrcFile13>Drivers\sw\ConsoleIO.drv=1146382935</SrcFile13>
     <SrcFile14>Drivers\Kinetis\IsSupported_LPTMR_PDD.prg=1146382935</SrcFile14>
     <SrcFile15>Drivers\Common\MQXLiteSettings.inc=1116872437</SrcFile15>
     <SrcFile16>Drivers\Common\Static_SupportSubroutines.prg=1146382935</SrcFile16>
     <SrcFile17>Drivers\Kinetis\PinSettings_MKE06Z128LK4.prg=1146382935</SrcFile17>
-    <SrcFile18>Drivers\Kinetis\Static_Kinetis.drv=1153732122</SrcFile18>
+    <SrcFile18>Drivers\Kinetis\Static_Kinetis.drv=1153730074</SrcFile18>
     <SrcFile19>Drivers\Kinetis\IsSupported_PMC_PDD.prg=1146382935</SrcFile19>
     <SrcFile20>Drivers\Common\Init_ConfigAbstract.inc=1124477581</SrcFile20>
     <SrcFile21>Drivers\Kinetis\ADC_LDD.drv=1122668658</SrcFile21>
@@ -1682,7 +1683,7 @@
     <SrcFile65>Drivers\Common\IO_MapAbstract.inc=1116866294</SrcFile65>
     <SrcFile66>Drivers\Kinetis\IsSupported_PORT_PDD.prg=1146382935</SrcFile66>
     <SrcFile67>Drivers\Common\Init_ConfigSettings.inc=1124477581</SrcFile67>
-    <SrcFile68>Drivers\sw\MQXLite_task.drv=1177256924</SrcFile68>
+    <SrcFile68>Drivers\sw\MQXLite_task.drv=1178380625</SrcFile68>
     <SrcFile69>Drivers\Common\HeaderFreescale.C=1116866294</SrcFile69>
     <SrcFile70>Drivers\Kinetis\IsSupported_MCM_PDD.prg=1146382935</SrcFile70>
     <SrcFile71>Drivers\Kinetis\IsSupported_DRY_PDD.prg=1146382935</SrcFile71>
@@ -1742,12 +1743,12 @@
     <SrcFile125>Drivers\Common\GeneralInternalDescription.prg=1116866294</SrcFile125>
     <SrcFile126>Drivers\Common\GeneralParameters.inc=1116866294</SrcFile126>
     <SrcFile127>Drivers\Common\Serial_LDDInit.inc=1116866294</SrcFile127>
-    <SrcFile128>Drivers\Kinetis\Serial_LDD.drv=1153264290</SrcFile128>
+    <SrcFile128>Drivers\Kinetis\Serial_LDD.drv=1153262242</SrcFile128>
     <SrcFile129>Drivers\Common\GenReg32InitInfo.prg=1116866294</SrcFile129>
     <SrcFile130>Drivers\Common\MQXLiteAbstract.inc=1116872437</SrcFile130>
     <SrcFile131>Drivers\Common\GeneralPublicGlobal.inc=1116866294</SrcFile131>
     <SrcFile132>Drivers\Common\HeaderGeneral.C=1116866294</SrcFile132>
-    <SrcFile133>Drivers\Kinetis\Static_KinetisE_Cpu_Config_h.prg=1154111270</SrcFile133>
+    <SrcFile133>Drivers\Kinetis\Static_KinetisE_Cpu_Config_h.prg=1154109222</SrcFile133>
     <SrcFile134>Drivers\Kinetis\IsSupported_LCD_PDD.prg=1119719539</SrcFile134>
     <SrcFile135>Drivers\Common\MQXLite_taskOnTask.inc=1116872437</SrcFile135>
     <SrcFile136>Drivers\Common\TimerUnit_LDDSettings.inc=1146382935</SrcFile136>
@@ -1775,7 +1776,7 @@
     <SrcFile158>Drivers\sw\MQXLite_shared.prg=1128496915</SrcFile158>
     <SrcFile159>Drivers\Common\TimerUnit_LDDSelectOutputAction.inc=1117935863</SrcFile159>
     <SrcFile160>Drivers\Common\Serial_LDDMain.inc=1146382935</SrcFile160>
-    <SrcFile161>lib\doxygen\pex.doxyfile=1146389079</SrcFile161>
+    <SrcFile161>lib\doxygen\pex.doxyfile=1178380625</SrcFile161>
     <SrcFile162>Drivers\Kinetis\IsSupported_NFC_PDD.prg=1119719549</SrcFile162>
     <SrcFile163>Drivers\PinSettings.src=1146382935</SrcFile163>
     <SrcFile164>Drivers\PWM_LDD.src=1116866294</SrcFile164>
@@ -1810,7 +1811,7 @@
     <SrcFile193>Drivers\Kinetis\IsSupported_FTFE_PDD.prg=1146382935</SrcFile193>
     <SrcFile194>Drivers\Kinetis\IsSupported_USBHS_PDD.prg=1119719708</SrcFile194>
     <SrcFile195>Drivers\Common\CommonRegInitialization_NotRst.prg=1116866294</SrcFile195>
-    <SrcFile196>Drivers\sw\MQXLite.drv=1177256924</SrcFile196>
+    <SrcFile196>Drivers\sw\MQXLite.drv=1178380625</SrcFile196>
     <SrcFile197>Drivers\Kinetis\IsSupported_I2S_PDD.prg=1119719530</SrcFile197>
     <SrcFile198>Drivers\Common\InitReg32Block.prg=1116866294</SrcFile198>
     <SrcFile199>Drivers\Kinetis\IsSupported_IRQ_PDD.prg=1146382935</SrcFile199>

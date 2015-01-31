@@ -40,6 +40,7 @@ extern "C" {
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include <math.h>
+#include "config.h"
 
 /* Definitions for LW Message Queue Component */
 #define NUM_MESSAGES            4
@@ -65,7 +66,7 @@ uint_32 ctrl_msg_queue[sizeof(LWMSGQ_STRUCT)/sizeof(uint_32) + NUM_MESSAGES * MS
 void Ctrl_task(uint32_t task_init_data)
 {
 	int counter = 0;
-	
+
 	/* Initialize PWM */
 	LDD_TDeviceData *device_data = PWM1_Init(NULL);
 	
@@ -83,8 +84,9 @@ void Ctrl_task(uint32_t task_init_data)
 		
 		/* Write your code here ... */
 		_lwmsgq_receive((pointer)ctrl_msg_queue, &msg, LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
-		PWM1_SetRatio16(device_data, msg/(pow(2, 12))*100); //adc 12bits
+		PWM1_SetRatio16(device_data, msg/(pow(2, 12))*65535); //adc 12bits
 		printf("duty_cycle: %d\n", (uint8_t)(msg/(pow(2, 12))*100));
+//		printf("voltage: %d\n", (uint16_t)(msg*3300/4096));//mV
 	}
 }
 
@@ -106,6 +108,7 @@ void ADC_task(uint32_t task_init_data)
 {
 	int counter = 0;
 
+	/* create lw event */
 	LWEVENT_STRUCT adc_lwevent;
     if (_lwevent_create(&adc_lwevent, 0) != MQX_OK) {
         printf("Make event failed\n");

@@ -1718,7 +1718,7 @@ PE_DEBUGHALT();
           <event name="OnTxComplete" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <Wait_until_at_least_one_char_is_received v="no" />
+      <Wait_until_at_least_one_char_is_received v="yes" />
       <group name="New line sequence settings">
         <Rx_new_line_sequence_ v="LF" />
         <Tx_new_line_sequence_ v="CRLF" />

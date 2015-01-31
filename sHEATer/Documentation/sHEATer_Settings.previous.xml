@@ -1118,7 +1118,7 @@ PE_DEBUGHALT();
               <Name v="CTRL" />
               <Entry_point_function v="Ctrl_task" />
               <Stack_size v="1024" />
-              <Priority v="8" />
+              <Priority v="7" />
               <Creation_parameter v="0" />
               <group name="Attributes">
                 <MQX_AUTO_START_TASK v="Enabled" />
@@ -1144,7 +1144,7 @@ PE_DEBUGHALT();
               <Name v="ADC" />
               <Entry_point_function v="ADC_task" />
               <Stack_size v="1024" />
-              <Priority v="7" />
+              <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">
                 <MQX_AUTO_START_TASK v="Disabled" />
@@ -1461,7 +1461,7 @@ PE_DEBUGHALT();
       <Output_pin v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
       <Counter v="FTM2_CNT" />
       <boolgroup name="Interrupt service/event" v="Disabled" />
-      <Period v="50 ms" />
+      <Period v="6.25 ms" />
       <Starting_pulse_width v="3.124952 ms" />
       <Initial_polarity v="low" />
       <group name="Initialization">
@@ -1528,7 +1528,7 @@ PE_DEBUGHALT();
       </enumgroup>
       <enumgroup name="Counter restart" v="On-match">
         <Period_device v="FTM2_MOD" />
-        <Period v="50 ms" />
+        <Period v="6.25 ms" />
         <boolgroup name="Interrupt" v="Disabled" />
       </enumgroup>
       <list name="Channel list" v="1">
@@ -1718,7 +1718,7 @@ PE_DEBUGHALT();
           <event name="OnTxComplete" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <Wait_until_at_least_one_char_is_received v="no" />
+      <Wait_until_at_least_one_char_is_received v="yes" />
       <group name="New line sequence settings">
         <Rx_new_line_sequence_ v="LF" />
         <Tx_new_line_sequence_ v="CRLF" />
