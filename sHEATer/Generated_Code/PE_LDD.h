@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-02-12, 14:05, # CodeGen: 98
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -57,11 +57,26 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "AD1.h"
-#include "PWM1.h"
-#include "TU1.h"
-#include "CsIO1.h"
+#include "ADC_SS.h"
+#include "PWM_HEATER.h"
+#include "TU_PWM.h"
+#include "Console.h"
 #include "IO1.h"
+#include "LCD_RS.h"
+#include "LCD_RW.h"
+#include "LCD_EN.h"
+#include "LCD_DB4.h"
+#include "LCD_DB5.h"
+#include "LCD_DB6.h"
+#include "LCD_DB7.h"
+#include "LCD_BL.h"
+#include "MISC_TIMER.h"
+#include "RUN_STOP_BTN.h"
+#include "ALARM_BTN.h"
+#include "ADD_BTN.h"
+#include "SUB_BTN.h"
+#include "LED.h"
+#include "BUZZER.h"
 
 
 /*

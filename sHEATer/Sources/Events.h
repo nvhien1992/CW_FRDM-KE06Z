@@ -37,11 +37,26 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "AD1.h"
-#include "PWM1.h"
-#include "TU1.h"
-#include "CsIO1.h"
+#include "ADC_SS.h"
+#include "PWM_HEATER.h"
+#include "TU_PWM.h"
+#include "Console.h"
 #include "IO1.h"
+#include "LCD_RS.h"
+#include "LCD_RW.h"
+#include "LCD_EN.h"
+#include "LCD_DB4.h"
+#include "LCD_DB5.h"
+#include "LCD_DB6.h"
+#include "LCD_DB7.h"
+#include "LCD_BL.h"
+#include "MISC_TIMER.h"
+#include "RUN_STOP_BTN.h"
+#include "ALARM_BTN.h"
+#include "ADD_BTN.h"
+#include "SUB_BTN.h"
+#include "LED.h"
+#include "BUZZER.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,9 +80,9 @@ void Cpu_OnNMI(void);
 
 /*
 ** ===================================================================
-**     Event       :  AD1_OnMeasurementComplete (module Events)
+**     Event       :  ADC_SS_OnMeasurementComplete (module Events)
 **
-**     Component   :  AD1 [ADC_LDD]
+**     Component   :  ADC_SS [ADC_LDD]
 */
 /*!
 **     @brief
@@ -84,7 +99,28 @@ void Cpu_OnNMI(void);
 **                           as the parameter of Init method. 
 */
 /* ===================================================================*/
-void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
+void ADC_SS_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
+
+/*
+** ===================================================================
+**     Event       :  MISC_TIMER_OnCounterRestart (module Events)
+**
+**     Component   :  MISC_TIMER [TimerUnit_LDD]
+*/
+/*!
+**     @brief
+**         Called if counter overflow/underflow or counter is
+**         reinitialized by modulo or compare register matching.
+**         OnCounterRestart event and Timer unit must be enabled. See
+**         [SetEventMask] and [GetEventMask] methods. This event is
+**         available only if a [Interrupt] is enabled.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. The pointer passed as
+**                           the parameter of Init method.
+*/
+/* ===================================================================*/
+void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr);
 
 /* END Events */
 

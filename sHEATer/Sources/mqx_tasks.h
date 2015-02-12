@@ -37,11 +37,26 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "AD1.h"
-#include "PWM1.h"
-#include "TU1.h"
-#include "CsIO1.h"
+#include "ADC_SS.h"
+#include "PWM_HEATER.h"
+#include "TU_PWM.h"
+#include "Console.h"
 #include "IO1.h"
+#include "LCD_RS.h"
+#include "LCD_RW.h"
+#include "LCD_EN.h"
+#include "LCD_DB4.h"
+#include "LCD_DB5.h"
+#include "LCD_DB6.h"
+#include "LCD_DB7.h"
+#include "LCD_BL.h"
+#include "MISC_TIMER.h"
+#include "RUN_STOP_BTN.h"
+#include "ALARM_BTN.h"
+#include "ADD_BTN.h"
+#include "SUB_BTN.h"
+#include "LED.h"
+#include "BUZZER.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -79,6 +94,38 @@ void Ctrl_task(uint32_t task_init_data);
 ** ===================================================================
 */
 void ADC_task(uint32_t task_init_data);
+
+/*
+** ===================================================================
+**     Event       :  Heater_task (module mqx_tasks)
+**
+**     Component   :  Task3 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Heater_task(uint32_t task_init_data);
+
+/*
+** ===================================================================
+**     Event       :  Button_task (module mqx_tasks)
+**
+**     Component   :  Task3 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Button_task(uint32_t task_init_data);
 
 /* END mqx_tasks */
 

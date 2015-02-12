@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:24, # CodeGen: 3
+**     Date/Time   : 2015-02-12, 14:12, # CodeGen: 99
 **     Abstract    :
 **
 **     Settings    :
@@ -111,6 +111,30 @@ void Components_Init(void)
 {
   /* ### Serial_LDD "IO1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)IO1_Init(NULL);
+  /* ### BitIO_LDD "LCD_RS" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_RS_Init(NULL);
+  /* ### BitIO_LDD "LCD_RW" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_RW_Init(NULL);
+  /* ### BitIO_LDD "LCD_EN" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_EN_Init(NULL);
+  /* ### BitIO_LDD "LCD_DB4" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_DB4_Init(NULL);
+  /* ### BitIO_LDD "LCD_DB5" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_DB5_Init(NULL);
+  /* ### BitIO_LDD "LCD_DB6" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_DB6_Init(NULL);
+  /* ### BitIO_LDD "LCD_DB7" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_DB7_Init(NULL);
+  /* ### BitIO_LDD "LCD_BL" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_BL_Init(NULL);
+  /* ### BitIO_LDD "RUN_STOP_BTN" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)RUN_STOP_BTN_Init(NULL);
+  /* ### BitIO_LDD "ALARM_BTN" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)ALARM_BTN_Init(NULL);
+  /* ### BitIO_LDD "LED" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LED_Init(NULL);
+  /* ### BitIO_LDD "BUZZER" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)BUZZER_Init(NULL);
 }
 #endif /* CPU_COMPONENTS_INIT */
 

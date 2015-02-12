@@ -62,19 +62,34 @@
   </PATHS>
   <FILES>
     <GeneratedCs>
-      <PathName>D:\CW\sHEATer\Generated_Code\AD1.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ADC_SS.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ADD_BTN.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ALARM_BTN.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\BUZZER.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\Console.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\Cpu.c</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\CsIO1.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\IO1.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_BL.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB4.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB5.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB6.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB7.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_EN.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_RS.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_RW.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LED.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\MISC_TIMER.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\MQX1.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\PE_LDD.c</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\PWM1.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\PWM_HEATER.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\Pins1.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\RUN_STOP_BTN.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\SUB_BTN.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Vectors.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\SystemTimer1.c</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\TU1.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\TU_PWM.c</PathName>
       <PathName>D:\CW\sHEATer\MQXLITE\config\task_template_list.c</PathName>
       <PathName>D:\CW\sHEATer\MQXLITE\kernel\idletask.c</PathName>
       <PathName>D:\CW\sHEATer\MQXLITE\kernel\int.c</PathName>
@@ -114,19 +129,36 @@
       <PathName>D:\CW\sHEATer\Project_Settings\Startup_Code\__arm_end.c</PathName>
       <PathName>D:\CW\sHEATer\Project_Settings\Startup_Code\__arm_start.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\Events.c</PathName>
+      <PathName>D:\CW\sHEATer\Sources\LCD.c</PathName>
+      <PathName>D:\CW\sHEATer\Sources\button.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\config.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\main.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\mqx_tasks.c</PathName>
+      <PathName>D:\CW\sHEATer\Sources\on_off_device.c</PathName>
+      <PathName>D:\CW\sHEATer\Sources\sensor.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
-      <PathName>D:\CW\sHEATer\Generated_Code\AD1.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ADC_SS.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ADD_BTN.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ALARM_BTN.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\BUZZER.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\CPU_Config.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\Console.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\Cpu.h</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\CsIO1.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\IO1.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\iofiles\MKE06Z4.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\IO_Map.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\Init_Config.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_BL.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB4.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB5.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB6.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB7.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_EN.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_RS.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LCD_RW.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\LED.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\MISC_TIMER.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\MQX1.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\ADC_PDD.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\CMP_PDD.h</PathName>
@@ -156,13 +188,15 @@
       <PathName>D:\CW\sHEATer\Generated_Code\PE_Error.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\PE_LDD.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\PE_Types.h</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\PWM1.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\PWM_HEATER.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\Pins1.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\RUN_STOP_BTN.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\SUB_BTN.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\SystemTimer1.h</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\TU1.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\TU_PWM.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\Vectors_Config.h</PathName>
       <PathName>D:\CW\sHEATer\MQXLITE\config\task_template_list.h</PathName>
       <PathName>D:\CW\sHEATer\MQXLITE\config\user_config.h</PathName>
@@ -205,8 +239,14 @@
       <PathName>D:\CW\sHEATer\MQXLITE\psp\cortex_m\psptypes.h</PathName>
       <PathName>D:\CW\sHEATer\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\Events.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\LCD.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\button.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\config.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\debug.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\global.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\mqx_tasks.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\on_off_device.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\sensor.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>
       <PathName>D:\CW\sHEATer\MQXLITE\psp\cortex_m\core\M0\boot.S</PathName>

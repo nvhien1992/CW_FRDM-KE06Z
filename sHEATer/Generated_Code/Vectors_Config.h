@@ -52,11 +52,26 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "AD1.h"
-#include "PWM1.h"
-#include "TU1.h"
-#include "CsIO1.h"
+#include "ADC_SS.h"
+#include "PWM_HEATER.h"
+#include "TU_PWM.h"
+#include "Console.h"
 #include "IO1.h"
+#include "LCD_RS.h"
+#include "LCD_RW.h"
+#include "LCD_EN.h"
+#include "LCD_DB4.h"
+#include "LCD_DB5.h"
+#include "LCD_DB6.h"
+#include "LCD_DB7.h"
+#include "LCD_BL.h"
+#include "MISC_TIMER.h"
+#include "RUN_STOP_BTN.h"
+#include "ALARM_BTN.h"
+#include "ADD_BTN.h"
+#include "SUB_BTN.h"
+#include "LED.h"
+#include "BUZZER.h"
 #include "Events.h"
 #include "mqx_tasks.h"
 
@@ -98,9 +113,9 @@ extern "C" {
 #define VECTOR_28         (tIsrFunc)&_int_kernel_isr            /* 0x1C -    ivINT_UART0                   used by PE */
 #define VECTOR_29         (tIsrFunc)&_int_kernel_isr            /* 0x1D -    ivINT_UART1                   used by PE */
 #define VECTOR_30         (tIsrFunc)&_int_kernel_isr            /* 0x1E -    ivINT_UART2                   used by PE */
-#define VECTOR_31         (tIsrFunc)&_int_kernel_isr            /* 0x1F 64   ivINT_ADC                     used by PE */
+#define VECTOR_31         (tIsrFunc)&_int_kernel_isr            /* 0x1F -    ivINT_ADC                     used by PE */
 #define VECTOR_32         (tIsrFunc)&_int_kernel_isr            /* 0x20 -    ivINT_ACMP0                   used by PE */
-#define VECTOR_33         (tIsrFunc)&_int_kernel_isr            /* 0x21 -    ivINT_FTM0                    used by PE */
+#define VECTOR_33         (tIsrFunc)&_int_kernel_isr            /* 0x21 64   ivINT_FTM0                    used by PE */
 #define VECTOR_34         (tIsrFunc)&_int_kernel_isr            /* 0x22 -    ivINT_FTM1                    used by PE */
 #define VECTOR_35         (tIsrFunc)&_int_kernel_isr            /* 0x23 -    ivINT_FTM2                    used by PE */
 #define VECTOR_36         (tIsrFunc)&_int_kernel_isr            /* 0x24 -    ivINT_RTC                     used by PE */

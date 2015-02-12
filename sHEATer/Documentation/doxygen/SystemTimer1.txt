@@ -236,7 +236,7 @@ registers of the peripheral(s) configured by the component.
 **          Counter                                        : SYST_CVR
 **          Counter direction                              : Down
 **          Counter width                                  : 24 bits
-**          Value type                                     : Optimal
+**          Value type                                     : uint32_t
 **          Input clock source                             : Internal
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match

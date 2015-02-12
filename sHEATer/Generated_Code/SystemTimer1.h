@@ -6,7 +6,7 @@
 **     Component   : TimerUnit_LDD
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-17, 11:17, # CodeGen: 0
+**     Date/Time   : 2015-02-05, 20:05, # CodeGen: 56
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -16,7 +16,7 @@
 **          Counter                                        : SYST_CVR
 **          Counter direction                              : Down
 **          Counter width                                  : 24 bits
-**          Value type                                     : Optimal
+**          Value type                                     : uint32_t
 **          Input clock source                             : Internal
 **            Counter frequency                            : Auto select
 **          Counter restart                                : On-match

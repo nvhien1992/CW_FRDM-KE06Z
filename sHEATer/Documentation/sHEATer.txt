@@ -228,13 +228,13 @@ Module "MQX1"      (component MQXLite)
    - MQX1__lwtimer_create_periodic_queue -Creates the periodic timer queue.
    - MQX1__lwtimer_test -Tests all the periodic queues and their lightweight timers for validity and consistency.
 
-Module "AD1"       (component ADC_LDD)
-   - AD1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+Module "ADC_SS"    (component ADC_LDD)
+   - ADC_SS_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
                 interrupt priority, sets pin routing, sets timing, etc.   If the "Enable in init. code" is set to "yes" value 
                 then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
                 is not necessary and needn't to be generated.    This method can be called only once. Before the second call of 
                 Init() the Deinit() must be called first.
-   - AD1_StartSingleMeasurement -This method starts one measurement of the selected group of samples and exits immediately. 
+   - ADC_SS_StartSingleMeasurement -This method starts one measurement of the selected group of samples and exits immediately. 
                 This is ADC SW trigger method. The group of samples for measurement is specified by preceding call to 
                 <SelectSampleGroup()> or <CreateSampleGroup> method.     DMA disabled: The <OnMeasurementComplete() > event is 
                 invoked after the measurement is done and if the event is enabled. Results of the measurement can be read by 
@@ -244,49 +244,223 @@ Module "AD1"       (component ADC_LDD)
                 mode is enabled. If the DMA transfer was completed before and DMA is not recofingured, DMA error can occur. See 
                 also <SetBuffer()> method.     The state of the measurement can be also polled by the 
                 <GetMeasurementCompleteStatus()> method. The <Discontinuous mode> doesn't support this method.
-   - AD1_GetMeasuredValues -This method copies results of the last measurement to the user supplied buffer. Data size depends 
-                on the size of measured sample group (see <SelectSampleGroup()> or <CreateSampleGroup()> method). Data 
+   - ADC_SS_GetMeasuredValues -This method copies results of the last measurement to the user supplied buffer. Data size 
+                depends on the size of measured sample group (see <SelectSampleGroup()> or <CreateSampleGroup()> method). Data 
                 representation is defined by the <Result type> property. Typically this method is called from 
                 <OnMeasurementComplete> event to get results of the last measurement. This method is not available if DMA is 
                 enabled.
-   - AD1_CreateSampleGroup -This method prepares HW for next measurement according to array of samples defined during run-time. 
-                The array of samples should be prepared prior to calling this method. Pointer to the array is passed into this 
-                method in parameter SampleGroupPtr. The number of samples is defined by parameter SampleCount. Once any group 
-                is prepared, the measurement can be started multiple times. Note: This method works only with the sample groups 
-                defined during run-time. For design-time defined groups use <SelectSampleGroup()> method.
+   - ADC_SS_CreateSampleGroup -This method prepares HW for next measurement according to array of samples defined during 
+                run-time. The array of samples should be prepared prior to calling this method. Pointer to the array is passed 
+                into this method in parameter SampleGroupPtr. The number of samples is defined by parameter SampleCount. Once 
+                any group is prepared, the measurement can be started multiple times. Note: This method works only with the 
+                sample groups defined during run-time. For design-time defined groups use <SelectSampleGroup()> method.
+   - ADC_SS_Main -This method is available only in the polling mode (Interrupt service/event = 'no'). If interrupt service is 
+                disabled this method replaces the interrupt handler. This method should be called if measurement was invoked 
+                before in order to get result into the internal buffer. The <OnMeasurementComplete> event is called in the same 
+                way as if interrupts are enabled.
 
-Module "PWM1"      (component PWM_LDD)
-   - PWM1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
-                interrupt priority, sets pin routing, sets timing, etc. If the property <"Enable in init. code"> is set to 
+Module "PWM_HEATER" (component PWM_LDD)
+   - PWM_HEATER_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and 
+                sets interrupt priority, sets pin routing, sets timing, etc. If the property <"Enable in init. code"> is set to 
                 "yes" value then the device is also enabled (see the description of the <Enable> method). In this case the 
                 <Enable> method is not necessary and needn't to be generated. This method can be called only once. Before the 
                 second call of Init the <Deinit> must be called first.
-   - PWM1_SetRatio16 -This method sets a new duty-cycle ratio. Ratio is expressed as a 16-bit unsigned integer number. 0 - FFFF 
-                value is proportional to ratio 0 - 100%. The method is available only if it is not selected list of predefined 
-                values in <Starting pulse width> property.   Note: Calculated duty depends on the timer possibilities and on 
-                the selected period.
-   - PWM1_SetDutyMS -This method sets the new duty value of the output signal. The duty is expressed in milliseconds as a 
+   - PWM_HEATER_SetRatio16 -This method sets a new duty-cycle ratio. Ratio is expressed as a 16-bit unsigned integer number. 0 
+                - FFFF value is proportional to ratio 0 - 100%. The method is available only if it is not selected list of 
+                predefined values in <Starting pulse width> property.   Note: Calculated duty depends on the timer 
+                possibilities and on the selected period.
+   - PWM_HEATER_SetDutyMS -This method sets the new duty value of the output signal. The duty is expressed in milliseconds as a 
                 16-bit unsigned integer number. The method is available only if it is not selected list of predefined values in 
                 <Starting pulse width> property.
 
-Module "TU1"       (component TimerUnit_LDD)
-   - TU1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+Module "TU_PWM"    (component TimerUnit_LDD)
+   - TU_PWM_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
                 interrupt priority, sets pin routing, sets timing, etc. If the property <"Enable in init. code"> is set to 
                 "yes" value then the device is also enabled (see the description of the <Enable> method). In this case the 
                 <Enable> method is not necessary and needn't to be generated. This method can be called only once. Before the 
                 second call of Init the <Deinit> must be called first.
-   - TU1_GetPeriodTicks -Returns the number of counter ticks before re-initialization. See also method <SetPeriodTicks>. This 
-                method is available only if the property <"Counter restart"> is switched to 'on-match' value.
-   - TU1_GetCounterValue -Returns the content of counter register. This method can be used both if counter is enabled and if 
+   - TU_PWM_GetPeriodTicks -Returns the number of counter ticks before re-initialization. See also method <SetPeriodTicks>. 
+                This method is available only if the property <"Counter restart"> is switched to 'on-match' value.
+   - TU_PWM_GetCounterValue -Returns the content of counter register. This method can be used both if counter is enabled and if 
                 counter is disabled. The method is not available if HW doesn't allow reading of the counter.
-   - TU1_SetOffsetTicks -Sets the new offset value to channel specified by the parameter ChannelIdx. It is user responsibility 
-                to use value below selected period. This method is available when at least one channel is configured.
-   - TU1_GetOffsetTicks -Returns the number of counter ticks to compare match channel specified by the parameter ChannelIdx. 
+   - TU_PWM_SetOffsetTicks -Sets the new offset value to channel specified by the parameter ChannelIdx. It is user 
+                responsibility to use value below selected period. This method is available when at least one channel is 
+                configured.
+   - TU_PWM_GetOffsetTicks -Returns the number of counter ticks to compare match channel specified by the parameter ChannelIdx. 
                 See also method <SetOffsetTicks>. This method is available when at least one channel is configured.
-   - TU1_SelectOutputAction -Sets the type of compare match and counter overflow action on channel output. This method is 
+   - TU_PWM_SelectOutputAction -Sets the type of compare match and counter overflow action on channel output. This method is 
                 available when at least one channel is configured.
 
-Module "CsIO1"     (component ConsoleIO)
+Module "Console"   (component ConsoleIO)
+
+Module "LCD_RS"    (component BitIO_LDD)
+   - LCD_RS_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_RS_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_RS_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_RS_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_RW"    (component BitIO_LDD)
+   - LCD_RW_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_RW_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_RW_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_RW_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_EN"    (component BitIO_LDD)
+   - LCD_EN_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_EN_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_EN_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_EN_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_DB4"   (component BitIO_LDD)
+   - LCD_DB4_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_DB4_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_DB4_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_DB4_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_DB5"   (component BitIO_LDD)
+   - LCD_DB5_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_DB5_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_DB5_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_DB5_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_DB6"   (component BitIO_LDD)
+   - LCD_DB6_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_DB6_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_DB6_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_DB6_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_DB7"   (component BitIO_LDD)
+   - LCD_DB7_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_DB7_SetInput -Sets a pin direction to input (available only if the direction = _[input/output]_).
+   - LCD_DB7_SetOutput -Sets a pin direction to output (available only if the direction = _[input/output]_).
+   - LCD_DB7_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_DB7_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_DB7_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "LCD_BL"    (component BitIO_LDD)
+   - LCD_BL_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LCD_BL_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+   - LCD_BL_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - LCD_BL_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
+
+Module "MISC_TIMER" (component TimerUnit_LDD)
+   - MISC_TIMER_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and 
+                sets interrupt priority, sets pin routing, sets timing, etc. If the property <"Enable in init. code"> is set to 
+                "yes" value then the device is also enabled (see the description of the <Enable> method). In this case the 
+                <Enable> method is not necessary and needn't to be generated. This method can be called only once. Before the 
+                second call of Init the <Deinit> must be called first.
+
+Module "RUN_STOP_BTN" (component BitIO_LDD)
+   - RUN_STOP_BTN_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and 
+                sets interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" 
+                value then the device is also enabled(see the description of the Enable() method). In this case the Enable() 
+                method is not necessary and needn't to be generated.
+   - RUN_STOP_BTN_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read 
+                and returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+
+Module "ALARM_BTN" (component BitIO_LDD)
+   - ALARM_BTN_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and 
+                sets interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" 
+                value then the device is also enabled(see the description of the Enable() method). In this case the Enable() 
+                method is not necessary and needn't to be generated.
+   - ALARM_BTN_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+
+Module "ADD_BTN"   (component BitIO_LDD)
+   - ADD_BTN_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - ADD_BTN_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+
+Module "SUB_BTN"   (component BitIO_LDD)
+   - SUB_BTN_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - SUB_BTN_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
+                property for limitations). This method cannot be disabled if direction is [input].
+
+Module "LED"       (component BitIO_LDD)
+   - LED_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - LED_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available only 
+                if the direction = _[output]_ or _[input/output]_.
+   - LED_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if the 
+                direction = _[output]_ or _[input/output]_.
+
+Module "BUZZER"    (component BitIO_LDD)
+   - BUZZER_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
+                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
+                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
+                is not necessary and needn't to be generated.
+   - BUZZER_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
+                only if the direction = _[output]_ or _[input/output]_.
+   - BUZZER_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
+                the direction = _[output]_ or _[input/output]_.
 
 Module "Cpu"       (component MKE06Z128LK4)
 

@@ -1,64 +1,64 @@
 /*!
-\page TU1 TU1 (TimerUnit_LDD)
+\page TU_PWM TU_PWM (TimerUnit_LDD)
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
 
-- \subpage TU1_settings
-- \subpage TU1_regs_overview  
-- \subpage TU1_regs_details
-- \ref TU1_module "Component documentation" 
+- \subpage TU_PWM_settings
+- \subpage TU_PWM_regs_overview  
+- \subpage TU_PWM_regs_details
+- \ref TU_PWM_module "Component documentation" 
 
-\page TU1_regs_overview Registers Initialization Overview
+\page TU_PWM_regs_overview Registers Initialization Overview
 This page initialization values for the registers of the peripheral(s) configured
 by the component. 
 <table>
-<tr><td colspan="4" class="ttitle1">TU1 Initialization</td></tr>
+<tr><td colspan="4" class="ttitle1">TU_PWM Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x40048014</td><td>SIM_SCGC</td><td>
     0x20000080
- </td><td>SIM_SCGC register, peripheral TU1.</td></tr>
+ </td><td>SIM_SCGC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A054</td><td>FTM2_MODE</td><td>
     0x00000004
- </td><td>FTM2_MODE register, peripheral TU1.</td></tr>
+ </td><td>FTM2_MODE register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A000</td><td>FTM2_SC</td><td>
     0x00000009
- </td><td>FTM2_SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A04C</td><td>FTM2_CNTIN</td><td>
     0x00000000
- </td><td>FTM2_CNTIN register, peripheral TU1.</td></tr>
+ </td><td>FTM2_CNTIN register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A004</td><td>FTM2_CNT</td><td>
     0x00000000
- </td><td>FTM2_CNT register, peripheral TU1.</td></tr>
+ </td><td>FTM2_CNT register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A00C</td><td>FTM2_C0SC</td><td>
     0x00000000
- </td><td>FTM2_C0SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C0SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A014</td><td>FTM2_C1SC</td><td>
     0x00000000
- </td><td>FTM2_C1SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C1SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A01C</td><td>FTM2_C2SC</td><td>
     0x00000000
- </td><td>FTM2_C2SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C2SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A024</td><td>FTM2_C3SC</td><td>
     0x00000000
- </td><td>FTM2_C3SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C3SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A02C</td><td>FTM2_C4SC</td><td>
     0x00000000
- </td><td>FTM2_C4SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C4SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A034</td><td>FTM2_C5SC</td><td>
     0x0000002C
- </td><td>FTM2_C5SC register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C5SC register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A008</td><td>FTM2_MOD</td><td>
     0x0000FFFF
- </td><td>FTM2_MOD register, peripheral TU1.</td></tr>
+ </td><td>FTM2_MOD register, peripheral TU_PWM.</td></tr>
 <tr><td>0x4003A038</td><td>FTM2_C5V</td><td>
     0x00007FFF
- </td><td>FTM2_C5V register, peripheral TU1.</td></tr>
+ </td><td>FTM2_C5V register, peripheral TU_PWM.</td></tr>
 <tr><td>0x40048010</td><td>SIM_PINSEL1</td><td>
     0x00000200
- </td><td>SIM_PINSEL1 register, peripheral TU1.</td></tr>
+ </td><td>SIM_PINSEL1 register, peripheral TU_PWM.</td></tr>
 </table>
 <br/>
-\page TU1_regs_details Register Initialization Details
+\page TU_PWM_regs_details Register Initialization Details
 This page contains detailed description of initialization values for the 
 registers of the peripheral(s) configured by the component. 
 
@@ -850,9 +850,9 @@ registers of the peripheral(s) configured by the component.
 </tr></table>
 */
 /*!
-\page TU1_settings Component Settings
+\page TU_PWM_settings Component Settings
 \code
-**          Component name                                 : TU1
+**          Component name                                 : TU_PWM
 **          Module name                                    : FTM2
 **          Counter                                        : FTM2_CNT
 **          Counter direction                              : Up

@@ -31,10 +31,25 @@
 \page page_components Components 
 
 - \subpage SystemTimer1
-- \subpage AD1
-- \subpage TU1
-- \subpage PWM1
+- \subpage ADC_SS
+- \subpage TU_PWM
+- \subpage PWM_HEATER
 - \subpage IO1
+- \subpage LCD_RS
+- \subpage LCD_RW
+- \subpage LCD_EN
+- \subpage LCD_DB4
+- \subpage LCD_DB5
+- \subpage LCD_DB6
+- \subpage LCD_DB7
+- \subpage LCD_BL
+- \subpage MISC_TIMER
+- \subpage RUN_STOP_BTN
+- \subpage ALARM_BTN
+- \subpage ADD_BTN
+- \subpage SUB_BTN
+- \subpage LED
+- \subpage BUZZER
 
 
 */
@@ -82,10 +97,25 @@
 \page page_components Components 
 
 - \subpage SystemTimer1
-- \subpage AD1
-- \subpage TU1
-- \subpage PWM1
+- \subpage ADC_SS
+- \subpage TU_PWM
+- \subpage PWM_HEATER
 - \subpage IO1
+- \subpage LCD_RS
+- \subpage LCD_RW
+- \subpage LCD_EN
+- \subpage LCD_DB4
+- \subpage LCD_DB5
+- \subpage LCD_DB6
+- \subpage LCD_DB7
+- \subpage LCD_BL
+- \subpage MISC_TIMER
+- \subpage RUN_STOP_BTN
+- \subpage ALARM_BTN
+- \subpage ADD_BTN
+- \subpage SUB_BTN
+- \subpage LED
+- \subpage BUZZER
 
 
 */
