@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-10, 21:42, # CodeGen: 87
+**     Date/Time   : 2015-02-12, 15:51, # CodeGen: 100
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -82,6 +82,16 @@ const TASK_TEMPLATE_STRUCT MQX_template_list[] =
   /* Stack size                       */  BUTTON_TASK_STACK_SIZE,
   /* Task priority                    */  6U,
   /* Task name                        */  "button",
+  /* Task attributes                  */  (0),
+  /* Task parameter                   */  (uint32_t)(0)
+  },
+  /* Task: Timer */
+  {
+  /* Task number                      */  TIMER_TASK,
+  /* Entry point                      */  (TASK_FPTR)Timer_task,
+  /* Stack size                       */  TIMER_TASK_STACK_SIZE,
+  /* Task priority                    */  7U,
+  /* Task name                        */  "timer",
   /* Task attributes                  */  (0),
   /* Task parameter                   */  (uint32_t)(0)
   },

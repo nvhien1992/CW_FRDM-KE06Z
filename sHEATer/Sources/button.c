@@ -14,11 +14,14 @@
 #define TIMER_PERIOD (10) //ms
 #define BTN_SAMPLING_PERIOD (10 / TIMER_PERIOD) //sampling every 10ms (timer_period = 10ms)
 #define BTN_HOLD_TIMEOUT (1 * 1000 / TIMER_PERIOD) //btn is on hold after 1s.
+#define BTN_HOLD_PERIOD (100 / TIMER_PERIOD) //resend evt after 100ms when btn is on hold.
 const bool btn_active_state = false;
 
-static uint8_t sampling_time_count = 0;
+static uint16_t sampling_time_count = 0;
+static uint16_t button_hold_time_count = 0;
 
 static void button_processing(button_t *a_button);
+static void button_hold_processing(button_t *a_button);
 
 static void button_processing(button_t *a_button) {
 	/* sampling */
@@ -52,12 +55,18 @@ static void button_processing(button_t *a_button) {
 				a_button->hold_time_count = 0;
 			}
 		}
-//		else { //not change state
-//			if (a_button->new_value_reg[0] == !btn_active_state) { //not activate -> btn isn't pressed
-//				a_button->current_status = btn_no_pressed;
-//			}
-//		}
 	} //end if()
+}
+
+static void button_hold_processing(button_t *a_button) {
+	button_hold_time_count++;
+	if (button_hold_time_count == BTN_HOLD_PERIOD) {
+		button_hold_time_count = 0;
+		a_button->old_status = btn_no_pressed;
+		if (_lwevent_set(&btn_lwevent, (_mqx_uint) BTN_EVT_BIT_MASK) != MQX_OK) {
+			NOTIFY("Event Set failed\n");
+		}
+	}
 }
 
 uint8_t get_button_id(button_t *a_button) {
@@ -91,10 +100,14 @@ void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns) {
 		uint8_t i = 0;
 		for (i = 0; i < num_of_btns; i++) {
 			button_processing(&button_table[i]);
-			if (button_table[i].current_status != button_table[i].old_status) {
+			if (is_changed_status(&button_table[i])) {
 				if (_lwevent_set(&btn_lwevent,
 						(_mqx_uint) BTN_EVT_BIT_MASK) != MQX_OK) {
 					NOTIFY("Event Set failed\n");
+				}
+			} else {
+				if (button_table[i].current_status == btn_on_hold) {
+					button_hold_processing(&button_table[i]);
 				}
 			}
 		} //end for()

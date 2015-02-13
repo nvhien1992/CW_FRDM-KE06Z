@@ -117,7 +117,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port30</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>28</TD><TD>PTD5/KBI0_P29/PWT_IN0</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port29</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port29</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>29</TD><TD>PTI6/IRQ</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port6</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -204,7 +204,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port28</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>57</TD><TD>PTD3/KBI0_P27/SPI1_PCS</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port27</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port27</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>58</TD><TD>PTD2/KBI0_P26/SPI1_MISO</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port26</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1125,7 +1125,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port30</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>28</TD><TD>PTD5/KBI0_P29/PWT_IN0</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port29</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port29</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>29</TD><TD>PTI6/IRQ</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port6</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1212,7 +1212,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port28</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>57</TD><TD>PTD3/KBI0_P27/SPI1_PCS</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port27</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port27</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>58</TD><TD>PTD2/KBI0_P26/SPI1_MISO</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port26</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>

@@ -44,6 +44,23 @@ extern "C" {
 #define NOTIFY_EN	1
 #include "debug.h"
 
+#define TIMER_PERIOD 10 //ms
+#define A_MIN (60*1000/TIMER_PERIOD) //1min
+uint16_t time_cycle_count = 0;
+
+void a_min_callback_timer_isr(void);
+
+void a_min_callback_timer_isr(void) {
+	time_cycle_count++;
+	if (time_cycle_count == A_MIN) {
+		time_cycle_count = 0;
+		if (_lwevent_set(&a_min_lwevent,
+				(_mqx_uint) A_MIN_EVT_BIT_MASK) != MQX_OK) {
+			NOTIFY("Event Set failed\n");
+		}
+	}
+}
+
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMI (module Events)
@@ -58,7 +75,7 @@ extern "C" {
  */
 /* ===================================================================*/
 void Cpu_OnNMI(void) {
-	/* Write your code here ... */	
+	/* Write your code here ... */
 }
 
 /*
@@ -82,35 +99,35 @@ void Cpu_OnNMI(void) {
 /* ===================================================================*/
 void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
+	a_min_callback_timer_isr();
 	button_callback_timer_isr(button_table, MAX_BUTTONS);
 	temp_sensor_callback_timer_isr(&LM35);
 	on_off_blink_callback_timer_isr();
 }
 
 /*
-** ===================================================================
-**     Event       :  ADC_SS_OnMeasurementComplete (module Events)
-**
-**     Component   :  ADC_SS [ADC_LDD]
-*/
+ ** ===================================================================
+ **     Event       :  ADC_SS_OnMeasurementComplete (module Events)
+ **
+ **     Component   :  ADC_SS [ADC_LDD]
+ */
 /*!
-**     @brief
-**         Called after measurement is done, [Interrupt service/event]
-**         is enabled, OnMeasurementComplete event is enabled and ADC
-**         device is enabled. See [SetEventMask()] method or [Event
-**         mask] property group to enable this event and [Enable]
-**         method or [Enabled in init. code] property to enable ADC
-**         device. If DMA is enabled , this event is called after the
-**         configured number of measurements and DMA transfer is done.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. The pointer is passed
-**                           as the parameter of Init method. 
-*/
+ **     @brief
+ **         Called after measurement is done, [Interrupt service/event]
+ **         is enabled, OnMeasurementComplete event is enabled and ADC
+ **         device is enabled. See [SetEventMask()] method or [Event
+ **         mask] property group to enable this event and [Enable]
+ **         method or [Enabled in init. code] property to enable ADC
+ **         device. If DMA is enabled , this event is called after the
+ **         configured number of measurements and DMA transfer is done.
+ **     @param
+ **         UserDataPtr     - Pointer to the user or
+ **                           RTOS specific data. The pointer is passed
+ **                           as the parameter of Init method. 
+ */
 /* ===================================================================*/
-void ADC_SS_OnMeasurementComplete(LDD_TUserData *UserDataPtr)
-{
-  /* Write your code here ... */
+void ADC_SS_OnMeasurementComplete(LDD_TUserData *UserDataPtr) {
+	/* Write your code here ... */
 }
 
 /* END Events */

@@ -24,6 +24,7 @@ typedef enum {
 	ADD_BTN = 0x03,
 	SUB_BTN = 0x04,
 	TEMP_SS = 0x05,
+	ALARM = 0x06,
 	HEATER = 0x80,
 } dev_id_e;
 

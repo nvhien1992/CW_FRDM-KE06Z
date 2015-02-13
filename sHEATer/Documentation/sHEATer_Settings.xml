@@ -1109,7 +1109,7 @@ PE_DEBUGHALT();
           <event name="OnChannel7" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <list name="Task Template List" v="3">
+      <list name="Task Template List" v="4">
         <boolgroup name="Task1" v="Enabled">
           <inhrbean type="MQXLite_task">
             <Enabled v="Y" />
@@ -1184,6 +1184,32 @@ PE_DEBUGHALT();
               <Event_module_name v="mqx_tasks" />
               <event name="OnTask" v="generate code">
                 <Event_procedure_name v="Button_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
+        <boolgroup name="Task4" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="Timer" />
+              <Entry_point_function v="Timer_task" />
+              <Stack_size v="512" />
+              <Priority v="7" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Disabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="Timer_task" />
               </event>
             </Events>
           </inhrbean>
@@ -2170,7 +2196,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="ADD_BTN" />
-      <Pin_for_I_O v="PTD3/KBI0_P27/SPI1_PCS" />
+      <Pin_for_I_O v="PTH3/KBI1_P27/I2C1_SDA" />
       <Direction v="Input" />
       <group name="Initialization">
         <Init__direction v="Input" />
@@ -2202,7 +2228,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="SUB_BTN" />
-      <Pin_for_I_O v="PTD5/KBI0_P29/PWT_IN0" />
+      <Pin_for_I_O v="PTH4/KBI1_P28/I2C1_SCL" />
       <Direction v="Input" />
       <group name="Initialization">
         <Init__direction v="Input" />

@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-08, 20:26, # CodeGen: 64
+**     Date/Time   : 2015-02-13, 14:45, # CodeGen: 102
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,7 +16,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : ADD_BTN
-**          Pin for I/O                                    : PTD3/KBI0_P27/SPI1_PCS
+**          Pin for I/O                                    : PTH3/KBI1_P27/I2C1_SDA
 **          Pin signal                                     : 
 **          Direction                                      : Input
 **          Initialization                                 : 
@@ -125,10 +125,10 @@ LDD_TDeviceData* ADD_BTN_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   /* Configure pin as input */
-  /* GPIOA_PDDR: PDD&=~0x08000000 */
-  GPIOA_PDDR &= (uint32_t)~(uint32_t)(GPIO_PDDR_PDD(0x08000000));
-  /* GPIOA_PIDR: PID&=~0x08000000 */
-  GPIOA_PIDR &= (uint32_t)~(uint32_t)(GPIO_PIDR_PID(0x08000000));
+  /* GPIOB_PDDR: PDD&=~0x08000000 */
+  GPIOB_PDDR &= (uint32_t)~(uint32_t)(GPIO_PDDR_PDD(0x08000000));
+  /* GPIOB_PIDR: PID&=~0x08000000 */
+  GPIOB_PIDR &= (uint32_t)~(uint32_t)(GPIO_PIDR_PID(0x08000000));
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_ADD_BTN_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv);

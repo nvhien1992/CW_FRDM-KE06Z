@@ -127,6 +127,22 @@ void Heater_task(uint32_t task_init_data);
 */
 void Button_task(uint32_t task_init_data);
 
+/*
+** ===================================================================
+**     Event       :  Timer_task (module mqx_tasks)
+**
+**     Component   :  Task4 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Timer_task(uint32_t task_init_data);
+
 /* END mqx_tasks */
 
 #ifdef __cplusplus

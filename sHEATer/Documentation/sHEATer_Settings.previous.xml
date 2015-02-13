@@ -1109,7 +1109,7 @@ PE_DEBUGHALT();
           <event name="OnChannel7" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <list name="Task Template List" v="3">
+      <list name="Task Template List" v="4">
         <boolgroup name="Task1" v="Enabled">
           <inhrbean type="MQXLite_task">
             <Enabled v="Y" />
@@ -1184,6 +1184,32 @@ PE_DEBUGHALT();
               <Event_module_name v="mqx_tasks" />
               <event name="OnTask" v="generate code">
                 <Event_procedure_name v="Button_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
+        <boolgroup name="Task4" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="Timer" />
+              <Entry_point_function v="Timer_task" />
+              <Stack_size v="512" />
+              <Priority v="7" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Disabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="Timer_task" />
               </event>
             </Events>
           </inhrbean>
@@ -2234,12 +2260,12 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LED" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
-      <Direction v="Input/Output" />
+      <Pin_for_I_O v="PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO" />
+      <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
         <Init__value v="0" />
-        <Auto_initialization v="no" />
+        <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />
     </Properties>
@@ -2247,8 +2273,8 @@ PE_DEBUGHALT();
       <Init v="generate code" />
       <Deinit v="don&amp;apos;t generate code" />
       <GetDir v="don&amp;apos;t generate code" />
-      <SetDir v="generate code" />
-      <SetInput v="generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
       <SetOutput v="don&amp;apos;t generate code" />
       <GetVal v="don&amp;apos;t generate code" />
       <PutVal v="don&amp;apos;t generate code" />
@@ -2266,12 +2292,12 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="BUZZER" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
-      <Direction v="Input/Output" />
+      <Pin_for_I_O v="PTG5/KBI1_P21/FTM2_CH3/SPI1_MOSI" />
+      <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
         <Init__value v="0" />
-        <Auto_initialization v="no" />
+        <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />
     </Properties>
@@ -2279,8 +2305,8 @@ PE_DEBUGHALT();
       <Init v="generate code" />
       <Deinit v="don&amp;apos;t generate code" />
       <GetDir v="don&amp;apos;t generate code" />
-      <SetDir v="generate code" />
-      <SetInput v="generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
       <SetOutput v="don&amp;apos;t generate code" />
       <GetVal v="don&amp;apos;t generate code" />
       <PutVal v="don&amp;apos;t generate code" />

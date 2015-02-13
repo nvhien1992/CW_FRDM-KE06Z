@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-08, 20:26, # CodeGen: 64
+**     Date/Time   : 2015-02-13, 14:45, # CodeGen: 102
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,7 +16,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : ADD_BTN
-**          Pin for I/O                                    : PTD3/KBI0_P27/SPI1_PCS
+**          Pin for I/O                                    : PTH3/KBI1_P27/I2C1_SDA
 **          Pin signal                                     : 
 **          Direction                                      : Input
 **          Initialization                                 : 
@@ -98,14 +98,14 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define ADD_BTN_PRPH_BASE_ADDRESS  0x400FF000U
+#define ADD_BTN_PRPH_BASE_ADDRESS  0x400FF040U
   
 /* Methods configuration constants - generated for all enabled component's methods */
 #define ADD_BTN_Init_METHOD_ENABLED    /*!< Init method of the component ADD_BTN is enabled (generated) */
 #define ADD_BTN_GetVal_METHOD_ENABLED  /*!< GetVal method of the component ADD_BTN is enabled (generated) */
 
 /* Definition of implementation constants */
-#define ADD_BTN_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
+#define ADD_BTN_MODULE_BASE_ADDRESS GPIOB_BASE_PTR /*!< Name of macro used as the base address */
 #define ADD_BTN_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
 #define ADD_BTN_PORT_MASK 0x08000000U  /*!< Mask of the allocated pin from the port */
 
