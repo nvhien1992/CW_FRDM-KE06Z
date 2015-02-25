@@ -39,19 +39,26 @@ extern "C" {
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include <math.h>
+#include <cstring>
 #include "global.h"
+#include "LCD.h"
 #include "config.h"
 
 #define DEBUG_EN	1
 #define NOTIFY_EN	1
 #include "debug.h"
 
-#define MAX_TEMP 1100 //MAX_TEMP/10
-#define DEFAULT_TEMP 370 //DEFAULT_TEMP/10
-#define CONF_DELTA 5 // 0.5
+#define MAX_TEMP_VALUE 		1100 //110 degree Celsious
+#define DEFAULT_TEMP_VALUE 	370 //37 degree Celsious
+#define CONF_DELTA_TEMP 	5 //0.5 degree
+#define MAX_TIME_VALUE 		90 //min
+#define MAX_ALARMS 			4
+#define ACTIVE_ALARM_INDEX 	0 //index=0 is default
+#define FREQ_BUZZER_BLINK 	1
+#define AVG_SAMPLING_TEMP 	10 //cal average temp value after measuring 10 times.
 /* Definitions for LW Message Queue Component */
-#define NUM_MESSAGES            4
-#define MSG_SIZE                1
+#define NUM_MESSAGES		16
+#define MSG_SIZE			1
 
 /* Use light weight message queues */
 uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
@@ -67,6 +74,36 @@ LWEVENT_STRUCT a_min_lwevent;
 typedef enum {
 	STOP, RUN, HOLD, UNHOLD,
 } state_e;
+
+static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
+		conf_arr_s *alarm_arr);
+
+static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
+		conf_arr_s *alarm_arr) {
+	uint16_t conf_time[MAX_ALARMS];
+	uint8_t i = 0;
+	for (i = 0; i < MAX_ALARMS; i++) {
+		conf_time[i] = 0;
+	}
+	for (i = 0; i < alarm_arr->num_elements; i++) {
+		get_conf_time(alarm_arr, &conf_time[i], i);
+	}
+//	lcd_printf("TMP:%d.%d/%d.%dC\r\nTIME:%d %d %d %d\r\n", real_temp / 10,
+//			real_temp % 10, conf_temp / 10, conf_temp % 10, conf_time[0],
+//			conf_time[1], conf_time[2], conf_time[3]);
+	printf("TMP:%d.%d/%d.%dC\nTIME:%d %d %d %d\n", real_temp / 10,
+			real_temp % 10, conf_temp / 10, conf_temp % 10, conf_time[0],
+			conf_time[1], conf_time[2], conf_time[3]);
+}
+
+button_t button_template = { NULL, //(*ReadInputPin)()
+		NULL, //arg
+		UNKNOWN, //dev_id
+		0, //hold_time_count
+		btn_no_pressed, //current_status
+		btn_no_pressed, //old_status
+		false, //old_value_reg
+		};
 
 /*
  ** ===================================================================
@@ -84,45 +121,40 @@ typedef enum {
  */
 void Ctrl_task(uint32_t task_init_data) {
 	int counter = 0;
-	conf_arr_s conf_arr;
+	conf_arr_s alarm_arr;
 	uint16_t real_temp = 0;
-	uint16_t conf_temp = DEFAULT_TEMP;
-	uint16_t alarm_time = 0;
-	state_e sys_state = STOP;
+	uint16_t conf_temp = DEFAULT_TEMP_VALUE;
+	uint16_t conf_time = 0;
+	state_e sys_state = RUN; //STOP;
 	state_e alarm_btn_state = UNHOLD;
 
 	/* initialize Buttons */
+//	memcpy(&button_table[0], &button_template, sizeof(button_t));
 //	button_table[0].dev_id = RUN_STOP_BTN;
 //	button_table[0].ReadInputPin = RUN_STOP_BTN_GetVal;
 //
-//	button_table[1].dev_id = ALARM_BTN;
-//	button_table[1].ReadInputPin = ALARM_BTN_GetVal;
+	memcpy(&button_table[1], &button_template, sizeof(button_t));
+	button_table[1].dev_id = ALARM_BTN;
+	button_table[1].ReadInputPin = ALARM_BTN_GetVal;
 
+	memcpy(&button_table[0], &button_template, sizeof(button_t));
 	button_table[0].dev_id = ADD_BTN;
 	button_table[0].ReadInputPin = ADD_BTN_GetVal;
-	
-	button_table[1].dev_id = SUB_BTN;
-	button_table[1].ReadInputPin = SUB_BTN_GetVal;
 
-	uint8_t index = 0;
-	for (index = 0; index < MAX_BUTTONS; index++) {
-		button_table[index].arg = NULL;
-		button_table[index].current_status = btn_no_pressed;
-		button_table[index].old_status = btn_no_pressed;
-		button_table[index].old_value_reg = false;
-		button_table[index].hold_time_count = 0;
-	}
+//	memcpy(&button_table[1], &button_template, sizeof(button_t));
+//	button_table[1].dev_id = SUB_BTN;
+//	button_table[1].ReadInputPin = SUB_BTN_GetVal;
 
 	/* Initialize ADC component */
-	LDD_TDeviceData *device_data = ADC_SS_Init(NULL );
+	LDD_TDeviceData *LM35_dev = ADC_SS_Init(NULL );
 	LDD_ADC_TSample SampleGroupPtr;
 	SampleGroupPtr.ChannelIdx = 0;
-	ADC_SS_CreateSampleGroup(device_data, &SampleGroupPtr, 1);
+	ADC_SS_CreateSampleGroup(LM35_dev, &SampleGroupPtr, 1);
 
 	LM35.StartMeasurement = ADC_SS_StartSingleMeasurement;
 	LM35.ADCPolling = ADC_SS_Main;
 	LM35.GetADCValue = ADC_SS_GetMeasuredValues;
-	LM35.arg = device_data;
+	LM35.arg = LM35_dev;
 	LM35.dev_id = TEMP_SS;
 	LM35.temp_value = 0.0;
 
@@ -142,7 +174,7 @@ void Ctrl_task(uint32_t task_init_data) {
 	turn_off(&buzzer);
 
 	/* Initialize the configuring array */
-	init_conf_array(&conf_arr);
+	init_conf_array(&alarm_arr);
 
 	/* start misc timer */
 	MISC_TIMER_Init(NULL );
@@ -152,7 +184,8 @@ void Ctrl_task(uint32_t task_init_data) {
 	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
 
 	/* Create ADC task */
-	_mqx_uint created_task = _task_create_at(0, ADC_TASK, 100, ADC_task_stack,
+	_mqx_uint created_task;
+	created_task = _task_create_at(0, ADC_TASK, 0, ADC_task_stack,
 			ADC_TASK_STACK_SIZE);
 	if (created_task == MQX_NULL_TASK_ID ) {
 		NOTIFY("Error on creating ADC task.\n");
@@ -165,7 +198,7 @@ void Ctrl_task(uint32_t task_init_data) {
 		NOTIFY("Error on creating Button task.\n");
 	}
 
-	/* Create Button task */
+	/* Create Timer task */
 	created_task = _task_create_at(0, TIMER_TASK, 0, Timer_task_stack,
 			TIMER_TASK_STACK_SIZE);
 	if (created_task == MQX_NULL_TASK_ID ) {
@@ -178,7 +211,7 @@ void Ctrl_task(uint32_t task_init_data) {
 		/* Write your code here ... */
 		_lwmsgq_receive((pointer) ctrl_msg_queue, &msg,
 				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL );
-		
+
 		switch (sys_state) {
 		case STOP: //======//
 			switch ((uint8_t) (msg >> 16)) {
@@ -190,22 +223,25 @@ void Ctrl_task(uint32_t task_init_data) {
 				break;
 			case (uint8_t) ADD_BTN: //increase conf_temp
 				if ((uint8_t) msg != (uint8_t) btn_no_pressed) {
-					if (conf_temp < MAX_TEMP) {
-						conf_temp += CONF_DELTA;
-						printf("TEMP: %d.%d/%d.%dC\n", real_temp/10, real_temp%10, conf_temp/10, conf_temp%10);
+					if (conf_temp < MAX_TEMP_VALUE) {
+						conf_temp += CONF_DELTA_TEMP;
+						/* update LCD */
+						update_lcd(real_temp, conf_temp, &alarm_arr);
 					}
 				}
 				break;
 			case (uint8_t) SUB_BTN: //decrease conf_temp
 				if ((uint8_t) msg != (uint8_t) btn_no_pressed) {
 					if (conf_temp > (real_temp + 10)) {
-						conf_temp -= CONF_DELTA;
-						printf("TEMP: %d.%d/%d.%dC\n", real_temp/10, real_temp%10, conf_temp/10, conf_temp%10);
+						conf_temp -= CONF_DELTA_TEMP;
+						/* update LCD */
+						update_lcd(real_temp, conf_temp, &alarm_arr);
 					}
 				}
 				break;
 			case (uint8_t) TEMP_SS: //update on LCD
 				real_temp = (uint16_t) msg;
+				update_lcd(real_temp, conf_temp, &alarm_arr);
 				break;
 			default:
 				break;
@@ -221,7 +257,7 @@ void Ctrl_task(uint32_t task_init_data) {
 				}
 				break;
 			case (uint8_t) ALARM_BTN: //add/remove alarm
-				if (buzzer.current_status != ON) {
+				if (buzzer.current_status != OFF) {
 					turn_off(&buzzer);
 				}
 				if ((uint8_t) msg == (uint8_t) btn_on_hold) {
@@ -230,38 +266,113 @@ void Ctrl_task(uint32_t task_init_data) {
 					alarm_btn_state = UNHOLD;
 				}
 				break;
-			case (uint8_t) ADD_BTN: //increase alarm value
-				if (buzzer.current_status != ON) {
+			case (uint8_t) ADD_BTN:
+				if (buzzer.current_status != OFF) {
 					turn_off(&buzzer);
 				}
-				if (alarm_btn_state == HOLD) {
+				if (alarm_btn_state == HOLD) { //alarm button is hold
 					if ((uint8_t) msg == (uint8_t) btn_pressed) {
-
+						/* add a new alarm */
+						if ((alarm_arr.num_elements > 0)
+								&& (alarm_arr.num_elements < MAX_ALARMS)) {
+							insert(&alarm_arr, 0, 1, alarm_arr.num_elements);
+							/* update LCD */
+							update_lcd(real_temp, conf_temp, &alarm_arr);
+						}
 					}
-				} else {
+				} else { //un-hold
 					if ((uint8_t) msg != (uint8_t) btn_no_pressed) {
-
-					}
-				}
+						/* add the 1st alarm */
+						if (alarm_arr.num_elements == 0) {
+							insert(&alarm_arr, 0, 1, alarm_arr.num_elements);
+							/* update LCD */
+							update_lcd(real_temp, conf_temp, &alarm_arr);
+						}
+						/* increase alarm value */
+						else {
+							/* get conf_time */
+							if (alarm_arr.num_elements == 1) { //only 1 alarm in queue
+								get_conf_time(&alarm_arr, &conf_time,
+										ACTIVE_ALARM_INDEX);
+							} else { //more than 1 alarm in queue
+								get_conf_time(&alarm_arr, &conf_time,
+										ACTIVE_ALARM_INDEX + 1);
+							}
+							/* modify and save conf_time just get */
+							if (conf_time < MAX_TIME_VALUE) {
+								conf_time++;
+								if (alarm_arr.num_elements == 1) { //only 1 alarm in queue
+									modify_time(&alarm_arr, conf_time,
+											ACTIVE_ALARM_INDEX);
+								} else { //more than 1 alarm in queue
+									modify_time(&alarm_arr, conf_time,
+											ACTIVE_ALARM_INDEX + 1);
+								}
+								/* update LCD */
+								update_lcd(real_temp, conf_temp, &alarm_arr);
+							}
+						} //end else
+					} //end if()
+				} //end else
 				break;
-			case (uint8_t) SUB_BTN: //decrease alarm value
-				if (buzzer.current_status != ON) {
+			case (uint8_t) SUB_BTN:
+				if (buzzer.current_status != OFF) {
 					turn_off(&buzzer);
 				}
-				if (alarm_btn_state == HOLD) {
+				if (alarm_btn_state == HOLD) { //alarm btn is hold
 					if ((uint8_t) msg == (uint8_t) btn_pressed) {
-
+						/* remove the last alarm */
+						if (alarm_arr.num_elements > 0) {
+							delete(&alarm_arr, alarm_arr.num_elements - 1);
+							/* update LCD */
+							update_lcd(real_temp, conf_temp, &alarm_arr);
+						}
 					}
-				} else {
-					if ((uint8_t) msg == (uint8_t) btn_on_hold) {
-
-					}
-				}
+				} else { //un-hold
+					/* decrease alarm value */
+					if ((uint8_t) msg != (uint8_t) btn_no_pressed) {
+						if (alarm_arr.num_elements > 0) {
+							/* get conf_time */
+							get_conf_time(&alarm_arr, &conf_time,
+									alarm_arr.num_elements - 1);
+							/* modify and save conf_time just get */
+							conf_time--;
+							if (conf_time == 0) {
+								delete(&alarm_arr, alarm_arr.num_elements - 1);
+							} else {
+								modify_time(&alarm_arr, conf_time,
+										alarm_arr.num_elements - 1);
+							}
+							/* update LCD */
+							update_lcd(real_temp, conf_temp, &alarm_arr);
+						} //end if()
+					} //end if()
+				} //end else
 				break;
 			case (uint8_t) TEMP_SS: //control heater
+				real_temp = (uint16_t) msg;
+				/* update LCD */
+				update_lcd(real_temp, conf_temp, &alarm_arr);
+				/* calculate (PID) */
+				//TODO
+				/* control heater */
+				//TODO
 				break;
 			case (uint8_t) ALARM: //1min period
-				DEBUG("1min\n");
+				if (alarm_arr.num_elements > 0) {
+					/* get conf_time */
+					get_conf_time(&alarm_arr, &conf_time, ACTIVE_ALARM_INDEX);
+					/* modify and save conf_time */
+					conf_time--;
+					if (conf_time == 0) {
+						delete(&alarm_arr, ACTIVE_ALARM_INDEX);
+						blink(&buzzer, FREQ_BUZZER_BLINK);
+					} else {
+						modify_time(&alarm_arr, conf_time, ACTIVE_ALARM_INDEX);
+					}
+					/* update LCD */
+					update_lcd(real_temp, conf_temp, &alarm_arr);
+				}
 				break;
 			default:
 				break;
@@ -290,7 +401,8 @@ void Ctrl_task(uint32_t task_init_data) {
  */
 void ADC_task(uint32_t task_init_data) {
 	int counter = 0;
-	uint16_t sensor_value;
+	uint8_t average_count = 0;
+	uint16_t sensor_value = 0;
 	_mqx_uint msg;
 
 	/* create lw event */
@@ -308,11 +420,19 @@ void ADC_task(uint32_t task_init_data) {
 			NOTIFY("Event Wait failed\n");
 			_task_block();
 		}
-		sensor_value = (uint16_t) (get_sensor_value(&LM35) * 10);
-		msg = (_mqx_uint) (((uint32_t) get_sensor_id(&LM35) << 16)
-				| sensor_value);
-
-		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);
+		sensor_value += (uint16_t) (get_sensor_value(&LM35) * 10);
+		average_count++;
+		if (average_count == AVG_SAMPLING_TEMP) {
+			average_count = 0;
+			sensor_value /= AVG_SAMPLING_TEMP;
+			/* send msg to Ctrl task */
+			msg = (_mqx_uint) (((uint32_t) get_sensor_id(&LM35) << 16)
+					| sensor_value);
+			_lwmsgq_send((pointer) ctrl_msg_queue, &msg,
+					LWMSGQ_SEND_BLOCK_ON_FULL);
+			
+			sensor_value = 0;
+		}
 	}
 }
 
@@ -354,6 +474,7 @@ void Button_task(uint32_t task_init_data) {
 		for (index = 0; index < MAX_BUTTONS; index++) {
 			if (is_changed_status(&button_table[index])) {
 				btn_status = (uint16_t) get_button_status(&button_table[index]);
+				/* send msg to Ctrl task */
 				msg = (_mqx_uint) (((uint32_t) get_button_id(
 						&button_table[index]) << 16) | btn_status);
 				_lwmsgq_send((pointer) ctrl_msg_queue, &msg,
@@ -396,6 +517,7 @@ void Timer_task(uint32_t task_init_data) {
 			NOTIFY("A_MIN Event Wait failed\n");
 			_task_block();
 		}
+		/* send msg to Ctrl task */
 		msg = (_mqx_uint) ((uint32_t) (ALARM << 16));
 		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);
 	}

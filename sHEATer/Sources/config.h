@@ -76,5 +76,9 @@ typedef struct {
  * 			- conf_arr is null.
  * 			- index+1 is greater than the numbers of elements in the arrays. 
  */bool modify_time(conf_arr_s *conf_arr, uint16_t time, uint8_t index);
+ 
+ bool get_conf_temp(conf_arr_s *conf_arr, uint16_t *conf_temp, uint8_t index);
+ 
+ bool get_conf_time(conf_arr_s *conf_arr, uint16_t *conf_time, uint8_t index);
 
 #endif /* CONFIG_H_ */

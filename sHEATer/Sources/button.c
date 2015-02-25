@@ -13,7 +13,7 @@
 
 #define TIMER_PERIOD (10) //ms
 #define BTN_SAMPLING_PERIOD (10 / TIMER_PERIOD) //sampling every 10ms (timer_period = 10ms)
-#define BTN_HOLD_TIMEOUT (1 * 1000 / TIMER_PERIOD) //btn is on hold after 1s.
+#define BTN_HOLD_TIMEOUT (500 / TIMER_PERIOD) //btn is on hold after 0.5s.
 #define BTN_HOLD_PERIOD (100 / TIMER_PERIOD) //resend evt after 100ms when btn is on hold.
 const bool btn_active_state = false;
 

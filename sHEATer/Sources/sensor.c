@@ -13,8 +13,8 @@
 
 #define V_REF 3300 //mV
 #define TIMER_PERIOD (10) //ms
-#define SENSOR_SAMPLING_PERIOD (500 / TIMER_PERIOD) //sampling every 500ms (timer_period = 10ms)
-static uint8_t sampling_time_count = 0;
+#define SENSOR_SAMPLING_PERIOD (100 / TIMER_PERIOD) //sampling every 100ms (timer_period = 10ms)
+static uint16_t sampling_time_count = 0;
 
 uint8_t get_sensor_id(temp_sensor_t *a_temp_sensor) {
 	return a_temp_sensor->dev_id;
@@ -33,8 +33,8 @@ void temp_sensor_callback_timer_isr(temp_sensor_t *a_temp_sensor) {
 			uint16_t adc_value = 0;
 			a_temp_sensor->ADCPolling(a_temp_sensor->arg);
 			a_temp_sensor->GetADCValue(a_temp_sensor->arg, &adc_value);
-			float v_adc = adc_value*V_REF/4096; //12bits ADC.
-			a_temp_sensor->temp_value = 100*v_adc/1000; //T = 100*V;
+			float v_adc = adc_value * V_REF / 4096; //12bits ADC.
+			a_temp_sensor->temp_value = 100 * v_adc / 1000; //T = 100*V;
 //			a_temp_sensor->temp_value = (float) adc_value * 100.0 / 4096.0;
 			if (_lwevent_set(&adc_lwevent,
 					(_mqx_uint) ADC_EVT_BIT_MASK) != MQX_OK) {
