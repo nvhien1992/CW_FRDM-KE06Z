@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-10, 07:38, # CodeGen: 80
+**     Date/Time   : 2015-03-10, 09:14, # CodeGen: 112
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -72,7 +72,7 @@
 
 /* Interrupt settings */
 #define MQX_ROM_VECTORS                1
-#define MQX_INTERRUPT_STACK_SIZE       512
+#define MQX_INTERRUPT_STACK_SIZE       1024
 
 /* PSP Settings */
 #define MQXCFG_ENABLE_FP               0

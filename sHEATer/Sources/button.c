@@ -63,9 +63,9 @@ static void button_hold_processing(button_t *a_button) {
 	if (button_hold_time_count == BTN_HOLD_PERIOD) {
 		button_hold_time_count = 0;
 		a_button->old_status = btn_no_pressed;
-		if (_lwevent_set(&btn_lwevent, (_mqx_uint) BTN_EVT_BIT_MASK) != MQX_OK) {
-			NOTIFY("Event Set failed\n");
-		}
+		_mqx_uint msg = (_mqx_uint) (((uint32_t) a_button->dev_id << 16)
+				| (uint16_t) get_button_status(a_button));
+		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
 	}
 }
 
@@ -101,10 +101,9 @@ void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns) {
 		for (i = 0; i < num_of_btns; i++) {
 			button_processing(&button_table[i]);
 			if (is_changed_status(&button_table[i])) {
-				if (_lwevent_set(&btn_lwevent,
-						(_mqx_uint) BTN_EVT_BIT_MASK) != MQX_OK) {
-					NOTIFY("Event Set failed\n");
-				}
+				_mqx_uint msg = (_mqx_uint) (((uint32_t) button_table[i].dev_id
+						<< 16) | (uint16_t) get_button_status(&button_table[i]));
+				_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
 			} else {
 				if (button_table[i].current_status == btn_on_hold) {
 					button_hold_processing(&button_table[i]);

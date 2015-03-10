@@ -10,18 +10,16 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "adc_ll.h"
 
 typedef struct {
-	uint16_t (*StartMeasurement)(void *arg);
-	void (*ADCPolling)(void *arg);
-	uint16_t (*GetADCValue)(void *arg, void* out_value);
-	void *arg;
+	uint8_t channel_index;
 	uint8_t dev_id;
-	float temp_value;
-} temp_sensor_t;
+	uint16_t sensor_value;
+} sensor_t;
 
-uint8_t get_sensor_id(temp_sensor_t *a_temp_sensor);
-float get_sensor_value(temp_sensor_t *a_temp_sensor);
-void temp_sensor_callback_timer_isr(temp_sensor_t *a_temp_sensor);
+uint8_t get_sensor_id(sensor_t *a_sensor);
+uint16_t get_sensor_value(sensor_t *a_sensor);
+void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor);
 
 #endif /* SENSOR_H_ */

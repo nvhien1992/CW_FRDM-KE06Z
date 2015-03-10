@@ -6,7 +6,7 @@
 **     Component   : ADC_LDD
 **     Version     : Component 01.183, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-11, 10:54, # CodeGen: 95
+**     Date/Time   : 2015-03-09, 13:52, # CodeGen: 110
 **     Abstract    :
 **         This device "ADC_LDD" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -15,11 +15,16 @@
 **          A/D converter                                  : ADC
 **          Discontinuous mode                             : no
 **          Interrupt service/event                        : Disabled
-**          A/D channel list                               : 1
+**          A/D channel list                               : 2
 **            Channel 0                                    : 
 **              Channel mode                               : Single Ended
 **                Input                                    : 
 **                  A/D channel (pin)                      : PTF6/KBI1_P14/ADC0_SE14
+**                  A/D channel (pin) signal               : 
+**            Channel 1                                    : 
+**              Channel mode                               : Single Ended
+**                Input                                    : 
+**                  A/D channel (pin)                      : PTA0/KBI0_P0/FTM0_CH0/I2C0_4WSCLOUT/ACMP0_IN0/ADC0_SE0
 **                  A/D channel (pin) signal               : 
 **          Static sample groups                           : Disabled
 **          A/D resolution                                 : 12 bits
@@ -116,14 +121,16 @@
 extern "C" { 
 #endif
 
-#define ADC_SS_AVAILABLE_CHANNEL0_31_PIN_MASK (LDD_ADC_CHANNEL_0_PIN) /*!< Mask of all allocated channel pins from 0 to 31 */
+#define ADC_SS_AVAILABLE_CHANNEL0_31_PIN_MASK (LDD_ADC_CHANNEL_0_PIN | LDD_ADC_CHANNEL_1_PIN) /*!< Mask of all allocated channel pins from 0 to 31 */
 #define ADC_SS_AVAILABLE_CHANNEL32_63_PIN_MASK 0x00U /*!< Mask of all allocated channel pins from 32 to 63 */
 #define ADC_SS_AVAILABLE_TRIGGER_PIN_MASK 0x00U /*!< Mask of all allocated trigger pins */
 #define ADC_SS_AVAILABLE_VOLT_REF_PIN_MASK (LDD_ADC_LOW_VOLT_REF_PIN | LDD_ADC_HIGH_VOLT_REF_PIN) /*!< Mask of all allocated voltage reference pins */
 
 static const uint8_t ChannelToPin[] = { /* Channel to pin conversion table */
   /* ADC_SC1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,COCO=0,AIEN=1,ADCO=0,ADCH=0x0E */
-  0x4EU                                /* Status and control register value */
+  0x4EU,                               /* Status and control register value */
+  /* ADC_SC1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,COCO=0,AIEN=1,ADCO=0,ADCH=0 */
+  0x40U                                /* Status and control register value */
 };
 
 typedef struct {
@@ -185,8 +192,8 @@ LDD_TDeviceData* ADC_SS_Init(LDD_TUserData *UserDataPtr)
   /* Initialization of pin routing */
   /* ADC_SC2: REFSEL=0 */
   ADC_SC2 &= (uint32_t)~(uint32_t)(ADC_SC2_REFSEL(0x03));
-  /* ADC_APCTL1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADPC=0x4000 */
-  ADC_APCTL1 = ADC_APCTL1_ADPC(0x4000);
+  /* ADC_APCTL1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADPC=0x4001 */
+  ADC_APCTL1 = ADC_APCTL1_ADPC(0x4001);
   /* ADC_SC3: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADLPC=0,ADIV=3,ADLSMP=0,MODE=2,ADICLK=0 */
   ADC_SC3 = (ADC_SC3_ADIV(0x03) | ADC_SC3_MODE(0x02) | ADC_SC3_ADICLK(0x00));
   /* ADC_SC2: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADACT=0,ADTRG=0,ACFE=0,ACFGT=0,FEMPTY=0,FFULL=0,REFSEL=0 */

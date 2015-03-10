@@ -8,7 +8,7 @@
 #include <cstdio>
 #include "LCD.h"
 #include "LCD_RS.h"
-#include "LCD_RW.h"
+//#include "LCD_RW.h"
 #include "LCD_EN.h"
 #include "LCD_BL.h"
 #include "LCD_DB4.h"
@@ -140,7 +140,7 @@ static void delay_us(uint32_t usec);
 /* implement private functions */
 static void init_gpios(void) {
 	LCD_RS_Init(NULL);
-	LCD_RW_Init(NULL);
+//	LCD_RW_Init(NULL);
 	LCD_EN_Init(NULL);
 	LCD_BL_Init(NULL);
 	LCD_DB4_Init(NULL);
@@ -158,7 +158,7 @@ static void wait_for_lcd(void) {
 
 	/* check BF */
 	cmd ? LCD_RS_SetVal(NULL) : LCD_RS_ClrVal(NULL);
-	read ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
+//	read ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
 
 	/* addition delay */
 	delay_us(1);
@@ -188,7 +188,7 @@ static void wait_for_lcd(void) {
 
 static void send_4bits(uint8_t RS, uint8_t RW, uint8_t D7D4) {
 	RS ? LCD_RS_SetVal(NULL) : LCD_RS_ClrVal(NULL);
-	RW ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
+//	RW ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
 
 	/* addition delay */
 	delay_us(1);
@@ -211,7 +211,7 @@ static void send_4bits(uint8_t RS, uint8_t RW, uint8_t D7D4) {
 
 static void send_byte_wo_waiting(uint8_t RS, uint8_t RW, uint8_t D7D0) {
 	RS ? LCD_RS_SetVal(NULL) : LCD_RS_ClrVal(NULL);
-	RW ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
+//	RW ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
 
 	/* addition delay */
 	delay_us(1);

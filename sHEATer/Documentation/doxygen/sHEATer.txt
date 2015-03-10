@@ -36,7 +36,6 @@
 - \subpage PWM_HEATER
 - \subpage IO1
 - \subpage LCD_RS
-- \subpage LCD_RW
 - \subpage LCD_EN
 - \subpage LCD_DB4
 - \subpage LCD_DB5
@@ -102,7 +101,6 @@
 - \subpage PWM_HEATER
 - \subpage IO1
 - \subpage LCD_RS
-- \subpage LCD_RW
 - \subpage LCD_EN
 - \subpage LCD_DB4
 - \subpage LCD_DB5

@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-12, 14:05, # CodeGen: 98
+**     Date/Time   : 2015-03-05, 20:33, # CodeGen: 107
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -63,8 +63,7 @@
 ** Array of initialized device structures of LDD components.
 ** ===========================================================================
 */
-LDD_TDeviceData *PE_LDD_DeviceDataList[20] = {
-    NULL,
+LDD_TDeviceData *PE_LDD_DeviceDataList[19] = {
     NULL,
     NULL,
     NULL,

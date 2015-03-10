@@ -12,34 +12,47 @@
 #include "debug.h"
 
 #define V_REF 3300 //mV
+#define VE_REF 2500 //mV
 #define TIMER_PERIOD (10) //ms
-#define SENSOR_SAMPLING_PERIOD (100 / TIMER_PERIOD) //sampling every 100ms (timer_period = 10ms)
+#define SENSOR_SAMPLING_PERIOD (1 * 1000 / TIMER_PERIOD) //sampling every 1s (timer_period = 10ms)
+#define SEND_SENSOR_VALUE_PERIOD (60 * 1000 / SENSOR_SAMPLING_PERIOD) //send value every 1min
 static uint16_t sampling_time_count = 0;
+static uint16_t send_value_time_count = 0;
+static uint16_t sum_sensor_value = 0;
+static uint8_t avg_sampling_time = 0;
 
-uint8_t get_sensor_id(temp_sensor_t *a_temp_sensor) {
-	return a_temp_sensor->dev_id;
+uint8_t get_sensor_id(sensor_t *a_sensor) {
+	return a_sensor->dev_id;
 }
 
-float get_sensor_value(temp_sensor_t *a_temp_sensor) {
-	return a_temp_sensor->temp_value;
+uint16_t get_sensor_value(sensor_t *a_sensor) {
+	return a_sensor->sensor_value;
 }
 
-void temp_sensor_callback_timer_isr(temp_sensor_t *a_temp_sensor) {
+void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor) {
 	sampling_time_count = sampling_time_count + 1;
 
 	if (sampling_time_count == SENSOR_SAMPLING_PERIOD) {
 		sampling_time_count = 0;
-		if (a_temp_sensor->StartMeasurement(a_temp_sensor->arg) == 0) {
-			uint16_t adc_value = 0;
-			a_temp_sensor->ADCPolling(a_temp_sensor->arg);
-			a_temp_sensor->GetADCValue(a_temp_sensor->arg, &adc_value);
-			float v_adc = adc_value * V_REF / 4096; //12bits ADC.
-			a_temp_sensor->temp_value = 100 * v_adc / 1000; //T = 100*V;
-//			a_temp_sensor->temp_value = (float) adc_value * 100.0 / 4096.0;
-			if (_lwevent_set(&adc_lwevent,
-					(_mqx_uint) ADC_EVT_BIT_MASK) != MQX_OK) {
-				NOTIFY("Event Set failed\n");
-			}
+		send_value_time_count++;
+		uint16_t ve_adc, vsen_adc;
+		if (!adc_mesurement(&ve_ref->channel_index, 1, &ve_adc)) {
+			sum_sensor_value = 0;
+			avg_sampling_time = 0;
+			send_value_time_count = 0;
+			return;
+		}
+		if (adc_mesurement(&a_sensor->channel_index, 1, &vsen_adc)) {
+			float v_sen = (float) vsen_adc * (float) VE_REF / (float) ve_adc;
+			sum_sensor_value += v_sen * 100; //t = 100*v;
+			avg_sampling_time++;
+		}
+		if (send_value_time_count == SEND_SENSOR_VALUE_PERIOD) {
+			send_value_time_count = 0;
+			a_sensor->sensor_value = sum_sensor_value / avg_sampling_time;
+			_mqx_uint msg = (_mqx_uint) (((uint32_t) a_sensor->dev_id << 16)
+					| a_sensor->sensor_value);
+			_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
 		}
 	} //end if()
 }

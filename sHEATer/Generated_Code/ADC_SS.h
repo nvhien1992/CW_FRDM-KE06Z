@@ -6,7 +6,7 @@
 **     Component   : ADC_LDD
 **     Version     : Component 01.183, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-11, 10:54, # CodeGen: 95
+**     Date/Time   : 2015-03-09, 13:52, # CodeGen: 110
 **     Abstract    :
 **         This device "ADC_LDD" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -15,11 +15,16 @@
 **          A/D converter                                  : ADC
 **          Discontinuous mode                             : no
 **          Interrupt service/event                        : Disabled
-**          A/D channel list                               : 1
+**          A/D channel list                               : 2
 **            Channel 0                                    : 
 **              Channel mode                               : Single Ended
 **                Input                                    : 
 **                  A/D channel (pin)                      : PTF6/KBI1_P14/ADC0_SE14
+**                  A/D channel (pin) signal               : 
+**            Channel 1                                    : 
+**              Channel mode                               : Single Ended
+**                Input                                    : 
+**                  A/D channel (pin)                      : PTA0/KBI0_P0/FTM0_CH0/I2C0_4WSCLOUT/ACMP0_IN0/ADC0_SE0
 **                  A/D channel (pin) signal               : 
 **          Static sample groups                           : Disabled
 **          A/D resolution                                 : 12 bits
@@ -156,7 +161,7 @@ extern "C" {
 
 /* This constant contains the number of channels in the "A/D channel list"
    group */
-#define ADC_SS_CHANNEL_COUNT            1u
+#define ADC_SS_CHANNEL_COUNT            2u
 
 /* This constant can be used in the sample array to create a gap in sample group.
    It is intended to disable a measurement of a sample */

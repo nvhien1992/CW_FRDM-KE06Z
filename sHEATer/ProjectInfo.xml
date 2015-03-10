@@ -76,7 +76,6 @@
       <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB7.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\LCD_EN.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\LCD_RS.c</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\LCD_RW.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\LED.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\MISC_TIMER.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\MQX1.c</PathName>
@@ -130,6 +129,8 @@
       <PathName>D:\CW\sHEATer\Project_Settings\Startup_Code\__arm_start.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\Events.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\LCD.c</PathName>
+      <PathName>D:\CW\sHEATer\Sources\PID.c</PathName>
+      <PathName>D:\CW\sHEATer\Sources\adc_ll.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\button.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\config.c</PathName>
       <PathName>D:\CW\sHEATer\Sources\main.c</PathName>
@@ -156,7 +157,6 @@
       <PathName>D:\CW\sHEATer\Generated_Code\LCD_DB7.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\LCD_EN.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\LCD_RS.h</PathName>
-      <PathName>D:\CW\sHEATer\Generated_Code\LCD_RW.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\LED.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\MISC_TIMER.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\MQX1.h</PathName>
@@ -240,6 +240,8 @@
       <PathName>D:\CW\sHEATer\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\Events.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\LCD.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\PID.h</PathName>
+      <PathName>D:\CW\sHEATer\Sources\adc_ll.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\button.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\config.h</PathName>
       <PathName>D:\CW\sHEATer\Sources\debug.h</PathName>

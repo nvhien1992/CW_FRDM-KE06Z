@@ -6,7 +6,7 @@
 **     Component   : PE_Types
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-12, 14:05, # CodeGen: 98
+**     Date/Time   : 2015-03-05, 20:33, # CodeGen: 107
 **     Abstract    :
 **         PE_Types.h - contains definitions of basic types,
 **         register access macros and hardware specific macros
@@ -209,20 +209,19 @@ typedef unsigned long int       uint32;
 #define PE_LDD_COMPONENT_PWM_HEATER_ID           0x03U
 #define PE_LDD_COMPONENT_IO1_ID                  0x04U
 #define PE_LDD_COMPONENT_LCD_RS_ID               0x05U
-#define PE_LDD_COMPONENT_LCD_RW_ID               0x06U
-#define PE_LDD_COMPONENT_LCD_EN_ID               0x07U
-#define PE_LDD_COMPONENT_LCD_DB4_ID              0x08U
-#define PE_LDD_COMPONENT_LCD_DB5_ID              0x09U
-#define PE_LDD_COMPONENT_LCD_DB6_ID              0x0AU
-#define PE_LDD_COMPONENT_LCD_DB7_ID              0x0BU
-#define PE_LDD_COMPONENT_LCD_BL_ID               0x0CU
-#define PE_LDD_COMPONENT_MISC_TIMER_ID           0x0DU
-#define PE_LDD_COMPONENT_RUN_STOP_BTN_ID         0x0EU
-#define PE_LDD_COMPONENT_ALARM_BTN_ID            0x0FU
-#define PE_LDD_COMPONENT_ADD_BTN_ID              0x10U
-#define PE_LDD_COMPONENT_SUB_BTN_ID              0x11U
-#define PE_LDD_COMPONENT_LED_ID                  0x12U
-#define PE_LDD_COMPONENT_BUZZER_ID               0x13U
+#define PE_LDD_COMPONENT_LCD_EN_ID               0x06U
+#define PE_LDD_COMPONENT_LCD_DB4_ID              0x07U
+#define PE_LDD_COMPONENT_LCD_DB5_ID              0x08U
+#define PE_LDD_COMPONENT_LCD_DB6_ID              0x09U
+#define PE_LDD_COMPONENT_LCD_DB7_ID              0x0AU
+#define PE_LDD_COMPONENT_LCD_BL_ID               0x0BU
+#define PE_LDD_COMPONENT_MISC_TIMER_ID           0x0CU
+#define PE_LDD_COMPONENT_RUN_STOP_BTN_ID         0x0DU
+#define PE_LDD_COMPONENT_ALARM_BTN_ID            0x0EU
+#define PE_LDD_COMPONENT_ADD_BTN_ID              0x0FU
+#define PE_LDD_COMPONENT_SUB_BTN_ID              0x10U
+#define PE_LDD_COMPONENT_LED_ID                  0x11U
+#define PE_LDD_COMPONENT_BUZZER_ID               0x12U
 
 /*
 ** ===================================================================

@@ -54,10 +54,8 @@ void a_min_callback_timer_isr(void) {
 	time_cycle_count++;
 	if (time_cycle_count == A_MIN) {
 		time_cycle_count = 0;
-		if (_lwevent_set(&a_min_lwevent,
-				(_mqx_uint) A_MIN_EVT_BIT_MASK) != MQX_OK) {
-			NOTIFY("Event Set failed\n");
-		}
+		_mqx_uint msg = (_mqx_uint) ((uint32_t) (ALARM << 16));
+		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
 	}
 }
 
@@ -101,7 +99,7 @@ void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
 	a_min_callback_timer_isr();
 	button_callback_timer_isr(button_table, MAX_BUTTONS);
-	temp_sensor_callback_timer_isr(&LM35);
+//	sensor_callback_timer_isr(&Ve_ref, &LM35);
 	on_off_blink_callback_timer_isr();
 }
 

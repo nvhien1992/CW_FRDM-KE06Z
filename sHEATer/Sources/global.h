@@ -28,17 +28,16 @@ typedef enum {
 	HEATER = 0x80,
 } dev_id_e;
 
-typedef enum {
-	ADC_EVT_BIT_MASK = 0x01,
-	BTN_EVT_BIT_MASK = 0x02,
-	A_MIN_EVT_BIT_MASK = 0x03,
-} event_bit_mask_e;
-
 extern button_t button_table[MAX_BUTTONS];
-extern temp_sensor_t LM35;
+extern sensor_t LM35;
+extern sensor_t Ve_ref;
 
-extern LWEVENT_STRUCT adc_lwevent;
-extern LWEVENT_STRUCT btn_lwevent;
-extern LWEVENT_STRUCT a_min_lwevent;
+/* Definitions for LW Message Queue Component */
+#define NUM_MESSAGES		16
+#define MSG_SIZE			1
+
+/* Use light weight message queues */
+extern uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
+		+ NUM_MESSAGES * MSG_SIZE];
 
 #endif /* GLOBAL_H_ */

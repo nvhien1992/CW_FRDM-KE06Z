@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-12, 14:05, # CodeGen: 98
+**     Date/Time   : 2015-03-05, 20:33, # CodeGen: 107
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -63,7 +63,6 @@
 #include "Console.h"
 #include "IO1.h"
 #include "LCD_RS.h"
-#include "LCD_RW.h"
 #include "LCD_EN.h"
 #include "LCD_DB4.h"
 #include "LCD_DB5.h"

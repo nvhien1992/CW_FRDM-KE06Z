@@ -55,21 +55,14 @@ extern "C" {
 #define MAX_ALARMS 			4
 #define ACTIVE_ALARM_INDEX 	0 //index=0 is default
 #define FREQ_BUZZER_BLINK 	1
-#define AVG_SAMPLING_TEMP 	10 //cal average temp value after measuring 10 times.
-/* Definitions for LW Message Queue Component */
-#define NUM_MESSAGES		16
-#define MSG_SIZE			1
 
 /* Use light weight message queues */
 uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
 		+ NUM_MESSAGES * MSG_SIZE];
 
 button_t button_table[MAX_BUTTONS];
-temp_sensor_t LM35;
-
-LWEVENT_STRUCT adc_lwevent;
-LWEVENT_STRUCT btn_lwevent;
-LWEVENT_STRUCT a_min_lwevent;
+sensor_t LM35;
+sensor_t Ve_ref;
 
 typedef enum {
 	STOP, RUN, HOLD, UNHOLD,
@@ -145,18 +138,8 @@ void Ctrl_task(uint32_t task_init_data) {
 //	button_table[1].dev_id = SUB_BTN;
 //	button_table[1].ReadInputPin = SUB_BTN_GetVal;
 
-	/* Initialize ADC component */
-	LDD_TDeviceData *LM35_dev = ADC_SS_Init(NULL );
-	LDD_ADC_TSample SampleGroupPtr;
-	SampleGroupPtr.ChannelIdx = 0;
-	ADC_SS_CreateSampleGroup(LM35_dev, &SampleGroupPtr, 1);
-
-	LM35.StartMeasurement = ADC_SS_StartSingleMeasurement;
-	LM35.ADCPolling = ADC_SS_Main;
-	LM35.GetADCValue = ADC_SS_GetMeasuredValues;
-	LM35.arg = LM35_dev;
-	LM35.dev_id = TEMP_SS;
-	LM35.temp_value = 0.0;
+	/* Initialize ADC components */
+	adc_init();
 
 	/* Initialize Led/Buzzer */
 	on_off_dev_t status_led;
@@ -182,28 +165,6 @@ void Ctrl_task(uint32_t task_init_data) {
 	/* Initialize msg queue */
 	_mqx_uint msg = 0;
 	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
-
-	/* Create ADC task */
-	_mqx_uint created_task;
-	created_task = _task_create_at(0, ADC_TASK, 0, ADC_task_stack,
-			ADC_TASK_STACK_SIZE);
-	if (created_task == MQX_NULL_TASK_ID ) {
-		NOTIFY("Error on creating ADC task.\n");
-	}
-
-	/* Create Button task */
-	created_task = _task_create_at(0, BUTTON_TASK, 0, Button_task_stack,
-			BUTTON_TASK_STACK_SIZE);
-	if (created_task == MQX_NULL_TASK_ID ) {
-		NOTIFY("Error on creating Button task.\n");
-	}
-
-	/* Create Timer task */
-	created_task = _task_create_at(0, TIMER_TASK, 0, Timer_task_stack,
-			TIMER_TASK_STACK_SIZE);
-	if (created_task == MQX_NULL_TASK_ID ) {
-		NOTIFY("Error on creating Timer task.\n");
-	}
 
 	while (1) {
 		counter++;
@@ -351,12 +312,12 @@ void Ctrl_task(uint32_t task_init_data) {
 				break;
 			case (uint8_t) TEMP_SS: //control heater
 				real_temp = (uint16_t) msg;
-				/* update LCD */
-				update_lcd(real_temp, conf_temp, &alarm_arr);
 				/* calculate (PID) */
 				//TODO
 				/* control heater */
 				//TODO
+				/* update LCD */
+				update_lcd(real_temp, conf_temp, &alarm_arr);
 				break;
 			case (uint8_t) ALARM: //1min period
 				if (alarm_arr.num_elements > 0) {
@@ -382,144 +343,6 @@ void Ctrl_task(uint32_t task_init_data) {
 			NOTIFY("Unknown state!\n");
 			break;
 		}
-	}
-}
-
-/*
- ** ===================================================================
- **     Event       :  ADC_task (module mqx_tasks)
- **
- **     Component   :  Task2 [MQXLite_task]
- **     Description :
- **         MQX task routine. The routine is generated into mqx_tasks.c
- **         file.
- **     Parameters  :
- **         NAME            - DESCRIPTION
- **         task_init_data  - 
- **     Returns     : Nothing
- ** ===================================================================
- */
-void ADC_task(uint32_t task_init_data) {
-	int counter = 0;
-	uint8_t average_count = 0;
-	uint16_t sensor_value = 0;
-	_mqx_uint msg;
-
-	/* create lw event */
-	if (_lwevent_create(&adc_lwevent, LWEVENT_AUTO_CLEAR) != MQX_OK) {
-		NOTIFY("Make event failed\n");
-		_task_block();
-	}
-
-	while (1) {
-		counter++;
-
-		/* Write your code here ... */
-		if (_lwevent_wait_ticks(&adc_lwevent, (_mqx_uint) ADC_EVT_BIT_MASK,
-				TRUE, 0) != MQX_OK) {
-			NOTIFY("Event Wait failed\n");
-			_task_block();
-		}
-		sensor_value += (uint16_t) (get_sensor_value(&LM35) * 10);
-		average_count++;
-		if (average_count == AVG_SAMPLING_TEMP) {
-			average_count = 0;
-			sensor_value /= AVG_SAMPLING_TEMP;
-			/* send msg to Ctrl task */
-			msg = (_mqx_uint) (((uint32_t) get_sensor_id(&LM35) << 16)
-					| sensor_value);
-			_lwmsgq_send((pointer) ctrl_msg_queue, &msg,
-					LWMSGQ_SEND_BLOCK_ON_FULL);
-			
-			sensor_value = 0;
-		}
-	}
-}
-
-/*
- ** ===================================================================
- **     Event       :  Button_task (module mqx_tasks)
- **
- **     Component   :  Task3 [MQXLite_task]
- **     Description :
- **         MQX task routine. The routine is generated into mqx_tasks.c
- **         file.
- **     Parameters  :
- **         NAME            - DESCRIPTION
- **         task_init_data  - 
- **     Returns     : Nothing
- ** ===================================================================
- */
-void Button_task(uint32_t task_init_data) {
-	int counter = 0;
-	uint8_t index = 0;
-	uint16_t btn_status;
-	_mqx_uint msg = 0;
-
-	/* create lw event */
-	if (_lwevent_create(&btn_lwevent, LWEVENT_AUTO_CLEAR) != MQX_OK) {
-		NOTIFY("Make btn event failed\n");
-		_task_block();
-	}
-
-	while (1) {
-		counter++;
-
-		/* Write your code here ... */
-		if (_lwevent_wait_ticks(&btn_lwevent, (_mqx_uint) BTN_EVT_BIT_MASK,
-				TRUE, 0) != MQX_OK) {
-			NOTIFY("BTN Event Wait failed\n");
-			_task_block();
-		}
-		for (index = 0; index < MAX_BUTTONS; index++) {
-			if (is_changed_status(&button_table[index])) {
-				btn_status = (uint16_t) get_button_status(&button_table[index]);
-				/* send msg to Ctrl task */
-				msg = (_mqx_uint) (((uint32_t) get_button_id(
-						&button_table[index]) << 16) | btn_status);
-				_lwmsgq_send((pointer) ctrl_msg_queue, &msg,
-						LWMSGQ_SEND_BLOCK_ON_FULL);
-			}
-		}
-	}
-}
-
-/*
- ** ===================================================================
- **     Event       :  Timer_task (module mqx_tasks)
- **
- **     Component   :  Task4 [MQXLite_task]
- **     Description :
- **         MQX task routine. The routine is generated into mqx_tasks.c
- **         file.
- **     Parameters  :
- **         NAME            - DESCRIPTION
- **         task_init_data  - 
- **     Returns     : Nothing
- ** ===================================================================
- */
-void Timer_task(uint32_t task_init_data) {
-	int counter = 0;
-	_mqx_uint msg = 0;
-
-	/* create lw event */
-	if (_lwevent_create(&a_min_lwevent, LWEVENT_AUTO_CLEAR) != MQX_OK) {
-		NOTIFY("Make a_min event failed\n");
-		_task_block();
-	}
-
-	while (1) {
-		counter++;
-
-		/* Write your code here ... */
-		if (_lwevent_wait_ticks(&a_min_lwevent, (_mqx_uint) A_MIN_EVT_BIT_MASK,
-				TRUE, 0) != MQX_OK) {
-			NOTIFY("A_MIN Event Wait failed\n");
-			_task_block();
-		}
-		/* send msg to Ctrl task */
-		msg = (_mqx_uint) ((uint32_t) (ALARM << 16));
-		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);
 	}
 }
 
