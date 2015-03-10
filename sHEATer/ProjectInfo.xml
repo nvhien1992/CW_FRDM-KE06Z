@@ -62,7 +62,7 @@
   </PATHS>
   <FILES>
     <GeneratedCs>
-      <PathName>D:\CW\sHEATer\Generated_Code\ADC_SS.c</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ADC.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\ADD_BTN.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\ALARM_BTN.c</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\BUZZER.c</PathName>
@@ -139,7 +139,7 @@
       <PathName>D:\CW\sHEATer\Sources\sensor.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
-      <PathName>D:\CW\sHEATer\Generated_Code\ADC_SS.h</PathName>
+      <PathName>D:\CW\sHEATer\Generated_Code\ADC.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\ADD_BTN.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\ALARM_BTN.h</PathName>
       <PathName>D:\CW\sHEATer\Generated_Code\BUZZER.h</PathName>

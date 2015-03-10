@@ -1,43 +1,43 @@
 /*!
-\page ADC_SS ADC_SS (ADC_LDD)
+\page ADC ADC (ADC_LDD)
 **         This device "ADC_LDD" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
 
-- \subpage ADC_SS_settings
-- \subpage ADC_SS_regs_overview  
-- \subpage ADC_SS_regs_details
-- \ref ADC_SS_module "Component documentation" 
+- \subpage ADC_settings
+- \subpage ADC_regs_overview  
+- \subpage ADC_regs_details
+- \ref ADC_module "Component documentation" 
 
-\page ADC_SS_regs_overview Registers Initialization Overview
+\page ADC_regs_overview Registers Initialization Overview
 This page initialization values for the registers of the peripheral(s) configured
 by the component. 
 <table>
-<tr><td colspan="4" class="ttitle1">ADC_SS Initialization</td></tr>
+<tr><td colspan="4" class="ttitle1">ADC Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x4003B000</td><td>ADC_SC1</td><td>
     0x0000005F
- </td><td>ADC_SC1 register, peripheral ADC_SS.</td></tr>
+ </td><td>ADC_SC1 register, peripheral ADC.</td></tr>
 <tr><td>0x40048014</td><td>SIM_SCGC</td><td>
     0x20000000
- </td><td>SIM_SCGC register, peripheral ADC_SS.</td></tr>
+ </td><td>SIM_SCGC register, peripheral ADC.</td></tr>
 <tr><td>0x4003B004</td><td>ADC_SC2</td><td>
     0x00000008
- </td><td>ADC_SC2 register, peripheral ADC_SS.</td></tr>
+ </td><td>ADC_SC2 register, peripheral ADC.</td></tr>
 <tr><td>0x4003B018</td><td>ADC_APCTL1</td><td>
     0x00004001
- </td><td>ADC_APCTL1 register, peripheral ADC_SS.</td></tr>
+ </td><td>ADC_APCTL1 register, peripheral ADC.</td></tr>
 <tr><td>0x4003B008</td><td>ADC_SC3</td><td>
     0x00000068
- </td><td>ADC_SC3 register, peripheral ADC_SS.</td></tr>
+ </td><td>ADC_SC3 register, peripheral ADC.</td></tr>
 <tr><td>0x4003B00C</td><td>ADC_SC4</td><td>
     0x00000000
- </td><td>ADC_SC4 register, peripheral ADC_SS.</td></tr>
+ </td><td>ADC_SC4 register, peripheral ADC.</td></tr>
 <tr><td>0x4003B01C</td><td>ADC_SC5</td><td>
     0x00000001
- </td><td>ADC_SC5 register, peripheral ADC_SS.</td></tr>
+ </td><td>ADC_SC5 register, peripheral ADC.</td></tr>
 </table>
 <br/>
-\page ADC_SS_regs_details Register Initialization Details
+\page ADC_regs_details Register Initialization Details
 This page contains detailed description of initialization values for the 
 registers of the peripheral(s) configured by the component. 
 
@@ -438,9 +438,9 @@ registers of the peripheral(s) configured by the component.
 </tr></table>
 */
 /*!
-\page ADC_SS_settings Component Settings
+\page ADC_settings Component Settings
 \code
-**          Component name                                 : ADC_SS
+**          Component name                                 : ADC
 **          A/D converter                                  : ADC
 **          Discontinuous mode                             : no
 **          Interrupt service/event                        : Disabled

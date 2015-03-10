@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "ADC_SS.h"
+#include "ADC.h"
 
 void adc_init(void);
 

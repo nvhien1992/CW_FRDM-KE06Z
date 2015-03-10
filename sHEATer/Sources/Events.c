@@ -44,21 +44,6 @@ extern "C" {
 #define NOTIFY_EN	1
 #include "debug.h"
 
-#define TIMER_PERIOD 10 //ms
-#define A_MIN (60*1000/TIMER_PERIOD) //1min
-uint16_t time_cycle_count = 0;
-
-void a_min_callback_timer_isr(void);
-
-void a_min_callback_timer_isr(void) {
-	time_cycle_count++;
-	if (time_cycle_count == A_MIN) {
-		time_cycle_count = 0;
-		_mqx_uint msg = (_mqx_uint) ((uint32_t) (ALARM << 16));
-		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
-	}
-}
-
 /*
  ** ===================================================================
  **     Event       :  Cpu_OnNMI (module Events)
@@ -97,17 +82,17 @@ void Cpu_OnNMI(void) {
 /* ===================================================================*/
 void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
-	a_min_callback_timer_isr();
-	button_callback_timer_isr(button_table, MAX_BUTTONS);
-//	sensor_callback_timer_isr(&Ve_ref, &LM35);
+	alarm_callback_timer_isr(ctrl_msg_queue);
+	button_callback_timer_isr(button_table, MAX_BUTTONS, ctrl_msg_queue);
+//	sensor_callback_timer_isr(&Ve_ref, &LM35, ctrl_msg_queue);
 	on_off_blink_callback_timer_isr();
 }
 
 /*
  ** ===================================================================
- **     Event       :  ADC_SS_OnMeasurementComplete (module Events)
+ **     Event       :  ADC_OnMeasurementComplete (module Events)
  **
- **     Component   :  ADC_SS [ADC_LDD]
+ **     Component   :  ADC [ADC_LDD]
  */
 /*!
  **     @brief
@@ -124,7 +109,7 @@ void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr) {
  **                           as the parameter of Init method. 
  */
 /* ===================================================================*/
-void ADC_SS_OnMeasurementComplete(LDD_TUserData *UserDataPtr) {
+void ADC_OnMeasurementComplete(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
 }
 

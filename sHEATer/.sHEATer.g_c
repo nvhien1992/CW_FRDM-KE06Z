@@ -18,16 +18,16 @@
         <Line>PE_Const</Line>
         <Line>IO_Map</Line>
       </GenSharedModules>
-      <ShrdHeaderAge0>1181066304</ShrdHeaderAge0>
+      <ShrdHeaderAge0>1181383362</ShrdHeaderAge0>
       <ShrdCodeAge0>-1</ShrdCodeAge0>
       <ShrdAsemblAge0>-1</ShrdAsemblAge0>
-      <ShrdHeaderAge1>1177639477</ShrdHeaderAge1>
+      <ShrdHeaderAge1>1181383086</ShrdHeaderAge1>
       <ShrdCodeAge1>-1</ShrdCodeAge1>
       <ShrdAsemblAge1>-1</ShrdAsemblAge1>
-      <ShrdHeaderAge2>1177639477</ShrdHeaderAge2>
+      <ShrdHeaderAge2>1181383086</ShrdHeaderAge2>
       <ShrdCodeAge2>-1</ShrdCodeAge2>
       <ShrdAsemblAge2>-1</ShrdAsemblAge2>
-      <ShrdHeaderAge3>1177639477</ShrdHeaderAge3>
+      <ShrdHeaderAge3>1181383086</ShrdHeaderAge3>
       <ShrdCodeAge3>-1</ShrdCodeAge3>
       <ShrdAsemblAge3>-1</ShrdAsemblAge3>
       <GenExtraFiles lines_count="111">
@@ -113,7 +113,7 @@
         <Line>MQXLITE\include\log.h</Line>
         <Line>MQXLITE\include\klog.h</Line>
         <Line>Project_Settings\Debugger\MQXDeviceDescription.tad</Line>
-        <Line>Documentation\doxygen\ADC_SS.txt</Line>
+        <Line>Documentation\doxygen\ADC.txt</Line>
         <Line>Documentation\doxygen\TU_PWM.txt</Line>
         <Line>Documentation\doxygen\PWM_HEATER.txt</Line>
         <Line>Documentation\doxygen\IO1.txt</Line>
@@ -221,9 +221,9 @@
       <GenExtraFileSrcDir6>lib\mqxlite\V1.1.1\source\psp\cortex_m\core\M0\</GenExtraFileSrcDir6>
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
-      <XtraAge1>1181370836</XtraAge1>
-      <XtraAge2>1181370836</XtraAge2>
-      <XtraAge3>1181370836</XtraAge3>
+      <XtraAge1>1181383086</XtraAge1>
+      <XtraAge2>1181383086</XtraAge2>
+      <XtraAge3>1181383086</XtraAge3>
       <XtraAge4>1177639475</XtraAge4>
       <XtraAge5>1177639475</XtraAge5>
       <XtraAge7>1177639475</XtraAge7>
@@ -298,11 +298,11 @@
       <XtraAge78>1177639474</XtraAge78>
       <XtraAge79>1177639474</XtraAge79>
       <XtraAge80>1177639474</XtraAge80>
-      <XtraAge101>1181066304</XtraAge101>
-      <XtraAge102>1181066304</XtraAge102>
-      <XtraAge104>1181066304</XtraAge104>
-      <XtraAge105>1177639477</XtraAge105>
-      <XtraAge106>1177639477</XtraAge106>
+      <XtraAge101>1181383086</XtraAge101>
+      <XtraAge102>1181383362</XtraAge102>
+      <XtraAge104>1181383362</XtraAge104>
+      <XtraAge105>1181383086</XtraAge105>
+      <XtraAge106>1181383086</XtraAge106>
       <GenExtraFileType110>5</GenExtraFileType110>
       <GenExtraFileType109>4</GenExtraFileType109>
       <GenExtraFileType108>4</GenExtraFileType108>
@@ -453,14 +453,14 @@
       </GenEventModules>
       <GenMethodsInEvents lines_count="3">
         <Line>MISC_TIMER_OnCounterRestart</Line>
-        <Line>ADC_SS_OnMeasurementComplete</Line>
+        <Line>ADC_OnMeasurementComplete</Line>
         <Line>Cpu_OnNMI</Line>
       </GenMethodsInEvents>
       <GenMethodsInmqx_tasks lines_count="1">
         <Line>Ctrl_task</Line>
       </GenMethodsInmqx_tasks>
       <GenAllModules lines_count="29">
-        <Line>ADC_SS</Line>
+        <Line>ADC</Line>
         <Line>ADD_BTN</Line>
         <Line>ALARM_BTN</Line>
         <Line>BUZZER</Line>
@@ -495,7 +495,7 @@
         <Line>Pins1</Line>
         <Line>MQX1</Line>
         <Line>SystemTimer1</Line>
-        <Line>ADC_SS</Line>
+        <Line>ADC</Line>
         <Line>PWM_HEATER</Line>
         <Line>TU_PWM</Line>
         <Line>Console</Line>
@@ -518,7 +518,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>91</ProjectModificationStamp>
+    <ProjectModificationStamp>93</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -526,8 +526,8 @@
     <GenComponentVersion>01.011</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1177639477</HeaderAge>
-    <CodeAge>1181066304</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>6</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
@@ -612,8 +612,8 @@
     <GenComponentVersion>01.002</GenComponentVersion>
     <GenDriverVersion>1.1</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1177639477</HeaderAge>
-    <CodeAge>1177639477</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>1</GenNumMethods>
     <Init>false</Init>
@@ -637,8 +637,8 @@
     <GenComponentVersion>01.110</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1181370836</HeaderAge>
-    <CodeAge>1181370836</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>157</GenNumMethods>
     <_int_default_isr>true</_int_default_isr>
@@ -919,8 +919,8 @@
       <GenComponentVersion>01.164</GenComponentVersion>
       <GenDriverVersion>01.11</GenDriverVersion>
       <GenEventModule>Events</GenEventModule>
-      <HeaderAge>1178968241</HeaderAge>
-      <CodeAge>1178968241</CodeAge>
+      <HeaderAge>1181383086</HeaderAge>
+      <CodeAge>1181383086</CodeAge>
       <AsemblAge>-1</AsemblAge>
       <GenNumMethods>22</GenNumMethods>
       <Init>true</Init>
@@ -1130,12 +1130,12 @@
   </ComponentID_4>
   <ComponentID_10>
     <Generated>true</Generated>
-    <GenCompName>ADC_SS</GenCompName>
+    <GenCompName>ADC</GenCompName>
     <GenComponentVersion>01.183</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1181314698</HeaderAge>
-    <CodeAge>1181314698</CodeAge>
+    <HeaderAge>1181383362</HeaderAge>
+    <CodeAge>1181383362</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>21</GenNumMethods>
     <Init>true</Init>
@@ -1161,7 +1161,7 @@
     <Main>true</Main>
     <GenNumEvents>1</GenNumEvents>
     <OnMeasurementComplete_Selected>3</OnMeasurementComplete_Selected>
-    <OnMeasurementComplete_Name>ADC_SS_OnMeasurementComplete</OnMeasurementComplete_Name>
+    <OnMeasurementComplete_Name>ADC_OnMeasurementComplete</OnMeasurementComplete_Name>
     <OnMeasurementComplete_Priority>interrupts disabled</OnMeasurementComplete_Priority>
     <ISR_MeasurementCompleteInterruptISRHandle>ADC_SS_MeasurementCompleteInterrupt</ISR_MeasurementCompleteInterruptISRHandle>
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
@@ -1239,7 +1239,7 @@
       <LineEnd>406</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>1</GenExtraFilesCount>
-    <ExtraFile0>Documentation\doxygen\ADC_SS.txt</ExtraFile0>
+    <ExtraFile0>Documentation\doxygen\ADC.txt</ExtraFile0>
   </ComponentID_10>
   <ComponentID_11>
     <Generated>true</Generated>
@@ -1247,8 +1247,8 @@
     <GenComponentVersion>01.013</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1178968292</HeaderAge>
-    <CodeAge>1178968292</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>18</GenNumMethods>
     <Init>true</Init>
@@ -1342,8 +1342,8 @@
     <GenComponentVersion>01.164</GenComponentVersion>
     <GenDriverVersion>01.11</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1178968292</HeaderAge>
-    <CodeAge>1178968292</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>22</GenNumMethods>
     <Init>true</Init>
@@ -1493,8 +1493,8 @@
     <GenComponentVersion>01.016</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1178968338</HeaderAge>
-    <CodeAge>1178968338</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>0</GenNumMethods>
     <GenNumEvents>0</GenNumEvents>
@@ -1544,8 +1544,8 @@
       <GenComponentVersion>01.187</GenComponentVersion>
       <GenDriverVersion>01.12</GenDriverVersion>
       <GenEventModule>Events</GenEventModule>
-      <HeaderAge>1177639698</HeaderAge>
-      <CodeAge>1177639698</CodeAge>
+      <HeaderAge>1181383086</HeaderAge>
+      <CodeAge>1181383086</CodeAge>
       <AsemblAge>-1</AsemblAge>
       <GenNumMethods>36</GenNumMethods>
       <Init>true</Init>
@@ -1656,8 +1656,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179142010</HeaderAge>
-    <CodeAge>1179142010</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -1743,8 +1743,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179142010</HeaderAge>
-    <CodeAge>1179142010</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -1830,8 +1830,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179142010</HeaderAge>
-    <CodeAge>1179142010</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -1917,8 +1917,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179142010</HeaderAge>
-    <CodeAge>1179142010</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2004,8 +2004,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179142010</HeaderAge>
-    <CodeAge>1179142010</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2091,8 +2091,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1178891801</HeaderAge>
-    <CodeAge>1178891801</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2206,8 +2206,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179142010</HeaderAge>
-    <CodeAge>1179142010</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2293,8 +2293,8 @@
     <GenComponentVersion>01.164</GenComponentVersion>
     <GenDriverVersion>01.11</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1179167782</HeaderAge>
-    <CodeAge>1179167782</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>22</GenNumMethods>
     <Init>true</Init>
@@ -2390,8 +2390,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179166885</HeaderAge>
-    <CodeAge>1179166885</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2449,8 +2449,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179166885</HeaderAge>
-    <CodeAge>1179166885</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2508,8 +2508,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179481540</HeaderAge>
-    <CodeAge>1179481540</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2567,8 +2567,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179481540</HeaderAge>
-    <CodeAge>1179481540</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2626,8 +2626,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179414928</HeaderAge>
-    <CodeAge>1179414928</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>
@@ -2699,8 +2699,8 @@
     <GenComponentVersion>01.033</GenComponentVersion>
     <GenDriverVersion>01.03</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1179414928</HeaderAge>
-    <CodeAge>1179414928</CodeAge>
+    <HeaderAge>1181383086</HeaderAge>
+    <CodeAge>1181383086</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>13</GenNumMethods>
     <Init>true</Init>

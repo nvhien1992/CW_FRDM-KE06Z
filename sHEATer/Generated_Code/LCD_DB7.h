@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-02-04, 14:48, # CodeGen: 51
+**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,7 +16,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : LCD_DB7
-**          Pin for I/O                                    : PTD7/KBI0_P31/UART2_TX
+**          Pin for I/O                                    : PTB3/KBI0_P11/SPI0_MOSI/FTM0_CH1/ADC0_SE7
 **          Pin signal                                     : 
 **          Direction                                      : Input/Output
 **          Initialization                                 : 
@@ -118,7 +118,7 @@ extern "C" {
 /* Definition of implementation constants */
 #define LCD_DB7_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
 #define LCD_DB7_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define LCD_DB7_PORT_MASK 0x80000000U  /*!< Mask of the allocated pin from the port */
+#define LCD_DB7_PORT_MASK 0x0800U      /*!< Mask of the allocated pin from the port */
 
 
 

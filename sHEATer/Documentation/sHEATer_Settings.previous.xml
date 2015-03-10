@@ -1109,7 +1109,7 @@ PE_DEBUGHALT();
           <event name="OnChannel7" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <list name="Task Template List" v="4">
+      <list name="Task Template List" v="1">
         <boolgroup name="Task1" v="Enabled">
           <inhrbean type="MQXLite_task">
             <Enabled v="Y" />
@@ -1136,84 +1136,6 @@ PE_DEBUGHALT();
             </Events>
           </inhrbean>
         </boolgroup>
-        <boolgroup name="Task2" v="Enabled">
-          <inhrbean type="MQXLite_task">
-            <Enabled v="Y" />
-            <Template v="Task" />
-            <Properties>
-              <Name v="ADC" />
-              <Entry_point_function v="ADC_task" />
-              <Stack_size v="1024" />
-              <Priority v="7" />
-              <Creation_parameter v="0" />
-              <group name="Attributes">
-                <MQX_AUTO_START_TASK v="Disabled" />
-                <MQX_FLOATING_POINT_TASK v="Disabled" />
-              </group>
-            </Properties>
-            <Methods>
-              <EmptySection_DummyValue />
-            </Methods>
-            <Events>
-              <Event_module_name v="mqx_tasks" />
-              <event name="OnTask" v="generate code">
-                <Event_procedure_name v="ADC_task" />
-              </event>
-            </Events>
-          </inhrbean>
-        </boolgroup>
-        <boolgroup name="Task3" v="Enabled">
-          <inhrbean type="MQXLite_task">
-            <Enabled v="Y" />
-            <Template v="Task" />
-            <Properties>
-              <Name v="Button" />
-              <Entry_point_function v="Button_task" />
-              <Stack_size v="1024" />
-              <Priority v="6" />
-              <Creation_parameter v="0" />
-              <group name="Attributes">
-                <MQX_AUTO_START_TASK v="Disabled" />
-                <MQX_FLOATING_POINT_TASK v="Disabled" />
-              </group>
-            </Properties>
-            <Methods>
-              <EmptySection_DummyValue />
-            </Methods>
-            <Events>
-              <Event_module_name v="mqx_tasks" />
-              <event name="OnTask" v="generate code">
-                <Event_procedure_name v="Button_task" />
-              </event>
-            </Events>
-          </inhrbean>
-        </boolgroup>
-        <boolgroup name="Task4" v="Enabled">
-          <inhrbean type="MQXLite_task">
-            <Enabled v="Y" />
-            <Template v="Task" />
-            <Properties>
-              <Name v="Timer" />
-              <Entry_point_function v="Timer_task" />
-              <Stack_size v="512" />
-              <Priority v="7" />
-              <Creation_parameter v="0" />
-              <group name="Attributes">
-                <MQX_AUTO_START_TASK v="Disabled" />
-                <MQX_FLOATING_POINT_TASK v="Disabled" />
-              </group>
-            </Properties>
-            <Methods>
-              <EmptySection_DummyValue />
-            </Methods>
-            <Events>
-              <Event_module_name v="mqx_tasks" />
-              <event name="OnTask" v="generate code">
-                <Event_procedure_name v="Timer_task" />
-              </event>
-            </Events>
-          </inhrbean>
-        </boolgroup>
       </list>
       <group name="Configuration parameters">
         <group name="Components">
@@ -1227,7 +1149,7 @@ PE_DEBUGHALT();
           <Floating_point_context_saving v="no" />
         </group>
         <group name="Interrupts">
-          <Interrupt_stack_size v="512" />
+          <Interrupt_stack_size v="1024" />
         </group>
         <group name="Idle Task">
           <Use_Idle_Task v="yes" />

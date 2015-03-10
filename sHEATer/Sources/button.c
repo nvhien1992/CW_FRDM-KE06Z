@@ -4,7 +4,7 @@
  *  Created on: Feb 8, 2015
  *      Author: nvhie_000
  */
-#include "global.h"
+#include "mqxlite.h"
 #include "button.h"
 
 #define DEBUG_EN 1
@@ -21,7 +21,7 @@ static uint16_t sampling_time_count = 0;
 static uint16_t button_hold_time_count = 0;
 
 static void button_processing(button_t *a_button);
-static void button_hold_processing(button_t *a_button);
+static void button_hold_processing(button_t *a_button, void *dest_queue);
 
 static void button_processing(button_t *a_button) {
 	/* sampling */
@@ -58,14 +58,14 @@ static void button_processing(button_t *a_button) {
 	} //end if()
 }
 
-static void button_hold_processing(button_t *a_button) {
+static void button_hold_processing(button_t *a_button, void *dest_queue) {
 	button_hold_time_count++;
 	if (button_hold_time_count == BTN_HOLD_PERIOD) {
 		button_hold_time_count = 0;
 		a_button->old_status = btn_no_pressed;
 		_mqx_uint msg = (_mqx_uint) (((uint32_t) a_button->dev_id << 16)
 				| (uint16_t) get_button_status(a_button));
-		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
+		_lwmsgq_send((pointer) dest_queue, &msg, 0);
 	}
 }
 
@@ -92,7 +92,7 @@ btn_status_t get_button_status(button_t *a_button) {
 	return status;
 }
 
-void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns) {
+void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns, void *dest_queue) {
 	sampling_time_count = sampling_time_count + 1;
 
 	if (sampling_time_count == BTN_SAMPLING_PERIOD) {
@@ -103,10 +103,10 @@ void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns) {
 			if (is_changed_status(&button_table[i])) {
 				_mqx_uint msg = (_mqx_uint) (((uint32_t) button_table[i].dev_id
 						<< 16) | (uint16_t) get_button_status(&button_table[i]));
-				_lwmsgq_send((pointer) ctrl_msg_queue, &msg, 0);
+				_lwmsgq_send((pointer) dest_queue, &msg, 0);
 			} else {
 				if (button_table[i].current_status == btn_on_hold) {
-					button_hold_processing(&button_table[i]);
+					button_hold_processing(&button_table[i], dest_queue);
 				}
 			}
 		} //end for()

@@ -37,7 +37,7 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "ADC_SS.h"
+#include "ADC.h"
 #include "PWM_HEATER.h"
 #include "TU_PWM.h"
 #include "Console.h"
@@ -79,9 +79,9 @@ void Cpu_OnNMI(void);
 
 /*
 ** ===================================================================
-**     Event       :  ADC_SS_OnMeasurementComplete (module Events)
+**     Event       :  ADC_OnMeasurementComplete (module Events)
 **
-**     Component   :  ADC_SS [ADC_LDD]
+**     Component   :  ADC [ADC_LDD]
 */
 /*!
 **     @brief
@@ -98,7 +98,7 @@ void Cpu_OnNMI(void);
 **                           as the parameter of Init method. 
 */
 /* ===================================================================*/
-void ADC_SS_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
+void ADC_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
 
 /*
 ** ===================================================================

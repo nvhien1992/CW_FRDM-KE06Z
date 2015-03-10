@@ -3,7 +3,7 @@
   <Header>
     <Name>sHEATer</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>92</ModificationStamp>
+    <ModificationStamp>93</ModificationStamp>
     <Date>2015-03-10</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
@@ -10257,7 +10257,7 @@
   </Bean>
   <Bean>
     <BeanType>ADC_LDD</BeanType>
-    <Name>ADC_SS</Name>
+    <Name>ADC</Name>
     <CompNumb>10</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -10272,7 +10272,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ADC_SS</Value>
+        <Value>ADC</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ReentrantMethods</ItemSymbol>
@@ -11830,7 +11830,7 @@
         <ItemSymbol>OnMeasurementCompleteName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ADC_SS_OnMeasurementComplete</Value>
+        <Value>ADC_OnMeasurementComplete</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnZeroCrossingCondGrp</ItemSymbol>
@@ -11852,7 +11852,7 @@
         <ItemSymbol>OnZeroCrossingName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ADC_SS_OnZeroCrossing</Value>
+        <Value>ADC_OnZeroCrossing</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -11875,7 +11875,7 @@
         <ItemSymbol>OnLowLimitName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ADC_SS_OnLowLimit</Value>
+        <Value>ADC_OnLowLimit</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -11898,7 +11898,7 @@
         <ItemSymbol>OnHighLimitName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ADC_SS_OnHighLimit</Value>
+        <Value>ADC_OnHighLimit</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -11921,7 +11921,7 @@
         <ItemSymbol>OnErrorName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ADC_SS_OnError</Value>
+        <Value>ADC_OnError</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
     </Events>

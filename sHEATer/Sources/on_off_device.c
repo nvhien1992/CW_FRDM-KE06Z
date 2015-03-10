@@ -4,7 +4,6 @@
  *  Created on: Feb 12, 2015
  *      Author: nvhie_000
  */
-#include "global.h"
 #include "on_off_device.h"
 
 #define DEBUG_EN 1

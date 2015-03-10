@@ -14,6 +14,7 @@
 #include "button.h"
 #include "sensor.h"
 #include "on_off_device.h"
+#include "alarm.h"
 
 #define MAX_BUTTONS 2
 

@@ -41,8 +41,10 @@ extern "C" {
 #include <math.h>
 #include <cstring>
 #include "global.h"
+#include "adc_ll.h"
 #include "LCD.h"
 #include "config.h"
+#include "PID.h"
 
 #define DEBUG_EN	1
 #define NOTIFY_EN	1
@@ -140,6 +142,10 @@ void Ctrl_task(uint32_t task_init_data) {
 
 	/* Initialize ADC components */
 	adc_init();
+	LM35.channel_index = 0;
+	LM35.dev_id = TEMP_SS;
+	LM35.sensor_value = 0;
+	Ve_ref.channel_index = 1;
 
 	/* Initialize Led/Buzzer */
 	on_off_dev_t status_led;
@@ -178,8 +184,11 @@ void Ctrl_task(uint32_t task_init_data) {
 			switch ((uint8_t) (msg >> 16)) {
 			case (uint8_t) RUN_STOP_BTN: //change status
 				if ((uint8_t) msg != btn_no_pressed) {
-					turn_on(&status_led);
 					sys_state = RUN;
+					turn_on(&status_led);
+					if (alarm_arr.num_elements > 0) {
+						enable_alarm();
+					}
 				}
 				break;
 			case (uint8_t) ADD_BTN: //increase conf_temp
@@ -213,6 +222,7 @@ void Ctrl_task(uint32_t task_init_data) {
 			case (uint8_t) RUN_STOP_BTN: //change status
 				if ((uint8_t) msg != btn_no_pressed) {
 					sys_state = STOP;
+					disable_alarm();
 					turn_off(&buzzer);
 					turn_off(&status_led);
 				}
@@ -246,6 +256,7 @@ void Ctrl_task(uint32_t task_init_data) {
 						/* add the 1st alarm */
 						if (alarm_arr.num_elements == 0) {
 							insert(&alarm_arr, 0, 1, alarm_arr.num_elements);
+							restart_alarm();
 							/* update LCD */
 							update_lcd(real_temp, conf_temp, &alarm_arr);
 						}
@@ -269,6 +280,7 @@ void Ctrl_task(uint32_t task_init_data) {
 									modify_time(&alarm_arr, conf_time,
 											ACTIVE_ALARM_INDEX + 1);
 								}
+								restart_alarm();
 								/* update LCD */
 								update_lcd(real_temp, conf_temp, &alarm_arr);
 							}
@@ -300,9 +312,13 @@ void Ctrl_task(uint32_t task_init_data) {
 							conf_time--;
 							if (conf_time == 0) {
 								delete(&alarm_arr, alarm_arr.num_elements - 1);
+								if (alarm_arr.num_elements == 0) {
+									disable_alarm();
+								}
 							} else {
 								modify_time(&alarm_arr, conf_time,
 										alarm_arr.num_elements - 1);
+								restart_alarm();
 							}
 							/* update LCD */
 							update_lcd(real_temp, conf_temp, &alarm_arr);

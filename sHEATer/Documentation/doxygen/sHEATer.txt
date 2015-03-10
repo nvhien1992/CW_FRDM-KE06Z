@@ -31,7 +31,7 @@
 \page page_components Components 
 
 - \subpage SystemTimer1
-- \subpage ADC_SS
+- \subpage ADC
 - \subpage TU_PWM
 - \subpage PWM_HEATER
 - \subpage IO1
@@ -96,7 +96,7 @@
 \page page_components Components 
 
 - \subpage SystemTimer1
-- \subpage ADC_SS
+- \subpage ADC
 - \subpage TU_PWM
 - \subpage PWM_HEATER
 - \subpage IO1

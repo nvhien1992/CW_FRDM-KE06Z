@@ -19,7 +19,7 @@ by the component.
 <tr><td colspan="4" class="ttitle1">LCD_BL Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x400FF014</td><td>GPIOA_PDDR</td><td>
-    0x80000000
+    0x00010FC0
  </td><td>GPIOA_PDDR register, peripheral LCD_BL.</td></tr>
 <tr><td>0x400FF000</td><td>GPIOA_PDOR</td><td>
     0x00000000
@@ -67,10 +67,10 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF014</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x80000000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00010FC0</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
-<tr><td>0 - 31</td><td>PDD</td><td>0x80000000</td><td>Port Data Direction</td>
+<tr><td>0 - 31</td><td>PDD</td><td>0x00</td><td>Port Data Direction</td>
 </tr></table>
 <div class="reghdr1">GPIOA_PDOR</div>
 <div class="regdiag">
@@ -119,7 +119,7 @@ registers of the peripheral(s) configured by the component.
 \page LCD_BL_settings Component Settings
 \code
 **          Component name                                 : LCD_BL
-**          Pin for I/O                                    : PTD7/KBI0_P31/UART2_TX
+**          Pin for I/O                                    : PTC0/KBI0_P16/FTM2_CH0/ADC0_SE8
 **          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 

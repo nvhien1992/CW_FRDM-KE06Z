@@ -34,6 +34,6 @@ bool is_changed_status(button_t *a_button);
 
 btn_status_t get_button_status(button_t *a_button);
 
-void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns);
+void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns, void *dest_queue);
 
 #endif /* BUTTON_H_ */

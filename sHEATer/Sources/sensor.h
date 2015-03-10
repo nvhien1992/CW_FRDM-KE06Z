@@ -20,6 +20,6 @@ typedef struct {
 
 uint8_t get_sensor_id(sensor_t *a_sensor);
 uint16_t get_sensor_value(sensor_t *a_sensor);
-void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor);
+void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor, void *dest_queue);
 
 #endif /* SENSOR_H_ */

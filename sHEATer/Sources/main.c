@@ -34,7 +34,7 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "ADC_SS.h"
+#include "ADC.h"
 #include "PWM_HEATER.h"
 #include "TU_PWM.h"
 #include "Console.h"

@@ -9,7 +9,7 @@
 static LDD_TDeviceData *adc_dev = NULL;
 
 void adc_init(void) {
-	adc_dev = ADC_SS_Init(NULL);
+	adc_dev = ADC_Init(NULL);
 }
 
 bool adc_mesurement(uint8_t *channel_table, uint8_t sample_count,
@@ -22,14 +22,14 @@ bool adc_mesurement(uint8_t *channel_table, uint8_t sample_count,
 	for(index = 0; index < sample_count; index++) {
 		sample_group[index].ChannelIdx = channel_table[index];
 	}
-	if (ADC_SS_CreateSampleGroup(adc_dev, sample_group, sample_count) != 0) {
+	if (ADC_CreateSampleGroup(adc_dev, sample_group, sample_count) != 0) {
 		return false;
 	}
-	if (ADC_SS_StartSingleMeasurement(adc_dev) != 0) {
+	if (ADC_StartSingleMeasurement(adc_dev) != 0) {
 		return false;
 	}
-	ADC_SS_Main(adc_dev);
-	ADC_SS_GetMeasuredValues(adc_dev, out_buffer);
+	ADC_Main(adc_dev);
+	ADC_GetMeasuredValues(adc_dev, out_buffer);
 
 	return true;
 }
