@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-15, 22:17, # CodeGen: 37
+**     Date/Time   : 2015-03-13, 13:03, # CodeGen: 40
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -65,24 +65,14 @@ const TASK_TEMPLATE_STRUCT MQX_template_list[] =
   /* Task attributes                  */  (MQX_AUTO_START_TASK),
   /* Task parameter                   */  (uint32_t)(0)
   },
-  /* Task: adc */
+  /* Task: console */
   {
-  /* Task number                      */  ADC_TASK,
-  /* Entry point                      */  (TASK_FPTR)adc_task,
-  /* Stack size                       */  ADC_TASK_STACK_SIZE,
+  /* Task number                      */  CONSOLE_TASK,
+  /* Entry point                      */  (TASK_FPTR)console_task,
+  /* Stack size                       */  CONSOLE_TASK_STACK_SIZE,
   /* Task priority                    */  8U,
-  /* Task name                        */  "adc",
-  /* Task attributes                  */  (MQX_AUTO_START_TASK),
-  /* Task parameter                   */  (uint32_t)(0)
-  },
-  /* Task: pwm */
-  {
-  /* Task number                      */  PWM_TASK,
-  /* Entry point                      */  (TASK_FPTR)pwm_task,
-  /* Stack size                       */  PWM_TASK_STACK_SIZE,
-  /* Task priority                    */  6U,
-  /* Task name                        */  "pwm",
-  /* Task attributes                  */  (MQX_AUTO_START_TASK),
+  /* Task name                        */  "console",
+  /* Task attributes                  */  (0),
   /* Task parameter                   */  (uint32_t)(0)
   },
   TASK_TEMPLATE_LIST_END

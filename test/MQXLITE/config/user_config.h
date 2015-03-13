@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-01-11, 16:37, # CodeGen: 4
+**     Date/Time   : 2015-03-13, 13:16, # CodeGen: 43
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -60,7 +60,7 @@
 #define MQX_USE_SEMAPHORES             1
 #define MQX_USE_LWEVENTS               0
 #define MQX_USE_MUTEXES                0
-#define MQX_USE_LWMSGQ                 0
+#define MQX_USE_LWMSGQ                 1
 #define MQX_USE_LWTIMER                0
 #define MQX_KERNEL_LOGGING             0
 

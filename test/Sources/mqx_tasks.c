@@ -38,7 +38,14 @@ extern "C" {
 #endif 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include <stdio.h>
+
+/* Definitions for LW Message Queue Component */
+#define NUM_MESSAGES		16
+#define MSG_SIZE			1
+
+/* Use light weight message queues */
+uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
+		+ NUM_MESSAGES * MSG_SIZE];
 
 /*
  ** ===================================================================
@@ -59,82 +66,55 @@ void gpio_task(uint32_t task_init_data) {
 
 	LDD_TDeviceData *device_data = NULL;
 	device_data = GPIO1_Init(NULL);
-	
+
+	_mqx_uint msg = 0;
+	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
+
+	_mqx_uint task_id = _task_create_at(0, CONSOLE_TASK, 0, console_task_stack,
+			CONSOLE_TASK_STACK_SIZE);
+	if (task_id == MQX_NULL_TASK_ID ) {
+		printf("Error on creating console task\n");
+	}
+
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
 		GPIO1_ToggleFieldBits(device_data, led_red, 0xFFFFFFFF);
 		_time_delay_ticks(100);
+		msg = 1;
+		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);
 	}
 }
 
 /*
-** ===================================================================
-**     Event       :  adc_task (module mqx_tasks)
-**
-**     Component   :  Task2 [MQXLite_task]
-**     Description :
-**         MQX task routine. The routine is generated into mqx_tasks.c
-**         file.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**         task_init_data  - 
-**     Returns     : Nothing
-** ===================================================================
-*/
-void adc_task(uint32_t task_init_data)
-{
+ ** ===================================================================
+ **     Event       :  console_task (module mqx_tasks)
+ **
+ **     Component   :  Task2 [MQXLite_task]
+ **     Description :
+ **         MQX task routine. The routine is generated into mqx_tasks.c
+ **         file.
+ **     Parameters  :
+ **         NAME            - DESCRIPTION
+ **         task_init_data  - 
+ **     Returns     : Nothing
+ ** ===================================================================
+ */
+void console_task(uint32_t task_init_data) {
 	int counter = 0;
 
-	uint16_t value[AD1_STATIC_GROUP_0_SAMPLE_COUNT];
-	LDD_ADC_TSample SampleGroupPtr;
-	LDD_TDeviceData *device_data = NULL;
+	_mqx_uint msg = 0;
 
-	device_data = AD1_Init(NULL);
-	SampleGroupPtr.ChannelIdx = 0;
-	AD1_CreateSampleGroup(device_data, &SampleGroupPtr, 1);  
-  
-	while(1) {
+	while (1) {
 		counter++;
-		
+
 		/* Write your code here ... */
-		if (AD1_StartSingleMeasurement(device_data) != ERR_OK) {
-			printf("error\n");
-			continue;
+		_lwmsgq_receive((pointer) ctrl_msg_queue, &msg,
+				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
+		if (msg == 1) {
+			printf("print on console\n");
 		}
-		AD1_GetMeasuredValues(device_data, &value);
-		printf("dimmer: %d\n", value[0] * 100 / 4096);
-	}
-}
-
-/*
-** ===================================================================
-**     Event       :  pwm_task (module mqx_tasks)
-**
-**     Component   :  Task3 [MQXLite_task]
-**     Description :
-**         MQX task routine. The routine is generated into mqx_tasks.c
-**         file.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**         task_init_data  - 
-**     Returns     : Nothing
-** ===================================================================
-*/
-void pwm_task(uint32_t task_init_data)
-{
-	int counter = 0;
-	
-	LDD_TDeviceData *device_data = NULL;
-
-	device_data = PWM1_Init(NULL);
-	PWM1_SetDutyMS(device_data, 10);
-	while(1) {
-		counter++;
-		
-		/* Write your code here ... */
-		_time_delay_ticks(100);
 	}
 }
 

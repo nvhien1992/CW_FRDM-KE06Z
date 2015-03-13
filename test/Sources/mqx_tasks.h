@@ -40,9 +40,6 @@
 #include "GPIO1.h"
 #include "CsIO1.h"
 #include "IO1.h"
-#include "AD1.h"
-#include "PWM1.h"
-#include "TU1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -67,7 +64,7 @@ void gpio_task(uint32_t task_init_data);
 
 /*
 ** ===================================================================
-**     Event       :  adc_task (module mqx_tasks)
+**     Event       :  console_task (module mqx_tasks)
 **
 **     Component   :  Task2 [MQXLite_task]
 **     Description :
@@ -79,7 +76,7 @@ void gpio_task(uint32_t task_init_data);
 **     Returns     : Nothing
 ** ===================================================================
 */
-void adc_task(uint32_t task_init_data);
+void console_task(uint32_t task_init_data);
 
 /*
 ** ===================================================================

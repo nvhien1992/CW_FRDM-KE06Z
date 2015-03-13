@@ -33,9 +33,6 @@
 - \subpage SystemTimer1
 - \subpage GPIO1
 - \subpage IO1
-- \subpage AD1
-- \subpage TU1
-- \subpage PWM1
 
 
 */
@@ -85,9 +82,6 @@
 - \subpage SystemTimer1
 - \subpage GPIO1
 - \subpage IO1
-- \subpage AD1
-- \subpage TU1
-- \subpage PWM1
 
 
 */
