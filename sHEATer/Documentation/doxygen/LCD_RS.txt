@@ -18,19 +18,19 @@ by the component.
 <table>
 <tr><td colspan="4" class="ttitle1">LCD_RS Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
-<tr><td>0x400FF014</td><td>GPIOA_PDDR</td><td>
-    0x00000040
- </td><td>GPIOA_PDDR register, peripheral LCD_RS.</td></tr>
-<tr><td>0x400FF000</td><td>GPIOA_PDOR</td><td>
+<tr><td>0x400FF054</td><td>GPIOB_PDDR</td><td>
+    0x00000001
+ </td><td>GPIOB_PDDR register, peripheral LCD_RS.</td></tr>
+<tr><td>0x400FF040</td><td>GPIOB_PDOR</td><td>
     0x00000000
- </td><td>GPIOA_PDOR register, peripheral LCD_RS.</td></tr>
+ </td><td>GPIOB_PDOR register, peripheral LCD_RS.</td></tr>
 </table>
 <br/>
 \page LCD_RS_regs_details Register Initialization Details
 This page contains detailed description of initialization values for the 
 registers of the peripheral(s) configured by the component. 
 
-<div class="reghdr1">GPIOA_PDDR</div>
+<div class="reghdr1">GPIOB_PDDR</div>
 <div class="regdiag">
 <table class="regtbl">
 <tr class="trd1r">
@@ -66,13 +66,13 @@ registers of the peripheral(s) configured by the component.
 </table>
         
 </div>
-<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF014</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000040</td></tr>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF054</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000001</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PDD</td><td>0x00</td><td>Port Data Direction</td>
 </tr></table>
-<div class="reghdr1">GPIOA_PDOR</div>
+<div class="reghdr1">GPIOB_PDOR</div>
 <div class="regdiag">
 <table class="regtbl">
 <tr class="trd1r">
@@ -108,7 +108,7 @@ registers of the peripheral(s) configured by the component.
 </table>
         
 </div>
-<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF000</td></tr>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF040</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
@@ -119,7 +119,7 @@ registers of the peripheral(s) configured by the component.
 \page LCD_RS_settings Component Settings
 \code
 **          Component name                                 : LCD_RS
-**          Pin for I/O                                    : PTA6/KBI0_P6/FTM2_FLT1/ACMP1_IN0/ADC0_SE2
+**          Pin for I/O                                    : PTE0/KBI1_P0/SPI0_SCK/TCLK1/I2C1_SDA
 **          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 

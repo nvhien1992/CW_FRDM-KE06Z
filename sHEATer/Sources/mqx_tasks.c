@@ -62,6 +62,7 @@ extern "C" {
 uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
 		+ NUM_MESSAGES * MSG_SIZE];
 
+/* global variables (devices) */
 button_t button_table[MAX_BUTTONS];
 sensor_t LM35;
 sensor_t Ve_ref;

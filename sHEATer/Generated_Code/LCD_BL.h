@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-03-12, 21:22, # CodeGen: 120
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,7 +16,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : LCD_BL
-**          Pin for I/O                                    : PTC0/KBI0_P16/FTM2_CH0/ADC0_SE8
+**          Pin for I/O                                    : PTF1/KBI1_P9/FTM2_CH1
 **          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 
@@ -100,7 +100,7 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define LCD_BL_PRPH_BASE_ADDRESS  0x400FF000U
+#define LCD_BL_PRPH_BASE_ADDRESS  0x400FF040U
   
 /*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
 #define LCD_BL_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_LCD_BL_ID))
@@ -112,9 +112,9 @@ extern "C" {
 #define LCD_BL_SetVal_METHOD_ENABLED   /*!< SetVal method of the component LCD_BL is enabled (generated) */
 
 /* Definition of implementation constants */
-#define LCD_BL_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
+#define LCD_BL_MODULE_BASE_ADDRESS GPIOB_BASE_PTR /*!< Name of macro used as the base address */
 #define LCD_BL_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define LCD_BL_PORT_MASK 0x00010000U   /*!< Mask of the allocated pin from the port */
+#define LCD_BL_PORT_MASK 0x0200U       /*!< Mask of the allocated pin from the port */
 
 
 

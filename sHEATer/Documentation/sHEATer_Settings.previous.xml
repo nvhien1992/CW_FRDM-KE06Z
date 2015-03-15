@@ -1140,7 +1140,7 @@ PE_DEBUGHALT();
       <group name="Configuration parameters">
         <group name="Components">
           <Lightweight_Semaphores v="yes" />
-          <Lightweight_Events v="yes" />
+          <Lightweight_Events v="no" />
           <Lightweight_Message_Queues v="yes" />
           <Mutexes v="no" />
           <Lightweight_Timer v="no" />
@@ -1334,10 +1334,10 @@ PE_DEBUGHALT();
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="ADC_SS" type="ADC_LDD">
+  <Bean name="ADC" type="ADC_LDD">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="ADC_SS" />
+      <Component_name v="ADC" />
       <A_D_converter v="ADC" />
       <Discontinuous_mode v="no" />
       <boolgroup name="Interrupt service/event" v="Disabled" />
@@ -1425,7 +1425,7 @@ PE_DEBUGHALT();
     <Events>
       <Event_module_name v="Events" />
       <event name="OnMeasurementComplete" v="generate code">
-        <Event_procedure_name v="ADC_SS_OnMeasurementComplete" />
+        <Event_procedure_name v="ADC_OnMeasurementComplete" />
       </event>
     </Events>
   </Bean>
@@ -1712,7 +1712,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_RS" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTA6/KBI0_P6/FTM2_FLT1/ACMP1_IN0/ADC0_SE2" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1744,7 +1744,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_EN" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTA7/KBI0_P7/FTM2_FLT2/ACMP1_IN1/ADC0_SE3" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1776,7 +1776,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB4" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTB0/KBI0_P8/UART0_RX/PWT_IN1/ADC0_SE4" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1808,7 +1808,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB5" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTB1/KBI0_P9/UART0_TX/ADC0_SE5" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1840,7 +1840,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB6" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTB2/KBI0_P10/SPI0_SCK/FTM0_CH0/ADC0_SE6" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1872,7 +1872,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB7" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTB3/KBI0_P11/SPI0_MOSI/FTM0_CH1/ADC0_SE7" />
       <Direction v="Input/Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1904,7 +1904,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_BL" />
-      <Pin_for_I_O v="PTD7/KBI0_P31/UART2_TX" />
+      <Pin_for_I_O v="PTC0/KBI0_P16/FTM2_CH0/ADC0_SE8" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
