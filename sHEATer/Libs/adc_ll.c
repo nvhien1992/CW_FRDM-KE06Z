@@ -5,6 +5,7 @@
  *      Author: nvhie_000
  */
 #include "adc_ll.h"
+#include "ADC.h"
 
 static LDD_TDeviceData *adc_dev = NULL;
 

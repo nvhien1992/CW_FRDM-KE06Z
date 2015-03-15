@@ -4,14 +4,19 @@
  *  Created on: Mar 10, 2015
  *      Author: nvhie_000
  */
+#include "mqxlite.h"
 #include "alarm.h"
-#include "global.h"
 
 #define TIMER_PERIOD 10 //ms
 #define A_MIN (60*1000/TIMER_PERIOD) //1min
 
 static uint16_t time_cycle_count = 0;
 static bool alarm_en = false;
+static uint8_t alarm_id = 0;
+
+void set_alarm_id(uint8_t id) {
+	alarm_id = id;
+}
 
 void enable_alarm(void) {
 	alarm_en = true;
@@ -35,7 +40,7 @@ void alarm_callback_timer_isr(void *dest_queue) {
 	time_cycle_count++;
 	if (time_cycle_count == A_MIN) {
 		time_cycle_count = 0;
-		_mqx_uint msg = (_mqx_uint) ((uint32_t) (ALARM << 16));
+		_mqx_uint msg = (_mqx_uint) ((uint32_t) (alarm_id << 16));
 		_lwmsgq_send((pointer) dest_queue, &msg, 0);
 	}
 }

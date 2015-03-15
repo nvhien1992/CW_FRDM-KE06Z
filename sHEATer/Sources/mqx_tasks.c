@@ -163,7 +163,8 @@ void Ctrl_task(uint32_t task_init_data) {
 	buzzer.is_on_in_blink = false;
 	turn_off(&buzzer);
 
-	/* Initialize the configuring array */
+	/* Initialize alarm */
+	set_alarm_id((uint8_t) ALARM);
 	init_conf_array(&alarm_arr);
 
 	/* start misc timer */

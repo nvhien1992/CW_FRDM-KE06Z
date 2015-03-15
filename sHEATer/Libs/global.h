@@ -16,8 +16,6 @@
 #include "on_off_device.h"
 #include "alarm.h"
 
-#define MAX_BUTTONS 2
-
 typedef enum {
 	UNKNOWN = 0x00,
 	RUN_STOP_BTN = 0x01,
@@ -29,13 +27,14 @@ typedef enum {
 	HEATER = 0x80,
 } dev_id_e;
 
+#define MAX_BUTTONS 2
 extern button_t button_table[MAX_BUTTONS];
 extern sensor_t LM35;
 extern sensor_t Ve_ref;
 
 /* Definitions for LW Message Queue Component */
-#define NUM_MESSAGES		16
-#define MSG_SIZE			1
+#define NUM_MESSAGES	16
+#define MSG_SIZE		1
 
 /* Use light weight message queues */
 extern uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
