@@ -30,6 +30,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Libs</name>
+			<type>2</type>
+			<location>D:/CW/Libs</location>
+		</link>
+		<link>
 			<name>Generated_Code/IO_Map/MKE06Z4.h</name>
 			<type>1</type>
 			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/iofiles/MKE06Z4.h</location>
