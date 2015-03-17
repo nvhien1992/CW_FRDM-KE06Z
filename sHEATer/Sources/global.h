@@ -29,6 +29,7 @@ typedef enum {
 
 #define MAX_BUTTONS 2
 extern button_t button_table[MAX_BUTTONS];
+extern alarm_t a_min_alarm;
 extern sensor_t LM35;
 extern sensor_t Ve_ref;
 

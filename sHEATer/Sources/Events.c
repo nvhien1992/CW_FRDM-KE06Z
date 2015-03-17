@@ -82,7 +82,7 @@ void Cpu_OnNMI(void) {
 /* ===================================================================*/
 void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
-	alarm_callback_timer_isr(ctrl_msg_queue);
+	alarm_callback_timer_isr(&a_min_alarm, ctrl_msg_queue);
 	button_callback_timer_isr(button_table, MAX_BUTTONS, ctrl_msg_queue);
 //	sensor_callback_timer_isr(&Ve_ref, &LM35, ctrl_msg_queue);
 	on_off_blink_callback_timer_isr();
