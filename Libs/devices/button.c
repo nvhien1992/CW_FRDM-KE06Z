@@ -27,7 +27,7 @@ static void button_processing(button_t *a_button) {
 	/* sampling */
 	a_button->new_value_reg[2] = a_button->new_value_reg[1];
 	a_button->new_value_reg[1] = a_button->new_value_reg[0];
-	a_button->new_value_reg[0] = a_button->ReadInputPin(a_button->arg);
+	a_button->new_value_reg[0] = a_button->GetVal(NULL);
 
 	/* update hold_time_count value */
 	if (a_button->hold_time_count != 0) {

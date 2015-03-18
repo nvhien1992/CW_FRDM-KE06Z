@@ -10,6 +10,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "PE_Types.h"
 
 typedef enum {
 	btn_no_pressed = 0,
@@ -18,8 +19,7 @@ typedef enum {
 } btn_status_t;
 
 typedef struct {
-	bool (*ReadInputPin)(void *arg);
-	void *arg;
+	bool (*GetVal)(LDD_TDeviceData *dev_data);
 	uint8_t dev_id;
 	uint16_t hold_time_count;
 	btn_status_t current_status;

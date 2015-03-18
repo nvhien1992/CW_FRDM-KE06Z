@@ -5,12 +5,18 @@
  *      Author: nvhie_000
  */
 #include "adc_ll.h"
-#include "ADC.h"
 
 static LDD_TDeviceData *adc_dev = NULL;
+static adc_t *adc;
 
-void adc_init(void) {
-	adc_dev = ADC_Init(NULL);
+bool adc_init(adc_t *adc_module) {
+	if (!adc_module) {
+		return false;
+	}
+	adc = adc_module;
+	adc_dev = adc->Init(NULL);
+	
+	return true;
 }
 
 bool adc_mesurement(uint8_t *channel_table, uint8_t sample_count,
@@ -20,17 +26,17 @@ bool adc_mesurement(uint8_t *channel_table, uint8_t sample_count,
 	}
 	LDD_ADC_TSample sample_group[sample_count];
 	uint8_t index = 0;
-	for(index = 0; index < sample_count; index++) {
+	for (index = 0; index < sample_count; index++) {
 		sample_group[index].ChannelIdx = channel_table[index];
 	}
-	if (ADC_CreateSampleGroup(adc_dev, sample_group, sample_count) != 0) {
+	if (adc->CreateSampleGroup(adc_dev, sample_group, sample_count) != ERR_OK) {
 		return false;
 	}
-	if (ADC_StartSingleMeasurement(adc_dev) != 0) {
+	if (adc->StartSingleMeasurement(adc_dev) != ERR_OK) {
 		return false;
 	}
-	ADC_Main(adc_dev);
-	ADC_GetMeasuredValues(adc_dev, out_buffer);
+	adc->Main(adc_dev);
+	adc->GetMeasuredValues(adc_dev, out_buffer);
 
 	return true;
 }

@@ -68,7 +68,7 @@ bool delete(conf_arr_t *conf_arr, uint8_t index) {
 	}
 
 	if (index == conf_arr->num_elements - 1) {
-		conf_arr->element_list[conf_arr->num_elements] = 0;
+		conf_arr->element_list[index] = 0;
 	} else {
 		uint8_t count = 0;
 		for (count = index; count < conf_arr->num_elements; count++) {

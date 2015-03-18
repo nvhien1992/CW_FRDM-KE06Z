@@ -222,7 +222,7 @@
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
       <XtraAge1>1181383086</XtraAge1>
-      <XtraAge2>1181383086</XtraAge2>
+      <XtraAge2>1181897362</XtraAge2>
       <XtraAge3>1181526513</XtraAge3>
       <XtraAge4>1177639475</XtraAge4>
       <XtraAge5>1177639475</XtraAge5>
@@ -518,7 +518,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>97</ProjectModificationStamp>
+    <ProjectModificationStamp>99</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>

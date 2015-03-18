@@ -1117,7 +1117,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="CTRL" />
               <Entry_point_function v="Ctrl_task" />
-              <Stack_size v="3072" />
+              <Stack_size v="4096" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">

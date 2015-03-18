@@ -10,15 +10,15 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "PE_Types.h"
 
 typedef enum {
 	ON, OFF, BLINK,
 } on_off_status_t;
 
 typedef struct {
-	void (*SetPin)(void *arg);
-	void (*ClearPin)(void *arg);
-	void *arg;
+	void (*SetVal)(LDD_TDeviceData *dev_data);
+	void (*ClrVal)(LDD_TDeviceData *dev_data);
 	uint16_t time_cycle_count;
 	uint16_t period_in_ms;
 	on_off_status_t current_status;

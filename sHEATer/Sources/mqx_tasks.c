@@ -86,7 +86,7 @@ static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
 }
 
 button_t button_template = { NULL, //(*ReadInputPin)()
-		NULL, //arg
+//		NULL, //arg
 		UNKNOWN, //dev_id
 		0, //hold_time_count
 		btn_no_pressed, //current_status
@@ -99,6 +99,13 @@ alarm_t alarm_template = { UNKNOWN, //alarm_id
 				0, //time_cycle_count
 		},//alarm_properties
 		false, //is_active
+		};
+
+adc_t adc_module = { ADC_Init, //
+		ADC_CreateSampleGroup, //
+		ADC_StartSingleMeasurement, //
+		ADC_Main, //
+		ADC_GetMeasuredValues, //
 		};
 
 /*
@@ -132,18 +139,20 @@ void Ctrl_task(uint32_t task_init_data) {
 //
 	memcpy(&button_table[1], &button_template, sizeof(button_t));
 	button_table[1].dev_id = ALARM_BTN;
-	button_table[1].ReadInputPin = ALARM_BTN_GetVal;
+	button_table[1].GetVal = ALARM_BTN_GetVal;
 
 	memcpy(&button_table[0], &button_template, sizeof(button_t));
 	button_table[0].dev_id = ADD_BTN;
-	button_table[0].ReadInputPin = ADD_BTN_GetVal;
+	button_table[0].GetVal = ADD_BTN_GetVal;
 
 //	memcpy(&button_table[1], &button_template, sizeof(button_t));
 //	button_table[1].dev_id = SUB_BTN;
 //	button_table[1].ReadInputPin = SUB_BTN_GetVal;
 
 	/* Initialize ADC components */
-	adc_init();
+	adc_t adc_ll;
+	memcpy(&adc_ll, &adc_module, sizeof(adc_t));
+	adc_init(&adc_ll);
 	LM35.channel_index = 0;
 	LM35.dev_id = TEMP_SS;
 	LM35.sensor_value = 0;
@@ -151,16 +160,16 @@ void Ctrl_task(uint32_t task_init_data) {
 
 	/* Initialize Led/Buzzer */
 	on_off_dev_t status_led;
-	status_led.ClearPin = LED_ClrVal;
-	status_led.SetPin = LED_SetVal;
-	status_led.arg = NULL;
+	status_led.ClrVal = LED_ClrVal;
+	status_led.SetVal = LED_SetVal;
+//	status_led.arg = NULL;
 	status_led.is_on_in_blink = false;
 	turn_off(&status_led);
 
 	on_off_dev_t buzzer;
-	buzzer.ClearPin = BUZZER_ClrVal;
-	buzzer.SetPin = BUZZER_SetVal;
-	buzzer.arg = NULL;
+	buzzer.ClrVal = BUZZER_ClrVal;
+	buzzer.SetVal = BUZZER_SetVal;
+//	buzzer.arg = NULL;
 	buzzer.is_on_in_blink = false;
 	turn_off(&buzzer);
 

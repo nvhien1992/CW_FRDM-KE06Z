@@ -3,8 +3,8 @@
   <Header>
     <Name>sHEATer</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>97</ModificationStamp>
-    <Date>2015-03-16</Date>
+    <ModificationStamp>99</ModificationStamp>
+    <Date>2015-03-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>90</ProjectCompNumb>
+    <ProjectCompNumb>92</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -8121,7 +8121,7 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>3072</Value>
+              <Value>4096</Value>
               <Base>DEC</Base>
             </ItemState>
             <ItemState>

@@ -58,16 +58,16 @@ static void blink_processing(on_off_dev_t *on_off_dev) {
 		if(on_off_dev->is_on_in_blink) {
 			on_off_dev->is_on_in_blink = false;
 			if (active_state) {
-				on_off_dev->ClearPin(on_off_dev->arg);
+				on_off_dev->ClrVal(NULL);
 			} else {
-				on_off_dev->SetPin(on_off_dev->arg);
+				on_off_dev->SetVal(NULL);
 			}
 		} else {
 			on_off_dev->is_on_in_blink = true;
 			if (active_state) {
-				on_off_dev->SetPin(on_off_dev->arg);
+				on_off_dev->SetVal(NULL);
 			} else {
-				on_off_dev->ClearPin(on_off_dev->arg);
+				on_off_dev->ClrVal(NULL);
 			}
 		}
 	}
@@ -79,9 +79,9 @@ void turn_on(on_off_dev_t *on_off_dev) {
 	}
 	on_off_dev->current_status = ON;
 	if (active_state) {
-		on_off_dev->SetPin(on_off_dev->arg);
+		on_off_dev->SetVal(NULL);
 	} else {
-		on_off_dev->ClearPin(on_off_dev->arg);
+		on_off_dev->ClrVal(NULL);
 	}
 }
 
@@ -91,9 +91,9 @@ void turn_off(on_off_dev_t *on_off_dev) {
 	}
 	on_off_dev->current_status = OFF;
 	if (active_state) {
-		on_off_dev->ClearPin(on_off_dev->arg);
+		on_off_dev->ClrVal(NULL);
 	} else {
-		on_off_dev->SetPin(on_off_dev->arg);
+		on_off_dev->SetVal(NULL);
 	}
 }
 

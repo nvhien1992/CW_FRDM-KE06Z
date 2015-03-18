@@ -2,7 +2,12 @@
  * LCD.h
  *
  *  Created on: Feb 2, 2015
- *      Author: nvhie_000
+ *      Author: Nguyen Van Hien <nvhien1992@gmail.com>
+ *  How to use:
+ *  _All pins connecting to LCD must be initialized auto-ly.
+ *  _Declare a var had lcd_pins_t type.
+ *  _Assign all functions pointer of var with functions respectively.
+ *  _Call init_lcd function to initialize.
  */
 
 #ifndef LCD_H_
@@ -10,11 +15,37 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "PE_Types.h"
+
+typedef struct {
+	void (*SetVal)(LDD_TDeviceData *arg);
+	void (*ClrVal)(LDD_TDeviceData *arg);
+} out_pin_t;
+
+typedef struct {
+	void (*SetInput)(LDD_TDeviceData *arg);
+	void (*SetOutput)(LDD_TDeviceData *arg);
+	void (*SetVal)(LDD_TDeviceData *arg);
+	void (*ClrVal)(LDD_TDeviceData *arg);
+	bool (*GetVal)(LDD_TDeviceData *arg);
+} status_pin_t;
+
+typedef struct {
+	out_pin_t lcd_rs;
+	out_pin_t lcd_en;
+	out_pin_t lcd_bl;
+	out_pin_t lcd_db4;
+	out_pin_t lcd_db5;
+	out_pin_t lcd_db6;
+	status_pin_t lcd_db7;
+} lcd_pins_t;
 
 /**
  * @brief init lcd, 4 bit mode, increase counter.
+ * 
+ * @return false if lcd_pins is null, true otherwise.
  */
-void init_lcd(void);
+bool init_lcd(lcd_pins_t *lcd_pins);
 
 /**
  * @brief set position of cursor.
