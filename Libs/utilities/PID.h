@@ -10,9 +10,8 @@
 #ifndef PID_H_
 #define PID_H_
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <stddef.h>
+#include "PE_Types.h"
 
 typedef struct {
 	int32_t r; /**! Reference point or set point */

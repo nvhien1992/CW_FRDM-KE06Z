@@ -72,6 +72,37 @@ typedef enum {
 	STOP, RUN, HOLD, UNHOLD,
 } state_e;
 
+button_t button_template = { NULL, //(*GetVal)()
+		UNKNOWN, //dev_id
+		0, //hold_time_count
+		btn_no_pressed, //current_status
+		btn_no_pressed, //old_status
+		FALSE , //old_value_reg
+		};
+
+alarm_t a_min_alarm = { ALARM, //alarm_id
+		FALSE, //is_active
+		60, //interval_in_sec
+		0, //time_cycle_count
+		};
+
+adc_t adc_module = { ADC_Init, //(*Init)()
+		ADC_CreateSampleGroup, //(*CreateSampleGroup)()
+		ADC_StartSingleMeasurement, //(*StartSingleMeasurement)()
+		ADC_Main, //(*Main)()
+		ADC_GetMeasuredValues, //(*GetMeasuredValues)()
+		};
+
+lcd_pins_t lcd_pins = { { LCD_RS_SetVal, LCD_RS_ClrVal, }, //lcd_rs
+		{ LCD_EN_SetVal, LCD_EN_ClrVal, }, //lcd_en
+		{ LCD_BL_SetVal, LCD_BL_ClrVal, }, //lcd_bl
+		{ LCD_DB4_SetVal, LCD_DB4_ClrVal, }, //lcd_db4
+		{ LCD_DB5_SetVal, LCD_DB5_ClrVal, }, //lcd_db5
+		{ LCD_DB6_SetVal, LCD_DB6_ClrVal, }, //lcd_db6
+		{ LCD_DB7_SetInput, LCD_DB7_SetOutput, LCD_DB7_SetVal, LCD_DB7_ClrVal,
+				LCD_DB7_GetVal, }, //lcd_db7
+		};
+
 static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
 		uint16_t *conf_time_list);
 
@@ -84,29 +115,6 @@ static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
 			real_temp % 10, conf_temp / 10, conf_temp % 10, conf_time_list[0],
 			conf_time_list[1], conf_time_list[2], conf_time_list[3]);
 }
-
-button_t button_template = { NULL, //(*ReadInputPin)()
-//		NULL, //arg
-		UNKNOWN, //dev_id
-		0, //hold_time_count
-		btn_no_pressed, //current_status
-		btn_no_pressed, //old_status
-		false, //old_value_reg
-		};
-
-alarm_t alarm_template = { UNKNOWN, //alarm_id
-		{ 0, //interval_in_sec
-				0, //time_cycle_count
-		},//alarm_properties
-		false, //is_active
-		};
-
-adc_t adc_module = { ADC_Init, //
-		ADC_CreateSampleGroup, //
-		ADC_StartSingleMeasurement, //
-		ADC_Main, //
-		ADC_GetMeasuredValues, //
-		};
 
 /*
  ** ===================================================================
@@ -124,19 +132,12 @@ adc_t adc_module = { ADC_Init, //
  */
 void Ctrl_task(uint32_t task_init_data) {
 	int counter = 0;
-	conf_arr_t alarm_arr;
-	uint16_t real_temp = 0;
-	uint16_t conf_temp = DEFAULT_TEMP_VALUE;
-	uint16_t conf_time = 0;
-	uint16_t time_list[MAX_ALARMS];
-	state_e sys_state = RUN; //STOP;
-	state_e alarm_btn_state = UNHOLD;
 
-	/* initialize Buttons */
+	/* Initialize Buttons */
 //	memcpy(&button_table[0], &button_template, sizeof(button_t));
 //	button_table[0].dev_id = RUN_STOP_BTN;
 //	button_table[0].ReadInputPin = RUN_STOP_BTN_GetVal;
-//
+
 	memcpy(&button_table[1], &button_template, sizeof(button_t));
 	button_table[1].dev_id = ALARM_BTN;
 	button_table[1].GetVal = ALARM_BTN_GetVal;
@@ -150,9 +151,7 @@ void Ctrl_task(uint32_t task_init_data) {
 //	button_table[1].ReadInputPin = SUB_BTN_GetVal;
 
 	/* Initialize ADC components */
-	adc_t adc_ll;
-	memcpy(&adc_ll, &adc_module, sizeof(adc_t));
-	adc_init(&adc_ll);
+	adc_init(&adc_module);
 	LM35.channel_index = 0;
 	LM35.dev_id = TEMP_SS;
 	LM35.sensor_value = 0;
@@ -162,31 +161,37 @@ void Ctrl_task(uint32_t task_init_data) {
 	on_off_dev_t status_led;
 	status_led.ClrVal = LED_ClrVal;
 	status_led.SetVal = LED_SetVal;
-//	status_led.arg = NULL;
-	status_led.is_on_in_blink = false;
+	status_led.is_on_in_blink = FALSE;
 	turn_off(&status_led);
 
 	on_off_dev_t buzzer;
 	buzzer.ClrVal = BUZZER_ClrVal;
 	buzzer.SetVal = BUZZER_SetVal;
-//	buzzer.arg = NULL;
-	buzzer.is_on_in_blink = false;
+	buzzer.is_on_in_blink = FALSE;
 	turn_off(&buzzer);
 
-	/* Initialize alarm and alarm array */
-	memcpy(&a_min_alarm, &alarm_template, sizeof(alarm_t));
-	set_alarm_id(&a_min_alarm, (uint8_t) ALARM);
-	set_alarm_interval(&a_min_alarm, 60);
+	/* Initialize alarm array */
+	conf_arr_t alarm_arr;
+	uint16_t time_list[MAX_ALARMS];
 	alarm_arr.element_list = time_list;
 	alarm_arr.max_elements = MAX_ALARMS;
 	init_conf_array(&alarm_arr);
-
-	/* start misc timer */
-	MISC_TIMER_Init(NULL );
+	
+	/* Initialize LCD charactor */
+	init_lcd(&lcd_pins);
 
 	/* Initialize msg queue */
 	_mqx_uint msg = 0;
 	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
+
+	/* Start misc timer */
+	MISC_TIMER_Init(NULL );
+
+	uint16_t real_temp = 0;
+	uint16_t conf_temp = DEFAULT_TEMP_VALUE;
+	uint16_t conf_time = 0;
+	state_e sys_state = RUN; //STOP;
+	state_e alarm_btn_state = UNHOLD;
 
 	while (1) {
 		counter++;

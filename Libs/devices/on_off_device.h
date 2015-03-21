@@ -8,8 +8,6 @@
 #ifndef ON_OFF_DEVICE_H_
 #define ON_OFF_DEVICE_H_
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "PE_Types.h"
 
 typedef enum {

@@ -12,10 +12,10 @@
 
 #define MAX_ON_OFF_DEV 2
 #define TIMER_PERIOD 10 //ms
-const bool active_state = false;
+const bool active_state = FALSE;
 
 on_off_dev_t *on_off_dev_table[MAX_ON_OFF_DEV];
-bool table_inited = false;
+bool table_inited = FALSE;
 
 static void blink_processing(on_off_dev_t *on_off_dev);
 static void assign_dev(on_off_dev_t *on_off_dev);
@@ -56,14 +56,14 @@ static void blink_processing(on_off_dev_t *on_off_dev) {
 		on_off_dev->time_cycle_count = 0;
 		/* toggle */
 		if(on_off_dev->is_on_in_blink) {
-			on_off_dev->is_on_in_blink = false;
+			on_off_dev->is_on_in_blink = FALSE;
 			if (active_state) {
 				on_off_dev->ClrVal(NULL);
 			} else {
 				on_off_dev->SetVal(NULL);
 			}
 		} else {
-			on_off_dev->is_on_in_blink = true;
+			on_off_dev->is_on_in_blink = TRUE;
 			if (active_state) {
 				on_off_dev->SetVal(NULL);
 			} else {
@@ -107,7 +107,7 @@ void toggle(on_off_dev_t *on_off_dev) {
 
 void blink(on_off_dev_t *on_off_dev, uint8_t freq_in_hz) {
 	if(!table_inited) {
-		table_inited = true;
+		table_inited = TRUE;
 		init_table();
 	}
 	if (on_off_dev->current_status != BLINK) {

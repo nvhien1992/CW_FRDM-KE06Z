@@ -10,7 +10,7 @@
 bool PID_reinit(pid_t* pPID, int32_t r, uint32_t Ts, int32_t Kp, int32_t Ki,
 		int32_t Kd) {
 	if (pPID == NULL || Ts <= 0 || Ts >= MAX_TS) {
-		return false;
+		return FALSE;
 	}
 
 	pPID->r = r;
@@ -27,7 +27,7 @@ bool PID_reinit(pid_t* pPID, int32_t r, uint32_t Ts, int32_t Kp, int32_t Ki,
 	pPID->ek_2 = 0;
 	pPID->uk_1 = 0;
 
-	return true;
+	return TRUE;
 }
 int32_t PID_textbook_step(pid_t* pPID, int32_t s) {
 	int32_t uk, ek;

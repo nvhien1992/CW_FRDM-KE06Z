@@ -13,8 +13,6 @@
 #ifndef LCD_H_
 #define LCD_H_
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "PE_Types.h"
 
 typedef struct {

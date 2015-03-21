@@ -8,8 +8,6 @@
 #ifndef SENSOR_H_
 #define SENSOR_H_
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "adc_ll.h"
 
 typedef struct {

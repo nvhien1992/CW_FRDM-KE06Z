@@ -15,7 +15,7 @@
 #define BTN_SAMPLING_PERIOD (10 / TIMER_PERIOD) //sampling every 10ms (timer_period = 10ms)
 #define BTN_HOLD_TIMEOUT (500 / TIMER_PERIOD) //btn is on hold after 0.5s.
 #define BTN_HOLD_PERIOD (100 / TIMER_PERIOD) //resend evt after 100ms when btn is on hold.
-const bool btn_active_state = false;
+const bool btn_active_state = FALSE;
 
 static uint16_t sampling_time_count = 0;
 static uint16_t button_hold_time_count = 0;
@@ -63,6 +63,9 @@ static void button_hold_processing(button_t *a_button, void *dest_queue) {
 	if (button_hold_time_count == BTN_HOLD_PERIOD) {
 		button_hold_time_count = 0;
 		a_button->old_status = btn_no_pressed;
+		if (!dest_queue) {
+			return;
+		}
 		_mqx_uint msg = (_mqx_uint) (((uint32_t) a_button->dev_id << 16)
 				| (uint16_t) get_button_status(a_button));
 		_lwmsgq_send((pointer) dest_queue, &msg, 0);
@@ -75,9 +78,9 @@ uint8_t get_button_id(button_t *a_button) {
 
 bool is_changed_status(button_t *a_button) {
 	if (a_button->current_status != a_button->old_status) {
-		return true;
+		return TRUE;
 	}
-	return false;
+	return FALSE;
 }
 
 btn_status_t get_button_status(button_t *a_button) {
@@ -92,7 +95,8 @@ btn_status_t get_button_status(button_t *a_button) {
 	return status;
 }
 
-void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns, void *dest_queue) {
+void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns,
+		void *dest_queue) {
 	sampling_time_count = sampling_time_count + 1;
 
 	if (sampling_time_count == BTN_SAMPLING_PERIOD) {
@@ -101,6 +105,9 @@ void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns, void
 		for (i = 0; i < num_of_btns; i++) {
 			button_processing(&button_table[i]);
 			if (is_changed_status(&button_table[i])) {
+				if (!dest_queue) {
+					return;
+				}
 				_mqx_uint msg = (_mqx_uint) (((uint32_t) button_table[i].dev_id
 						<< 16) | (uint16_t) get_button_status(&button_table[i]));
 				_lwmsgq_send((pointer) dest_queue, &msg, 0);

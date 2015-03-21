@@ -29,7 +29,8 @@ uint16_t get_sensor_value(sensor_t *a_sensor) {
 	return a_sensor->sensor_value;
 }
 
-void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor, void *dest_queue) {
+void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor,
+		void *dest_queue) {
 	sampling_time_count = sampling_time_count + 1;
 
 	if (sampling_time_count == SENSOR_SAMPLING_PERIOD) {
@@ -47,7 +48,8 @@ void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor, void *dest_
 		}
 
 		/* external ref voltage */
-		float v_sen = (float) out_buff[1] * (float) VE_REF / (float) out_buff[0];
+		float v_sen = (float) out_buff[1] * (float) VE_REF
+				/ (float) out_buff[0];
 		sum_sensor_value += v_sen * 100.0; //t = 100*v;
 		avg_sampling_count++;
 		if (send_value_time_count == SEND_SENSOR_VALUE_PERIOD) {
@@ -55,11 +57,15 @@ void sensor_callback_timer_isr(sensor_t *ve_ref, sensor_t *a_sensor, void *dest_
 			sum_sensor_value = sum_sensor_value / (float) avg_sampling_count;
 			a_sensor->sensor_value =
 					(uint16_t) (round(sum_sensor_value * 10.0));
+			sum_sensor_value = 0.0;
+			avg_sampling_count = 0;
+			
+			if (!dest_queue) {
+				return;
+			}
 			_mqx_uint msg = (_mqx_uint) (((uint32_t) a_sensor->dev_id << 16)
 					| a_sensor->sensor_value);
 			_lwmsgq_send((pointer) dest_queue, &msg, 0);
-			sum_sensor_value = 0.0;
-			avg_sampling_count = 0;
 		}
 	} //end if()
 }

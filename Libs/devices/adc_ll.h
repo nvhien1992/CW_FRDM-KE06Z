@@ -8,8 +8,6 @@
 #ifndef ADC_LL_H_
 #define ADC_LL_H_
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "PE_Types.h"
 #include "PE_Error.h"
 

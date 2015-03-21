@@ -9,8 +9,7 @@
 #ifndef ARRAY_UTILS_H_
 #define ARRAY_UTILS_H_
 
-#include <stdint.h>
-#include <stdbool.h>
+#include "PE_Types.h"
 
 typedef struct {
 	uint16_t *element_list;

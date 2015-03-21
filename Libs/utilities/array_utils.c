@@ -9,7 +9,7 @@
 bool init_conf_array(conf_arr_t *conf_arr) {
 	/* check parameter */
 	if (!conf_arr) {
-		return false;
+		return FALSE;
 	}
 	uint8_t index = 0;
 	for (index = 0; index < conf_arr->max_elements; index++) {
@@ -17,28 +17,28 @@ bool init_conf_array(conf_arr_t *conf_arr) {
 	}
 	conf_arr->num_elements = 0;
 
-	return true;
+	return TRUE;
 }
 
 bool insert(conf_arr_t *conf_arr, uint16_t value, uint8_t index) {
 	/* check parameter */
 	if (!conf_arr) {
-		return false;
+		return FALSE;
 	}
 
 	/* arrays are full */
 	if (conf_arr->num_elements == conf_arr->max_elements) {
-		return false;
+		return FALSE;
 	}
 	
 	/* out of range */
 	if(index >= conf_arr->max_elements) {
-		return false;
+		return FALSE;
 	}
 
 	/* not continuous */
 	if (index > conf_arr->num_elements) {
-		return false;
+		return FALSE;
 	}
 
 	uint8_t count = 0;
@@ -48,23 +48,23 @@ bool insert(conf_arr_t *conf_arr, uint16_t value, uint8_t index) {
 	conf_arr->element_list[index] = value;
 	conf_arr->num_elements++;
 
-	return true;
+	return TRUE;
 }
 
 bool delete(conf_arr_t *conf_arr, uint8_t index) {
 	/* check parameter */
 	if (!conf_arr) {
-		return false;
+		return FALSE;
 	}
 
 	/* have no the configuring element */
 	if (conf_arr->num_elements == 0) {
-		return false;
+		return FALSE;
 	}
 
 	/* out of range */
 	if (index >= conf_arr->num_elements) {
-		return false;
+		return FALSE;
 	}
 
 	if (index == conf_arr->num_elements - 1) {
@@ -78,33 +78,33 @@ bool delete(conf_arr_t *conf_arr, uint8_t index) {
 
 	conf_arr->num_elements--;
 
-	return true;
+	return TRUE;
 }
 
 bool modify_value(conf_arr_t *conf_arr, uint16_t new_value, uint8_t index) {
 	/* check parameter */
 	if (!conf_arr) {
-		return false;
+		return FALSE;
 	}
 
 	/* out of range */
 	if (index >= conf_arr->num_elements) {
-		return false;
+		return FALSE;
 	}
 
 	conf_arr->element_list[index] = new_value;
 
-	return true;
+	return TRUE;
 }
 
 bool get_conf_value(conf_arr_t *conf_arr, uint16_t *conf_value, uint8_t index) {
 	if (!conf_arr) {
-		return false;
+		return FALSE;
 	}
 	if (index >= conf_arr->num_elements) {
-		return false;
+		return FALSE;
 	}
 	*conf_value = conf_arr->element_list[index];
 
-	return true;
+	return TRUE;
 }

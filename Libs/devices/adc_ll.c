@@ -11,18 +11,18 @@ static adc_t *adc;
 
 bool adc_init(adc_t *adc_module) {
 	if (!adc_module) {
-		return false;
+		return FALSE;
 	}
 	adc = adc_module;
 	adc_dev = adc->Init(NULL);
 	
-	return true;
+	return TRUE;
 }
 
 bool adc_mesurement(uint8_t *channel_table, uint8_t sample_count,
 		uint16_t *out_buffer) {
 	if (!adc_dev) {
-		return false;
+		return FALSE;
 	}
 	LDD_ADC_TSample sample_group[sample_count];
 	uint8_t index = 0;
@@ -30,13 +30,13 @@ bool adc_mesurement(uint8_t *channel_table, uint8_t sample_count,
 		sample_group[index].ChannelIdx = channel_table[index];
 	}
 	if (adc->CreateSampleGroup(adc_dev, sample_group, sample_count) != ERR_OK) {
-		return false;
+		return FALSE;
 	}
 	if (adc->StartSingleMeasurement(adc_dev) != ERR_OK) {
-		return false;
+		return FALSE;
 	}
 	adc->Main(adc_dev);
 	adc->GetMeasuredValues(adc_dev, out_buffer);
 
-	return true;
+	return TRUE;
 }

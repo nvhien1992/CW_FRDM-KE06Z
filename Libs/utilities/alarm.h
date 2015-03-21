@@ -8,18 +8,13 @@
 #ifndef ALARM_H_
 #define ALARM_H_
 
-#include <stdint.h>
-#include <stdbool.h>
-
-typedef struct {
-	uint16_t interval_in_sec; //only support the interval set in second.
-	uint16_t time_cycle_count;
-} time_property_t;
+#include "PE_Types.h"
 
 typedef struct {
 	uint8_t alarm_id;
-	time_property_t time_properties;
 	bool is_active;
+	uint16_t interval_in_sec; //only support the interval set in second.
+	uint16_t time_cycle_count;
 } alarm_t;
 
 /**

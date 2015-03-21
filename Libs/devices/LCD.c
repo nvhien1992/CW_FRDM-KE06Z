@@ -9,7 +9,6 @@
 #include "LCD.h"
 
 #define SYS_CLK 48 //MHz
-
 #define LCD20x4
 //#define LCD16x2
 
@@ -154,7 +153,7 @@ static void wait_for_lcd(void) {
 		delay_us(1);
 
 		/* check BF, breaking if DB7 = 0 */
-		if (lcd_pins->lcd_db7.GetVal(NULL) == false) {
+		if (lcd_pins->lcd_db7.GetVal(NULL) == FALSE) {
 			break;
 		}
 
@@ -266,7 +265,7 @@ static void delay_us(uint32_t usec) {
 /* implement public functions */
 bool init_lcd(lcd_pins_t *lcd) {
 	if (!lcd) {
-		return false;
+		return FALSE;
 	}
 	lcd_pins = lcd;
 
@@ -302,8 +301,8 @@ bool init_lcd(lcd_pins_t *lcd) {
 
 	/* additional delay */
 	delay_us(1000);
-	
-	return true;
+
+	return TRUE;
 }
 
 bool set_cursor(uint8_t line, uint8_t pos) {
@@ -311,10 +310,10 @@ bool set_cursor(uint8_t line, uint8_t pos) {
 
 	/* check line and pos */
 	if ((line < 1) || (line > MAX_LINE)) {
-		return false;
+		return FALSE;
 	}
 	if ((pos < 1) || (pos > MAX_CHAR_IN_LINE)) {
-		return false;
+		return FALSE;
 	}
 
 	/* calculate DDRAM address */
@@ -334,7 +333,7 @@ bool set_cursor(uint8_t line, uint8_t pos) {
 		break;
 #endif
 	default:
-		return false;
+		return FALSE;
 	}
 	/* send set DDRAM address command */
 	send_byte(cmd, write, ddram_addr | 0x80);
@@ -343,7 +342,7 @@ bool set_cursor(uint8_t line, uint8_t pos) {
 	current_line = line;
 	current_pos = pos;
 
-	return true;
+	return TRUE;
 }
 
 void lcd_putc(int8_t a_char) {

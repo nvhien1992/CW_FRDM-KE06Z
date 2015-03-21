@@ -8,8 +8,6 @@
 #ifndef BUTTON_H_
 #define BUTTON_H_
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "PE_Types.h"
 
 typedef enum {
