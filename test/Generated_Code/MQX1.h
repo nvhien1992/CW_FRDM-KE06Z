@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-13, 13:05, # CodeGen: 42
+**     Date/Time   : 2015-03-28, 16:22, # CodeGen: 44
 **     Abstract    :
 **         MQX Lite RTOS Adapter component.
 **     Settings    :
@@ -120,7 +120,7 @@ extern const TASK_TEMPLATE_STRUCT                MQX_template_list[];
 /* The first interrupt vector that the application wants to have a 'C' ISR for.    */
 #define FIRST_INTERRUPT_VECTOR_USED    (INT_SysTick)
 /* The last interrupt vector that the application wants to handle. */
-#define LAST_INTERRUPT_VECTOR_USED     (INT_SysTick)
+#define LAST_INTERRUPT_VECTOR_USED     (INT_FTM0)
 #define MQX_INTERRUPT_TABLE_ITEMS      (LAST_INTERRUPT_VECTOR_USED - FIRST_INTERRUPT_VECTOR_USED + 1)
 /* The table of 'C' handlers for interrupts. */
 extern INTERRUPT_TABLE_STRUCT          mqx_static_isr_table[MQX_INTERRUPT_TABLE_ITEMS];

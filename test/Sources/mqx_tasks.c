@@ -38,6 +38,7 @@ extern "C" {
 #endif 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "global.h"
 
 /* Definitions for LW Message Queue Component */
 #define NUM_MESSAGES		16
@@ -46,6 +47,8 @@ extern "C" {
 /* Use light weight message queues */
 uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
 		+ NUM_MESSAGES * MSG_SIZE];
+
+LWEVENT_STRUCT an_event;
 
 /*
  ** ===================================================================
@@ -67,8 +70,12 @@ void gpio_task(uint32_t task_init_data) {
 	LDD_TDeviceData *device_data = NULL;
 	device_data = GPIO1_Init(NULL);
 
-	_mqx_uint msg = 0;
+	_mqx_uint msg = 1;
+	/* init msg queue */
 	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
+	
+	/* init lwevent */
+	_lwevent_create(&an_event, LWEVENT_AUTO_CLEAR);
 
 	_mqx_uint task_id = _task_create_at(0, CONSOLE_TASK, 0, console_task_stack,
 			CONSOLE_TASK_STACK_SIZE);
@@ -80,9 +87,9 @@ void gpio_task(uint32_t task_init_data) {
 		counter++;
 
 		/* Write your code here ... */
+		_lwevent_wait_for(&an_event, EVT_BIT_MASK, TRUE, NULL);
 		GPIO1_ToggleFieldBits(device_data, led_red, 0xFFFFFFFF);
-		_time_delay_ticks(100);
-		msg = 1;
+		_time_delay_ticks(10);
 		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);
 	}
 }
@@ -113,7 +120,7 @@ void console_task(uint32_t task_init_data) {
 		_lwmsgq_receive((pointer) ctrl_msg_queue, &msg,
 				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
 		if (msg == 1) {
-			printf("print on console\n");
+			printf("received msg\n");
 		}
 	}
 }

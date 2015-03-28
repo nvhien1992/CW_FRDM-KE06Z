@@ -1167,7 +1167,7 @@ PE_DEBUGHALT();
         <group name="Components">
           <Lightweight_Semaphores v="yes" />
           <Lightweight_Events v="no" />
-          <Lightweight_Message_Queues v="no" />
+          <Lightweight_Message_Queues v="yes" />
           <Mutexes v="no" />
           <Lightweight_Timer v="no" />
           <Kernel_Logging v="no" />

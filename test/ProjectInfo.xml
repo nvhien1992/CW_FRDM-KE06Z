@@ -110,6 +110,7 @@
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Vectors.c</PathName>
       <PathName>D:\CW\test\Generated_Code\SystemTimer1.c</PathName>
+      <PathName>D:\CW\test\Generated_Code\TU1.c</PathName>
       <PathName>D:\CW\test\MQXLITE\config\task_template_list.c</PathName>
       <PathName>D:\CW\test\MQXLITE\kernel\idletask.c</PathName>
       <PathName>D:\CW\test\MQXLITE\kernel\int.c</PathName>
@@ -230,6 +231,7 @@
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.h</PathName>
       <PathName>D:\CW\test\Generated_Code\SystemTimer1.h</PathName>
+      <PathName>D:\CW\test\Generated_Code\TU1.h</PathName>
       <PathName>D:\CW\test\Generated_Code\Vectors_Config.h</PathName>
       <PathName>D:\CW\test\MQXLITE\config\task_template_list.h</PathName>
       <PathName>D:\CW\test\MQXLITE\config\user_config.h</PathName>
@@ -272,6 +274,7 @@
       <PathName>D:\CW\test\MQXLITE\psp\cortex_m\psptypes.h</PathName>
       <PathName>D:\CW\test\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\test\Sources\Events.h</PathName>
+      <PathName>D:\CW\test\Sources\global.h</PathName>
       <PathName>D:\CW\test\Sources\mqx_tasks.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>
