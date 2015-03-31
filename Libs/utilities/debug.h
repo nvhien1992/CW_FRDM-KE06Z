@@ -10,6 +10,9 @@
 
 #include <stdio.h>
 
+#define DISABLE_ALL (0)
+
+#if !DISABLE_ALL
 #if NOTIFY_EN
 #define NOTIFY(...) printf(__VA_ARGS__)
 #else
@@ -20,6 +23,7 @@
 #define DEBUG(...) printf(__VA_ARGS__)
 #else
 #define DEBUG(...) 
+#endif
 #endif
 
 #endif /* DEBUG_H_ */
