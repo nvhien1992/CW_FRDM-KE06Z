@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:47, # CodeGen: 3
+**     Date/Time   : 2015-03-28, 10:56, # CodeGen: 38
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,22 +16,18 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : MB_NPW
-**          Pin for I/O                                    : PTD7/KBI0_P31/UART2_TX
+**          Pin for I/O                                    : PTB1/KBI0_P9/UART0_TX/ADC0_SE5
 **          Pin signal                                     : 
-**          Direction                                      : Input/Output
+**          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output
 **            Init. value                                  : 0
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **          Safe mode                                      : no
 **     Contents    :
-**         Init     - LDD_TDeviceData* MB_NPW_Init(LDD_TUserData *UserDataPtr);
-**         SetDir   - void MB_NPW_SetDir(LDD_TDeviceData *DeviceDataPtr, bool Dir);
-**         SetInput - void MB_NPW_SetInput(LDD_TDeviceData *DeviceDataPtr);
-**         GetVal   - bool MB_NPW_GetVal(LDD_TDeviceData *DeviceDataPtr);
-**         PutVal   - void MB_NPW_PutVal(LDD_TDeviceData *DeviceDataPtr, bool Val);
-**         ClrVal   - void MB_NPW_ClrVal(LDD_TDeviceData *DeviceDataPtr);
-**         SetVal   - void MB_NPW_SetVal(LDD_TDeviceData *DeviceDataPtr);
+**         Init   - LDD_TDeviceData* MB_NPW_Init(LDD_TUserData *UserDataPtr);
+**         ClrVal - void MB_NPW_ClrVal(LDD_TDeviceData *DeviceDataPtr);
+**         SetVal - void MB_NPW_SetVal(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -105,19 +101,18 @@ extern "C" {
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define MB_NPW_PRPH_BASE_ADDRESS  0x400FF000U
   
+/*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
+#define MB_NPW_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_MB_NPW_ID))
+
 /* Methods configuration constants - generated for all enabled component's methods */
 #define MB_NPW_Init_METHOD_ENABLED     /*!< Init method of the component MB_NPW is enabled (generated) */
-#define MB_NPW_SetDir_METHOD_ENABLED   /*!< SetDir method of the component MB_NPW is enabled (generated) */
-#define MB_NPW_SetInput_METHOD_ENABLED /*!< SetInput method of the component MB_NPW is enabled (generated) */
-#define MB_NPW_GetVal_METHOD_ENABLED   /*!< GetVal method of the component MB_NPW is enabled (generated) */
-#define MB_NPW_PutVal_METHOD_ENABLED   /*!< PutVal method of the component MB_NPW is enabled (generated) */
 #define MB_NPW_ClrVal_METHOD_ENABLED   /*!< ClrVal method of the component MB_NPW is enabled (generated) */
 #define MB_NPW_SetVal_METHOD_ENABLED   /*!< SetVal method of the component MB_NPW is enabled (generated) */
 
 /* Definition of implementation constants */
 #define MB_NPW_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
 #define MB_NPW_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define MB_NPW_PORT_MASK 0x80000000U   /*!< Mask of the allocated pin from the port */
+#define MB_NPW_PORT_MASK 0x0200U       /*!< Mask of the allocated pin from the port */
 
 
 
@@ -144,88 +139,6 @@ extern "C" {
 */
 /* ===================================================================*/
 LDD_TDeviceData* MB_NPW_Init(LDD_TUserData *UserDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_NPW_SetDir (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets a pin direction (available only if the direction =
-**         _[input/output]_).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @param
-**         Dir             - Direction to set. Possible values:
-**                           <false> - Input
-**                           <true> - Output
-*/
-/* ===================================================================*/
-void MB_NPW_SetDir(LDD_TDeviceData *DeviceDataPtr, bool Dir);
-
-/*
-** ===================================================================
-**     Method      :  MB_NPW_SetInput (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets a pin direction to input (available only if the
-**         direction = _[input/output]_).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-*/
-/* ===================================================================*/
-void MB_NPW_SetInput(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_NPW_GetVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Returns the input/output value. If the direction is [input]
-**         then the input value of the pin is read and returned. If the
-**         direction is [output] then the last written value is read
-**         and returned (see <Safe mode> property for limitations).
-**         This method cannot be disabled if direction is [input].
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @return
-**                         - Input or output value. Possible values:
-**                           <false> - logical "0" (Low level)
-**                           <true> - logical "1" (High level)
-*/
-/* ===================================================================*/
-bool MB_NPW_GetVal(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_NPW_PutVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         The specified output value is set. If the direction is <b>
-**         input</b>, the component saves the value to a memory or a
-**         register and this value will be written to the pin after
-**         switching to the output mode (using <tt>SetDir(TRUE)</tt>;
-**         see <a href="BitIOProperties.html#SafeMode">Safe mode</a>
-**         property for limitations). If the direction is <b>output</b>,
-**         it writes the value to the pin. (Method is available only if
-**         the direction = <u><tt>output</tt></u> or <u><tt>
-**         input/output</tt></u>).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @param
-**         Val             - Output value. Possible values:
-**                           <false> - logical "0" (Low level)
-**                           <true> - logical "1" (High level)
-*/
-/* ===================================================================*/
-void MB_NPW_PutVal(LDD_TDeviceData *DeviceDataPtr, bool Val);
 
 /*
 ** ===================================================================

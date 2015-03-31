@@ -37,14 +37,14 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "Console.h"
-#include "IO1.h"
 #include "MB_NRST.h"
 #include "MB_NPW.h"
 #include "MB_STATUS.h"
 #include "MB_DTR.h"
 #include "MB_RI.h"
 #include "MB_UART.h"
+#include "CsIO1.h"
+#include "IO1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,6 +82,22 @@ void Control_task(uint32_t task_init_data);
 ** ===================================================================
 */
 void Remote_com_task(uint32_t task_init_data);
+
+/*
+** ===================================================================
+**     Event       :  State_machine_task (module mqx_tasks)
+**
+**     Component   :  Task3 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void State_machine_task(uint32_t task_init_data);
 
 /* END mqx_tasks */
 

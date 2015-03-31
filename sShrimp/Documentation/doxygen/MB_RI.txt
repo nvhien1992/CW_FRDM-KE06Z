@@ -18,7 +18,7 @@ by the component.
 <tr><td colspan="4" class="ttitle1">MB_RI Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x40048014</td><td>SIM_SCGC</td><td>
-    0x08200000
+    0x08000000
  </td><td>SIM_SCGC register, peripheral MB_RI.</td></tr>
 <tr><td>0x40031000</td><td>IRQ_SC</td><td>
     0x00000036
@@ -85,7 +85,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40048014</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x08200000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x08000000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00003000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>31</td><td>ACMP1</td><td>0x00</td><td>ACMP1 Clock Gate Control</td>
@@ -95,7 +95,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>25</td><td>KBI1</td><td>0x00</td><td>KBI1 Clock Gate Control</td>
 <tr><td>24</td><td>KBI0</td><td>0x00</td><td>KBI0 Clock Gate Control</td>
 <tr><td>22</td><td>UART2</td><td>0x00</td><td>UART2 Clock Gate Control</td>
-<tr><td>21</td><td>UART1</td><td>0x01</td><td>UART1 Clock Gate Control</td>
+<tr><td>21</td><td>UART1</td><td>0x00</td><td>UART1 Clock Gate Control</td>
 <tr><td>20</td><td>UART0</td><td>0x00</td><td>UART0 Clock Gate Control</td>
 <tr><td>19</td><td>SPI1</td><td>0x00</td><td>SPI1 Clock Gate Control</td>
 <tr><td>18</td><td>SPI0</td><td>0x00</td><td>SPI0 Clock Gate Control</td>

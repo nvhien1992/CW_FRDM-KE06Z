@@ -57,13 +57,14 @@
       <Path>D:\CW\sShrimp\MQXLITE\psp\cortex_m\</Path>
       <Path>D:\CW\sShrimp\Project_Settings\Startup_Code\</Path>
       <Path>D:\CW\sShrimp\Sources\</Path>
+      <Path>D:\CW\sShrimp\utilities\</Path>
       <Path>D:\CW\sShrimp\MQXLITE\psp\cortex_m\core\M0\</Path>
     </SourceCodePaths>
   </PATHS>
   <FILES>
     <GeneratedCs>
-      <PathName>D:\CW\sShrimp\Generated_Code\Console.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\Cpu.c</PathName>
+      <PathName>D:\CW\sShrimp\Generated_Code\CsIO1.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\IO1.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\MB_DTR.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\MB_NPW.c</PathName>
@@ -119,11 +120,18 @@
       <PathName>D:\CW\sShrimp\Sources\Events.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\main.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\remote_com.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\remote_com_resources.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\sim900_int.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\uart_ll.c</PathName>
+      <PathName>D:\CW\sShrimp\utilities\PID.c</PathName>
+      <PathName>D:\CW\sShrimp\utilities\alarm.c</PathName>
+      <PathName>D:\CW\sShrimp\utilities\array_utils.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
       <PathName>D:\CW\sShrimp\Generated_Code\CPU_Config.h</PathName>
-      <PathName>D:\CW\sShrimp\Generated_Code\Console.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\Cpu.h</PathName>
+      <PathName>D:\CW\sShrimp\Generated_Code\CsIO1.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\IO1.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\iofiles\MKE06Z4.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\IO_Map.h</PathName>
@@ -210,7 +218,16 @@
       <PathName>D:\CW\sShrimp\MQXLITE\psp\cortex_m\psptypes.h</PathName>
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\global.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\remote_com.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\remote_com_resources.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\sim900_int.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\uart_ll.h</PathName>
+      <PathName>D:\CW\sShrimp\utilities\PID.h</PathName>
+      <PathName>D:\CW\sShrimp\utilities\alarm.h</PathName>
+      <PathName>D:\CW\sShrimp\utilities\array_utils.h</PathName>
+      <PathName>D:\CW\sShrimp\utilities\debug.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>
       <PathName>D:\CW\sShrimp\MQXLITE\psp\cortex_m\core\M0\boot.S</PathName>

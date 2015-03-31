@@ -30,10 +30,16 @@ typedef enum {
 } RCOM_job_type_t;
 
 typedef enum {
+	SM_AND_TIMEOUT,
+	TIMEOUT,
+	NOTHING,
+} RCOM_exe_method_t;
+
+typedef enum {
 	JOB_FAIL, //
 	JOB_SUCCESS_WITH_DATA, //
 	JOB_SUCCESS_WITHOUT_DATA, //
-} RCOM_job_result_t;
+} RCOM_job_result_type_t;
 
 typedef enum {
 	STEP_SUCCESS, //
@@ -49,16 +55,16 @@ typedef struct {
 } RCOM_job_t;
 
 typedef struct {
-	uint8_t execution_method;
-	void* send_command;
+	RCOM_exe_method_t execution_method;
+	char* command;
 	uint32_t timeout;
-	void* expected_response;
+	char* expected_response;
 } RCOM_step_info_t;
 
 typedef struct {
-	RCOM_job_result_t result_type;
+	RCOM_job_result_type_t result_type;
 	union {
-		uint32_t int_result; //contain failed_reason if failed
+		uint32_t int_result; //contain failed_step if failed
 		void* struct_result; //contain data if success
 	} content;
 } RCOM_job_result_t;
@@ -71,21 +77,16 @@ typedef enum {
 
 typedef struct {
 	bool SM_status;
-	void* SM_buffer;
+	char* SM_buffer;
 	uint32_t SM_pointer;
 	uint8_t device_status;
-	void* web_domain;
-	void* apn_name;
-	void* apn_pass;
-	void* apn_user;
-	void* phone;
-	void* sms;
+	char* web_domain;
+	char* apn_name;
+	char* apn_pass;
+	char* apn_user;
+	char* phone_number;
+	char* sms_msg;
 } RCOM_t;
-
-/*======================================================================
- ==============================SHARED DATA===============================
- =======================================================================*/
-extern RCOM_t RCOM_info;
 
 #endif //REMOTE_COM_H_
 

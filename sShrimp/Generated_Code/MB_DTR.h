@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:47, # CodeGen: 3
+**     Date/Time   : 2015-03-28, 10:28, # CodeGen: 34
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,22 +16,18 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : MB_DTR
-**          Pin for I/O                                    : PTD7/KBI0_P31/UART2_TX
+**          Pin for I/O                                    : PTD5/KBI0_P29/PWT_IN0
 **          Pin signal                                     : 
-**          Direction                                      : Input/Output
+**          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output
 **            Init. value                                  : 0
 **            Auto initialization                          : no
 **          Safe mode                                      : no
 **     Contents    :
-**         Init     - LDD_TDeviceData* MB_DTR_Init(LDD_TUserData *UserDataPtr);
-**         SetDir   - void MB_DTR_SetDir(LDD_TDeviceData *DeviceDataPtr, bool Dir);
-**         SetInput - void MB_DTR_SetInput(LDD_TDeviceData *DeviceDataPtr);
-**         GetVal   - bool MB_DTR_GetVal(LDD_TDeviceData *DeviceDataPtr);
-**         PutVal   - void MB_DTR_PutVal(LDD_TDeviceData *DeviceDataPtr, bool Val);
-**         ClrVal   - void MB_DTR_ClrVal(LDD_TDeviceData *DeviceDataPtr);
-**         SetVal   - void MB_DTR_SetVal(LDD_TDeviceData *DeviceDataPtr);
+**         Init   - LDD_TDeviceData* MB_DTR_Init(LDD_TUserData *UserDataPtr);
+**         ClrVal - void MB_DTR_ClrVal(LDD_TDeviceData *DeviceDataPtr);
+**         SetVal - void MB_DTR_SetVal(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -107,17 +103,13 @@ extern "C" {
   
 /* Methods configuration constants - generated for all enabled component's methods */
 #define MB_DTR_Init_METHOD_ENABLED     /*!< Init method of the component MB_DTR is enabled (generated) */
-#define MB_DTR_SetDir_METHOD_ENABLED   /*!< SetDir method of the component MB_DTR is enabled (generated) */
-#define MB_DTR_SetInput_METHOD_ENABLED /*!< SetInput method of the component MB_DTR is enabled (generated) */
-#define MB_DTR_GetVal_METHOD_ENABLED   /*!< GetVal method of the component MB_DTR is enabled (generated) */
-#define MB_DTR_PutVal_METHOD_ENABLED   /*!< PutVal method of the component MB_DTR is enabled (generated) */
 #define MB_DTR_ClrVal_METHOD_ENABLED   /*!< ClrVal method of the component MB_DTR is enabled (generated) */
 #define MB_DTR_SetVal_METHOD_ENABLED   /*!< SetVal method of the component MB_DTR is enabled (generated) */
 
 /* Definition of implementation constants */
 #define MB_DTR_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
 #define MB_DTR_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define MB_DTR_PORT_MASK 0x80000000U   /*!< Mask of the allocated pin from the port */
+#define MB_DTR_PORT_MASK 0x20000000U   /*!< Mask of the allocated pin from the port */
 
 
 
@@ -144,88 +136,6 @@ extern "C" {
 */
 /* ===================================================================*/
 LDD_TDeviceData* MB_DTR_Init(LDD_TUserData *UserDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_DTR_SetDir (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets a pin direction (available only if the direction =
-**         _[input/output]_).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @param
-**         Dir             - Direction to set. Possible values:
-**                           <false> - Input
-**                           <true> - Output
-*/
-/* ===================================================================*/
-void MB_DTR_SetDir(LDD_TDeviceData *DeviceDataPtr, bool Dir);
-
-/*
-** ===================================================================
-**     Method      :  MB_DTR_SetInput (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets a pin direction to input (available only if the
-**         direction = _[input/output]_).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-*/
-/* ===================================================================*/
-void MB_DTR_SetInput(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_DTR_GetVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Returns the input/output value. If the direction is [input]
-**         then the input value of the pin is read and returned. If the
-**         direction is [output] then the last written value is read
-**         and returned (see <Safe mode> property for limitations).
-**         This method cannot be disabled if direction is [input].
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @return
-**                         - Input or output value. Possible values:
-**                           <false> - logical "0" (Low level)
-**                           <true> - logical "1" (High level)
-*/
-/* ===================================================================*/
-bool MB_DTR_GetVal(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_DTR_PutVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         The specified output value is set. If the direction is <b>
-**         input</b>, the component saves the value to a memory or a
-**         register and this value will be written to the pin after
-**         switching to the output mode (using <tt>SetDir(TRUE)</tt>;
-**         see <a href="BitIOProperties.html#SafeMode">Safe mode</a>
-**         property for limitations). If the direction is <b>output</b>,
-**         it writes the value to the pin. (Method is available only if
-**         the direction = <u><tt>output</tt></u> or <u><tt>
-**         input/output</tt></u>).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @param
-**         Val             - Output value. Possible values:
-**                           <false> - logical "0" (Low level)
-**                           <true> - logical "1" (High level)
-*/
-/* ===================================================================*/
-void MB_DTR_PutVal(LDD_TDeviceData *DeviceDataPtr, bool Val);
 
 /*
 ** ===================================================================

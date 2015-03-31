@@ -52,14 +52,14 @@
 #include "Pins1.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
-#include "Console.h"
-#include "IO1.h"
 #include "MB_NRST.h"
 #include "MB_NPW.h"
 #include "MB_STATUS.h"
 #include "MB_DTR.h"
 #include "MB_RI.h"
 #include "MB_UART.h"
+#include "CsIO1.h"
+#include "IO1.h"
 #include "Events.h"
 #include "mqx_tasks.h"
 
@@ -98,9 +98,9 @@ extern "C" {
 #define VECTOR_25         (tIsrFunc)&_int_kernel_isr            /* 0x19 -    ivINT_I2C1                    used by PE */
 #define VECTOR_26         (tIsrFunc)&_int_kernel_isr            /* 0x1A -    ivINT_SPI0                    used by PE */
 #define VECTOR_27         (tIsrFunc)&_int_kernel_isr            /* 0x1B -    ivINT_SPI1                    used by PE */
-#define VECTOR_28         (tIsrFunc)&_int_kernel_isr            /* 0x1C 64   ivINT_UART0                   used by PE */
+#define VECTOR_28         (tIsrFunc)&_int_kernel_isr            /* 0x1C -    ivINT_UART0                   used by PE */
 #define VECTOR_29         (tIsrFunc)&_int_kernel_isr            /* 0x1D -    ivINT_UART1                   used by PE */
-#define VECTOR_30         (tIsrFunc)&_int_kernel_isr            /* 0x1E -    ivINT_UART2                   used by PE */
+#define VECTOR_30         (tIsrFunc)&_int_kernel_isr            /* 0x1E 64   ivINT_UART2                   used by PE */
 #define VECTOR_31         (tIsrFunc)&_int_kernel_isr            /* 0x1F -    ivINT_ADC                     used by PE */
 #define VECTOR_32         (tIsrFunc)&_int_kernel_isr            /* 0x20 -    ivINT_ACMP0                   used by PE */
 #define VECTOR_33         (tIsrFunc)&_int_kernel_isr            /* 0x21 -    ivINT_FTM0                    used by PE */

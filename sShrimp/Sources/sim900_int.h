@@ -10,44 +10,62 @@
 #define SIM900_INT_H_
 
 //#include "swm_gw_mng.h"
-#include "remote_com.h"
-/////////////////////////////////////////////
-#define SIM_UART_DATA_RATE    38400
+#include "remote_com_resources.h"
 
-/*======================================================================
+/*=======================================================================
  ==============================DEFINE GPIO===============================
  =======================================================================*/
+typedef struct {
+	struct {
+		void (*SetVal)(LDD_TDeviceData *dev_data);
+		void (*ClrVal)(LDD_TDeviceData *dev_data);
+	} nRST;
+	struct {
+		void (*SetVal)(LDD_TDeviceData *dev_data);
+		void (*ClrVal)(LDD_TDeviceData *dev_data);
+	} nPW;
+	struct {
+		void (*SetVal)(LDD_TDeviceData *dev_data);
+		void (*ClrVal)(LDD_TDeviceData *dev_data);
+	} DTR;	
+	struct {
+		bool (*GetVal)(LDD_TDeviceData *dev_data);
+	} STATUS;
+	struct {
+		LDD_TDeviceData* (*Init)(LDD_TUserData *usr_data);
+	} RI;
+} SIM900_pins_t;
 
 //MOB_nRST is output_
-#define  MOB_NRST_SEL         			 P3SEL
-#define  MOB_NRST_DIR         			 P3DIR
-#define  MOB_NRST_PIN         			 0x40
-#define  MOB_NRST_SET()       			 P3OUT |= 0x40
-#define  MOB_NRST_CLEAR()     			 P3OUT &= 0xBF
-//MOB_nPW is output
-#define  MOB_NPW_SEL          			 P8SEL
-#define  MOB_NPW_DIR          			 P8DIR
-#define  MOB_NPW_PIN          			 0x08
-#define  MOB_NPW_SET()        			 P8OUT |= 0x08
-#define  MOB_NPW_CLEAR()      			 P8OUT &= 0xF7
-//MOB_STATUS is input
-#define  MOB_STATUS_SEL       			 P8SEL
-#define  MOB_STATUS_DIR       			 P8DIR
-#define  MOB_STATUS_PIN       			 0x04
-#define  MOB_STATUS_IN        			 P8IN
-//MOB_RI is input
-#define  MOB_RI_SEL           			 P2SEL
-#define  MOB_RI_DIR           			 P2DIR
-#define  MOB_RI_PIN           			 0x10
-#define  MOB_RI_IN            			 P2IN
-//MOB_DTR is output
-#define  MOB_DTR_SEL          			 P7SEL
-#define  MOB_DTR_DIR          			 P7DIR
-#define  MOB_DTR_PIN          			 0x08
-#define  MOB_DTR_SET()        			 P7OUT |= 0x08
-#define  MOB_DTR_CLEAR()      			 P7OUT &= 0xF7
+//#define  MOB_NRST_SEL         			 P3SEL
+//#define  MOB_NRST_DIR         			 P3DIR
+//#define  MOB_NRST_PIN         			 0x40
+//#define  MOB_NRST_SET()       			 P3OUT |= 0x40
+//#define  MOB_NRST_CLEAR()     			 P3OUT &= 0xBF
+////MOB_nPW is output
+//#define  MOB_NPW_SEL          			 P8SEL
+//#define  MOB_NPW_DIR          			 P8DIR
+//#define  MOB_NPW_PIN          			 0x08
+//#define  MOB_NPW_SET()        			 P8OUT |= 0x08
+//#define  MOB_NPW_CLEAR()      			 P8OUT &= 0xF7
+////MOB_STATUS is input
+//#define  MOB_STATUS_SEL       			 P8SEL
+//#define  MOB_STATUS_DIR       			 P8DIR
+//#define  MOB_STATUS_PIN       			 0x04
+//#define  MOB_STATUS_IN        			 P8IN
+////MOB_RI is input
+//#define  MOB_RI_SEL           			 P2SEL
+//#define  MOB_RI_DIR           			 P2DIR
+//#define  MOB_RI_PIN           			 0x10
+//#define  MOB_RI_IN            			 P2IN
+////MOB_DTR is output
+//#define  MOB_DTR_SEL          			 P7SEL
+//#define  MOB_DTR_DIR          			 P7DIR
+//#define  MOB_DTR_PIN          			 0x08
+//#define  MOB_DTR_SET()        			 P7OUT |= 0x08
+//#define  MOB_DTR_CLEAR()      			 P7OUT &= 0xF7
 
-/*======================================================================
+/*=======================================================================
  ================================STEP NUM================================
  =======================================================================*/
 #define  SIM900_START_DEVICE_STEP_NUM           2
@@ -60,10 +78,9 @@
 #define  SIM900_MAKE_VOICE_CALL_STEP_NUM        2
 #define  SIM900_TERM_HTTP_SESSION_STEP_NUM	    1
 
-/*======================================================================
- ============================DEFINE FUNCTION=============================
+/*=======================================================================
+ ============================DEFINE FUNCTIONS============================
  =======================================================================*/
-#include "remote_com_resources.h"
 
 /**
  * @brief 
@@ -85,7 +102,10 @@ void sim900_power_on();
  */
 void sim900_power_off(void);
 
-void sim900_term_http_session(void);
+/**
+ * 
+ */
+//void sim900_term_http_session(void);
 
 /**
  * @brief 
@@ -94,7 +114,7 @@ void sim900_term_http_session(void);
  *   cmd: comamnd (string format)
  * @return
  */
-uint8_t sim900_send_cmd(char* cmd);
+//void sim900_send_cmd(char* cmd);
 
 /**
  @brief Send more data to the SIM900
@@ -102,11 +122,6 @@ uint8_t sim900_send_cmd(char* cmd);
  @attention This function do not clear RXBuf before sending 
  */
 void sim900_send_more(char* data);
-
-/**
- * 
- */
-uint8_t sim900_send_http_data(char* data, uint8_t is_sent);
 
 /**
  * 
@@ -121,7 +136,7 @@ char* sim900_get_http_res_content(void);
  * @return
  *   none
  */
-void sim900_gpio_init(void);
+void sim900_pin_init(SIM900_pins_t *defined_pins);
 
 void sim900_start_device(RCOM_job_result_t *job_result);
 
@@ -171,12 +186,12 @@ void sim900_stop_device(RCOM_job_result_t *job_result);
  *   1:success
  *   0:fail	
  */
-void sim900_post_report(gw_rpt_para_t* pRptPara, RCOM_job_result_t *job_result);
+//void sim900_post_report(gw_rpt_para_t* pRptPara, RCOM_job_result_t *job_result);
 
 /*
  * @brief	Get unit (in string format) from unit (in int format)
  */
-void SWM_Get_Unit_Str(ss_unit_t unit, char unit_str[]);
+//void SWM_Get_Unit_Str(ss_unit_t unit, char unit_str[]);
 
 /**
  * @brief   send update with gprs	
@@ -205,7 +220,7 @@ void SWM_Get_Unit_Str(ss_unit_t unit, char unit_str[]);
  *    1: success
  *    0: fail		
  */
-void sim900_post_update(RCOM_job_result_t *job_result);
+//void sim900_post_update(RCOM_job_result_t *job_result);
 
 /**
  * @brief   request Webserver to get time stamp	
@@ -227,7 +242,8 @@ void sim900_get_timestamp(RCOM_job_result_t *job_result);
  *   1:success
  *   0:fail	
  */
-void sim900_send_sms(RCOM_job_result_t *job_result);
+void sim900_send_sms(RCOM_job_result_t *job_result, char* phone_number,
+		char* msg);
 
 /**
  * @brief   make a warning voice call
@@ -239,14 +255,6 @@ void sim900_send_sms(RCOM_job_result_t *job_result);
  *   0:fail	
  * @attention This is emergency situation, block everthing until DONE 
  */
-uint8_t sim900_make_voice_call(char* phone_number, uint8_t current_step);
-
-/*
- * @return
- *      1: need to terminate session
- *      0: don't need to terminate session
- */
-uint8_t sim900_need_terminate_session(RCOM_job_type_t job_type);
+void sim900_make_voice_call(RCOM_job_result_t *job_result, char* phone_number);
 
 #endif //SIM900_INT_H_
-

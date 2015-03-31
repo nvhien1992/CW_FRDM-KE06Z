@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:47, # CodeGen: 3
+**     Date/Time   : 2015-03-28, 10:08, # CodeGen: 33
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,22 +16,17 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : MB_STATUS
-**          Pin for I/O                                    : PTD7/KBI0_P31/UART2_TX
+**          Pin for I/O                                    : PTD2/KBI0_P26/SPI1_MISO
 **          Pin signal                                     : 
-**          Direction                                      : Input/Output
+**          Direction                                      : Input
 **          Initialization                                 : 
-**            Init. direction                              : Output
+**            Init. direction                              : Input
 **            Init. value                                  : 0
 **            Auto initialization                          : no
 **          Safe mode                                      : no
 **     Contents    :
-**         Init     - LDD_TDeviceData* MB_STATUS_Init(LDD_TUserData *UserDataPtr);
-**         SetDir   - void MB_STATUS_SetDir(LDD_TDeviceData *DeviceDataPtr, bool Dir);
-**         SetInput - void MB_STATUS_SetInput(LDD_TDeviceData *DeviceDataPtr);
-**         GetVal   - bool MB_STATUS_GetVal(LDD_TDeviceData *DeviceDataPtr);
-**         PutVal   - void MB_STATUS_PutVal(LDD_TDeviceData *DeviceDataPtr, bool Val);
-**         ClrVal   - void MB_STATUS_ClrVal(LDD_TDeviceData *DeviceDataPtr);
-**         SetVal   - void MB_STATUS_SetVal(LDD_TDeviceData *DeviceDataPtr);
+**         Init   - LDD_TDeviceData* MB_STATUS_Init(LDD_TUserData *UserDataPtr);
+**         GetVal - bool MB_STATUS_GetVal(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -107,17 +102,12 @@ extern "C" {
   
 /* Methods configuration constants - generated for all enabled component's methods */
 #define MB_STATUS_Init_METHOD_ENABLED  /*!< Init method of the component MB_STATUS is enabled (generated) */
-#define MB_STATUS_SetDir_METHOD_ENABLED /*!< SetDir method of the component MB_STATUS is enabled (generated) */
-#define MB_STATUS_SetInput_METHOD_ENABLED /*!< SetInput method of the component MB_STATUS is enabled (generated) */
 #define MB_STATUS_GetVal_METHOD_ENABLED /*!< GetVal method of the component MB_STATUS is enabled (generated) */
-#define MB_STATUS_PutVal_METHOD_ENABLED /*!< PutVal method of the component MB_STATUS is enabled (generated) */
-#define MB_STATUS_ClrVal_METHOD_ENABLED /*!< ClrVal method of the component MB_STATUS is enabled (generated) */
-#define MB_STATUS_SetVal_METHOD_ENABLED /*!< SetVal method of the component MB_STATUS is enabled (generated) */
 
 /* Definition of implementation constants */
 #define MB_STATUS_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
 #define MB_STATUS_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define MB_STATUS_PORT_MASK 0x80000000U /*!< Mask of the allocated pin from the port */
+#define MB_STATUS_PORT_MASK 0x04000000U /*!< Mask of the allocated pin from the port */
 
 
 
@@ -147,40 +137,6 @@ LDD_TDeviceData* MB_STATUS_Init(LDD_TUserData *UserDataPtr);
 
 /*
 ** ===================================================================
-**     Method      :  MB_STATUS_SetDir (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets a pin direction (available only if the direction =
-**         _[input/output]_).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @param
-**         Dir             - Direction to set. Possible values:
-**                           <false> - Input
-**                           <true> - Output
-*/
-/* ===================================================================*/
-void MB_STATUS_SetDir(LDD_TDeviceData *DeviceDataPtr, bool Dir);
-
-/*
-** ===================================================================
-**     Method      :  MB_STATUS_SetInput (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets a pin direction to input (available only if the
-**         direction = _[input/output]_).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-*/
-/* ===================================================================*/
-void MB_STATUS_SetInput(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
 **     Method      :  MB_STATUS_GetVal (component BitIO_LDD)
 */
 /*!
@@ -200,64 +156,6 @@ void MB_STATUS_SetInput(LDD_TDeviceData *DeviceDataPtr);
 */
 /* ===================================================================*/
 bool MB_STATUS_GetVal(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_STATUS_PutVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         The specified output value is set. If the direction is <b>
-**         input</b>, the component saves the value to a memory or a
-**         register and this value will be written to the pin after
-**         switching to the output mode (using <tt>SetDir(TRUE)</tt>;
-**         see <a href="BitIOProperties.html#SafeMode">Safe mode</a>
-**         property for limitations). If the direction is <b>output</b>,
-**         it writes the value to the pin. (Method is available only if
-**         the direction = <u><tt>output</tt></u> or <u><tt>
-**         input/output</tt></u>).
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by <Init> method.
-**     @param
-**         Val             - Output value. Possible values:
-**                           <false> - logical "0" (Low level)
-**                           <true> - logical "1" (High level)
-*/
-/* ===================================================================*/
-void MB_STATUS_PutVal(LDD_TDeviceData *DeviceDataPtr, bool Val);
-
-/*
-** ===================================================================
-**     Method      :  MB_STATUS_ClrVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Clears (set to zero) the output value. It is equivalent to
-**         the [PutVal(FALSE)]. This method is available only if the
-**         direction = _[output]_ or _[input/output]_.
-**     @param
-**         DeviceDataPtr   - Pointer to device data
-**                           structure returned by <Init> method.
-*/
-/* ===================================================================*/
-void MB_STATUS_ClrVal(LDD_TDeviceData *DeviceDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  MB_STATUS_SetVal (component BitIO_LDD)
-*/
-/*!
-**     @brief
-**         Sets (to one) the output value. It is equivalent to the
-**         [PutVal(TRUE)]. This method is available only if the
-**         direction = _[output]_ or _[input/output]_.
-**     @param
-**         DeviceDataPtr   - Pointer to device data
-**                           structure returned by <Init> method.
-*/
-/* ===================================================================*/
-void MB_STATUS_SetVal(LDD_TDeviceData *DeviceDataPtr);
 
 /* END MB_STATUS. */
 

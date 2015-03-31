@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:51, # CodeGen: 4
+**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -143,14 +143,14 @@ bool PE_PeripheralUsed(uint32_t PrphBaseAddress)
   switch (PrphBaseAddress) {
     /* Base address allocated by peripheral(s) SysTick */
     case 0xE000E010UL:
-    /* Base address allocated by peripheral(s) UART1 */
-    case 0x4006B000UL:
     /* Base address allocated by peripheral(s) GPIOA */
     case 0x400FF000UL:
     /* Base address allocated by peripheral(s) GPIOC */
     case 0x400FF080UL:
-    /* Base address allocated by peripheral(s) UART0 */
-    case 0x4006A000UL:
+    /* Base address allocated by peripheral(s) UART2 */
+    case 0x4006C000UL:
+    /* Base address allocated by peripheral(s) UART1 */
+    case 0x4006B000UL:
       result = TRUE;
       break;
     default:

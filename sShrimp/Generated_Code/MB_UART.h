@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-06, 15:45, # CodeGen: 6
+**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -16,15 +16,15 @@
 **         The component requires one on-chip asynchronous serial communication channel.
 **     Settings    :
 **          Component name                                 : MB_UART
-**          Device                                         : UART0
+**          Device                                         : UART2
 **          Interrupt service/event                        : Enabled
-**            Interrupt RxD                                : INT_UART0
+**            Interrupt RxD                                : INT_UART2
 **            Interrupt RxD priority                       : medium priority
 **            Interrupt RxD ISR name                       : MB_UART_Interrupt
-**            Interrupt TxD                                : INT_UART0
+**            Interrupt TxD                                : INT_UART2
 **            Interrupt TxD priority                       : medium priority
 **            Interrupt TxD ISR name                       : MB_UART_Interrupt
-**            Interrupt Error                              : INT_UART0
+**            Interrupt Error                              : INT_UART2
 **            Interrupt Error priority                     : medium priority
 **            Interrupt Error ISR name                     : MB_UART_Interrupt
 **          Settings                                       : 
@@ -40,10 +40,10 @@
 **            Receiver input                               : Not inverted
 **            Break generation length                      : 10/11 bits
 **            Receiver                                     : Enabled
-**              RxD                                        : PTA2/KBI0_P2/UART0_RX/I2C0_SDA
+**              RxD                                        : PTD6/KBI0_P30/UART2_RX
 **              RxD pin signal                             : 
 **            Transmitter                                  : Enabled
-**              TxD                                        : PTA3/KBI0_P3/UART0_TX/I2C0_SCL
+**              TxD                                        : PTD7/KBI0_P31/UART2_TX
 **              TxD pin signal                             : 
 **            Flow control                                 : None
 **          Initialization                                 : 
@@ -130,7 +130,7 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define MB_UART_PRPH_BASE_ADDRESS  0x4006A000U
+#define MB_UART_PRPH_BASE_ADDRESS  0x4006C000U
   
 /* Methods configuration constants - generated for all enabled component's methods */
 #define MB_UART_Init_METHOD_ENABLED    /*!< Init method of the component MB_UART is enabled (generated) */

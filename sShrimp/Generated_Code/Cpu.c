@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:17, # CodeGen: 2
+**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
 **     Abstract    :
 **
 **     Settings    :
@@ -109,6 +109,10 @@ void Common_Init(void)
 #if CPU_COMPONENTS_INIT
 void Components_Init(void)
 {
+  /* ### BitIO_LDD "MB_NRST" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)MB_NRST_Init(NULL);
+  /* ### BitIO_LDD "MB_NPW" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)MB_NPW_Init(NULL);
   /* ### Serial_LDD "IO1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)IO1_Init(NULL);
 }

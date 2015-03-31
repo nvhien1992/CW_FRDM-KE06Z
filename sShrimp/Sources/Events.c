@@ -38,6 +38,11 @@ extern "C" {
 #endif 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "remote_com_resources.h"
+
+#define NOTIFY_EN (1)
+#define DEBUG_EN (1)
+#include "debug.h"
 
 /*
  ** ===================================================================
@@ -93,6 +98,7 @@ void MB_RI_OnInterrupt(LDD_TUserData *UserDataPtr) {
 /* ===================================================================*/
 void MB_UART_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
+	RCOM_uart_rx_callback();
 }
 
 /*
@@ -113,6 +119,7 @@ void MB_UART_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 /* ===================================================================*/
 void MB_UART_OnBlockSent(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
+//	DEBUG("uart sent\n");
 }
 
 /* END Events */

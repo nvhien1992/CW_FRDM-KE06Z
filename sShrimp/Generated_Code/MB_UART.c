@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-06, 15:45, # CodeGen: 6
+**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -16,15 +16,15 @@
 **         The component requires one on-chip asynchronous serial communication channel.
 **     Settings    :
 **          Component name                                 : MB_UART
-**          Device                                         : UART0
+**          Device                                         : UART2
 **          Interrupt service/event                        : Enabled
-**            Interrupt RxD                                : INT_UART0
+**            Interrupt RxD                                : INT_UART2
 **            Interrupt RxD priority                       : medium priority
 **            Interrupt RxD ISR name                       : MB_UART_Interrupt
-**            Interrupt TxD                                : INT_UART0
+**            Interrupt TxD                                : INT_UART2
 **            Interrupt TxD priority                       : medium priority
 **            Interrupt TxD ISR name                       : MB_UART_Interrupt
-**            Interrupt Error                              : INT_UART0
+**            Interrupt Error                              : INT_UART2
 **            Interrupt Error priority                     : medium priority
 **            Interrupt Error ISR name                     : MB_UART_Interrupt
 **          Settings                                       : 
@@ -40,10 +40,10 @@
 **            Receiver input                               : Not inverted
 **            Break generation length                      : 10/11 bits
 **            Receiver                                     : Enabled
-**              RxD                                        : PTA2/KBI0_P2/UART0_RX/I2C0_SDA
+**              RxD                                        : PTD6/KBI0_P30/UART2_RX
 **              RxD pin signal                             : 
 **            Transmitter                                  : Enabled
-**              TxD                                        : PTA3/KBI0_P3/UART0_TX/I2C0_SCL
+**              TxD                                        : PTD7/KBI0_P31/UART2_TX
 **              TxD pin signal                             : 
 **            Flow control                                 : None
 **          Initialization                                 : 
@@ -177,37 +177,35 @@ LDD_TDeviceData* MB_UART_Init(LDD_TUserData *UserDataPtr)
   /* Allocate interrupt vectors */
   /* {MQXLite RTOS Adapter} Save old and set new interrupt vector (function handler and ISR parameter) */
   /* Note: Exception handler for interrupt is not saved, because it is not modified */
-  DeviceDataPrv->SavedISRSettings.isrData = _int_get_isr_data(LDD_ivIndex_INT_UART0);
-  DeviceDataPrv->SavedISRSettings.isrFunction = _int_install_isr(LDD_ivIndex_INT_UART0, MB_UART_Interrupt, DeviceDataPrv);
-  /* SIM_SCGC: UART0=1 */
-  SIM_SCGC |= SIM_SCGC_UART0_MASK;
-  /* SIM_PINSEL0: UART0PS=1 */
-  SIM_PINSEL0 |= SIM_PINSEL_UART0PS_MASK;
-  /* SIM_SOPT0: RXDFE=0 */
-  SIM_SOPT0 &= (uint32_t)~(uint32_t)(SIM_SOPT0_RXDFE(0x03));
-  /* NVIC_IPR3: PRI_12=1 */
+  DeviceDataPrv->SavedISRSettings.isrData = _int_get_isr_data(LDD_ivIndex_INT_UART2);
+  DeviceDataPrv->SavedISRSettings.isrFunction = _int_install_isr(LDD_ivIndex_INT_UART2, MB_UART_Interrupt, DeviceDataPrv);
+  /* SIM_SCGC: UART2=1 */
+  SIM_SCGC |= SIM_SCGC_UART2_MASK;
+  /* SIM_PINSEL1: UART2PS=0 */
+  SIM_PINSEL1 &= (uint32_t)~(uint32_t)(SIM_PINSEL1_UART2PS_MASK);
+  /* NVIC_IPR3: PRI_14=1 */
   NVIC_IPR3 = (uint32_t)((NVIC_IPR3 & (uint32_t)~(uint32_t)(
-               NVIC_IP_PRI_12(0x02)
+               NVIC_IP_PRI_14(0x02)
               )) | (uint32_t)(
-               NVIC_IP_PRI_12(0x01)
+               NVIC_IP_PRI_14(0x01)
               ));
-  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=0,SETENA14=0,SETENA13=0,SETENA12=1,SETENA11=0,SETENA10=0,SETENA9=0,SETENA8=0,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
-  NVIC_ISER = NVIC_ISER_SETENA12_MASK;
+  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=0,SETENA14=1,SETENA13=0,SETENA12=0,SETENA11=0,SETENA10=0,SETENA9=0,SETENA8=0,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
+  NVIC_ISER = NVIC_ISER_SETENA14_MASK;
   /* NVIC_ICER: CLRENA31=0,CLRENA30=0,CLRENA29=0,CLRENA28=0,CLRENA27=0,CLRENA26=0,CLRENA25=0,CLRENA24=0,CLRENA23=0,CLRENA22=0,CLRENA21=0,CLRENA20=0,CLRENA19=0,CLRENA18=0,CLRENA17=0,CLRENA16=0,CLRENA15=0,CLRENA14=0,CLRENA13=0,CLRENA12=0,CLRENA11=0,CLRENA10=0,CLRENA9=0,CLRENA8=0,CLRENA7=0,CLRENA6=0,CLRENA5=0,CLRENA4=0,CLRENA3=0,CLRENA2=0,CLRENA1=0,CLRENA0=0 */
   NVIC_ICER = 0x00U;
-  UART_PDD_EnableTransmitter(UART0_BASE_PTR, PDD_DISABLE); /* Disable transmitter. */
-  UART_PDD_EnableReceiver(UART0_BASE_PTR, PDD_DISABLE); /* Disable receiver. */
+  UART_PDD_EnableTransmitter(UART2_BASE_PTR, PDD_DISABLE); /* Disable transmitter. */
+  UART_PDD_EnableReceiver(UART2_BASE_PTR, PDD_DISABLE); /* Disable receiver. */
   DeviceDataPrv->SerFlag = 0x00U;      /* Reset flags */
-  /* UART0_C1: LOOPS=0,UARTSWAI=0,RSRC=0,M=0,WAKE=0,ILT=0,PE=0,PT=0 */
-  UART0_C1 = 0x00U;                    /*  Set the C1 register */
-  /* UART0_C3: R8=0,T8=0,TXDIR=0,TXINV=0,ORIE=0,NEIE=0,FEIE=0,PEIE=0 */
-  UART0_C3 = 0x00U;                    /*  Set the C3 register */
-  /* UART0_S2: LBKDIF=0,RXEDGIF=0,??=0,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
-  UART0_S2 = 0x00U;                    /*  Set the S2 register */
-  UART_PDD_SetBaudRate(UART0_BASE_PTR, 137U); /* Set the baud rate register. */
-  UART_PDD_EnableTransmitter(UART0_BASE_PTR, PDD_ENABLE); /* Enable transmitter */
-  UART_PDD_EnableReceiver(UART0_BASE_PTR, PDD_ENABLE); /* Enable receiver */
-  UART_PDD_EnableInterrupt(UART0_BASE_PTR, ( UART_PDD_INTERRUPT_RECEIVER )); /* Enable interrupts */
+  /* UART2_C1: LOOPS=0,UARTSWAI=0,RSRC=0,M=0,WAKE=0,ILT=0,PE=0,PT=0 */
+  UART2_C1 = 0x00U;                    /*  Set the C1 register */
+  /* UART2_C3: R8=0,T8=0,TXDIR=0,TXINV=0,ORIE=0,NEIE=0,FEIE=0,PEIE=0 */
+  UART2_C3 = 0x00U;                    /*  Set the C3 register */
+  /* UART2_S2: LBKDIF=0,RXEDGIF=0,??=0,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
+  UART2_S2 = 0x00U;                    /*  Set the S2 register */
+  UART_PDD_SetBaudRate(UART2_BASE_PTR, 137U); /* Set the baud rate register. */
+  UART_PDD_EnableTransmitter(UART2_BASE_PTR, PDD_ENABLE); /* Enable transmitter */
+  UART_PDD_EnableReceiver(UART2_BASE_PTR, PDD_ENABLE); /* Enable receiver */
+  UART_PDD_EnableInterrupt(UART2_BASE_PTR, ( UART_PDD_INTERRUPT_RECEIVER )); /* Enable interrupts */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_MB_UART_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv);
@@ -331,7 +329,7 @@ LDD_TError MB_UART_SendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *BufferPt
   DeviceDataPrv->OutDataNumReq = Size; /* Set the counter of characters to be sent. */
   DeviceDataPrv->OutSentDataNum = 0x00U; /* Clear the counter of sent characters. */
   DeviceDataPrv->SerFlag |= ENABLED_TX_INT; /* Set the flag ENABLED_TX_INT */
-  UART_PDD_EnableInterrupt(UART0_BASE_PTR, UART_PDD_INTERRUPT_TRANSMITTER); /* Enable TX interrupt */
+  UART_PDD_EnableInterrupt(UART2_BASE_PTR, UART_PDD_INTERRUPT_TRANSMITTER); /* Enable TX interrupt */
   /* {MQXLite RTOS Adapter} Critical section ends (RTOS function call is defined by MQXLite RTOS Adapter property) */
   _int_enable();
   return ERR_OK;                       /* OK */
@@ -351,7 +349,7 @@ static void InterruptRx(MB_UART_TDeviceDataPtr DeviceDataPrv)
 {
   register uint16_t Data;              /* Temporary variable for data */
 
-  Data = (uint16_t)UART_PDD_GetChar8(UART0_BASE_PTR); /* Read an 8-bit character from the receiver */
+  Data = (uint16_t)UART_PDD_GetChar8(UART2_BASE_PTR); /* Read an 8-bit character from the receiver */
   if (DeviceDataPrv->InpDataNumReq != 0x00U) { /* Is the receive block operation pending? */
     *(DeviceDataPrv->InpDataPtr++) = (uint8_t)Data; /* Put an 8-bit character to the receive buffer */
     DeviceDataPrv->InpRecvDataNum++;   /* Increment received char. counter */
@@ -376,14 +374,14 @@ static void InterruptTx(MB_UART_TDeviceDataPtr DeviceDataPrv)
 {
 
   if (DeviceDataPrv->OutSentDataNum < DeviceDataPrv->OutDataNumReq) { /* Is number of sent characters less than the number of requested incoming characters? */
-    UART_PDD_PutChar8(UART0_BASE_PTR, *(DeviceDataPrv->OutDataPtr++)); /* Put a 8-bit character to the transmit register */
+    UART_PDD_PutChar8(UART2_BASE_PTR, *(DeviceDataPrv->OutDataPtr++)); /* Put a 8-bit character to the transmit register */
     DeviceDataPrv->OutSentDataNum++;   /* Increment the counter of sent characters. */
     if (DeviceDataPrv->OutSentDataNum == DeviceDataPrv->OutDataNumReq) {
       DeviceDataPrv->OutDataNumReq = 0x00U; /* Clear the counter of characters to be send by SendBlock() */
       MB_UART_OnBlockSent(DeviceDataPrv->UserDataPtr);
     }
   } else {
-    UART_PDD_DisableInterrupt(UART0_BASE_PTR, UART_PDD_INTERRUPT_TRANSMITTER); /* Disable TX interrupt */
+    UART_PDD_DisableInterrupt(UART2_BASE_PTR, UART_PDD_INTERRUPT_TRANSMITTER); /* Disable TX interrupt */
     DeviceDataPrv->SerFlag &= (uint16_t)(~(uint16_t)ENABLED_TX_INT); /* Clear the flag ENABLED_TX_INT */
   }
 }
@@ -402,10 +400,10 @@ void MB_UART_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
 {
   /* {MQXLite RTOS Adapter} ISR parameter is passed as parameter from RTOS interrupt dispatcher */
   MB_UART_TDeviceDataPtr DeviceDataPrv = (MB_UART_TDeviceDataPtr)_isrParameter;
-  register uint32_t StatReg = UART_PDD_ReadInterruptStatusReg(UART0_BASE_PTR); /* Read status register */
+  register uint32_t StatReg = UART_PDD_ReadInterruptStatusReg(UART2_BASE_PTR); /* Read status register */
 
   if (StatReg & (UART_S1_NF_MASK | UART_S1_OR_MASK | UART_S1_FE_MASK | UART_S1_PF_MASK)) { /* Is any error flag set? */
-    (void)UART_PDD_GetChar8(UART0_BASE_PTR); /* Dummy read 8-bit character from receiver */
+    (void)UART_PDD_GetChar8(UART2_BASE_PTR); /* Dummy read 8-bit character from receiver */
     StatReg &= (uint32_t)(~(uint32_t)UART_S1_RDRF_MASK); /* Clear the receive data flag to discard the errorneous data */
   }
   if (StatReg & UART_S1_RDRF_MASK) {   /* Is the receiver's interrupt flag set? */

@@ -31,13 +31,13 @@
 \page page_components Components 
 
 - \subpage SystemTimer1
-- \subpage IO1
 - \subpage MB_NRST
 - \subpage MB_NPW
 - \subpage MB_STATUS
 - \subpage MB_DTR
 - \subpage MB_RI
 - \subpage MB_UART
+- \subpage IO1
 
 
 */
@@ -85,13 +85,13 @@
 \page page_components Components 
 
 - \subpage SystemTimer1
-- \subpage IO1
 - \subpage MB_NRST
 - \subpage MB_NPW
 - \subpage MB_STATUS
 - \subpage MB_DTR
 - \subpage MB_RI
 - \subpage MB_UART
+- \subpage IO1
 
 
 */
