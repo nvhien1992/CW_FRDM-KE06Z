@@ -40,6 +40,8 @@ extern "C" {
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "global.h"
 
+#define SYSTICK_PERIOD 5 //ms
+
 /* Definitions for LW Message Queue Component */
 #define NUM_MESSAGES		16
 #define MSG_SIZE			1
@@ -87,7 +89,10 @@ void gpio_task(uint32_t task_init_data) {
 		counter++;
 
 		/* Write your code here ... */
-		_lwevent_wait_for(&an_event, EVT_BIT_MASK, TRUE, NULL);
+		_mqx_uint ticks = 2*1000/SYSTICK_PERIOD; //timeout 2s
+		if(_lwevent_wait_ticks(&an_event, EVT_BIT_MASK, TRUE, ticks) == LWEVENT_WAIT_TIMEOUT) {
+			printf("lwevent timeout\n");
+		}
 		GPIO1_ToggleFieldBits(device_data, led_red, 0xFFFFFFFF);
 		_time_delay_ticks(10);
 		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);

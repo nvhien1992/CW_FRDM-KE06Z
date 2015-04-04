@@ -85,7 +85,7 @@ void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	time_count++;
 	if (time_count == TIME_TO_SEND) {
 		time_count = 0;
-		_lwevent_set_auto_clear(&an_event, EVT_BIT_MASK);
+		_lwevent_set(&an_event, EVT_BIT_MASK);
 	}
 }
 
