@@ -63,8 +63,8 @@
   </PATHS>
   <FILES>
     <GeneratedCs>
+      <PathName>D:\CW\sShrimp\Generated_Code\Console.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\Cpu.c</PathName>
-      <PathName>D:\CW\sShrimp\Generated_Code\CsIO1.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\IO1.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\MB_DTR.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\MB_NPW.c</PathName>
@@ -74,7 +74,7 @@
       <PathName>D:\CW\sShrimp\Generated_Code\MB_UART.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\MQX1.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\PE_LDD.c</PathName>
-      <PathName>D:\CW\sShrimp\Generated_Code\Pins1.c</PathName>
+      <PathName>D:\CW\sShrimp\Generated_Code\Pin_Settings.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Vectors.c</PathName>
@@ -130,8 +130,8 @@
     </GeneratedCs>
     <GeneratedHs>
       <PathName>D:\CW\sShrimp\Generated_Code\CPU_Config.h</PathName>
+      <PathName>D:\CW\sShrimp\Generated_Code\Console.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\Cpu.h</PathName>
-      <PathName>D:\CW\sShrimp\Generated_Code\CsIO1.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\IO1.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\iofiles\MKE06Z4.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\IO_Map.h</PathName>
@@ -171,7 +171,7 @@
       <PathName>D:\CW\sShrimp\Generated_Code\PE_Error.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\PE_LDD.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\PE_Types.h</PathName>
-      <PathName>D:\CW\sShrimp\Generated_Code\Pins1.h</PathName>
+      <PathName>D:\CW\sShrimp\Generated_Code\Pin_Settings.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.h</PathName>

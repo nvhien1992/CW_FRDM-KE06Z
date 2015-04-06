@@ -6,7 +6,7 @@
 **     Component   : ExtInt_LDD
 **     Version     : Component 02.156, Driver 01.02, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:47, # CodeGen: 3
+**     Date/Time   : 2015-04-06, 17:48, # CodeGen: 95
 **     Abstract    :
 **         This component, "ExtInt_LDD", provide a low level API 
 **         for unified access of external interrupts handling
@@ -15,18 +15,22 @@
 **         selected edge.
 **     Settings    :
 **          Component name                                 : MB_RI
-**          Pin                                            : PTI2/IRQ
+**          Pin                                            : PTI6/IRQ
 **          Pin signal                                     : 
-**          Generate interrupt on                          : rising or falling edge
+**          Generate interrupt on                          : rising edge
 **          Interrupt                                      : INT_IRQ
-**          Interrupt priority                             : medium priority
+**          Interrupt priority                             : high priority
 **          ISR Name                                       : MB_RI_Interrupt
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **          Threshold level                                : 0
 **     Contents    :
-**         Init - LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr);
+**         Init    - LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr);
+**         Enable  - void MB_RI_Enable(LDD_TDeviceData *DeviceDataPtr);
+**         Disable - void MB_RI_Disable(LDD_TDeviceData *DeviceDataPtr);
+**         GetVal  - bool MB_RI_GetVal(LDD_TDeviceData *DeviceDataPtr);
+**         SetEdge - LDD_TError MB_RI_SetEdge(LDD_TDeviceData *DeviceDataPtr, uint8_t Edge);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -98,15 +102,22 @@ extern "C" {
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define MB_RI_PRPH_BASE_ADDRESS  0x400FF080U
   
+/*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
+#define MB_RI_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_MB_RI_ID))
+
 /* Methods configuration constants - generated for all enabled component's methods */
 #define MB_RI_Init_METHOD_ENABLED      /*!< Init method of the component MB_RI is enabled (generated) */
+#define MB_RI_Enable_METHOD_ENABLED    /*!< Enable method of the component MB_RI is enabled (generated) */
+#define MB_RI_Disable_METHOD_ENABLED   /*!< Disable method of the component MB_RI is enabled (generated) */
+#define MB_RI_GetVal_METHOD_ENABLED    /*!< GetVal method of the component MB_RI is enabled (generated) */
+#define MB_RI_SetEdge_METHOD_ENABLED   /*!< SetEdge method of the component MB_RI is enabled (generated) */
 
 /* Events configuration constants - generated for all enabled component's events */
 #define MB_RI_OnInterrupt_EVENT_ENABLED /*!< OnInterrupt event of the component MB_RI is enabled (generated) */
 
 /* Definition of implementation constants */
-#define MB_RI_PIN_INDEX 0x02U          /*!< Index of the used pin from the port */
-#define MB_RI_PIN_MASK 0x04U           /*!< Mask of the used pin from the port */
+#define MB_RI_PIN_INDEX 0x06U          /*!< Index of the used pin from the port */
+#define MB_RI_PIN_MASK 0x40U           /*!< Mask of the used pin from the port */
 
 /*
 ** ===================================================================
@@ -131,6 +142,38 @@ LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr);
 
 /*
 ** ===================================================================
+**     Method      :  MB_RI_Enable (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Enable the component - the external events are accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+*/
+/* ===================================================================*/
+void MB_RI_Enable(LDD_TDeviceData *DeviceDataPtr);
+
+/*
+** ===================================================================
+**     Method      :  MB_RI_Disable (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Disable the component - the external events are not accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+*/
+/* ===================================================================*/
+void MB_RI_Disable(LDD_TDeviceData *DeviceDataPtr);
+
+/*
+** ===================================================================
 **     Method      :  MB_RI_Interrupt (component ExtInt_LDD)
 **
 **     Description :
@@ -141,6 +184,50 @@ LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr);
 */
 /* {MQXLite RTOS Adapter} ISR function prototype */
 void MB_RI_Interrupt(LDD_RTOS_TISRParameter _isrParameter);
+
+/*
+** ===================================================================
+**     Method      :  MB_RI_GetVal (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Returns the actual value of the input pin of the component.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+**     @return
+**                         - Returned input value. Possible values:
+**                           <false> - logical "0" (Low level) <true> -
+**                           logical "1" (High level)
+*/
+/* ===================================================================*/
+bool MB_RI_GetVal(LDD_TDeviceData *DeviceDataPtr);
+
+/*
+** ===================================================================
+**     Method      :  MB_RI_SetEdge (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Sets the edge type for this component that generates the
+**         interrupt.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+**     @param
+**         Edge            - Edge type:
+**                           0 - falling edge
+**                           1 - rising edge
+**                           2 - both edges
+**                           3 - low level
+**                           4 - high level
+**     @return
+**                         - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_RANGE - Value is out of range
+*/
+/* ===================================================================*/
+LDD_TError MB_RI_SetEdge(LDD_TDeviceData *DeviceDataPtr, uint8_t Edge);
 
 /* END MB_RI. */
 

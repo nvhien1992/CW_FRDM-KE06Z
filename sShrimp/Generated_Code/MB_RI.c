@@ -6,7 +6,7 @@
 **     Component   : ExtInt_LDD
 **     Version     : Component 02.156, Driver 01.02, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-05, 21:47, # CodeGen: 3
+**     Date/Time   : 2015-04-06, 17:48, # CodeGen: 95
 **     Abstract    :
 **         This component, "ExtInt_LDD", provide a low level API 
 **         for unified access of external interrupts handling
@@ -15,18 +15,22 @@
 **         selected edge.
 **     Settings    :
 **          Component name                                 : MB_RI
-**          Pin                                            : PTI2/IRQ
+**          Pin                                            : PTI6/IRQ
 **          Pin signal                                     : 
-**          Generate interrupt on                          : rising or falling edge
+**          Generate interrupt on                          : rising edge
 **          Interrupt                                      : INT_IRQ
-**          Interrupt priority                             : medium priority
+**          Interrupt priority                             : high priority
 **          ISR Name                                       : MB_RI_Interrupt
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **          Threshold level                                : 0
 **     Contents    :
-**         Init - LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr);
+**         Init    - LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr);
+**         Enable  - void MB_RI_Enable(LDD_TDeviceData *DeviceDataPtr);
+**         Disable - void MB_RI_Disable(LDD_TDeviceData *DeviceDataPtr);
+**         GetVal  - bool MB_RI_GetVal(LDD_TDeviceData *DeviceDataPtr);
+**         SetEdge - LDD_TError MB_RI_SetEdge(LDD_TDeviceData *DeviceDataPtr, uint8_t Edge);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -151,6 +155,47 @@ LDD_TDeviceData* MB_RI_Init(LDD_TUserData *UserDataPtr)
 
 /*
 ** ===================================================================
+**     Method      :  MB_RI_Enable (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Enable the component - the external events are accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+*/
+/* ===================================================================*/
+void MB_RI_Enable(LDD_TDeviceData *DeviceDataPtr)
+{
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
+  IRQ_PDD_ClearInterrupt(IRQ_BASE_PTR);
+  IRQ_PDD_EnableInterrupt(IRQ_BASE_PTR);
+}
+
+/*
+** ===================================================================
+**     Method      :  MB_RI_Disable (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Disable the component - the external events are not accepted.
+**         This method is available only if HW module allows
+**         enable/disable of the interrupt.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+*/
+/* ===================================================================*/
+void MB_RI_Disable(LDD_TDeviceData *DeviceDataPtr)
+{
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
+  IRQ_PDD_DisableInterrupt(IRQ_BASE_PTR);
+}
+
+/*
+** ===================================================================
 **     Method      :  MB_RI_Interrupt (component ExtInt_LDD)
 **
 **     Description :
@@ -168,6 +213,88 @@ void MB_RI_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
   IRQ_PDD_ClearInterrupt(IRQ_BASE_PTR);
   /* Call OnInterrupt event */
   MB_RI_OnInterrupt(DeviceDataPrv->UserData);
+}
+
+/*
+** ===================================================================
+**     Method      :  MB_RI_GetVal (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Returns the actual value of the input pin of the component.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+**     @return
+**                         - Returned input value. Possible values:
+**                           <false> - logical "0" (Low level) <true> -
+**                           logical "1" (High level)
+*/
+/* ===================================================================*/
+bool MB_RI_GetVal(LDD_TDeviceData *DeviceDataPtr)
+{
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
+  if ((GPIO_PDD_GetPortDataInput(GPIOC_BASE_PTR) & MB_RI_PIN_MASK) != 0U) {
+    return TRUE;
+  } else {
+    return FALSE;
+  }
+}
+
+/*
+** ===================================================================
+**     Method      :  MB_RI_SetEdge (component ExtInt_LDD)
+*/
+/*!
+**     @brief
+**         Sets the edge type for this component that generates the
+**         interrupt.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by <Init> method.
+**     @param
+**         Edge            - Edge type:
+**                           0 - falling edge
+**                           1 - rising edge
+**                           2 - both edges
+**                           3 - low level
+**                           4 - high level
+**     @return
+**                         - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_RANGE - Value is out of range
+*/
+/* ===================================================================*/
+LDD_TError MB_RI_SetEdge(LDD_TDeviceData *DeviceDataPtr, uint8_t Edge)
+{
+
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
+  /* Edge value test - this test can be disabled by setting the "Ignore range checking"
+     property to the "yes" value in the "Configuration inspector" */
+  if (Edge > 4U) {
+    return ERR_RANGE;                  /* Invalid edge parameter */
+  }
+  switch (Edge) {
+    case 0:                            /* Falling edge */
+      IRQ_PDD_SetDetectionMode(IRQ_BASE_PTR, IRQ_PDD_EDGE_MODE);
+      IRQ_PDD_SetEdgePolarity(IRQ_BASE_PTR, IRQ_PDD_FALLING_LOW);
+      break;
+    case 1:                            /* Rising edge */
+      IRQ_PDD_SetDetectionMode(IRQ_BASE_PTR, IRQ_PDD_EDGE_MODE);
+      IRQ_PDD_SetEdgePolarity(IRQ_BASE_PTR, IRQ_PDD_RISING_HIGH);
+      break;
+    case 3:                            /* Low level */
+      IRQ_PDD_SetDetectionMode(IRQ_BASE_PTR, IRQ_PDD_LEVEL_MODE);
+      IRQ_PDD_SetEdgePolarity(IRQ_BASE_PTR, IRQ_PDD_FALLING_LOW);
+      break;
+    case 4:                            /* High level */
+      IRQ_PDD_SetDetectionMode(IRQ_BASE_PTR, IRQ_PDD_LEVEL_MODE);
+      IRQ_PDD_SetEdgePolarity(IRQ_BASE_PTR, IRQ_PDD_RISING_HIGH);
+      break;
+    default:
+      return ERR_RANGE;
+  }
+  return ERR_OK;
 }
 
 /* END MB_RI. */

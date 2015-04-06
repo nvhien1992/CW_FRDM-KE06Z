@@ -39,16 +39,6 @@ void RCOM_uart_rx_callback(void);
 /**
  * 
  */
-void RCOM_uart_get_char(void);
-
-/**
- * 
- */
-void RCOM_state_machine(void);
-
-/**
- * 
- */
 void RCOM_uart_writef(char* frame);
 
 /**
@@ -60,31 +50,6 @@ void RCOM_set_uart(uart_t *defined_uart);
  * 
  */
 void RCOM_init(void);
-
-/**
- * 
- */
-bool RCOM_SM_is_enable(void);
-
-/**
- * 
- */
-void RCOM_SM_enable(void);
-
-/**
- * 
- */
-void RCOM_SM_disable(void);
-
-/**
- * 
- */
-//void RCOM_enable_rx_buf(void);
-
-/**
- * 
- */
-//void RCOM_disable_rx_buf(void);
 
 /**
  * 
@@ -119,13 +84,6 @@ char* RCOM_get_rx_buf(void);
 /**
  * 
  */
-void RCOM_clear_rx_buf(void);
-
-/**
- * 
- */
 uint16_t RCOM_get_rx_buf_len(void);
-
-//extern RCOM_t RCOM_info;
 
 #endif //REMOTE_COM_RESOURCES_H_

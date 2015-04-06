@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-30, 17:12, # CodeGen: 55
+**     Date/Time   : 2015-04-06, 11:12, # CodeGen: 76
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -552,7 +552,7 @@ typedef struct {
 
 /* Common_Init() parameterization settings */
   
-#define CPU_COMMON_INIT                                    0x00U     /* Common_Init() method is not called in PE_low_level_init() */ 
+#define CPU_COMMON_INIT                                    0x01U     /* Call Common_Init() method in PE_low_level_init() */ 
 
 /* Peripherals_Init() parameterization settings */
   

@@ -52,18 +52,18 @@ uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
 uint32_t remote_com_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
 		+ NUM_MESSAGES * MSG_SIZE];
 
-uart_t uart = { MB_UART_Init, //
+uart_t SIM900_uart = { MB_UART_Init, //
 		MB_UART_SendBlock, //
 		MB_UART_ReceiveBlock, //
 		NULL, //
-		NULL , //
+		NULL, //
 		};
 
 SIM900_pins_t sim900_pins = { { MB_NRST_SetVal, MB_NRST_ClrVal, }, //nRST
 		{ MB_NPW_SetVal, MB_NPW_ClrVal, }, //nPW
 		{ MB_DTR_SetVal, MB_DTR_ClrVal, }, //DTR
 		{ MB_STATUS_GetVal, }, //STATUS
-		{ MB_RI_Init, }, //RI
+		{ MB_RI_SetEdge, MB_RI_Enable, MB_RI_Disable }, //RI
 		};
 
 /*
@@ -83,28 +83,55 @@ SIM900_pins_t sim900_pins = { { MB_NRST_SetVal, MB_NRST_ClrVal, }, //nRST
 void Control_task(uint32_t task_init_data) {
 	int counter = 0;
 
+	/* route desired pins into peripherals */
+	Pin_Settings_Init();
+
+	DEBUG("initializing...\n");
+
 	/* init msg queues */
 	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
 	_lwmsgq_init((pointer) remote_com_msg_queue, NUM_MESSAGES, MSG_SIZE);
-	
-	char sim900_rx_buffer[SIM900_RX_BUFF_MAX_CHAR];
 
-	RCOM_set_uart(&uart);
+	char sim900_rx_buffer[SIM900_RX_BUFF_MAX_CHAR];
+	RCOM_set_uart(&SIM900_uart);
 	RCOM_set_rx_buf(sim900_rx_buffer, SIM900_RX_BUFF_MAX_CHAR);
 	RCOM_init();
 	sim900_pin_init(&sim900_pins);
-	DEBUG("init-ed\n");
-	
-	RCOM_job_result_t j_s;
-	sim900_start_device(&j_s);
-	DEBUG("started\n");
-	
-	sim900_config_device(&j_s);
-	DEBUG("config-ed\n");
-	
-	sim900_send_sms(&j_s, "0947380243", "nvhien");
-	DEBUG("sent\n");
-	
+
+	RCOM_job_result_t j_r;
+	DEBUG("starting...\n");
+	sim900_start_device(&j_r);
+
+	DEBUG("configuring...\n");
+	sim900_config_device(&j_r);
+
+	DEBUG("connecting internet...\n");
+	RCOM_set_apn_para("v-internet", "", "");
+	do {
+		sim900_connect_internet(&j_r);
+		_time_delay_ticks(5);
+	} while (j_r.result_type == JOB_FAIL);
+
+	DEBUG("getting timestamp...\n");
+	RCOM_set_domain("i3s.edu.vn");
+	do {
+		sim900_get_timestamp(&j_r);
+		_time_delay_ticks(5);
+	} while (j_r.result_type == JOB_FAIL);
+
+	sim900_get_timestamp(&j_r);
+
+	sim900_get_timestamp(&j_r);
+
+//	DEBUG("sending sms...\n");
+//	sim900_send_sms(&j_r, "0947380243", "nvhien");
+//	sim900_send_sms(&j_r, "01655166559", "Thanh Loc");
+//	sim900_send_sms(&j_r, "0976997457", "Nho be <3");
+
+//	DEBUG("calling...\n");
+//	sim900_make_voice_call(&j_r, "0947380243");
+	DEBUG("end\n");
+
 //	if (_task_create_at(0, REMOTE_COM_TASK, 0, Remote_com_task_stack,
 //			REMOTE_COM_TASK_STACK_SIZE) == MQX_NULL_TASK_ID ) {
 //		NOTIFY("Error on creating Remote_com task\n");

@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
+**     Date/Time   : 2015-04-03, 21:29, # CodeGen: 66
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -50,7 +50,7 @@
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : no
 **            Event mask                                   : 
-**              OnBlockSent                                : Enabled
+**              OnBlockSent                                : Disabled
 **              OnBlockReceived                            : Enabled
 **              OnTxComplete                               : Disabled
 **              OnError                                    : Disabled
@@ -132,7 +132,7 @@ extern "C" {
 #endif
 
 /*! The mask of available events used to enable/disable events during runtime. */
-#define AVAILABLE_EVENTS_MASK (LDD_SERIAL_ON_BLOCK_RECEIVED | LDD_SERIAL_ON_BLOCK_SENT)
+#define AVAILABLE_EVENTS_MASK (LDD_SERIAL_ON_BLOCK_RECEIVED)
 
 /* {MQXLite RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
 static MB_UART_TDeviceData DeviceDataPrv__DEFAULT_RTOS_ALLOC;
@@ -378,7 +378,6 @@ static void InterruptTx(MB_UART_TDeviceDataPtr DeviceDataPrv)
     DeviceDataPrv->OutSentDataNum++;   /* Increment the counter of sent characters. */
     if (DeviceDataPrv->OutSentDataNum == DeviceDataPrv->OutDataNumReq) {
       DeviceDataPrv->OutDataNumReq = 0x00U; /* Clear the counter of characters to be send by SendBlock() */
-      MB_UART_OnBlockSent(DeviceDataPrv->UserDataPtr);
     }
   } else {
     UART_PDD_DisableInterrupt(UART2_BASE_PTR, UART_PDD_INTERRUPT_TRANSMITTER); /* Disable TX interrupt */

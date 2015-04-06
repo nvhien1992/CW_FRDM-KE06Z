@@ -34,7 +34,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "Pins1.h"
+#include "Pin_Settings.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "MB_NRST.h"
@@ -43,8 +43,9 @@
 #include "MB_DTR.h"
 #include "MB_RI.h"
 #include "MB_UART.h"
-#include "CsIO1.h"
+#include "Console.h"
 #include "IO1.h"
+#include "MB_RI.h"
 
 #ifdef __cplusplus
 extern "C" {

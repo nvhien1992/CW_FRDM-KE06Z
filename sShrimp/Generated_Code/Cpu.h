@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-03, 18:15, # CodeGen: 0
+**     Date/Time   : 2015-04-06, 17:40, # CodeGen: 93
 **     Abstract    :
 **
 **     Settings    :
@@ -114,18 +114,6 @@ void Components_Init(void);
 
 /* Method synonyms. Following constants maps static CPU methods with enabled user methods of which names are derived from the CPU component name */
 
-
-/*
-** ===================================================================
-**     Method      :  Cpu_INT_NMIInterrupt (component MKE06Z128LK4)
-**
-**     Description :
-**         This ISR services the Non Maskable Interrupt interrupt.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-/* {MQXLite RTOS Adapter} ISR function prototype */
-void Cpu_INT_NMIInterrupt(void);
 
 
 #ifdef __cplusplus

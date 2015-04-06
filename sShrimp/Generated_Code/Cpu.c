@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
+**     Date/Time   : 2015-04-06, 20:23, # CodeGen: 97
 **     Abstract    :
 **
 **     Settings    :
@@ -87,7 +87,24 @@ extern "C" {
 #if CPU_COMMON_INIT
 void Common_Init(void)
 {
-  /* {MQXLite RTOS Adapter} Set new interrupt vector (function handler and ISR parameter) */
+  /* Common initialization of registers which initialization is required 
+     for proper functionality of components in the project but initialization
+     component which would be configuring these registers is missing 
+     in the project. 
+     Add associated initialization component to the project to avoid 
+     initialization of registers in the Common_Init().
+     Also, after reset value optimization property affects initialization of 
+     registers in this method (see active generator configuration 
+     Optimizations\Utilize after reset values property or enabled processor 
+     component Common settings\Utilize after reset values property) */
+  /* SIM_SOPT0: NMIE=1 */
+  SIM_SOPT0 |= SIM_SOPT0_NMIE_MASK;
+  /* PORT_HDRVE: PTB4=1 */
+  PORT_HDRVE |= PORT_HDRVE_PTB4_MASK;
+  /* PORT_PUE0: PTDPE5=1,PTBPE4=1 */
+  PORT_PUE0 |= (PORT_PUE0_PTDPE5_MASK | PORT_PUE0_PTBPE4_MASK);
+  /* PORT_PUE2: PTIPE6=0 */
+  PORT_PUE2 &= (uint32_t)~(uint32_t)(PORT_PUE2_PTIPE6_MASK);
 }
 
 #endif /* CPU_COMMON_INIT */
@@ -113,24 +130,16 @@ void Components_Init(void)
   (void)MB_NRST_Init(NULL);
   /* ### BitIO_LDD "MB_NPW" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)MB_NPW_Init(NULL);
+  /* ### BitIO_LDD "MB_DTR" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)MB_DTR_Init(NULL);
   /* ### Serial_LDD "IO1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)IO1_Init(NULL);
+  /* ### ExtInt_LDD "MB_RI" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)MB_RI_Init(NULL);
+  /* ### BitIO_LDD "MB_STATUS" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)MB_STATUS_Init(NULL);
 }
 #endif /* CPU_COMPONENTS_INIT */
-
-/*
-** ===================================================================
-**     Method      :  Cpu_INT_NMIInterrupt (component MKE06Z128LK4)
-**
-**     Description :
-**         This ISR services the Non Maskable Interrupt interrupt.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-void Cpu_INT_NMIInterrupt(void)
-{
-  Cpu_OnNMI();
-}
 
 
 #ifdef __cplusplus

@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-28, 10:08, # CodeGen: 33
+**     Date/Time   : 2015-04-06, 20:23, # CodeGen: 97
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,13 +16,13 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : MB_STATUS
-**          Pin for I/O                                    : PTD2/KBI0_P26/SPI1_MISO
+**          Pin for I/O                                    : PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI
 **          Pin signal                                     : 
 **          Direction                                      : Input
 **          Initialization                                 : 
 **            Init. direction                              : Input
 **            Init. value                                  : 0
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **          Safe mode                                      : no
 **     Contents    :
 **         Init   - LDD_TDeviceData* MB_STATUS_Init(LDD_TUserData *UserDataPtr);
@@ -100,6 +100,9 @@ extern "C" {
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define MB_STATUS_PRPH_BASE_ADDRESS  0x400FF000U
   
+/*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
+#define MB_STATUS_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_MB_STATUS_ID))
+
 /* Methods configuration constants - generated for all enabled component's methods */
 #define MB_STATUS_Init_METHOD_ENABLED  /*!< Init method of the component MB_STATUS is enabled (generated) */
 #define MB_STATUS_GetVal_METHOD_ENABLED /*!< GetVal method of the component MB_STATUS is enabled (generated) */
@@ -107,7 +110,7 @@ extern "C" {
 /* Definition of implementation constants */
 #define MB_STATUS_MODULE_BASE_ADDRESS GPIOA_BASE_PTR /*!< Name of macro used as the base address */
 #define MB_STATUS_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define MB_STATUS_PORT_MASK 0x04000000U /*!< Mask of the allocated pin from the port */
+#define MB_STATUS_PORT_MASK 0x02000000U /*!< Mask of the allocated pin from the port */
 
 
 

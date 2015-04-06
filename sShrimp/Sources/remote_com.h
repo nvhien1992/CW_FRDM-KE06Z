@@ -19,6 +19,8 @@ typedef enum {
 	CONFIG_DEVICE, //new - power off, power one, reset, check availability
 	CONNECT_INTERNET, //new connect internet over gprs/wifi
 	STOP_DEVICE, /* may be omitted */
+	ENABLE_DTR_SLEEP_MODE,
+	DISABLE_SLEEP_MODE,
 	REPORT_DATA,
 	UPDATE_DATA,
 	POLL_COMMAND,

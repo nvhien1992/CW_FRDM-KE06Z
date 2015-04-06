@@ -49,17 +49,17 @@
 /* MODULE Vectors_Config.h */
   
 #include "Cpu.h"
-#include "Pins1.h"
+#include "Pin_Settings.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "MB_NRST.h"
 #include "MB_NPW.h"
-#include "MB_STATUS.h"
 #include "MB_DTR.h"
-#include "MB_RI.h"
 #include "MB_UART.h"
-#include "CsIO1.h"
+#include "Console.h"
 #include "IO1.h"
+#include "MB_RI.h"
+#include "MB_STATUS.h"
 #include "Events.h"
 #include "mqx_tasks.h"
 
@@ -72,7 +72,7 @@ extern "C" {
 /* Vector                 Address                                  No.  Pri  Name                          Description */
 #define VECTOR_SP_MAIN    &__SP_INIT                            /* 0x00 -    ivINT_Initial_Stack_Pointer   used by PE */
 #define VECTOR_1          (tIsrFunc)&__boot                     /* 0x01 -    ivINT_Initial_Program_Counter used by PE */
-#define VECTOR_2          (tIsrFunc)&Cpu_INT_NMIInterrupt       /* 0x02 -2   ivINT_NMI                     used by PE */
+#define VECTOR_2          (tIsrFunc)&UnhandledInterrupt         /* 0x02 -2   ivINT_NMI                     unused by PE */
 #define VECTOR_3          (tIsrFunc)&UnhandledInterrupt         /* 0x03 -1   ivINT_Hard_Fault              unused by PE */
 #define VECTOR_4          (tIsrFunc)&UnhandledInterrupt         /* 0x04 -    ivINT_Reserved4               unused by PE */
 #define VECTOR_5          (tIsrFunc)&UnhandledInterrupt         /* 0x05 -    ivINT_Reserved5               unused by PE */

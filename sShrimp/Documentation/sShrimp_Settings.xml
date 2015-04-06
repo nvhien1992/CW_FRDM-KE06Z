@@ -160,10 +160,7 @@
       </group>
       <list name="Shared CPU interrupts/resets" v="1">
         <group name="CPU interrupts/resets">
-          <boolgroup name="Non-maskable interrupt" v="Enabled">
-            <Interrupt v="INT_NMI" />
-            <ISR_Name v="Cpu_INT_NMIInterrupt" />
-          </boolgroup>
+          <boolgroup name="Non-maskable interrupt" v="Disabled" />
           <boolgroup name="Hard fault" v="Disabled" />
           <boolgroup name="Supervisor call" v="Disabled" />
           <boolgroup name="Pendable service" v="Disabled" />
@@ -185,9 +182,7 @@
       <Event_module_name v="Events" />
       <list name="EvntsShrdGrp" v="1">
         <event name="OnReset" v="don&amp;apos;t generate code" />
-        <event name="OnNMI" v="generate code">
-          <Event_procedure_name v="Cpu_OnNMI" />
-        </event>
+        <event name="OnNMI" v="don&amp;apos;t generate code" />
         <event name="OnHardFault" v="don&amp;apos;t generate code" />
         <event name="OnSupervisorCall" v="don&amp;apos;t generate code" />
         <event name="OnPendableService" v="don&amp;apos;t generate code" />
@@ -249,10 +244,10 @@ PE_DEBUGHALT();
       </boolgroup>
     </CompilerProperties>
   </CPU_Bean>
-  <Bean name="Pins1" type="PinSettings">
+  <Bean name="Pin_Settings" type="PinSettings">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="Pins1" />
+      <Component_name v="Pin_Settings" />
       <PinSettings_IP_Block v="PinSettings" />
       <Processor v="MKE06Z128LK4" />
       <list name="ProcessorSpecificItem" v="1">
@@ -293,7 +288,7 @@ PE_DEBUGHALT();
               <ADC__ADC_analog_channel_8 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_9 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_10 v="&amp;lt;Automatic&amp;gt;" />
-              <ADC__ADC_analog_channel_11 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_11 v="PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11" />
               <ADC__ADC_analog_channel_12 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_13 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_14 v="&amp;lt;Automatic&amp;gt;" />
@@ -681,7 +676,7 @@ PE_DEBUGHALT();
               <Custom_name v="WDOG" />
             </group>
             <group name="Non-peripheral pins">
-              <NMI v="&amp;lt;Automatic&amp;gt;" />
+              <NMI v="PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b" />
               <RESET v="&amp;lt;Automatic&amp;gt;" />
             </group>
           </group>
@@ -776,8 +771,8 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 23: PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b">
               <Custom_name__Signal_name v="PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b" />
-              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
-              <High_drive_enable v="&amp;lt;Automatic&amp;gt;" />
+              <Pull_enable v="Enabled" />
+              <High_drive_enable v="Enabled" />
             </group>
             <group name="Pin 24: PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11">
               <Custom_name__Signal_name v="PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11" />
@@ -797,11 +792,11 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 28: PTD5/KBI0_P29/PWT_IN0">
               <Custom_name__Signal_name v="PTD5/KBI0_P29/PWT_IN0" />
-              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <Pull_enable v="Enabled" />
             </group>
             <group name="Pin 29: PTI6/IRQ">
               <Custom_name__Signal_name v="PTI6/IRQ" />
-              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <Pull_enable v="Disabled" />
             </group>
             <group name="Pin 30: PTI5/IRQ">
               <Custom_name__Signal_name v="PTI5/IRQ" />
@@ -1011,7 +1006,7 @@ PE_DEBUGHALT();
     </Properties>
     <Methods>
       <list name="ProcessorSpecificMethods" v="1">
-        <Init v="don&amp;apos;t generate code" />
+        <Init v="generate code" />
       </list>
     </Methods>
     <Events>
@@ -1128,7 +1123,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="Control" />
               <Entry_point_function v="Control_task" />
-              <Stack_size v="2048" />
+              <Stack_size v="4096" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">
@@ -1435,38 +1430,6 @@ PE_DEBUGHALT();
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="MB_STATUS" type="BitIO_LDD">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="MB_STATUS" />
-      <Pin_for_I_O v="PTD2/KBI0_P26/SPI1_MISO" />
-      <Direction v="Input" />
-      <group name="Initialization">
-        <Init__direction v="Input" />
-        <Init__value v="0" />
-        <Auto_initialization v="no" />
-      </group>
-      <Safe_mode v="no" />
-    </Properties>
-    <Methods>
-      <Init v="generate code" />
-      <Deinit v="don&amp;apos;t generate code" />
-      <GetDir v="don&amp;apos;t generate code" />
-      <SetDir v="don&amp;apos;t generate code" />
-      <SetInput v="don&amp;apos;t generate code" />
-      <SetOutput v="don&amp;apos;t generate code" />
-      <GetVal v="generate code" />
-      <PutVal v="don&amp;apos;t generate code" />
-      <ClrVal v="don&amp;apos;t generate code" />
-      <SetVal v="don&amp;apos;t generate code" />
-      <NegVal v="don&amp;apos;t generate code" />
-      <ConnectPin v="don&amp;apos;t generate code" />
-      <GetRawVal v="don&amp;apos;t generate code" />
-    </Methods>
-    <Events>
-      <EmptySection_DummyValue />
-    </Events>
-  </Bean>
   <Bean name="MB_DTR" type="BitIO_LDD">
     <Enabled v="Y" />
     <Properties>
@@ -1476,7 +1439,7 @@ PE_DEBUGHALT();
       <group name="Initialization">
         <Init__direction v="Output" />
         <Init__value v="0" />
-        <Auto_initialization v="no" />
+        <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />
     </Properties>
@@ -1497,45 +1460,6 @@ PE_DEBUGHALT();
     </Methods>
     <Events>
       <EmptySection_DummyValue />
-    </Events>
-  </Bean>
-  <Bean name="MB_RI" type="ExtInt_LDD">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="MB_RI" />
-      <Pin v="PTI2/IRQ" />
-      <Generate_interrupt_on sel_value="rising edge">
-        
-rising or falling edge
-
-        <EmptySection_DummyValue />
-      </Generate_interrupt_on>
-      <Interrupt v="INT_IRQ" />
-      <Interrupt_priority v="medium priority" />
-      <ISR_Name v="MB_RI_Interrupt" />
-      <group name="Initialization">
-        <Enabled_in_init__code v="yes" />
-        <list name="Auto Initialization" v="1">
-          <Auto_initialization v="no" />
-        </list>
-      </group>
-    </Properties>
-    <Methods>
-      <Init v="generate code" />
-      <Deinit v="don&amp;apos;t generate code" />
-      <Enable v="don&amp;apos;t generate code" />
-      <Disable v="don&amp;apos;t generate code" />
-      <GetVal v="don&amp;apos;t generate code" />
-      <SetEdge v="don&amp;apos;t generate code" />
-      <SetOperationMode v="don&amp;apos;t generate code" />
-      <GetDriverState v="don&amp;apos;t generate code" />
-      <ConnectPin v="don&amp;apos;t generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-      <event name="OnInterrupt" v="generate code">
-        <Event_procedure_name v="MB_RI_OnInterrupt" />
-      </event>
     </Events>
   </Bean>
   <Bean name="MB_UART" type="Serial_LDD">
@@ -1582,7 +1506,7 @@ rising or falling edge
           <Auto_initialization v="no" />
         </list>
         <group name="Event mask">
-          <OnBlockSent v="Enabled" />
+          <OnBlockSent v="Disabled" />
           <OnBlockReceived v="Enabled" />
           <OnTxComplete v="Disabled" />
           <OnError v="Disabled" />
@@ -1645,18 +1569,16 @@ rising or falling edge
       <event name="OnBlockReceived" v="generate code">
         <Event_procedure_name v="MB_UART_OnBlockReceived" />
       </event>
-      <event name="OnBlockSent" v="generate code">
-        <Event_procedure_name v="MB_UART_OnBlockSent" />
-      </event>
+      <event name="OnBlockSent" v="don&amp;apos;t generate code" />
       <event name="OnBreak" v="don&amp;apos;t generate code" />
       <event name="OnError" v="don&amp;apos;t generate code" />
       <event name="OnTxComplete" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
-  <Bean name="CsIO1" type="ConsoleIO">
+  <Bean name="Console" type="ConsoleIO">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="CsIO1" />
+      <Component_name v="Console" />
       <inhrbean type="Serial_LDD">
         <Enabled v="Y" />
         <Template v="ConsoleIO_Serial_LDD" />
@@ -1767,6 +1689,72 @@ rising or falling edge
     </Properties>
     <Methods>
       <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="MB_RI" type="ExtInt_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="MB_RI" />
+      <Pin v="PTI6/IRQ" />
+      <Generate_interrupt_on v="rising edge" />
+      <Interrupt v="INT_IRQ" />
+      <Interrupt_priority v="high priority" />
+      <ISR_Name v="MB_RI_Interrupt" />
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <list name="Auto Initialization" v="1">
+          <Auto_initialization v="yes" />
+        </list>
+      </group>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <Enable v="generate code" />
+      <Disable v="generate code" />
+      <GetVal v="generate code" />
+      <SetEdge v="generate code" />
+      <SetOperationMode v="don&amp;apos;t generate code" />
+      <GetDriverState v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="OnInterrupt" v="generate code">
+        <Event_procedure_name v="MB_RI_OnInterrupt" />
+      </event>
+    </Events>
+  </Bean>
+  <Bean name="MB_STATUS" type="BitIO_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="MB_STATUS" />
+      <Pin_for_I_O v="PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI" />
+      <Direction v="Input" />
+      <group name="Initialization">
+        <Init__direction v="Input" />
+        <Init__value v="0" />
+        <Auto_initialization v="yes" />
+      </group>
+      <Safe_mode v="no" />
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="don&amp;apos;t generate code" />
+      <ClrVal v="don&amp;apos;t generate code" />
+      <SetVal v="don&amp;apos;t generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
     </Methods>
     <Events>
       <EmptySection_DummyValue />

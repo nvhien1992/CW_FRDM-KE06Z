@@ -32,50 +32,23 @@ typedef struct {
 		bool (*GetVal)(LDD_TDeviceData *dev_data);
 	} STATUS;
 	struct {
-		LDD_TDeviceData* (*Init)(LDD_TUserData *usr_data);
+		LDD_TError (*SetEdge)(LDD_TDeviceData *dev_data, uint8_t edge);
+		void (*Enable)(LDD_TDeviceData *dev_data);
+		void (*Disable)(LDD_TDeviceData *dev_data);
 	} RI;
 } SIM900_pins_t;
-
-//MOB_nRST is output_
-//#define  MOB_NRST_SEL         			 P3SEL
-//#define  MOB_NRST_DIR         			 P3DIR
-//#define  MOB_NRST_PIN         			 0x40
-//#define  MOB_NRST_SET()       			 P3OUT |= 0x40
-//#define  MOB_NRST_CLEAR()     			 P3OUT &= 0xBF
-////MOB_nPW is output
-//#define  MOB_NPW_SEL          			 P8SEL
-//#define  MOB_NPW_DIR          			 P8DIR
-//#define  MOB_NPW_PIN          			 0x08
-//#define  MOB_NPW_SET()        			 P8OUT |= 0x08
-//#define  MOB_NPW_CLEAR()      			 P8OUT &= 0xF7
-////MOB_STATUS is input
-//#define  MOB_STATUS_SEL       			 P8SEL
-//#define  MOB_STATUS_DIR       			 P8DIR
-//#define  MOB_STATUS_PIN       			 0x04
-//#define  MOB_STATUS_IN        			 P8IN
-////MOB_RI is input
-//#define  MOB_RI_SEL           			 P2SEL
-//#define  MOB_RI_DIR           			 P2DIR
-//#define  MOB_RI_PIN           			 0x10
-//#define  MOB_RI_IN            			 P2IN
-////MOB_DTR is output
-//#define  MOB_DTR_SEL          			 P7SEL
-//#define  MOB_DTR_DIR          			 P7DIR
-//#define  MOB_DTR_PIN          			 0x08
-//#define  MOB_DTR_SET()        			 P7OUT |= 0x08
-//#define  MOB_DTR_CLEAR()      			 P7OUT &= 0xF7
 
 /*=======================================================================
  ================================STEP NUM================================
  =======================================================================*/
-#define  SIM900_START_DEVICE_STEP_NUM           2
+#define  SIM900_START_DEVICE_STEP_NUM           3
 #define  SIM900_CONFIG_DEVICE_STEP_NUM          4
 #define  SIM900_CONNECT_INTERNET_STEP_NUM       9
 #define  SIM900_STOP_DEVICE_STEP_NUM			3
 #define  SIM900_HTTP_POST_STEP_NUM              9
 #define  SIM900_HTTP_GET_STEP_NUM               6
 #define  SIM900_SEND_SMS_STEP_NUM               2
-#define  SIM900_MAKE_VOICE_CALL_STEP_NUM        2
+#define  SIM900_MAKE_VOICE_CALL_STEP_NUM        3
 #define  SIM900_TERM_HTTP_SESSION_STEP_NUM	    1
 
 /*=======================================================================
@@ -83,45 +56,14 @@ typedef struct {
  =======================================================================*/
 
 /**
- * @brief 
- *   turn on sim900
- * @para:
- *   none
- * @return:
- *   none
+ * @brief turn on sim900.
  */
 void sim900_power_on();
 
 /**
- * @brief 
- *   turn off sim900
- * @para:
- *   none
- * @return:
- *   none
+ * @brief turn off sim900.
  */
 void sim900_power_off(void);
-
-/**
- * 
- */
-//void sim900_term_http_session(void);
-
-/**
- * @brief 
- *   Sending a command to SIM900
- * @param
- *   cmd: comamnd (string format)
- * @return
- */
-//void sim900_send_cmd(char* cmd);
-
-/**
- @brief Send more data to the SIM900
- @return None
- @attention This function do not clear RXBuf before sending 
- */
-void sim900_send_more(char* data);
 
 /**
  * 
@@ -129,24 +71,41 @@ void sim900_send_more(char* data);
 char* sim900_get_http_res_content(void);
 
 /**
- * @brief 
- *   config gpio for sim900 connection
- * @para   
- *   none
- * @return
- *   none
+ * @brief config gpio for sim900 connection.
+ * 
+ * @param[in] defined_pins 
  */
 void sim900_pin_init(SIM900_pins_t *defined_pins);
 
+/**
+ * 
+ */
+void sim900_control_ring_indicator(bool is_enabled);
+
+/**
+ * 
+ */
 void sim900_start_device(RCOM_job_result_t *job_result);
 
 /**
- * @brief  reinit sim900
- *	Init GPIO, UART
- *	Power up
- *	Create a square wave at nRST pin
+ * @brief  Initialize sim900 using AT command.
+ * 
+ * @param[out] job_result
  */
 void sim900_config_device(RCOM_job_result_t *job_result);
+
+/**
+ * @brief Select sleep mode for SIM900A. Only support DTR sleeping.
+ * 
+ * @param[out] job_result
+ * @param[in] sleep_enabled Enable (DTR sleep mode only) and Disable sleeping mode.
+ */
+void sim900_set_sleep_mode(RCOM_job_result_t *job_result, bool sleep_enabled);
+
+/**
+ * 
+ */
+void sim900_control_sleep_manually(bool sleep_sim900);
 
 /**
  * @brief  sim900 gprs config

@@ -19,13 +19,13 @@ by the component.
 <tr><td colspan="4" class="ttitle1">MB_STATUS Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x400FF014</td><td>GPIOA_PDDR</td><td>
-    0x00000300
+    0x20000300
  </td><td>GPIOA_PDDR register, peripheral MB_STATUS.</td></tr>
 <tr><td>0x400FF000</td><td>GPIOA_PDOR</td><td>
     0x00000000
  </td><td>GPIOA_PDOR register, peripheral MB_STATUS.</td></tr>
 <tr><td>0x400FF018</td><td>GPIOA_PIDR</td><td>
-    0x04000000
+    0x02000000
  </td><td>GPIOA_PIDR register, peripheral MB_STATUS.</td></tr>
 </table>
 <br/>
@@ -70,7 +70,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF014</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000300</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x20000300</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PDD</td><td>0x00</td><td>Port Data Direction</td>
@@ -154,7 +154,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF018</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x04000000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x02000000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0xFFFFFFFF</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PID</td><td>0x00</td><td>Port Input Disable</td>
@@ -164,13 +164,13 @@ registers of the peripheral(s) configured by the component.
 \page MB_STATUS_settings Component Settings
 \code
 **          Component name                                 : MB_STATUS
-**          Pin for I/O                                    : PTD2/KBI0_P26/SPI1_MISO
+**          Pin for I/O                                    : PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI
 **          Pin signal                                     : 
 **          Direction                                      : Input
 **          Initialization                                 : 
 **            Init. direction                              : Input
 **            Init. value                                  : 0
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **          Safe mode                                      : no
 \endcode
 */

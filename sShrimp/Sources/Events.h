@@ -34,7 +34,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "Pins1.h"
+#include "Pin_Settings.h"
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "MB_NRST.h"
@@ -43,8 +43,9 @@
 #include "MB_DTR.h"
 #include "MB_RI.h"
 #include "MB_UART.h"
-#include "CsIO1.h"
+#include "Console.h"
 #include "IO1.h"
+#include "MB_RI.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -101,23 +102,19 @@ void MB_RI_OnInterrupt(LDD_TUserData *UserDataPtr);
 /* ===================================================================*/
 void MB_UART_OnBlockReceived(LDD_TUserData *UserDataPtr);
 
+void EInt1_OnInterrupt(void);
 /*
 ** ===================================================================
-**     Event       :  MB_UART_OnBlockSent (module Events)
+**     Event       :  EInt1_OnInterrupt (module Events)
 **
-**     Component   :  MB_UART [Serial_LDD]
+**     Component   :  MB_RI [ExtInt]
+**     Description :
+**         This event is called when an active signal edge/level has
+**         occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
 */
-/*!
-**     @brief
-**         This event is called after the last character from the
-**         output buffer is moved to the transmitter. 
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-*/
-/* ===================================================================*/
-void MB_UART_OnBlockSent(LDD_TUserData *UserDataPtr);
 
 /* END Events */
 

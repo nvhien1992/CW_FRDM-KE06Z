@@ -34,7 +34,7 @@
 <TH bgcolor='#E8E8E8'>Assigned Peripheral</TH><TH bgcolor='#E8E8E8'>Assigned Function</TH><TH bgcolor='#E8E8E8'>Package Function</TH><TH bgcolor='#E8E8E8'>Dir</TH>
 </TR>
 <TR><TD>1</TD><TD>PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port25</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port25</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
 </TR>
 <TR><TD>2</TD><TD>PTD0/KBI0_P24/FTM2_CH2/SPI1_SCK</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port24</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -118,7 +118,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port29</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Output</TD>
 </TR>
 <TR><TD>29</TD><TD>PTI6/IRQ</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port6</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#F7DCFF'>IRQ</TD><TD bgcolor='#F7DCFF'>extInt0</TD><TD bgcolor='#F7DCFF'>alt1</TD><TD bgcolor='#F7DCFF'>Input</TD>
 </TR>
 <TR><TD>30</TD><TD>PTI5/IRQ</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port5</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -205,7 +205,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port27</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>58</TD><TD>PTD2/KBI0_P26/SPI1_MISO</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port26</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port26</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>59</TD><TD>PTA3/KBI0_P3/UART0_TX/I2C0_SCL</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port3</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -229,7 +229,7 @@
 <TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port3</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>66</TD><TD>PTI2/IRQ</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>IRQ</TD><TD bgcolor='#F7DCFF'>extInt0</TD><TD bgcolor='#F7DCFF'>alt1</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port2</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>67</TD><TD>PTE3/KBI1_P3/SPI0_PCS</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port3</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1040,7 +1040,7 @@
 <TH bgcolor='#E8E8E8'>Assigned Peripheral</TH><TH bgcolor='#E8E8E8'>Assigned Function</TH><TH bgcolor='#E8E8E8'>Package Function</TH><TH bgcolor='#E8E8E8'>Dir</TH>
 </TR>
 <TR><TD>1</TD><TD>PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port25</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port25</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
 </TR>
 <TR><TD>2</TD><TD>PTD0/KBI0_P24/FTM2_CH2/SPI1_SCK</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port24</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1124,7 +1124,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port29</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Output</TD>
 </TR>
 <TR><TD>29</TD><TD>PTI6/IRQ</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port6</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#F7DCFF'>IRQ</TD><TD bgcolor='#F7DCFF'>extInt0</TD><TD bgcolor='#F7DCFF'>alt1</TD><TD bgcolor='#F7DCFF'>Input</TD>
 </TR>
 <TR><TD>30</TD><TD>PTI5/IRQ</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port5</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1211,7 +1211,7 @@
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port27</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>58</TD><TD>PTD2/KBI0_P26/SPI1_MISO</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port26</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port26</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>59</TD><TD>PTA3/KBI0_P3/UART0_TX/I2C0_SCL</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOA</TD><TD bgcolor='#F7DCFF'>port3</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1235,7 +1235,7 @@
 <TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port3</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>66</TD><TD>PTI2/IRQ</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>IRQ</TD><TD bgcolor='#F7DCFF'>extInt0</TD><TD bgcolor='#F7DCFF'>alt1</TD><TD bgcolor='#F7DCFF'>Input</TD>
+<TD bgcolor='#F7DCFF'>GPIOC</TD><TD bgcolor='#F7DCFF'>port2</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>67</TD><TD>PTE3/KBI1_P3/SPI0_PCS</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port3</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>

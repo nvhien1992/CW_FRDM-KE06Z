@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-28, 10:08, # CodeGen: 33
+**     Date/Time   : 2015-04-06, 20:23, # CodeGen: 97
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,13 +16,13 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : MB_STATUS
-**          Pin for I/O                                    : PTD2/KBI0_P26/SPI1_MISO
+**          Pin for I/O                                    : PTD1/KBI0_P25/FTM2_CH3/SPI1_MOSI
 **          Pin signal                                     : 
 **          Direction                                      : Input
 **          Initialization                                 : 
 **            Init. direction                              : Input
 **            Init. value                                  : 0
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **          Safe mode                                      : no
 **     Contents    :
 **         Init   - LDD_TDeviceData* MB_STATUS_Init(LDD_TUserData *UserDataPtr);
@@ -125,10 +125,10 @@ LDD_TDeviceData* MB_STATUS_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   /* Configure pin as input */
-  /* GPIOA_PDDR: PDD&=~0x04000000 */
-  GPIOA_PDDR &= (uint32_t)~(uint32_t)(GPIO_PDDR_PDD(0x04000000));
-  /* GPIOA_PIDR: PID&=~0x04000000 */
-  GPIOA_PIDR &= (uint32_t)~(uint32_t)(GPIO_PIDR_PID(0x04000000));
+  /* GPIOA_PDDR: PDD&=~0x02000000 */
+  GPIOA_PDDR &= (uint32_t)~(uint32_t)(GPIO_PDDR_PDD(0x02000000));
+  /* GPIOA_PIDR: PID&=~0x02000000 */
+  GPIOA_PIDR &= (uint32_t)~(uint32_t)(GPIO_PIDR_PID(0x02000000));
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_MB_STATUS_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv);

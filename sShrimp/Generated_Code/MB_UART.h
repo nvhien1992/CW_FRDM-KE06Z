@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
+**     Date/Time   : 2015-04-03, 21:29, # CodeGen: 66
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -50,7 +50,7 @@
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : no
 **            Event mask                                   : 
-**              OnBlockSent                                : Enabled
+**              OnBlockSent                                : Disabled
 **              OnBlockReceived                            : Enabled
 **              OnTxComplete                               : Disabled
 **              OnError                                    : Disabled
@@ -139,7 +139,6 @@ extern "C" {
 
 /* Events configuration constants - generated for all enabled component's events */
 #define MB_UART_OnBlockReceived_EVENT_ENABLED /*!< OnBlockReceived event of the component MB_UART is enabled (generated) */
-#define MB_UART_OnBlockSent_EVENT_ENABLED /*!< OnBlockSent event of the component MB_UART is enabled (generated) */
 
 #define ENABLED_TX_INT        0x01U    /*!< TX interrupt enabled      */
 #define BREAK_DETECTED        0x02U    /*!< Break detected            */
