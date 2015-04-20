@@ -12,18 +12,16 @@
 
 #define DISABLE_ALL (0)
 
-#if !DISABLE_ALL
-#if NOTIFY_EN
+#if !DISABLE_ALL && NOTIFY_EN
 #define NOTIFY(...) printf(__VA_ARGS__)
 #else
 #define NOTIFY(...) 
 #endif
 
-#if DEBUG_EN
+#if !DISABLE_ALL && DEBUG_EN
 #define DEBUG(...) printf(__VA_ARGS__)
 #else
 #define DEBUG(...) 
-#endif
 #endif
 
 #endif /* DEBUG_H_ */

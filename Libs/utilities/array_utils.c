@@ -4,107 +4,127 @@
  *  Created on: Jan 30, 2015
  *      Author: Nguyen Van Hien <nvhien1992@gmail.com>
  */
+#include <cstring>
 #include "array_utils.h"
 
-bool init_conf_array(conf_arr_t *conf_arr) {
+bool init_array(array_t *arr, uint8_t *given_arr, uint16_t max_elements,
+		uint8_t sizeof_element_in_byte) {
 	/* check parameter */
-	if (!conf_arr) {
-		return FALSE;
+	if (!given_arr) {
+		return false;
 	}
-	uint8_t index = 0;
-	for (index = 0; index < conf_arr->max_elements; index++) {
-		conf_arr->element_list[index] = 0;
-	}
-	conf_arr->num_elements = 0;
 
-	return TRUE;
+	arr->element_list = given_arr;
+	arr->max_elements = max_elements;
+	arr->sizeof_element = sizeof_element_in_byte;
+	arr->num_elements = 0;
+
+	memset(arr->element_list, 0, max_elements);
+
+	return true;
 }
 
-bool insert(conf_arr_t *conf_arr, uint16_t value, uint8_t index) {
+bool insert_element_at_index(array_t *arr, uint8_t *value, uint16_t index) {
 	/* check parameter */
-	if (!conf_arr) {
-		return FALSE;
+	if (!arr) {
+		return false;
 	}
 
 	/* arrays are full */
-	if (conf_arr->num_elements == conf_arr->max_elements) {
-		return FALSE;
+	if (arr->num_elements == arr->max_elements) {
+		return false;
 	}
-	
+
 	/* out of range */
-	if(index >= conf_arr->max_elements) {
-		return FALSE;
+	if (index >= arr->max_elements) {
+		return false;
 	}
 
 	/* not continuous */
-	if (index > conf_arr->num_elements) {
-		return FALSE;
+	if (index > arr->num_elements) {
+		return false;
 	}
 
-	uint8_t count = 0;
-	for (count = conf_arr->num_elements; count > index; count--) {
-		conf_arr->element_list[count] = conf_arr->element_list[count - 1];
+	if (index < arr->num_elements) {
+		memmove(&arr->element_list[(index + 1) * arr->sizeof_element],
+				&arr->element_list[index * arr->sizeof_element],
+				(arr->num_elements - index) * arr->sizeof_element);
 	}
-	conf_arr->element_list[index] = value;
-	conf_arr->num_elements++;
 
-	return TRUE;
+	memcpy(&arr->element_list[index * arr->sizeof_element], value,
+			arr->sizeof_element);
+
+	arr->num_elements++;
+
+	return true;
 }
 
-bool delete(conf_arr_t *conf_arr, uint8_t index) {
+bool delete_element_at_index(array_t *arr, uint16_t index) {
 	/* check parameter */
-	if (!conf_arr) {
-		return FALSE;
+	if (!arr) {
+		return false;
 	}
 
 	/* have no the configuring element */
-	if (conf_arr->num_elements == 0) {
-		return FALSE;
+	if (arr->num_elements == 0) {
+		return false;
 	}
 
 	/* out of range */
-	if (index >= conf_arr->num_elements) {
-		return FALSE;
+	if (index >= arr->num_elements) {
+		return false;
 	}
 
-	if (index == conf_arr->num_elements - 1) {
-		conf_arr->element_list[index] = 0;
+	if (index == arr->num_elements - 1) {
+		memset(&arr->element_list[index * arr->sizeof_element], 0,
+				arr->sizeof_element);
 	} else {
-		uint8_t count = 0;
-		for (count = index; count < conf_arr->num_elements; count++) {
-			conf_arr->element_list[count] = conf_arr->element_list[count + 1];
-		}
+		memmove(&arr->element_list[index * arr->sizeof_element],
+				&arr->element_list[(index + 1) * arr->sizeof_element],
+				(arr->num_elements - index - 1) * arr->sizeof_element);
+		memset(&arr->element_list[(arr->num_elements - 1) * arr->sizeof_element],
+				0, arr->sizeof_element);
 	}
 
-	conf_arr->num_elements--;
+	arr->num_elements--;
 
-	return TRUE;
+	return true;
 }
 
-bool modify_value(conf_arr_t *conf_arr, uint16_t new_value, uint8_t index) {
+bool modify_element_at_index(array_t *arr, uint8_t *new_value, uint16_t index) {
 	/* check parameter */
-	if (!conf_arr) {
-		return FALSE;
+	if (!arr) {
+		return false;
 	}
 
 	/* out of range */
-	if (index >= conf_arr->num_elements) {
-		return FALSE;
+	if (index >= arr->num_elements) {
+		return false;
 	}
 
-	conf_arr->element_list[index] = new_value;
+	memcpy(&arr->element_list[index * arr->sizeof_element], new_value,
+			arr->sizeof_element);
 
-	return TRUE;
+	return true;
 }
 
-bool get_conf_value(conf_arr_t *conf_arr, uint16_t *conf_value, uint8_t index) {
-	if (!conf_arr) {
-		return FALSE;
+bool get_element_at_index(array_t *arr, uint8_t *out_value, uint8_t index) {
+	if (!arr) {
+		return false;
 	}
-	if (index >= conf_arr->num_elements) {
-		return FALSE;
+	if (index >= arr->num_elements) {
+		return false;
 	}
-	*conf_value = conf_arr->element_list[index];
 
-	return TRUE;
+	memcpy(out_value, &arr->element_list[index * arr->sizeof_element],
+			arr->sizeof_element);
+
+	return true;
+}
+
+uint16_t get_num_valid_element(array_t *arr) {
+	if (!arr) {
+		return 0;
+	}
+	return arr->num_elements;
 }
