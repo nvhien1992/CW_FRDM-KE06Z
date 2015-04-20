@@ -32,7 +32,6 @@ typedef struct {
 		bool (*GetVal)(LDD_TDeviceData *dev_data);
 	} STATUS;
 	struct {
-		LDD_TError (*SetEdge)(LDD_TDeviceData *dev_data, uint8_t edge);
 		void (*Enable)(LDD_TDeviceData *dev_data);
 		void (*Disable)(LDD_TDeviceData *dev_data);
 		bool (*GetVal)(LDD_TDeviceData *dev_data);

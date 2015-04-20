@@ -41,6 +41,7 @@ extern "C" {
 #include <cstring>
 #include "message_type.h"
 #include "remote_com.h"
+#include "cir_queue.h"
 
 #define NOTIFY_EN 	(1)
 #define DEBUG_EN	(1)
@@ -70,7 +71,7 @@ SIM900_pins_t sim900_pins = { { MB_NRST_SetVal, MB_NRST_ClrVal, }, //nRST
 		{ MB_NPW_SetVal, MB_NPW_ClrVal, }, //nPW
 		{ MB_DTR_SetVal, MB_DTR_ClrVal, }, //DTR
 		{ MB_STATUS_GetVal, }, //STATUS
-		{ MB_RI_SetEdge, MB_RI_Enable, MB_RI_Disable, MB_RI_GetVal }, //RI
+		{ MB_RI_Enable, MB_RI_Disable, MB_RI_GetVal }, //RI
 		};
 
 static uint8_t get_systick_period_in_ms(void);
@@ -99,7 +100,7 @@ static uint8_t get_systick_period_in_ms(void) {
  */
 void Control_task(uint32_t task_init_data) {
 	int counter = 0;
-
+DEBUG("%d\n", sizeof(SWM_msg_t));
 	/* init msg queues */
 	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_CTRL_MESSAGES, MESSAGE_SIZE);
 	_lwmsgq_init((pointer) rcom_msg_queue, NUM_RCOM_MESSAGES, MESSAGE_SIZE);
@@ -123,21 +124,37 @@ void Control_task(uint32_t task_init_data) {
 	msg_ptr.cmd = RCOM_CONFIGURE;
 	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
 	_time_delay_ticks(200);
-//	msg_ptr.cmd = RCOM_CONNECT_INTERNET;
-//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-//	_time_delay_ticks(200);
-//	msg_ptr.cmd = RCOM_GET_TIMESTAMP;
-//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-//	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
-//	msg_ptr.content.value_ptr = (void*) "0947380243";
-//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-	msg_ptr.cmd = RCOM_SEND_SMS_MSG;
-	SIM900_SMS_package_t sms_package = { "0947380243", "nvhien", };
-	msg_ptr.content.value_ptr = (void*) &sms_package;
+	msg_ptr.cmd = RCOM_CONNECT_INTERNET;
 	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
+	_time_delay_ticks(200);
+	msg_ptr.cmd = RCOM_GET_TIMESTAMP;
+	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
+	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
+	msg_ptr.content.value_ptr = "0947380243";
+	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
+//	msg_ptr.cmd = RCOM_SEND_SMS_MSG;
+//	SIM900_SMS_package_t sms_package = { "0947380243", "nvhien", };
+//	msg_ptr.content.value_ptr = (char*) &sms_package;
+//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
 
 	_mqx_uint msg = 0;
-
+//	cir_queue_t cir_queue;
+//	uint8_t queue[16];
+//	cir_queue.queue_p = queue;
+//	cir_queue.queue_size = 16;
+//	cir_queue_init(&cir_queue, queue, 16);
+//	uint8_t count = 0;
+//	for (count = 0; count < 17; count++) {
+//		cir_queue_add_byte(&cir_queue, count);
+//	}
+//	DEBUG("head: %ld\n", cir_queue.head);
+//	DEBUG("tail: %ld\n", cir_queue.tail);
+//	DEBUG("max_q_size: %d\n", cir_queue.queue_size);
+//	if (!cir_queue_is_full(&cir_queue)) {
+//		DEBUG("data size: %d\n", cir_queue_get_data_size(&cir_queue));
+//	} else {
+//		DEBUG("full\n");
+//	}
 	while (1) {
 		counter++;
 

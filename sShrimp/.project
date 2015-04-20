@@ -160,6 +160,26 @@
 			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/pdd/inc/WDOG_PDD.h</location>
 		</link>
 		<link>
+			<name>Generated_Code/Peripherals/KBI0_Init.c</name>
+			<type>1</type>
+			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/pdd2/MKE06Z128LK4/peripherals/KBI0_Init.c</location>
+		</link>
+		<link>
+			<name>Generated_Code/Peripherals/KBI0_Init.h</name>
+			<type>1</type>
+			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/pdd2/MKE06Z128LK4/peripherals/KBI0_Init.h</location>
+		</link>
+		<link>
+			<name>Generated_Code/Peripherals/KBI1_Init.c</name>
+			<type>1</type>
+			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/pdd2/MKE06Z128LK4/peripherals/KBI1_Init.c</location>
+		</link>
+		<link>
+			<name>Generated_Code/Peripherals/KBI1_Init.h</name>
+			<type>1</type>
+			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/pdd2/MKE06Z128LK4/peripherals/KBI1_Init.h</location>
+		</link>
+		<link>
 			<name>Generated_Code/System/CPU_Init.c</name>
 			<type>1</type>
 			<location>C:/Freescale/CW MCU v10.6/MCU/ProcessorExpert/lib/Kinetis/pdd2/MKE06Z128LK4/system/CPU_Init.c</location>

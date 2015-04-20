@@ -30,7 +30,7 @@ typedef struct {
 	SWM_cmd_t cmd;
 	union {
 		uint32_t value;
-		void* value_ptr;
+		char* value_ptr;
 	} content;
 } SWM_msg_t;
 

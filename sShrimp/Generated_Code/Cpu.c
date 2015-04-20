@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-04-12, 20:37, # CodeGen: 105
+**     Date/Time   : 2015-04-20, 14:55, # CodeGen: 126
 **     Abstract    :
 **
 **     Settings    :
@@ -97,6 +97,8 @@ void Common_Init(void)
      registers in this method (see active generator configuration 
      Optimizations\Utilize after reset values property or enabled processor 
      component Common settings\Utilize after reset values property) */
+  /* SIM_PINSEL1: UART1PS=0 */
+  SIM_PINSEL1 &= (uint32_t)~(uint32_t)(SIM_PINSEL1_UART1PS_MASK);
   /* SIM_SOPT0: NMIE=1 */
   SIM_SOPT0 |= SIM_SOPT0_NMIE_MASK;
   /* PORT_HDRVE: PTB4=0 */
@@ -106,6 +108,8 @@ void Common_Init(void)
                 PORT_PUE0_PTDPE5_MASK |
                 PORT_PUE0_PTBPE4_MASK
                );
+  /* PORT_PUE1: PTGPE0=1 */
+  PORT_PUE1 |= PORT_PUE1_PTGPE0_MASK;
   /* PORT_PUE2: PTIPE6=1 */
   PORT_PUE2 |= PORT_PUE2_PTIPE6_MASK;
 }

@@ -253,7 +253,7 @@
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port17</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>74</TD><TD>PTG0/KBI1_P16</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port16</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#F7DCFF'>KBI1</TD><TD bgcolor='#F7DCFF'>kbi16</TD><TD bgcolor='#F7DCFF'>alt1</TD><TD bgcolor='#F7DCFF'>Input</TD>
 </TR>
 <TR><TD>75</TD><TD>PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port1</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
@@ -1259,7 +1259,7 @@
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port17</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
 </TR>
 <TR><TD>74</TD><TD>PTG0/KBI1_P16</TD><TD><small><i>same</i></small></TD>
-<TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port16</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>
+<TD bgcolor='#F7DCFF'>KBI1</TD><TD bgcolor='#F7DCFF'>kbi16</TD><TD bgcolor='#F7DCFF'>alt1</TD><TD bgcolor='#F7DCFF'>Input</TD>
 </TR>
 <TR><TD>75</TD><TD>PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL</TD><TD><small><i>same</i></small></TD>
 <TD bgcolor='#F7DCFF'>GPIOB</TD><TD bgcolor='#F7DCFF'>port1</TD><TD bgcolor='#F7DCFF'>alt0</TD><TD bgcolor='#F7DCFF'>Not Specified</TD>

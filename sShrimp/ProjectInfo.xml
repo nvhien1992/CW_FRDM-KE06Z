@@ -46,11 +46,13 @@
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\iofiles\</Path>
+      <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\</Path>
       <Path>D:\CW\sShrimp\Sources\</Path>
       <Path>D:\CW\sShrimp\Generated_Code\</Path>
     </IncludePaths>
     <SourceCodePaths>
       <Path>D:\CW\sShrimp\Generated_Code\</Path>
+      <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\</Path>
       <Path>D:\CW\sShrimp\MQXLITE\config\</Path>
       <Path>D:\CW\sShrimp\MQXLITE\kernel\</Path>
@@ -74,6 +76,8 @@
       <PathName>D:\CW\sShrimp\Generated_Code\MB_UART.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\MQX1.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\PE_LDD.c</PathName>
+      <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI0_Init.c</PathName>
+      <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI1_Init.c</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\Pin_Settings.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.c</PathName>
@@ -119,6 +123,7 @@
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\__arm_start.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\SIM900A.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\cir_queue.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\main.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com.c</PathName>
@@ -171,6 +176,8 @@
       <PathName>D:\CW\sShrimp\Generated_Code\PE_Error.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\PE_LDD.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\PE_Types.h</PathName>
+      <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI0_Init.h</PathName>
+      <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI1_Init.h</PathName>
       <PathName>D:\CW\sShrimp\Generated_Code\Pin_Settings.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</PathName>
@@ -219,6 +226,7 @@
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\SIM900A.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\cir_queue.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\global.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\message_type.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.h</PathName>

@@ -21,8 +21,6 @@ SIM900_params_t SIM900_params;
 /* DTR */
 #define DTR_SET()	SIM900_pins->DTR.ClrVal(NULL)
 #define DTR_CLR()	SIM900_pins->DTR.SetVal(NULL)
-/* set falling egde mode on RI */
-#define RI_SET_FALLING_EDGE()	SIM900_pins->RI.SetEdge(NULL, 1);
 /* voltage lv on STATUS pin */
 #define STATUS_HIGH_LV	FALSE
 #define STATUS_LOW_LV	TRUE
@@ -34,8 +32,8 @@ static LWEVENT_STRUCT RI_event;
 #define RI_EVT_BIT_MASK	0x01
 
 static bool RI_interrupt = FALSE;
-static char RI_unsolicited[64];
-static RCOM_buff_t RI_rx_buf = { RI_unsolicited, 64, 0, FALSE };
+static char RI_unsolicited_buf[32];
+static RCOM_buff_t RI_rx_buf = { RI_unsolicited_buf, 32, 0, FALSE };
 
 /*=======================================================================
  ==========================DEFINE PRIVATE FUNCTIONS======================

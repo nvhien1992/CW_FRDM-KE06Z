@@ -277,7 +277,7 @@ PE_DEBUGHALT();
             </group>
             <group name="Peripheral Type ADC">
               <Custom_name v="ADC" />
-              <ADC__ADC_analog_channel_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_0 v="PTA0/KBI0_P0/FTM0_CH0/I2C0_4WSCLOUT/ACMP0_IN0/ADC0_SE0" />
               <ADC__ADC_analog_channel_1 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_2 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_3 v="&amp;lt;Automatic&amp;gt;" />
@@ -487,7 +487,7 @@ PE_DEBUGHALT();
               <GPIOB__General_purpose_I_O_pin_31 v="&amp;lt;Automatic&amp;gt;" />
               <Direction v="&amp;lt;Automatic&amp;gt;" />
               <Custom_name v="GPIOC" />
-              <GPIOC__General_purpose_I_O_pin_0 v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOC__General_purpose_I_O_pin_0 v="PTI0/IRQ/UART2_RX" />
               <Direction v="&amp;lt;Automatic&amp;gt;" />
               <GPIOC__General_purpose_I_O_pin_1 v="&amp;lt;Automatic&amp;gt;" />
               <Direction v="&amp;lt;Automatic&amp;gt;" />
@@ -570,7 +570,7 @@ PE_DEBUGHALT();
               <KBI1__KBI_pin_13 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_14 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_15 v="&amp;lt;Automatic&amp;gt;" />
-              <KBI1__KBI_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_16 v="PTG0/KBI1_P16" />
               <KBI1__KBI_pin_17 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_18 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_19 v="&amp;lt;Automatic&amp;gt;" />
@@ -667,7 +667,7 @@ PE_DEBUGHALT();
               <UART0__UART_Tx_modulator_input v="FTM0_CH0_output" />
               <Custom_name v="UART1" />
               <UART1__UART_receive_data v="&amp;lt;Automatic&amp;gt;" />
-              <UART1__UART_transmit_data v="&amp;lt;Automatic&amp;gt;" />
+              <UART1__UART_transmit_data v="PTC7/KBI0_P23/UART1_TX/CAN0_TX" />
               <Custom_name v="UART2" />
               <UART2__UART_receive_data v="&amp;lt;Automatic&amp;gt;" />
               <UART2__UART_transmit_data v="&amp;lt;Automatic&amp;gt;" />
@@ -972,7 +972,7 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 74: PTG0/KBI1_P16">
               <Custom_name__Signal_name v="PTG0/KBI1_P16" />
-              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <Pull_enable v="Enabled" />
             </group>
             <group name="Pin 75: PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL">
               <Custom_name__Signal_name v="PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL" />

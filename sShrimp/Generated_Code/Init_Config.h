@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-04-06, 11:17, # CodeGen: 77
+**     Date/Time   : 2015-04-20, 14:25, # CodeGen: 125
 **     Abstract    :
 **         This file collects Processor Expert components configuration 
 **         and interface files.

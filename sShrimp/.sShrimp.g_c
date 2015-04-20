@@ -289,9 +289,9 @@
       <XtraAge80>1180930537</XtraAge80>
       <XtraAge90>1183544060</XtraAge90>
       <XtraAge91>1183544060</XtraAge91>
-      <XtraAge93>1183544060</XtraAge93>
-      <XtraAge94>1183429132</XtraAge94>
-      <XtraAge95>1183210035</XtraAge95>
+      <XtraAge93>1184133936</XtraAge93>
+      <XtraAge94>1184133936</XtraAge94>
+      <XtraAge95>1184133936</XtraAge95>
       <GenExtraFileType99>5</GenExtraFileType99>
       <GenExtraFileType98>4</GenExtraFileType98>
       <GenExtraFileType97>4</GenExtraFileType97>
@@ -392,7 +392,11 @@
       <GenExtraFileType2>4</GenExtraFileType2>
       <GenExtraFileType1>4</GenExtraFileType1>
       <GenExtraFileType0>4</GenExtraFileType0>
-      <GenLinkedFiles lines_count="31">
+      <GenLinkedFiles lines_count="35">
+        <Line>Generated_Code\Peripherals\KBI0_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI0_Init.c</Line>
+        <Line>Generated_Code\Peripherals\KBI0_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI0_Init.h</Line>
+        <Line>Generated_Code\Peripherals\KBI1_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI1_Init.c</Line>
+        <Line>Generated_Code\Peripherals\KBI1_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI1_Init.h</Line>
         <Line>Generated_Code\System\CPU_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</Line>
         <Line>Generated_Code\System\CPU_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</Line>
         <Line>Generated_Code\System\PDD_Includes.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</Line>
@@ -476,7 +480,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>97</ProjectModificationStamp>
+    <ProjectModificationStamp>104</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -485,7 +489,7 @@
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
     <HeaderAge>1183223056</HeaderAge>
-    <CodeAge>1183622318</CodeAge>
+    <CodeAge>1184134901</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>6</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
@@ -519,7 +523,7 @@
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
-    <GenExtraFilesCount>42</GenExtraFilesCount>
+    <GenExtraFilesCount>46</GenExtraFilesCount>
     <ExtraFile0>Project_Settings\Debugger\MKE06Z128.mem</ExtraFile0>
     <ExtraFile1>Generated_Code\PE_LDD.c</ExtraFile1>
     <ExtraFile2>Generated_Code\PE_LDD.h</ExtraFile2>
@@ -556,12 +560,16 @@
     <ExtraFile33>D:\CW\sShrimp\Generated_Code\System\PDD_Includes.h</ExtraFile33>
     <ExtraFile34>D:\CW\sShrimp\Generated_Code\System\CPU_Init.h</ExtraFile34>
     <ExtraFile35>D:\CW\sShrimp\Generated_Code\System\CPU_Init.c</ExtraFile35>
-    <ExtraFile36>Generated_Code\CPU_Config.h</ExtraFile36>
-    <ExtraFile37>Generated_Code\Init_Config.h</ExtraFile37>
-    <ExtraFile38>Documentation\doxygen\sShrimp.txt</ExtraFile38>
-    <ExtraFile39>Documentation\doxygen\RoutingReport.txt</ExtraFile39>
-    <ExtraFile40>Documentation\doxygen\pex.doxyfile</ExtraFile40>
-    <ExtraFile41>Documentation\doxygen\pex.css</ExtraFile41>
+    <ExtraFile36>D:\CW\sShrimp\Generated_Code\Peripherals\KBI1_Init.h</ExtraFile36>
+    <ExtraFile37>D:\CW\sShrimp\Generated_Code\Peripherals\KBI1_Init.c</ExtraFile37>
+    <ExtraFile38>D:\CW\sShrimp\Generated_Code\Peripherals\KBI0_Init.h</ExtraFile38>
+    <ExtraFile39>D:\CW\sShrimp\Generated_Code\Peripherals\KBI0_Init.c</ExtraFile39>
+    <ExtraFile40>Generated_Code\CPU_Config.h</ExtraFile40>
+    <ExtraFile41>Generated_Code\Init_Config.h</ExtraFile41>
+    <ExtraFile42>Documentation\doxygen\sShrimp.txt</ExtraFile42>
+    <ExtraFile43>Documentation\doxygen\RoutingReport.txt</ExtraFile43>
+    <ExtraFile44>Documentation\doxygen\pex.doxyfile</ExtraFile44>
+    <ExtraFile45>Documentation\doxygen\pex.css</ExtraFile45>
   </CpuID_2>
   <ComponentID_3>
     <Generated>true</Generated>
@@ -570,7 +578,7 @@
     <GenDriverVersion>1.1</GenDriverVersion>
     <GenEventModule />
     <HeaderAge>1183210035</HeaderAge>
-    <CodeAge>1183622318</CodeAge>
+    <CodeAge>1184133936</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>1</GenNumMethods>
     <Init>true</Init>
@@ -591,7 +599,7 @@
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
       <LineBeg>64</LineBeg>
-      <LineEnd>129</LineEnd>
+      <LineEnd>130</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>0</GenExtraFilesCount>
   </ComponentID_3>
@@ -601,7 +609,7 @@
     <GenComponentVersion>01.110</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1184015024</HeaderAge>
+    <HeaderAge>1184133936</HeaderAge>
     <CodeAge>1184015024</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>157</GenNumMethods>

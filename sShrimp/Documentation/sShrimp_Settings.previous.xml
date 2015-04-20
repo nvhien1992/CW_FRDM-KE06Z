@@ -277,7 +277,7 @@ PE_DEBUGHALT();
             </group>
             <group name="Peripheral Type ADC">
               <Custom_name v="ADC" />
-              <ADC__ADC_analog_channel_0 v="&amp;lt;Automatic&amp;gt;" />
+              <ADC__ADC_analog_channel_0 v="PTA0/KBI0_P0/FTM0_CH0/I2C0_4WSCLOUT/ACMP0_IN0/ADC0_SE0" />
               <ADC__ADC_analog_channel_1 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_2 v="&amp;lt;Automatic&amp;gt;" />
               <ADC__ADC_analog_channel_3 v="&amp;lt;Automatic&amp;gt;" />
@@ -570,7 +570,7 @@ PE_DEBUGHALT();
               <KBI1__KBI_pin_13 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_14 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_15 v="&amp;lt;Automatic&amp;gt;" />
-              <KBI1__KBI_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <KBI1__KBI_pin_16 v="PTG0/KBI1_P16" />
               <KBI1__KBI_pin_17 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_18 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_19 v="&amp;lt;Automatic&amp;gt;" />
@@ -972,7 +972,7 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 74: PTG0/KBI1_P16">
               <Custom_name__Signal_name v="PTG0/KBI1_P16" />
-              <Pull_enable v="&amp;lt;Automatic&amp;gt;" />
+              <Pull_enable v="Enabled" />
             </group>
             <group name="Pin 75: PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL">
               <Custom_name__Signal_name v="PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL" />
@@ -1115,7 +1115,7 @@ PE_DEBUGHALT();
           <event name="OnChannel7" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <list name="Task Template List" v="3">
+      <list name="Task Template List" v="4">
         <boolgroup name="Task1" v="Enabled">
           <inhrbean type="MQXLite_task">
             <Enabled v="Y" />
@@ -1190,6 +1190,32 @@ PE_DEBUGHALT();
               <Event_module_name v="mqx_tasks" />
               <event name="OnTask" v="generate code">
                 <Event_procedure_name v="RI_proccess_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
+        <boolgroup name="Task4" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="Kernel_log" />
+              <Entry_point_function v="Kernel_log_task" />
+              <Stack_size v="1024" />
+              <Priority v="8" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Disabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="Kernel_log_task" />
               </event>
             </Events>
           </inhrbean>

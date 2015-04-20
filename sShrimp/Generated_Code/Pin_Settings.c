@@ -6,7 +6,7 @@
 **     Component   : PinSettings
 **     Version     : Component 01.002, Driver 1.1, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-04-12, 20:37, # CodeGen: 105
+**     Date/Time   : 2015-04-20, 14:25, # CodeGen: 125
 **     Abstract    :
 **
 **     Settings    :
@@ -91,40 +91,41 @@ void Pin_Settings_Init(void)
   PORT_PUE0 = PORT_PUE0_PTCPE4_MASK;
   /* PORT_HDRVE: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,PTH1=0,PTH0=0,PTE1=0,PTE0=0,PTD1=0,PTD0=0,PTB5=0,PTB4=0 */
   PORT_HDRVE = 0x00U;
-  /* PORT_PUE1: PTHPE7=0,PTHPE6=0,PTHPE5=0,PTHPE4=0,PTHPE3=0,PTHPE2=0,PTHPE1=0,PTHPE0=0,PTGPE7=0,PTGPE6=0,PTGPE5=0,PTGPE4=0,PTGPE3=0,PTGPE2=0,PTGPE1=0,PTGPE0=0,PTFPE7=0,PTFPE6=0,PTFPE5=0,PTFPE4=0,PTFPE3=0,PTFPE2=0,PTFPE1=0,PTFPE0=0,PTEPE7=0,PTEPE6=0,PTEPE5=0,PTEPE3=0,PTEPE2=0,PTEPE1=0,PTEPE0=0 */
-  PORT_PUE1 &= (uint32_t)~(uint32_t)(
-                PORT_PUE1_PTHPE7_MASK |
-                PORT_PUE1_PTHPE6_MASK |
-                PORT_PUE1_PTHPE5_MASK |
-                PORT_PUE1_PTHPE4_MASK |
-                PORT_PUE1_PTHPE3_MASK |
-                PORT_PUE1_PTHPE2_MASK |
-                PORT_PUE1_PTHPE1_MASK |
-                PORT_PUE1_PTHPE0_MASK |
-                PORT_PUE1_PTGPE7_MASK |
-                PORT_PUE1_PTGPE6_MASK |
-                PORT_PUE1_PTGPE5_MASK |
-                PORT_PUE1_PTGPE4_MASK |
-                PORT_PUE1_PTGPE3_MASK |
-                PORT_PUE1_PTGPE2_MASK |
-                PORT_PUE1_PTGPE1_MASK |
-                PORT_PUE1_PTGPE0_MASK |
-                PORT_PUE1_PTFPE7_MASK |
-                PORT_PUE1_PTFPE6_MASK |
-                PORT_PUE1_PTFPE5_MASK |
-                PORT_PUE1_PTFPE4_MASK |
-                PORT_PUE1_PTFPE3_MASK |
-                PORT_PUE1_PTFPE2_MASK |
-                PORT_PUE1_PTFPE1_MASK |
-                PORT_PUE1_PTFPE0_MASK |
-                PORT_PUE1_PTEPE7_MASK |
-                PORT_PUE1_PTEPE6_MASK |
-                PORT_PUE1_PTEPE5_MASK |
-                PORT_PUE1_PTEPE3_MASK |
-                PORT_PUE1_PTEPE2_MASK |
-                PORT_PUE1_PTEPE1_MASK |
-                PORT_PUE1_PTEPE0_MASK
-               );
+  /* PORT_PUE1: PTHPE7=0,PTHPE6=0,PTHPE5=0,PTHPE4=0,PTHPE3=0,PTHPE2=0,PTHPE1=0,PTHPE0=0,PTGPE7=0,PTGPE6=0,PTGPE5=0,PTGPE4=0,PTGPE3=0,PTGPE2=0,PTGPE1=0,PTGPE0=1,PTFPE7=0,PTFPE6=0,PTFPE5=0,PTFPE4=0,PTFPE3=0,PTFPE2=0,PTFPE1=0,PTFPE0=0,PTEPE7=0,PTEPE6=0,PTEPE5=0,PTEPE3=0,PTEPE2=0,PTEPE1=0,PTEPE0=0 */
+  PORT_PUE1 = (uint32_t)((PORT_PUE1 & (uint32_t)~(uint32_t)(
+               PORT_PUE1_PTHPE7_MASK |
+               PORT_PUE1_PTHPE6_MASK |
+               PORT_PUE1_PTHPE5_MASK |
+               PORT_PUE1_PTHPE4_MASK |
+               PORT_PUE1_PTHPE3_MASK |
+               PORT_PUE1_PTHPE2_MASK |
+               PORT_PUE1_PTHPE1_MASK |
+               PORT_PUE1_PTHPE0_MASK |
+               PORT_PUE1_PTGPE7_MASK |
+               PORT_PUE1_PTGPE6_MASK |
+               PORT_PUE1_PTGPE5_MASK |
+               PORT_PUE1_PTGPE4_MASK |
+               PORT_PUE1_PTGPE3_MASK |
+               PORT_PUE1_PTGPE2_MASK |
+               PORT_PUE1_PTGPE1_MASK |
+               PORT_PUE1_PTFPE7_MASK |
+               PORT_PUE1_PTFPE6_MASK |
+               PORT_PUE1_PTFPE5_MASK |
+               PORT_PUE1_PTFPE4_MASK |
+               PORT_PUE1_PTFPE3_MASK |
+               PORT_PUE1_PTFPE2_MASK |
+               PORT_PUE1_PTFPE1_MASK |
+               PORT_PUE1_PTFPE0_MASK |
+               PORT_PUE1_PTEPE7_MASK |
+               PORT_PUE1_PTEPE6_MASK |
+               PORT_PUE1_PTEPE5_MASK |
+               PORT_PUE1_PTEPE3_MASK |
+               PORT_PUE1_PTEPE2_MASK |
+               PORT_PUE1_PTEPE1_MASK |
+               PORT_PUE1_PTEPE0_MASK
+              )) | (uint32_t)(
+               PORT_PUE1_PTGPE0_MASK
+              ));
   /* PORT_PUE2: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,PTIPE6=1,PTIPE5=0,PTIPE4=0,PTIPE3=0,PTIPE2=0,PTIPE1=0,PTIPE0=0 */
   PORT_PUE2 = PORT_PUE2_PTIPE6_MASK;
 }
