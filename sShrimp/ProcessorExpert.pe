@@ -3,8 +3,8 @@
   <Header>
     <Name>sShrimp</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>80</ModificationStamp>
-    <Date>2015-04-06</Date>
+    <ModificationStamp>97</ModificationStamp>
+    <Date>2015-04-19</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>69</ProjectCompNumb>
+    <ProjectCompNumb>86</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -288,7 +288,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
+        <Index>3</Index>
       </ItemState>
       <ItemState>
         <ItemSymbol>ICSModeCLKMode0</ItemSymbol>
@@ -326,19 +326,19 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>41.94304</Value>
+        <Value>40</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>FLLFixedClkCLKMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>32.768</Value>
+        <Value>31.25</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>FLL_RefClkSrcCLKMode0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
+        <Index>1</Index>
         <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
@@ -346,14 +346,13 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
         <Index>0</Index>
         <EnumSymbVal>Auto select</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>FLLRefClkCLKMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>32.768</Value>
+        <Value>31.25</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ICS_FLL_MFactor_CLKMode0</ItemSymbol>
@@ -374,24 +373,24 @@
       <ItemState>
         <ItemSymbol>ICSOUTSelectCLKMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <EnumSymbVal>FLLOUT</EnumSymbVal>
+        <Index>3</Index>
+        <EnumSymbVal>EXTCLK</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>BDIV_CLKMode0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <EnumSymbVal>-1</EnumSymbVal>
+        <Index>1</Index>
+        <EnumSymbVal>0</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>BDIVCLKMode0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>2</Index>
-        <EnumSymbVal>1</EnumSymbVal>
+        <Index>1</Index>
+        <EnumSymbVal>0</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>ICSOutputCLKMode0</ItemSymbol>
@@ -436,7 +435,7 @@
       <ItemState>
         <ItemSymbol>PLLFLLClockSpeedMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>41.94304</Value>
+        <Value>40</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_SYSTEM_PRESCALER0</ItemSymbol>
@@ -449,14 +448,14 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>IRC_32kHz</Value>
+        <Value>RDIV</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>RDIVSpeedMode0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>1</Value>
+        <Value>256</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ICS_FLL_MFactorSpeedMode0</ItemSymbol>
@@ -470,14 +469,14 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>ICSFLLCLK</Value>
+        <Value>IREFSExtClk</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>BDIVSpeedMode0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>2</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>CLKModeSpeedMode0</ItemSymbol>
@@ -490,13 +489,13 @@
       <ItemState>
         <ItemSymbol>ICSModeSelSpeedMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <EnumSymbVal>0</EnumSymbVal>
+        <Index>3</Index>
+        <EnumSymbVal>3</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>ICSOutputSpeedMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>20.97152</Value>
+        <Value>8</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>IRCLKClkSpeedMode0</ItemSymbol>
@@ -504,11 +503,11 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>FLLFixedClkSpeedMode0</ItemSymbol>
-        <Value>32.768</Value>
+        <Value>31.25</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>FLLFixedClkDiv2SpeedMode0</ItemSymbol>
-        <Value>16.384</Value>
+        <Value>15.625</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ERCLKClkSpeedMode0</ItemSymbol>
@@ -537,7 +536,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>CoreClockSpeedMode0</ItemSymbol>
@@ -584,7 +583,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>BusClockSpeedMode0</ItemSymbol>
@@ -596,7 +595,7 @@
       <ItemState>
         <ItemSymbol>FlashClockSpeedMode0</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>20.97152</Value>
+        <Value>8</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>Symbol0</ItemSymbol>
@@ -615,7 +614,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>TimerClockSpeedMode0</ItemSymbol>
@@ -1309,7 +1308,7 @@
         <ItemSymbol>CPUInterrupts</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>true</Expanded>
+        <Expanded>false</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>IntNMIGrp</ItemSymbol>
@@ -5954,15 +5953,15 @@
         <ItemSymbol>PTB4_KBI0_P12_FTM2_CH4_SPI0_MISO_ACMP1_IN2_NMI_b_pull_enable</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Enabled</Value>
-        <PinFuncPropStateId>enable</PinFuncPropStateId>
+        <Value>Disabled</Value>
+        <PinFuncPropStateId>disable</PinFuncPropStateId>
       </ItemState>
       <ItemState>
         <ItemSymbol>PTB4_KBI0_P12_FTM2_CH4_SPI0_MISO_ACMP1_IN2_NMI_b_hdrv_enable</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Enabled</Value>
-        <PinFuncPropStateId>enable</PinFuncPropStateId>
+        <Value>Disabled</Value>
+        <PinFuncPropStateId>disable</PinFuncPropStateId>
       </ItemState>
       <ItemState>
         <ItemSymbol>PTC3_KBI0_P19_FTM2_CH3_ADC0_SE11</ItemSymbol>
@@ -6056,8 +6055,8 @@
         <ItemSymbol>PTD5_KBI0_P29_PWT_IN0_pull_enable</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Enabled</Value>
-        <PinFuncPropStateId>enable</PinFuncPropStateId>
+        <Value>Disabled</Value>
+        <PinFuncPropStateId>disable</PinFuncPropStateId>
       </ItemState>
       <ItemState>
         <ItemSymbol>PTI6_IRQ</ItemSymbol>
@@ -6075,8 +6074,8 @@
         <ItemSymbol>PTI6_IRQ_pull_enable</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Disabled</Value>
-        <PinFuncPropStateId>disable</PinFuncPropStateId>
+        <Value>Enabled</Value>
+        <PinFuncPropStateId>enable</PinFuncPropStateId>
       </ItemState>
       <ItemState>
         <ItemSymbol>PTI5_IRQ</ItemSymbol>
@@ -8038,7 +8037,7 @@
       <ItemState>
         <ItemSymbol>TaskTemplateList</ItemSymbol>
         <ReadOnly>false</ReadOnly>
-        <ListItemCount>2</ListItemCount>
+        <ListItemCount>4</ListItemCount>
         <UserReadOnly>false</UserReadOnly>
         <Expanded>true</Expanded>
       </ItemState>
@@ -8242,8 +8241,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
+        <Index>0</Index>
+        <Value>true</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>MQX_USE_LWMEM</ItemSymbol>
@@ -8343,7 +8342,7 @@
         <ItemSymbol>MQXFunctionsGrp</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>Symbol0</ItemSymbol>
@@ -8429,7 +8428,7 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>1024</Value>
+              <Value>2048</Value>
               <Base>DEC</Base>
             </ItemState>
             <ItemState>
@@ -8539,7 +8538,7 @@
         <InheritedComponentState>
           <BeanType>MQXLite_task</BeanType>
           <Name>Task3</Name>
-          <CompNumb>32</CompNumb>
+          <CompNumb>76</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>OS_LDD</IconName>
@@ -8559,13 +8558,13 @@
               <ItemSymbol>TaskName</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>State_machine</Value>
+              <Value>RI_proccess</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>TaskEntryFunction</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>State_machine_task</Value>
+              <Value>RI_proccess_task</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>TaskStackSize</ItemSymbol>
@@ -8661,6 +8660,149 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <Value>Task3_OnTask</Value>
+            </ItemState>
+          </Events>
+        </InheritedComponentState>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskGrp3</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Task3</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Index>0</Index>
+        <RegCompType>Task</RegCompType>
+        <InheritedComponentState>
+          <BeanType>MQXLite_task</BeanType>
+          <Name>Task4</Name>
+          <CompNumb>85</CompNumb>
+          <CompEnabled>true</CompEnabled>
+          <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
+          <IconName>OS_LDD</IconName>
+          <UserFolderName />
+          <Comment lines_count="0" />
+          <Template>MQXLite\Task</Template>
+          <BeanVersion>01.018</BeanVersion>
+          <LightErrorsIgnored>false</LightErrorsIgnored>
+          <Properties>
+            <ItemState>
+              <ItemSymbol>DeviceName</ItemSymbol>
+              <ReadOnly>true</ReadOnly>
+              <UserReadOnly>true</UserReadOnly>
+              <Value>Task4</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskName</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Value>Kernel_log</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskEntryFunction</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Value>Kernel_log_task</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskStackSize</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>1024</Value>
+              <Base>DEC</Base>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskPriority</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>8</Value>
+              <Base>DEC</Base>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskCreationParameter</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Value>0</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskAttributesGrp</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Expanded>true</Expanded>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskAttribute0</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Index>1</Index>
+              <Value>false</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>CondGroup</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskAttribute1</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Index>1</Index>
+              <Value>false</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskAttribute2</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Index>1</Index>
+              <Value>false</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>CondGroup0</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>TaskAttribute3</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Index>1</Index>
+              <Value>false</Value>
+            </ItemState>
+          </Properties>
+          <Methods />
+          <Events>
+            <ItemState>
+              <ItemSymbol>EventModule</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Value>mqx_tasks</Value>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>OnTask</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+              <Value>true</Value>
+              <Expanded>true</Expanded>
+              <LastSelection>false</LastSelection>
+              <LastUserSel>yes</LastUserSel>
+            </ItemState>
+            <ItemState>
+              <ItemSymbol>OnTaskName</ItemSymbol>
+              <ReadOnly>false</ReadOnly>
+              <UserReadOnly>false</UserReadOnly>
+              <Value>Task4_OnTask</Value>
             </ItemState>
           </Events>
         </InheritedComponentState>

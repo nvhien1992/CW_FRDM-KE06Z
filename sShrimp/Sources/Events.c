@@ -38,7 +38,7 @@ extern "C" {
 #endif 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "remote_com_resources.h"
+#include "SIM900A.h"
 
 #define NOTIFY_EN (1)
 #define DEBUG_EN (1)
@@ -81,6 +81,7 @@ void Cpu_OnNMI(void) {
 void MB_UART_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
 	RCOM_uart_rx_callback();
+	sim900_uart_callback();
 }
 
 /*
@@ -97,7 +98,7 @@ void MB_UART_OnBlockReceived(LDD_TUserData *UserDataPtr) {
  */
 void MB_RI_OnInterrupt(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
-	DEBUG("SMS received or Voice Calling\n");
+	sim900_RI_callback();
 }
 
 /* END Events */

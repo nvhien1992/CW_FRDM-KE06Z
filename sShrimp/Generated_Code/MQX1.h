@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-29, 17:48, # CodeGen: 47
+**     Date/Time   : 2015-04-18, 20:21, # CodeGen: 118
 **     Abstract    :
 **         MQX Lite RTOS Adapter component.
 **     Settings    :
@@ -105,6 +105,8 @@ uint32_t system_timer_start(const void * timer_data_ptr);
 /* Task stacks declarations */
 extern uint8_t Control_task_stack[CONTROL_TASK_STACK_SIZE];
 extern uint8_t Remote_com_task_stack[REMOTE_COM_TASK_STACK_SIZE];
+extern uint8_t RI_proccess_task_stack[RI_PROCCESS_TASK_STACK_SIZE];
+extern uint8_t Kernel_log_task_stack[KERNEL_LOG_TASK_STACK_SIZE];
 
 /* MQX Lite init structure and task template list */
 extern const MQXLITE_INITIALIZATION_STRUCT       MQX_init_struct;

@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-04-06, 11:12, # CodeGen: 76
+**     Date/Time   : 2015-04-09, 22:16, # CodeGen: 100
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -97,8 +97,8 @@ extern "C" {
     Constants containing frequencies of processor reference clock sources.
 */
 
-#define CPU_BUS_CLK_HZ                  20971520U /* Initial value of the bus clock frequency in Hz */
-#define CPU_CORE_CLK_HZ                 20971520U /* Initial value of the core/system clock frequency in Hz.  */
+#define CPU_BUS_CLK_HZ                  8000000U /* Initial value of the bus clock frequency in Hz */
+#define CPU_CORE_CLK_HZ                 8000000U /* Initial value of the core/system clock frequency in Hz.  */
 #define CPU_XTAL_CLK_HZ                 8000000U /* Value of the external crystal or oscillator clock frequency in Hz */
 #define CPU_INT_SLOW_CLK_HZ             32768U /* Value of the slow internal oscillator clock frequency in Hz  */
 
@@ -119,21 +119,21 @@ extern "C" {
 
 #define CPU_CLOCK_CONFIG_NUMBER         0x01U /* Specifies number of defined clock configurations. */
 
-#define CPU_BUS_CLK_HZ_CLOCK_CONFIG0    20971520U /* Value of the bus clock frequency in the clock configuration 0 in Hz. */
-#define CPU_CORE_CLK_HZ_CLOCK_CONFIG0   20971520U /* Value of the core/system clock frequency in the clock configuration 0 in Hz. */
+#define CPU_BUS_CLK_HZ_CLOCK_CONFIG0    8000000U /* Value of the bus clock frequency in the clock configuration 0 in Hz. */
+#define CPU_CORE_CLK_HZ_CLOCK_CONFIG0   8000000U /* Value of the core/system clock frequency in the clock configuration 0 in Hz. */
 
 /* CPU frequencies in clock configuration 0 */
 #define CPU_CLOCK_CONFIG_0              0x00U /* Clock configuration 0 identifier */
-#define CPU_CORE_CLK_HZ_CONFIG_0        20971520UL /* Core clock frequency in clock configuration 0 */
-#define CPU_BUS_CLK_HZ_CONFIG_0         20971520UL /* Bus clock frequency in clock configuration 0 */
+#define CPU_CORE_CLK_HZ_CONFIG_0        8000000UL /* Core clock frequency in clock configuration 0 */
+#define CPU_BUS_CLK_HZ_CONFIG_0         8000000UL /* Bus clock frequency in clock configuration 0 */
 #define CPU_FLEXBUS_CLK_HZ_CONFIG_0     0UL /* Flexbus clock frequency in clock configuration 0 */
-#define CPU_FLASH_CLK_HZ_CONFIG_0       20971520UL /* FLASH clock frequency in clock configuration 0 */
+#define CPU_FLASH_CLK_HZ_CONFIG_0       8000000UL /* FLASH clock frequency in clock configuration 0 */
 #define CPU_USB_CLK_HZ_CONFIG_0         0UL /* USB clock frequency in clock configuration 0 */
-#define CPU_PLL_FLL_CLK_HZ_CONFIG_0     41943040UL /* PLL/FLL clock frequency in clock configuration 0 */
+#define CPU_PLL_FLL_CLK_HZ_CONFIG_0     40000000UL /* PLL/FLL clock frequency in clock configuration 0 */
 #define CPU_MCGIR_CLK_HZ_CONFIG_0       32768UL /* MCG internal reference clock frequency in clock configuration 0 */
 #define CPU_OSCER_CLK_HZ_CONFIG_0       8000000UL /* System OSC external reference clock frequency in clock configuration 0 */
 #define CPU_ERCLK32K_CLK_HZ_CONFIG_0    0UL /* External reference clock 32k frequency in clock configuration 0 */
-#define CPU_MCGFF_CLK_HZ_CONFIG_0       32768UL /* MCG fixed frequency clock */
+#define CPU_MCGFF_CLK_HZ_CONFIG_0       31250UL /* MCG fixed frequency clock */
 
 
 /* Clock configuration structure declaration. Structure is initialized in PE_LDD.c */
@@ -236,9 +236,9 @@ typedef struct {
 */
 
 /* Clock configuration 0 */
-#define CPU_ICS_MODE_CONFIG_0                              (CPU_ICS_MODE_FEI | CPU_CLOCK_SLOW_MASK) /* Clock generator mode */
-#define CPU_ICS_C1_CONFIG_0                                0x06U /* ICS_C1 */
-#define CPU_ICS_C2_CONFIG_0                                0x20U /* ICS_C2 */
+#define CPU_ICS_MODE_CONFIG_0                              (CPU_ICS_MODE_FBE | CPU_CLOCK_EXTERNAL_CRYSTAL_MASK | CPU_CLOCK_SLOW_MASK) /* Clock generator mode */
+#define CPU_ICS_C1_CONFIG_0                                0x9AU /* ICS_C1 */
+#define CPU_ICS_C2_CONFIG_0                                0x00U /* ICS_C2 */
 #define CPU_ICS_C4_CONFIG_0                                0x00U /* ICS_C4 */
 #define CPU_ICS_S_CONFIG_0                                 0x00U /* ICS_S */
 #define CPU_OSC_CR_CONFIG_0                                0x94U /* OSC_CR */
@@ -471,8 +471,8 @@ typedef struct {
 
 /* ICS */
 
-#define STARTUP_ICS_C1_VALUE                               0x06U     /* ICS_C1 value */ 
-#define STARTUP_ICS_C2_VALUE                               0x20U     /* ICS_C2 value */ 
+#define STARTUP_ICS_C1_VALUE                               0x9AU     /* ICS_C1 value */ 
+#define STARTUP_ICS_C2_VALUE                               0x00U     /* ICS_C2 value */ 
 #define STARTUP_ICS_C3_VALUE                               0x00U     /* ICS_C3 value */ 
 #define STARTUP_ICS_C4_VALUE                               0x00U     /* ICS_C4 value */ 
 #define STARTUP_ICS_S_VALUE                                0x00U     /* ICS_S value */ 

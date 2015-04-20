@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-04-03, 21:29, # CodeGen: 66
+**     Date/Time   : 2015-04-09, 22:16, # CodeGen: 100
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -202,7 +202,7 @@ LDD_TDeviceData* MB_UART_Init(LDD_TUserData *UserDataPtr)
   UART2_C3 = 0x00U;                    /*  Set the C3 register */
   /* UART2_S2: LBKDIF=0,RXEDGIF=0,??=0,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
   UART2_S2 = 0x00U;                    /*  Set the S2 register */
-  UART_PDD_SetBaudRate(UART2_BASE_PTR, 137U); /* Set the baud rate register. */
+  UART_PDD_SetBaudRate(UART2_BASE_PTR, 52U); /* Set the baud rate register. */
   UART_PDD_EnableTransmitter(UART2_BASE_PTR, PDD_ENABLE); /* Enable transmitter */
   UART_PDD_EnableReceiver(UART2_BASE_PTR, PDD_ENABLE); /* Enable receiver */
   UART_PDD_EnableInterrupt(UART2_BASE_PTR, ( UART_PDD_INTERRUPT_RECEIVER )); /* Enable interrupts */

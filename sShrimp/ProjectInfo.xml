@@ -118,11 +118,11 @@
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\__arm_end.c</PathName>
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\__arm_start.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\SIM900A.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\main.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com_resources.c</PathName>
-      <PathName>D:\CW\sShrimp\Sources\sim900_int.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\uart_ll.c</PathName>
       <PathName>D:\CW\sShrimp\utilities\PID.c</PathName>
       <PathName>D:\CW\sShrimp\utilities\alarm.c</PathName>
@@ -218,11 +218,12 @@
       <PathName>D:\CW\sShrimp\MQXLITE\psp\cortex_m\psptypes.h</PathName>
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\SIM900A.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\global.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\message_type.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com_resources.h</PathName>
-      <PathName>D:\CW\sShrimp\Sources\sim900_int.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\uart_ll.h</PathName>
       <PathName>D:\CW\sShrimp\utilities\PID.h</PathName>
       <PathName>D:\CW\sShrimp\utilities\alarm.h</PathName>

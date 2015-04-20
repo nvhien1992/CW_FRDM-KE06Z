@@ -100,6 +100,38 @@ void Remote_com_task(uint32_t task_init_data);
 */
 void State_machine_task(uint32_t task_init_data);
 
+/*
+** ===================================================================
+**     Event       :  RI_proccess_task (module mqx_tasks)
+**
+**     Component   :  Task3 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void RI_proccess_task(uint32_t task_init_data);
+
+/*
+** ===================================================================
+**     Event       :  Kernel_log_task (module mqx_tasks)
+**
+**     Component   :  Task4 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Kernel_log_task(uint32_t task_init_data);
+
 /* END mqx_tasks */
 
 #ifdef __cplusplus

@@ -6,7 +6,7 @@
 **     Component   : TimerUnit_LDD
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-03, 18:15, # CodeGen: 0
+**     Date/Time   : 2015-04-17, 11:05, # CodeGen: 116
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -126,10 +126,10 @@ extern "C" {
 #define __BWUserType_SystemTimer1_TValueType
   typedef uint32_t SystemTimer1_TValueType ; /* Type for data parameters of methods */
 #endif
-#define SystemTimer1_CNT_INP_FREQ_U_0 0x01400000UL /* Counter input frequency in Hz */
-#define SystemTimer1_CNT_INP_FREQ_R_0 20971395.017196544F /* Counter input frequency in Hz */
+#define SystemTimer1_CNT_INP_FREQ_U_0 0x007A1200UL /* Counter input frequency in Hz */
+#define SystemTimer1_CNT_INP_FREQ_R_0 8000000.0F /* Counter input frequency in Hz */
 #define SystemTimer1_CNT_INP_FREQ_COUNT 0U /* Count of predefined counter input frequencies */
-#define SystemTimer1_PERIOD_TICKS 0x0001999AUL /* Initialization value of period in 'counter ticks' */
+#define SystemTimer1_PERIOD_TICKS 0x9C40UL /* Initialization value of period in 'counter ticks' */
 #define SystemTimer1_NUMBER_OF_CHANNELS 0x00U /* Count of predefined channels */
 #define SystemTimer1_COUNTER_WIDTH 0x18U /* Counter width in bits  */
 #define SystemTimer1_COUNTER_DIR DIR_DOWN /* Direction of counting */

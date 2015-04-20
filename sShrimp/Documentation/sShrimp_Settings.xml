@@ -40,44 +40,44 @@
                 <OSCERCLK_clock__MHz_ v="8" />
               </group>
               <group name="ICS settings">
-                <enumgroup name="ICS mode" v="FEI">
+                <enumgroup name="ICS mode" v="FBE">
                   <EmptySection_DummyValue />
                 </enumgroup>
                 <ICS_external_ref__clock__MHz_ v="8" />
                 <Clock_monitor v="Disabled" />
                 <group name="FLL settings">
                   <FLL_module v="Enabled" />
-                  <FLL_output__MHz_ v="41.943040000000" />
-                  <ICSFFCLK_clock__kHz_ v="32.768000000000" />
-                  <enumgroup name="Reference clock source" v="Slow internal clock">
-                    <EmptySection_DummyValue />
+                  <FLL_output__MHz_ v="40" />
+                  <ICSFFCLK_clock__kHz_ v="31.250000000000" />
+                  <enumgroup name="Reference clock source" v="External clock">
+                    <Reference_clock_divider v="Auto select" />
                   </enumgroup>
-                  <FLL_reference_clock__kHz_ v="32.768000000000" />
+                  <FLL_reference_clock__kHz_ v="31.250000000000" />
                   <Multiplication_factor v="Auto select" />
                   <Loss_of_lock_interrupt v="Disabled" />
                 </group>
-                <ICS_output v="FLL clock" />
-                <ICS_output_prescaler v="Auto select" />
-                <ICS_output_clock v="20.971520000000" />
+                <ICS_output v="External clock" />
+                <ICS_output_prescaler v="1" />
+                <ICS_output_clock v="8" />
               </group>
             </group>
           </list>
           <list name="Clock configurations" v="1">
             <group name="Clock configuration 0">
               <enumgroup name="Clock source setting" v="configuration 0">
-                <ICS_mode v="FEI" />
-                <ICS_output__MHz_ v="20.971520000000" />
+                <ICS_mode v="FBE" />
+                <ICS_output__MHz_ v="8" />
                 <ICSIRCLK_clock__MHz_ v="0.032768" />
-                <ICSFFCLK__kHz_ v="32.768" />
+                <ICSFFCLK__kHz_ v="31.25" />
                 <OSCERCLK_clock__MHz_ v="8" />
               </enumgroup>
               <group name="System clocks">
-                <Core_clock_prescaler v="Auto select" />
-                <Core_clock v="20.971520000000" />
-                <Bus_clock_prescaler v="Auto select" />
-                <Bus_clock v="20.971520000000" />
-                <Timer_clock_prescaler v="Auto select" />
-                <Timer_clock v="20.971520000000" />
+                <Core_clock_prescaler v="1" />
+                <Core_clock v="8" />
+                <Bus_clock_prescaler v="1" />
+                <Bus_clock v="8" />
+                <Timer_clock_prescaler v="1" />
+                <Timer_clock v="8" />
               </group>
             </group>
           </list>
@@ -771,8 +771,8 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 23: PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b">
               <Custom_name__Signal_name v="PTB4/KBI0_P12/FTM2_CH4/SPI0_MISO/ACMP1_IN2/NMI_b" />
-              <Pull_enable v="Enabled" />
-              <High_drive_enable v="Enabled" />
+              <Pull_enable v="Disabled" />
+              <High_drive_enable v="Disabled" />
             </group>
             <group name="Pin 24: PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11">
               <Custom_name__Signal_name v="PTC3/KBI0_P19/FTM2_CH3/ADC0_SE11" />
@@ -792,11 +792,11 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 28: PTD5/KBI0_P29/PWT_IN0">
               <Custom_name__Signal_name v="PTD5/KBI0_P29/PWT_IN0" />
-              <Pull_enable v="Enabled" />
+              <Pull_enable v="Disabled" />
             </group>
             <group name="Pin 29: PTI6/IRQ">
               <Custom_name__Signal_name v="PTI6/IRQ" />
-              <Pull_enable v="Disabled" />
+              <Pull_enable v="Enabled" />
             </group>
             <group name="Pin 30: PTI5/IRQ">
               <Custom_name__Signal_name v="PTI5/IRQ" />
@@ -1115,7 +1115,7 @@ PE_DEBUGHALT();
           <event name="OnChannel7" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <list name="Task Template List" v="2">
+      <list name="Task Template List" v="4">
         <boolgroup name="Task1" v="Enabled">
           <inhrbean type="MQXLite_task">
             <Enabled v="Y" />
@@ -1149,7 +1149,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="Remote_com" />
               <Entry_point_function v="Remote_com_task" />
-              <Stack_size v="1024" />
+              <Stack_size v="2048" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">
@@ -1168,6 +1168,58 @@ PE_DEBUGHALT();
             </Events>
           </inhrbean>
         </boolgroup>
+        <boolgroup name="Task3" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="RI_proccess" />
+              <Entry_point_function v="RI_proccess_task" />
+              <Stack_size v="1024" />
+              <Priority v="8" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Disabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="RI_proccess_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
+        <boolgroup name="Task4" v="Enabled">
+          <inhrbean type="MQXLite_task">
+            <Enabled v="Y" />
+            <Template v="Task" />
+            <Properties>
+              <Name v="Kernel_log" />
+              <Entry_point_function v="Kernel_log_task" />
+              <Stack_size v="1024" />
+              <Priority v="8" />
+              <Creation_parameter v="0" />
+              <group name="Attributes">
+                <MQX_AUTO_START_TASK v="Disabled" />
+                <MQX_FLOATING_POINT_TASK v="Disabled" />
+              </group>
+            </Properties>
+            <Methods>
+              <EmptySection_DummyValue />
+            </Methods>
+            <Events>
+              <Event_module_name v="mqx_tasks" />
+              <event name="OnTask" v="generate code">
+                <Event_procedure_name v="Kernel_log_task" />
+              </event>
+            </Events>
+          </inhrbean>
+        </boolgroup>
       </list>
       <group name="Configuration parameters">
         <group name="Components">
@@ -1176,7 +1228,7 @@ PE_DEBUGHALT();
           <Lightweight_Message_Queues v="yes" />
           <Mutexes v="no" />
           <Lightweight_Timer v="no" />
-          <Kernel_Logging v="no" />
+          <Kernel_Logging v="yes" />
           <Lightweight_Memory_Allocation v="no" />
           <Floating_point_context_saving v="no" />
         </group>

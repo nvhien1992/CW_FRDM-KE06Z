@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-25, 21:29, # CodeGen: 24
+**     Date/Time   : 2015-04-18, 20:21, # CodeGen: 118
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -72,6 +72,26 @@ const TASK_TEMPLATE_STRUCT MQX_template_list[] =
   /* Stack size                       */  REMOTE_COM_TASK_STACK_SIZE,
   /* Task priority                    */  8U,
   /* Task name                        */  "remote_com",
+  /* Task attributes                  */  (0),
+  /* Task parameter                   */  (uint32_t)(0)
+  },
+  /* Task: RI_proccess */
+  {
+  /* Task number                      */  RI_PROCCESS_TASK,
+  /* Entry point                      */  (TASK_FPTR)RI_proccess_task,
+  /* Stack size                       */  RI_PROCCESS_TASK_STACK_SIZE,
+  /* Task priority                    */  8U,
+  /* Task name                        */  "ri_proccess",
+  /* Task attributes                  */  (0),
+  /* Task parameter                   */  (uint32_t)(0)
+  },
+  /* Task: Kernel_log */
+  {
+  /* Task number                      */  KERNEL_LOG_TASK,
+  /* Entry point                      */  (TASK_FPTR)Kernel_log_task,
+  /* Stack size                       */  KERNEL_LOG_TASK_STACK_SIZE,
+  /* Task priority                    */  8U,
+  /* Task name                        */  "kernel_log",
   /* Task attributes                  */  (0),
   /* Task parameter                   */  (uint32_t)(0)
   },

@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-04-06, 20:23, # CodeGen: 97
+**     Date/Time   : 2015-04-12, 20:37, # CodeGen: 105
 **     Abstract    :
 **
 **     Settings    :
@@ -99,12 +99,15 @@ void Common_Init(void)
      component Common settings\Utilize after reset values property) */
   /* SIM_SOPT0: NMIE=1 */
   SIM_SOPT0 |= SIM_SOPT0_NMIE_MASK;
-  /* PORT_HDRVE: PTB4=1 */
-  PORT_HDRVE |= PORT_HDRVE_PTB4_MASK;
-  /* PORT_PUE0: PTDPE5=1,PTBPE4=1 */
-  PORT_PUE0 |= (PORT_PUE0_PTDPE5_MASK | PORT_PUE0_PTBPE4_MASK);
-  /* PORT_PUE2: PTIPE6=0 */
-  PORT_PUE2 &= (uint32_t)~(uint32_t)(PORT_PUE2_PTIPE6_MASK);
+  /* PORT_HDRVE: PTB4=0 */
+  PORT_HDRVE &= (uint32_t)~(uint32_t)(PORT_HDRVE_PTB4_MASK);
+  /* PORT_PUE0: PTDPE5=0,PTBPE4=0 */
+  PORT_PUE0 &= (uint32_t)~(uint32_t)(
+                PORT_PUE0_PTDPE5_MASK |
+                PORT_PUE0_PTBPE4_MASK
+               );
+  /* PORT_PUE2: PTIPE6=1 */
+  PORT_PUE2 |= PORT_PUE2_PTIPE6_MASK;
 }
 
 #endif /* CPU_COMMON_INIT */
