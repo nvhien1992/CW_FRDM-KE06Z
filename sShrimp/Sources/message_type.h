@@ -29,8 +29,8 @@ typedef enum {
 typedef struct {
 	SWM_cmd_t cmd;
 	union {
-		uint32_t value;
-		char* value_ptr;
+		uint16_t value;
+		uint16_t data_ptr_in_cir_queue;
 	} content;
 } SWM_msg_t;
 

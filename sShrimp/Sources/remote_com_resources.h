@@ -13,18 +13,10 @@
  ===========================PUBLIC RCOM DEFINITIONS======================
  =======================================================================*/
 typedef enum {
-	RCOM_JOB_FAIL, //
-	RCOM_JOB_SUCCESS_WITH_DATA, //
-	RCOM_JOB_SUCCESS_WITHOUT_DATA, //
-} RCOM_job_result_type_t;
-
-typedef struct {
-	RCOM_job_result_type_t result_type;
-	union {
-		uint32_t result; //contain failed_step if failed
-		void* result_ptr; //contain data if success
-	} content;
-} RCOM_job_result_t;
+	RCOM_FAIL = 0x00, //
+	RCOM_SUCCESS_WITH_DATA = 0x01, //
+	RCOM_SUCCESS_WITHOUT_DATA = 0x02, //
+} RCOM_result_type_t;
 
 typedef enum {
 	RCOM_HAS_NOTHING, //
@@ -36,9 +28,9 @@ typedef enum {
  ==========================PRIVATE RCOM DEFINITIONS======================
  =======================================================================*/
 typedef enum {
-	SM_AND_TIMEOUT,
-	TIMEOUT_ONLY,
-	NOTHING,
+	SM_AND_TIMEOUT, //
+	TIMEOUT_ONLY, //
+	NOTHING, //
 } RCOM_exe_method_t;
 
 typedef enum {

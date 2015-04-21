@@ -78,7 +78,7 @@ static int sim900_get_recv_SMS_msg_index(void) {
 	if (!pstr) {
 		return -1;
 	}
-	
+
 	pstr += strlen("+CMTI: \"SM\",");
 	return atoi(pstr);
 }
@@ -97,7 +97,7 @@ static bool sim900_get_incoming_call_number(char *incoming_pn) {
 	pstr += strlen("+CLIP: \"");
 
 	uint8_t indx = 0;
-	while(pstr[indx] != '\"') {
+	while (pstr[indx] != '\"') {
 		incoming_pn[indx] = pstr[indx];
 		indx++;
 	}
@@ -152,12 +152,12 @@ void sim900_control_ring_indicator(bool is_enabled) {
 	is_enabled ? SIM900_pins->RI.Enable(NULL) : SIM900_pins->RI.Disable(NULL);
 }
 
-void sim900_start(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_start(void) {
 	RCOM_step_info_t step_info;
 
 	if (SIM900_pins->STATUS.GetVal(NULL) == STATUS_HIGH_LV) {
 		DEBUG("Stop device before starting!\n");
-		sim900_stop(job_result);
+		sim900_stop();
 	} else {
 		/* disable ring indicator */
 		SIM900_pins->RI.Disable(NULL);
@@ -188,24 +188,23 @@ void sim900_start(RCOM_job_result_t *job_result) {
 			step_info.timeout = 10;
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 		RCOM_step_excution(&step_info);
 	}
 
 	if (SIM900_pins->STATUS.GetVal(NULL) == STATUS_LOW_LV) {
-		job_result->result_type = RCOM_JOB_FAIL;
 		DEBUG("Start SIM900 failed\n");
-		return;
+		return RCOM_FAIL;
 	}
 
 	/* enable ring indicator */
 	SIM900_pins->RI.Enable(NULL);
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_default_config(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_default_config(void) {
 	RCOM_step_info_t step_info;
 
 	uint8_t current_step = 0;
@@ -236,20 +235,18 @@ void sim900_default_config(RCOM_job_result_t *job_result) {
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_connect_internet(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_connect_internet(void) {
 	RCOM_step_info_t step_info;
 	char cmd[48];
 
@@ -316,20 +313,18 @@ void sim900_connect_internet(RCOM_job_result_t *job_result) {
 //			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_stop(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_stop(void) {
 	RCOM_step_info_t step_info;
 
 	/* disable ring indicator */
@@ -360,14 +355,14 @@ void sim900_stop(RCOM_job_result_t *job_result) {
 			step_info.timeout = 1;
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 		RCOM_step_excution(&step_info);
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_enable_DTR_sleep_mode(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_enable_DTR_sleep_mode(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -376,15 +371,13 @@ void sim900_enable_DTR_sleep_mode(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_disable_sleep_mode(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_disable_sleep_mode(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -393,12 +386,10 @@ void sim900_disable_sleep_mode(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
 void sim900_control_sleep_manually(bool sleep_sim900) {
@@ -412,7 +403,7 @@ void sim900_RI_callback(void) {
 	_lwevent_set(&RI_event, RI_EVT_BIT_MASK);
 }
 
-SIM900_RI_result_t sim900_process_RI_task(RCOM_job_result_t *job_result) {
+SIM900_RI_result_t sim900_process_RI_task(char *result) {
 	_lwevent_wait_for(&RI_event, RI_EVT_BIT_MASK, TRUE, NULL);
 
 	/* wait 150ms to determine received SMS or not */
@@ -425,11 +416,11 @@ SIM900_RI_result_t sim900_process_RI_task(RCOM_job_result_t *job_result) {
 		DEBUG("Received SMS msg\n");
 
 		/* get sms index */
-		job_result->content.result = sim900_get_recv_SMS_msg_index();
-		if (job_result->content.result > 0) {
-			job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
+		int index = sim900_get_recv_SMS_msg_index();
+		if (index > 0) {
+			*result = (char) index;
 		} else {
-			job_result->result_type = RCOM_JOB_FAIL;
+			return RI_UNKNOWN;
 		}
 
 		/* clear RI's rx buffer */
@@ -440,16 +431,12 @@ SIM900_RI_result_t sim900_process_RI_task(RCOM_job_result_t *job_result) {
 		DEBUG("Incoming call\n");
 
 		/* get phone number before hanging up */
-		if (sim900_get_incoming_call_number(
-				(char*) job_result->content.result_ptr)) {
-			job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
-		} else {
-			job_result->result_type = RCOM_JOB_FAIL;
+		if (!sim900_get_incoming_call_number(result)) {
+			return RI_UNKNOWN;
 		}
 
 		_time_delay_ticks(1000 / RCOM_get_systick());
-		RCOM_job_result_t job_rs;
-		sim900_hang_up_voice_call(&job_rs);
+		sim900_hang_up_voice_call();
 
 		/* clear RI's rx buffer */
 		sim900_clear_RI_rx_buf();
@@ -471,7 +458,7 @@ void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass) {
 	SIM900_params.apn_pass = apn_pass;
 }
 
-bool sim900_check_SIM_inserted(RCOM_job_result_t *job_result) {
+bool sim900_check_SIM_inserted(RCOM_result_type_t result_type) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -480,19 +467,19 @@ bool sim900_check_SIM_inserted(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return FALSE;
-	}
-	
-	/* check recv buffer */
-	char *pstr = strstr(RCOM_get_rx_buf(), "+CSMINS:");
-	if (!pstr) {
-		job_result->result_type = RCOM_JOB_FAIL;
+		result_type = RCOM_FAIL;
 		return FALSE;
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
-	
+	/* check recv buffer */
+	char *pstr = strstr(RCOM_get_rx_buf(), "+CSMINS:");
+	if (!pstr) {
+		result_type = RCOM_FAIL;
+		return FALSE;
+	}
+
+	result_type = RCOM_SUCCESS_WITHOUT_DATA;
+
 	/* get SIM status */
 	int evt_code, SIM_status;
 	sscanf(pstr, "+CSMINS:%d,%d", &evt_code, &SIM_status);
@@ -500,7 +487,7 @@ bool sim900_check_SIM_inserted(RCOM_job_result_t *job_result) {
 	return (SIM_status == 1);
 }
 
-void sim900_get_MSP_name(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_get_MSP_name(char *MSP_name) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -509,28 +496,27 @@ void sim900_get_MSP_name(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		return RCOM_FAIL;
 	}
-	
+
 	/* check recv buffer */
 	char *pstr = strstr(RCOM_get_rx_buf(), "+CSPN: \"");
 	if (!pstr) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		return RCOM_FAIL;
 	}
-	
+
 	pstr += strlen("+CSPN: \"");
 	uint8_t index = 0;
-	while(pstr[index] != '\"') {
-		((char*)job_result->content.result_ptr)[index] = pstr[index];
+	while (pstr[index] != '\"') {
+		MSP_name[index] = pstr[index];
 		index++;
 	}
-	((char*)job_result->content.result_ptr)[index] = '\0';
-	job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
+	MSP_name[index] = '\0';
+	
+	return RCOM_SUCCESS_WITH_DATA;
 }
 
-void sim900_terminate_HTTP_session(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_terminate_HTTP_session(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -539,13 +525,13 @@ void sim900_terminate_HTTP_session(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_create_HTTP_POST_session(RCOM_job_result_t *job_result, char *URL) {
+RCOM_result_type_t sim900_create_HTTP_POST_session(char *URL) {
 	char cmd[32 + strlen(URL)];
 	RCOM_step_info_t step_info;
 
@@ -580,23 +566,20 @@ void sim900_create_HTTP_POST_session(RCOM_job_result_t *job_result, char *URL) {
 			step_info.timeout = 1;
 			step_info.expected_response = "\r\nOK\r\n";
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			sim900_terminate_HTTP_session(job_result);
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
+			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_send_HTTP_data_size(RCOM_job_result_t *job_result,
-		uint16_t data_size) {
+RCOM_result_type_t sim900_send_HTTP_data_size(uint16_t data_size) {
 	RCOM_step_info_t step_info;
 	char cmd[32];
 
@@ -607,19 +590,18 @@ void sim900_send_HTTP_data_size(RCOM_job_result_t *job_result,
 	step_info.expected_response = "\r\nDOWNLOAD\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		sim900_terminate_HTTP_session(job_result);
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		sim900_terminate_HTTP_session();
+		return RCOM_FAIL;
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
 void sim900_uart_send_data(char *data) {
 	RCOM_uart_writef(data);
 }
 
-void sim900_HTTP_POST_action(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_HTTP_POST_action(char *response) {
 	RCOM_step_info_t step_info;
 
 	uint8_t current_step = 0;
@@ -644,30 +626,27 @@ void sim900_HTTP_POST_action(RCOM_job_result_t *job_result) {
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			sim900_terminate_HTTP_session(job_result);
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
+			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
 
-	sim900_get_http_response_content((char*) job_result->content.result_ptr);
+	sim900_get_http_response_content(response);
 
 	/* terminate session */
-	sim900_terminate_HTTP_session(job_result);
-	if (job_result == RCOM_JOB_FAIL) {
+	if (sim900_terminate_HTTP_session() == RCOM_FAIL) {
 		DEBUG("Can not terminate session\n");
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
+	return RCOM_SUCCESS_WITH_DATA;
 }
 
-void sim900_HTTP_POST(RCOM_job_result_t *job_result, char *URL, char *data) {
+RCOM_result_type_t sim900_HTTP_POST(char *URL, char *data, char *response) {
 	int data_size = strlen(data);
 	int cmd_size = 32;
 	if (strlen(URL) < data_size) {
@@ -735,29 +714,26 @@ void sim900_HTTP_POST(RCOM_job_result_t *job_result, char *URL, char *data) {
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			sim900_terminate_HTTP_session(job_result);
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
+			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
 
-	sim900_get_http_response_content((char*) job_result->content.result_ptr);
+	sim900_get_http_response_content(response);
 
 	/* terminate session */
-	sim900_terminate_HTTP_session(job_result);
-	if (job_result == RCOM_JOB_FAIL) {
+	if (sim900_terminate_HTTP_session() == RCOM_FAIL) {
 		DEBUG("Can not terminate session\n");
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
+	return RCOM_SUCCESS_WITH_DATA;
 }
 
-void sim900_HTTP_GET(RCOM_job_result_t *job_result, char *URL) {
+RCOM_result_type_t sim900_HTTP_GET(char *URL, char *result) {
 	char cmd[32 + strlen(URL)];
 	RCOM_step_info_t step_info;
 
@@ -798,26 +774,23 @@ void sim900_HTTP_GET(RCOM_job_result_t *job_result, char *URL) {
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			sim900_terminate_HTTP_session(job_result);
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
+			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
 
-	sim900_get_http_response_content((char*) job_result->content.result_ptr);
+	sim900_get_http_response_content(result);
 
-	sim900_terminate_HTTP_session(job_result);
-	if (job_result == RCOM_JOB_FAIL) {
+	if (sim900_terminate_HTTP_session() == RCOM_FAIL) {
 		DEBUG("Can not terminate session\n");
 	}
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
+	return RCOM_SUCCESS_WITH_DATA;
 }
 
 //void sim900_post_report(gw_rpt_para_t* pRptPara, RCOM_job_result_t *job_result) {
@@ -1255,8 +1228,7 @@ void sim900_HTTP_GET(RCOM_job_result_t *job_result, char *URL) {
 //	job_result->result_type = JOB_SUCCESS_WITH_DATA;
 //}
 
-void sim900_send_sms(RCOM_job_result_t *job_result, char* phone_number,
-		char* msg) {
+RCOM_result_type_t sim900_send_sms(char* phone_number, char* msg) {
 	char cmd[32 + strlen(msg)];
 	RCOM_step_info_t step_info;
 
@@ -1279,21 +1251,18 @@ void sim900_send_sms(RCOM_job_result_t *job_result, char* phone_number,
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-			job_result->result_type = RCOM_JOB_FAIL;
-			job_result->content.result = current_step;
 			DEBUG("step failed: %d\n", current_step);
-			return;
+			return RCOM_FAIL;
 		}
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_make_missed_voice_call(RCOM_job_result_t *job_result,
-		char* phone_number) {
+RCOM_result_type_t sim900_make_missed_voice_call(char* phone_number) {
 	RCOM_step_info_t step_info;
 	char cmd[32];
 
@@ -1323,20 +1292,18 @@ void sim900_make_missed_voice_call(RCOM_job_result_t *job_result,
 			step_info.timeout = 1;
 			step_info.expected_response = "\r\nOK\r\n";
 			if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-				job_result->result_type = RCOM_JOB_FAIL;
-				job_result->content.result = current_step;
 				DEBUG("step failed: %d\n", current_step);
-				return;
+				return RCOM_FAIL;
 			}
 			break;
 		default:
-			return;
+			return RCOM_FAIL;
 		}
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_read_SMS_msg(RCOM_job_result_t *job_result, uint8_t sms_index) {
+RCOM_result_type_t sim900_read_SMS_msg(uint8_t sms_index, char *result) {
 	RCOM_step_info_t step_info;
 	char cmd[16];
 	step_info.command = cmd;
@@ -1347,17 +1314,15 @@ void sim900_read_SMS_msg(RCOM_job_result_t *job_result, uint8_t sms_index) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
 
-	strcpy((char*) job_result->content.result_ptr, RCOM_get_rx_buf());
+	strcpy(result, RCOM_get_rx_buf());
 
-	job_result->result_type = RCOM_JOB_SUCCESS_WITH_DATA;
+	return RCOM_SUCCESS_WITH_DATA;
 }
 
-void sim900_show_incoming_call_number(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_show_incoming_call_number(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1366,14 +1331,12 @@ void sim900_show_incoming_call_number(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_not_show_incoming_call_number(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_not_show_incoming_call_number(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1382,14 +1345,12 @@ void sim900_not_show_incoming_call_number(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_enable_echo_mode(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_enable_echo_mode(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1398,14 +1359,12 @@ void sim900_enable_echo_mode(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_disable_echo_mode(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_disable_echo_mode(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1414,14 +1373,12 @@ void sim900_disable_echo_mode(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_set_SMS_text_mode(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_set_SMS_text_mode(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1430,14 +1387,12 @@ void sim900_set_SMS_text_mode(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_set_SMS_PDU_mode(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_set_SMS_PDU_mode(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1446,14 +1401,12 @@ void sim900_set_SMS_PDU_mode(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		job_result->content.result = 0;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_hang_up_voice_call(RCOM_job_result_t *job_result) {
+RCOM_result_type_t sim900_hang_up_voice_call(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -1462,14 +1415,12 @@ void sim900_hang_up_voice_call(RCOM_job_result_t *job_result) {
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_delete_group_SMS_message(RCOM_job_result_t *job_result,
-		SIM900_del_SMS_t del_type) {
+RCOM_result_type_t sim900_delete_group_SMS_message(SIM900_del_SMS_t del_type) {
 	RCOM_step_info_t step_info;
 
 	switch (del_type) {
@@ -1492,20 +1443,19 @@ void sim900_delete_group_SMS_message(RCOM_job_result_t *job_result,
 		step_info.command = "AT+CMGDA=\"DEL INBOX\"\r\n";
 		break;
 	default:
-		return;
+		return RCOM_FAIL;
 	}
 	step_info.execution_method = SM_AND_TIMEOUT;
 	step_info.timeout = 1;
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-void sim900_delete_an_SMS_message(RCOM_job_result_t *job_result, uint8_t index) {
+RCOM_result_type_t sim900_delete_an_SMS_message(uint8_t index) {
 	RCOM_step_info_t step_info;
 	char cmd[16];
 	step_info.command = cmd;
@@ -1516,9 +1466,8 @@ void sim900_delete_an_SMS_message(RCOM_job_result_t *job_result, uint8_t index) 
 	step_info.expected_response = "\r\nOK\r\n";
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		job_result->result_type = RCOM_JOB_FAIL;
-		return;
+		return RCOM_FAIL;
 	}
-	job_result->result_type = RCOM_JOB_SUCCESS_WITHOUT_DATA;
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 

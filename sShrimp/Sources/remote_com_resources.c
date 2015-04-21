@@ -104,7 +104,7 @@ void RCOM_store_rchar_into_buffer(RCOM_buff_t *a_buffer) {
 
 RCOM_step_result_t RCOM_step_excution(RCOM_step_info_t* step_info) {
 	/* Clear rx buffer before receiving */
-	RCOM_clear_rx_buf();
+//	RCOM_clear_rx_buf();
 
 	_mqx_uint ticks_waitting = 0;
 

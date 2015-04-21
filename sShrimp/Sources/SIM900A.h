@@ -59,7 +59,7 @@ typedef struct {
 } SIM900_SMS_package_t;
 
 typedef enum {
-	INCOMING_VOICE_CALL, INCOMING_DATA_CALL, RECEIVED_SMS_MSG,
+	INCOMING_VOICE_CALL, INCOMING_DATA_CALL, RECEIVED_SMS_MSG, RI_UNKNOWN,
 } SIM900_RI_result_t;
 
 /*=======================================================================
@@ -80,26 +80,26 @@ void sim900_control_ring_indicator(bool is_enabled);
 /**
  * 
  */
-void sim900_start(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_start(void);
 
 /**
  * @brief  Initialize sim900 using AT command.
  * 
- * @param[out] job_result
+ * @return 
  */
-void sim900_default_config(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_default_config(void);
 
 /**
  * @brief Select sleeping mode controlled by DTR pin for SIM900A.
  * 
- * @param[out] job_result
+ * @return
  */
-void sim900_enable_DTR_sleep_mode(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_enable_DTR_sleep_mode(void);
 
 /**
  * 
  */
-void sim900_disable_sleep_mode(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_disable_sleep_mode(void);
 
 /**
  * @brief Using DTR pin to wake up or allow SIM900 go to sleep.
@@ -117,7 +117,7 @@ void sim900_RI_callback(void);
 /**
  * 
  */
-SIM900_RI_result_t sim900_process_RI_task(RCOM_job_result_t *job_result);
+SIM900_RI_result_t sim900_process_RI_task(char *result);
 
 /**
  * 
@@ -132,26 +132,26 @@ void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass);
 /**
  * 
  */
-bool sim900_check_SIM_inserted(RCOM_job_result_t *job_result);
+bool sim900_check_SIM_inserted(RCOM_result_type_t result_type);
 
 /**
  * 
  */
-void sim900_get_MSP_name(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_get_MSP_name(char *MSP_name);
 
 /**
  * @brief  sim900 gprs config
  * 
  * @param[out] job_result
  */
-void sim900_connect_internet(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_connect_internet(void);
 
 /**
  * @brief  stop SIM900.
  * 
  * @param[out] job_result
  */
-void sim900_stop(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_stop(void);
 
 /*  
  * @description:  send report with gprs			            								
@@ -205,17 +205,15 @@ void sim900_stop(RCOM_job_result_t *job_result);
 /**
  * 
  */
-void sim900_create_HTTP_POST_session(RCOM_job_result_t *job_result, char *URL);
+RCOM_result_type_t sim900_create_HTTP_POST_session(char *URL);
 
 /**
  * @brief Send the size of HTTP data by UART before sending data.
  * sim900_create_HTTP_GET_session() must be exe-ed before calling this function.
  * 
- * @param[out] job_result
  * @param[in] data_size
  */
-void sim900_send_HTTP_data_size(RCOM_job_result_t *job_result,
-		uint16_t data_size);
+RCOM_result_type_t sim900_send_HTTP_data_size(uint16_t data_size);
 
 /**
  * 
@@ -227,100 +225,94 @@ void sim900_uart_send_data(char *data);
  * sim900_create_HTTP_GET_session() and sim900_send_HTTP_data_size() must be exe-ed before calling this function.
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
- * @param[out] job_result
- * @param[out] out_buffer
+ * @param[out] response
  */
-void sim900_HTTP_POST_action(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_HTTP_POST_action(char *response);
 
 /**
  * 
  */
-void sim900_HTTP_POST(RCOM_job_result_t *job_result, char *URL, char *data);
+RCOM_result_type_t sim900_HTTP_POST(char *URL, char *data, char *response);
 
 /**
  * @brief Read data from webserver in GET method. 
  * sim900_create_HTTP_GET_session() must be exe-ed before calling this function.
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
- * @param[out] job_result
  * @param[in] URL
- * @param[out] out_buffer
+ * @param[out] result
  */
-void sim900_HTTP_GET(RCOM_job_result_t *job_result, char *URL);
+RCOM_result_type_t sim900_HTTP_GET(char *URL, char *result);
 
 /**
  * 
  */
-void sim900_terminate_HTTP_session(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_terminate_HTTP_session(void);
 
 /**
  * @brief Send an SMS message to the specified phone number.
  * 
- * @param[out] job_result
  * @param[in] phone_number
  * @param[in] msg	
  */
-void sim900_send_sms(RCOM_job_result_t *job_result, char* phone_number,
-		char* msg);
+RCOM_result_type_t sim900_send_sms(char* phone_number, char* msg);
 
 /**
  * @brief Make a voice call.
  * 
- * @param[out] job_result
  * @param[in] phone_number
  */
-void sim900_make_missed_voice_call(RCOM_job_result_t *job_result,
-		char* phone_number);
+RCOM_result_type_t sim900_make_missed_voice_call(char* phone_number);
 
 /**
  * 
  */
-void sim900_read_SMS_msg(RCOM_job_result_t *job_result, uint8_t sms_index);
+RCOM_result_type_t sim900_read_SMS_msg(uint8_t sms_index, char *result_buff);
 
 /**
  * 
  */
-void sim900_show_incoming_call_number(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_show_incoming_call_number(void);
 
 /**
  * 
  */
-void sim900_not_show_incoming_call_number(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_not_show_incoming_call_number(void);
 
 /**
  * 
  */
-void sim900_enable_echo_mode(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_enable_echo_mode(void);
 
 /**
  * 
  */
-void sim900_disable_echo_mode(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_disable_echo_mode(void);
 
 /**
  * 
  */
-void sim900_set_SMS_text_mode(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_set_SMS_text_mode(void);
 
 /**
  * 
  */
-void sim900_set_SMS_PDU_mode(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_set_SMS_PDU_mode(void);
 
 /**
  * 
  */
-void sim900_hang_up_voice_call(RCOM_job_result_t *job_result);
+RCOM_result_type_t sim900_hang_up_voice_call(void);
 
 /**
  * 
  */
-void sim900_delete_group_SMS_message(RCOM_job_result_t *job_result,
+RCOM_result_type_t sim900_delete_group_SMS_message(
 		SIM900_del_SMS_t del_type);
 
 /**
  * 
  */
-void sim900_delete_an_SMS_message(RCOM_job_result_t *job_result, uint8_t index);
+RCOM_result_type_t sim900_delete_an_SMS_message(uint8_t index);
 
 #endif //SIM900A_H_

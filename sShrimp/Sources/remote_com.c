@@ -23,70 +23,63 @@ char *URL_post_report = "i3s.edu.vn/swm/local-com/index.php?comType=report";
 
 char result_buffer[256];
 
-static void set_APN_auto(RCOM_job_result_t *job_result);
+static RCOM_result_type_t set_APN_auto(void);
 
-static void set_APN_auto(RCOM_job_result_t *job_result) {
-	sim900_get_MSP_name(job_result);
-	if (job_result->result_type == RCOM_JOB_FAIL) {
-		return;
+static RCOM_result_type_t set_APN_auto(void) {
+	char msp_name_tmp[16];
+	if (sim900_get_MSP_name(msp_name_tmp) == RCOM_FAIL) {
+		return RCOM_FAIL;
 	}
 	uint8_t index = 0;
 	for (index = 0; index < MSP_NUMBER; index++) {
-		if (strcmp((char*) job_result->content.result_ptr, msp_name[index])
-				== 0) {
+		if (strcmp(msp_name_tmp, msp_name[index]) == 0) {
 			break;
 		}
 		if (index == MSP_NUMBER - 1) {
-			job_result->result_type = RCOM_JOB_FAIL;
 			NOTIFY("MSP is not supported!\n");
-			return;
+			return RCOM_FAIL;
 		}
 	}
 	sim900_set_apn_para(apn_name[index], apn_usrname[index],
 			apn_password[index]);
+	
+	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
 void remote_com_app(SWM_msg_t *swm_msg, void *dest_msg_queue) {
-	RCOM_job_result_t job_result;
-	job_result.content.result_ptr = (void*) result_buffer;
+	RCOM_result_type_t res_type = RCOM_FAIL;
 	switch (swm_msg->cmd) {
 	case RCOM_START:
 		DEBUG("RCOM starting...\n");
-		sim900_start(&job_result);
-		sim900_check_SIM_inserted(&job_result);
-		set_APN_auto(&job_result);
+		sim900_start();
+		sim900_check_SIM_inserted(res_type);
+		set_APN_auto();
 		break;
 	case RCOM_STOP:
 		DEBUG("RCOM stoping...\n");
-		sim900_stop(&job_result);
+		sim900_stop();
 		break;
 	case RCOM_CONFIGURE:
 		DEBUG("RCOM configuring...\n");
-		sim900_default_config(&job_result);
+		sim900_default_config();
 		break;
 	case RCOM_CONNECT_INTERNET:
 		DEBUG("RCOM connecting internet...\n");
-		sim900_connect_internet(&job_result);
+		sim900_connect_internet();
 		break;
 	case RCOM_SEND_SMS_MSG:
 		DEBUG("RCOM sending SMS msg...\n");
-		DEBUG("pn: %s, msg: %s\n", 
-				((SIM900_SMS_package_t*) swm_msg)->phone_number, 
-				((SIM900_SMS_package_t*) swm_msg)->msg_content);
-		sim900_send_sms(&job_result,
-				((SIM900_SMS_package_t*) swm_msg)->phone_number,
-				((SIM900_SMS_package_t*) swm_msg)->msg_content);
+//		sim900_send_sms(((SIM900_SMS_package_t*) swm_msg)->phone_number,
+//				((SIM900_SMS_package_t*) swm_msg)->msg_content);
 		break;
 	case RCOM_READ_SMS_MSG:
 		DEBUG("RCOM reading SMS msg...\n");
-		sim900_read_SMS_msg(&job_result, (uint8_t) swm_msg->content.value);
+		sim900_read_SMS_msg((uint8_t) swm_msg->content.value, result_buffer);
 		break;
 	case RCOM_MAKE_MISSED_CALL:
 		DEBUG("RCOM making missed voice call...\n");
-		DEBUG("%s\n", (char*) swm_msg->content.value_ptr);
-//		DEBUG("%d\n", (uint8_t) swm_msg->content.value);
-		sim900_make_missed_voice_call(&job_result,
-				(char*) swm_msg->content.value_ptr);
+//		DEBUG("%s\n", swm_msg->content.value_ptr);
+//		sim900_make_missed_voice_call(swm_msg->content.value_ptr);
 		break;
 	case RCOM_REPORT_DATA:
 		break;
@@ -96,7 +89,7 @@ void remote_com_app(SWM_msg_t *swm_msg, void *dest_msg_queue) {
 		break;
 	case RCOM_GET_TIMESTAMP:
 		DEBUG("RCOM getting timestamp...\n");
-		sim900_HTTP_GET(&job_result, URL_time_stamp);
+		sim900_HTTP_GET(URL_time_stamp, result_buffer);
 		DEBUG("%s\n", result_buffer);
 		break;
 	default:

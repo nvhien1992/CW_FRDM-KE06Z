@@ -3,8 +3,8 @@
   <Header>
     <Name>sShrimp</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>104</ModificationStamp>
-    <Date>2015-04-20</Date>
+    <ModificationStamp>106</ModificationStamp>
+    <Date>2015-04-21</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>92</ProjectCompNumb>
+    <ProjectCompNumb>94</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -4191,7 +4191,7 @@
         <ItemSymbol>GPIOB_port_16</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>&lt;Automatic&gt;</Value>
+        <Value>PTG0/KBI1_P16</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -4941,7 +4941,7 @@
         <ItemSymbol>KBI1_kbi_16</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>PTG0/KBI1_P16</Value>
+        <Value>&lt;Automatic&gt;</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -6901,8 +6901,8 @@
         <ItemSymbol>PTG0_KBI1_P16_pull_enable</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Enabled</Value>
-        <PinFuncPropStateId>enable</PinFuncPropStateId>
+        <Value>Disabled</Value>
+        <PinFuncPropStateId>disable</PinFuncPropStateId>
       </ItemState>
       <ItemState>
         <ItemSymbol>PTE1_KBI1_P1_SPI0_MOSI_I2C1_SCL</ItemSymbol>
@@ -8091,7 +8091,7 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>4096</Value>
+              <Value>3096</Value>
               <Base>DEC</Base>
             </ItemState>
             <ItemState>

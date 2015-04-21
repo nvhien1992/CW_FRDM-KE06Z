@@ -47,7 +47,7 @@ extern "C" {
 #define DEBUG_EN	(1)
 #include "debug.h"
 
-#define SIM900_RX_BUFF_MAX_CHAR (256) //char
+#define SIM900_RX_BUFF_MAX_CHAR (128) //char
 char sim900_rx_buffer[SIM900_RX_BUFF_MAX_CHAR];
 
 #define NUM_CTRL_MESSAGES 16
@@ -129,9 +129,9 @@ DEBUG("%d\n", sizeof(SWM_msg_t));
 	_time_delay_ticks(200);
 	msg_ptr.cmd = RCOM_GET_TIMESTAMP;
 	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
-	msg_ptr.content.value_ptr = "0947380243";
-	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
+//	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
+//	msg_ptr.content.value_ptr = "0947380243";
+//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
 //	msg_ptr.cmd = RCOM_SEND_SMS_MSG;
 //	SIM900_SMS_package_t sms_package = { "0947380243", "nvhien", };
 //	msg_ptr.content.value_ptr = (char*) &sms_package;
@@ -161,6 +161,7 @@ DEBUG("%d\n", sizeof(SWM_msg_t));
 		/* Write your code here ... */
 		_lwmsgq_receive((pointer) ctrl_msg_queue, &msg,
 				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
+
 	}
 }
 
@@ -227,24 +228,21 @@ void Remote_com_task(uint32_t task_init_data) {
 void RI_proccess_task(uint32_t task_init_data) {
 	int counter = 0;
 
-	RCOM_job_result_t j_r;
-	char phone_number_or_sms_content[64];
-	sim900_delete_group_SMS_message(&j_r, DEL_ALL);
+	char phone_number_or_sms_content[16];
 
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		j_r.content.result_ptr = (void*) phone_number_or_sms_content;
-
-		switch (sim900_process_RI_task(&j_r)) {
+		switch (sim900_process_RI_task(phone_number_or_sms_content)) {
 		case INCOMING_VOICE_CALL:
-			DEBUG("pn: %s\n", (char*)j_r.content.result_ptr);
+			DEBUG("pn: %s\n", phone_number_or_sms_content);
 			break;
 		case RECEIVED_SMS_MSG:
-			DEBUG("sms indx: %d\n", (int)j_r.content.result);
+			DEBUG("sms indx: %d\n", (uint8_t)*phone_number_or_sms_content);
 			break;
 		default:
+			DEBUG("RI_UNKNOWN\n");
 			break;
 		}
 	}
