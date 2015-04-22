@@ -123,6 +123,7 @@
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\__arm_start.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\SIM900A.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\SWM_controller.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\cir_queue.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\main.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.c</PathName>
@@ -226,6 +227,7 @@
       <PathName>D:\CW\sShrimp\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\Events.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\SIM900A.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\SWM_controller.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\cir_queue.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\global.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\message_type.h</PathName>

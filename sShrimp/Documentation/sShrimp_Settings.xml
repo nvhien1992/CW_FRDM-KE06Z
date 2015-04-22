@@ -1175,7 +1175,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="RI_proccess" />
               <Entry_point_function v="RI_proccess_task" />
-              <Stack_size v="1024" />
+              <Stack_size v="2048" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">

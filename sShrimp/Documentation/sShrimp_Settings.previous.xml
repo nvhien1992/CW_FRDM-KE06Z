@@ -454,7 +454,7 @@ PE_DEBUGHALT();
               <Direction v="&amp;lt;Automatic&amp;gt;" />
               <GPIOB__General_purpose_I_O_pin_15 v="&amp;lt;Automatic&amp;gt;" />
               <Direction v="&amp;lt;Automatic&amp;gt;" />
-              <GPIOB__General_purpose_I_O_pin_16 v="&amp;lt;Automatic&amp;gt;" />
+              <GPIOB__General_purpose_I_O_pin_16 v="PTG0/KBI1_P16" />
               <Direction v="&amp;lt;Automatic&amp;gt;" />
               <GPIOB__General_purpose_I_O_pin_17 v="&amp;lt;Automatic&amp;gt;" />
               <Direction v="&amp;lt;Automatic&amp;gt;" />
@@ -570,7 +570,7 @@ PE_DEBUGHALT();
               <KBI1__KBI_pin_13 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_14 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_15 v="&amp;lt;Automatic&amp;gt;" />
-              <KBI1__KBI_pin_16 v="PTG0/KBI1_P16" />
+              <KBI1__KBI_pin_16 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_17 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_18 v="&amp;lt;Automatic&amp;gt;" />
               <KBI1__KBI_pin_19 v="&amp;lt;Automatic&amp;gt;" />
@@ -972,7 +972,7 @@ PE_DEBUGHALT();
             </group>
             <group name="Pin 74: PTG0/KBI1_P16">
               <Custom_name__Signal_name v="PTG0/KBI1_P16" />
-              <Pull_enable v="Enabled" />
+              <Pull_enable v="Disabled" />
             </group>
             <group name="Pin 75: PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL">
               <Custom_name__Signal_name v="PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL" />
@@ -1149,7 +1149,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="Remote_com" />
               <Entry_point_function v="Remote_com_task" />
-              <Stack_size v="2048" />
+              <Stack_size v="4096" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">
@@ -1175,7 +1175,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="RI_proccess" />
               <Entry_point_function v="RI_proccess_task" />
-              <Stack_size v="1024" />
+              <Stack_size v="2048" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">

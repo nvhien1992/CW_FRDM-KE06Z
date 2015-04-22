@@ -31,9 +31,10 @@ SIM900_params_t SIM900_params;
 static LWEVENT_STRUCT RI_event;
 #define RI_EVT_BIT_MASK	0x01
 
-static bool RI_interrupt = FALSE;
-static char RI_unsolicited_buf[32];
-static RCOM_buff_t RI_rx_buf = { RI_unsolicited_buf, 32, 0, FALSE };
+static bool RI_interrupt_flag = FALSE;
+char RI_unsolicited_buf[32];
+RCOM_buff_t RI_rx_buf = { RI_unsolicited_buf, sizeof(RI_unsolicited_buf), 0,
+		TRUE };
 
 /*=======================================================================
  ==========================DEFINE PRIVATE FUNCTIONS======================
@@ -58,11 +59,9 @@ static bool sim900_get_incoming_call_number(char *incoming_pn);
  * @brief get response content from webserver. Response format:
  * "+HTTPREAD:<data_size>\r\n<response_content>\r\nOK\r\n".
  * 
- * @param[out] out_buff
- * 
- * @return TRUE if success, FALSE if fail.
+ * @return NULL if fail, else response content will be returned.
  */
-static bool sim900_get_http_response_content(char* out_buff);
+static char* sim900_get_http_response_content(void);
 
 /*=======================================================================
  ========================IMPLEMENT PRIVATE FUNCTIONS=====================
@@ -76,10 +75,11 @@ static int sim900_get_recv_SMS_msg_index(void) {
 	/* check recv buffer */
 	char *pstr = strstr(RI_rx_buf.buffer_ptr, "+CMTI: \"SM\",");
 	if (!pstr) {
-		return -1;
+		return FALSE;
 	}
 
 	pstr += strlen("+CMTI: \"SM\",");
+
 	return atoi(pstr);
 }
 
@@ -96,6 +96,12 @@ static bool sim900_get_incoming_call_number(char *incoming_pn) {
 
 	pstr += strlen("+CLIP: \"");
 
+	/* normalize the phone number: +84... -> 0... */
+	if (*pstr == '+') {
+		pstr += 2;
+		*pstr = '0';
+	}
+
 	uint8_t indx = 0;
 	while (pstr[indx] != '\"') {
 		incoming_pn[indx] = pstr[indx];
@@ -106,11 +112,7 @@ static bool sim900_get_incoming_call_number(char *incoming_pn) {
 	return TRUE;
 }
 
-static bool sim900_get_http_response_content(char* out_buff) {
-	if (!out_buff) {
-		return FALSE;
-	}
-
+static char* sim900_get_http_response_content(void) {
 	/* check recv buffer */
 	char *pstr = strstr(RCOM_get_rx_buf(), "+HTTPREAD:");
 	if (!pstr) {
@@ -125,10 +127,15 @@ static bool sim900_get_http_response_content(char* out_buff) {
 	pstr = strstr(pstr, "\n") + 1;
 
 	/* get response content */
-	strncpy(out_buff, pstr, data_size);
+	char *out_buff = RCOM_get_rx_buf();
+
+	uint8_t index = 0;
+	for (index = 0; index < data_size; index++) {
+		out_buff[index] = pstr[index];
+	}
 	out_buff[data_size] = '\0';
 
-	return TRUE;
+	return out_buff;
 }
 
 static void sim900_power_on() {
@@ -397,31 +404,29 @@ void sim900_control_sleep_manually(bool sleep_sim900) {
 }
 
 void sim900_RI_callback(void) {
-	RI_interrupt = TRUE;
-	RI_rx_buf.enable_buffer = TRUE;
+	DEBUG("RI int\n");
+	RI_interrupt_flag = TRUE;
 	RCOM_uart_get_char();
 	_lwevent_set(&RI_event, RI_EVT_BIT_MASK);
 }
 
-SIM900_RI_result_t sim900_process_RI_task(char *result) {
+SIM900_RI_result_t sim900_process_RI_task(char* RI_result) {
 	_lwevent_wait_for(&RI_event, RI_EVT_BIT_MASK, TRUE, NULL);
 
 	/* wait 150ms to determine received SMS or not */
 	uint8_t time_detect_SMS = 150; //ms
 	_time_delay_ticks(time_detect_SMS / RCOM_get_systick());
 
-	RI_interrupt = FALSE;
-	RI_rx_buf.enable_buffer = FALSE;
+	RI_interrupt_flag = FALSE;
 	if (SIM900_pins->RI.GetVal(NULL) == RI_HIGH_LV) { //received SMS
 		DEBUG("Received SMS msg\n");
 
 		/* get sms index */
 		int index = sim900_get_recv_SMS_msg_index();
-		if (index > 0) {
-			*result = (char) index;
-		} else {
+		if (index < 0) {
 			return RI_UNKNOWN;
 		}
+		*RI_result = index;
 
 		/* clear RI's rx buffer */
 		sim900_clear_RI_rx_buf();
@@ -431,22 +436,22 @@ SIM900_RI_result_t sim900_process_RI_task(char *result) {
 		DEBUG("Incoming call\n");
 
 		/* get phone number before hanging up */
-		if (!sim900_get_incoming_call_number(result)) {
+		if (!sim900_get_incoming_call_number(RI_result)) {
 			return RI_UNKNOWN;
 		}
 
-		_time_delay_ticks(1000 / RCOM_get_systick());
-		sim900_hang_up_voice_call();
-
 		/* clear RI's rx buffer */
 		sim900_clear_RI_rx_buf();
+
+		_time_delay_ticks(1000 / RCOM_get_systick());
+		sim900_hang_up_voice_call();
 
 		return INCOMING_VOICE_CALL;
 	}
 }
 
 void sim900_uart_callback(void) {
-	if (RI_interrupt) {
+	if (RI_interrupt_flag) {
 		RCOM_store_rchar_into_buffer(&RI_rx_buf);
 		RCOM_uart_get_char();
 	}
@@ -458,7 +463,7 @@ void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass) {
 	SIM900_params.apn_pass = apn_pass;
 }
 
-bool sim900_check_SIM_inserted(RCOM_result_type_t result_type) {
+bool sim900_check_SIM_inserted(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -466,19 +471,18 @@ bool sim900_check_SIM_inserted(RCOM_result_type_t result_type) {
 	step_info.timeout = 1;
 	step_info.expected_response = "\r\nOK\r\n";
 
+	RCOM_clear_rx_buf();
+	RCOM_enable_rx_buf();
+	
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		result_type = RCOM_FAIL;
 		return FALSE;
 	}
 
 	/* check recv buffer */
 	char *pstr = strstr(RCOM_get_rx_buf(), "+CSMINS:");
 	if (!pstr) {
-		result_type = RCOM_FAIL;
 		return FALSE;
 	}
-
-	result_type = RCOM_SUCCESS_WITHOUT_DATA;
 
 	/* get SIM status */
 	int evt_code, SIM_status;
@@ -487,7 +491,7 @@ bool sim900_check_SIM_inserted(RCOM_result_type_t result_type) {
 	return (SIM_status == 1);
 }
 
-RCOM_result_type_t sim900_get_MSP_name(char *MSP_name) {
+char* sim900_get_MSP_name(void) {
 	RCOM_step_info_t step_info;
 
 	step_info.execution_method = SM_AND_TIMEOUT;
@@ -495,25 +499,30 @@ RCOM_result_type_t sim900_get_MSP_name(char *MSP_name) {
 	step_info.timeout = 1;
 	step_info.expected_response = "\r\nOK\r\n";
 
+	RCOM_clear_rx_buf();
+	RCOM_enable_rx_buf();
+
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		return RCOM_FAIL;
+		return NULL;
 	}
 
-	/* check recv buffer */
+	/* check recv buffer, response format: +CSPN: "<MSP>" */
 	char *pstr = strstr(RCOM_get_rx_buf(), "+CSPN: \"");
 	if (!pstr) {
-		return RCOM_FAIL;
+		return NULL;
 	}
 
 	pstr += strlen("+CSPN: \"");
+
+	char *MSP_name = RCOM_get_rx_buf();
 	uint8_t index = 0;
 	while (pstr[index] != '\"') {
 		MSP_name[index] = pstr[index];
 		index++;
 	}
 	MSP_name[index] = '\0';
-	
-	return RCOM_SUCCESS_WITH_DATA;
+
+	return MSP_name;
 }
 
 RCOM_result_type_t sim900_terminate_HTTP_session(void) {
@@ -527,7 +536,7 @@ RCOM_result_type_t sim900_terminate_HTTP_session(void) {
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
 		return RCOM_FAIL;
 	}
-	
+
 	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
@@ -601,7 +610,7 @@ void sim900_uart_send_data(char *data) {
 	RCOM_uart_writef(data);
 }
 
-RCOM_result_type_t sim900_HTTP_POST_action(char *response) {
+char* sim900_HTTP_POST_action(void) {
 	RCOM_step_info_t step_info;
 
 	uint8_t current_step = 0;
@@ -624,29 +633,31 @@ RCOM_result_type_t sim900_HTTP_POST_action(char *response) {
 			step_info.command = "AT+HTTPREAD\r\n";
 			step_info.timeout = 5;
 			step_info.expected_response = "\r\nOK\r\n";
+			RCOM_clear_rx_buf();
+			RCOM_enable_rx_buf();
 			break;
 		default:
-			return RCOM_FAIL;
+			return NULL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
 			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return RCOM_FAIL;
+			return NULL;
 		}
 	}
 
-	sim900_get_http_response_content(response);
+	char *result = sim900_get_http_response_content();
 
 	/* terminate session */
 	if (sim900_terminate_HTTP_session() == RCOM_FAIL) {
 		DEBUG("Can not terminate session\n");
 	}
 
-	return RCOM_SUCCESS_WITH_DATA;
+	return result;
 }
 
-RCOM_result_type_t sim900_HTTP_POST(char *URL, char *data, char *response) {
+char* sim900_HTTP_POST(char *URL, char *data) {
 	int data_size = strlen(data);
 	int cmd_size = 32;
 	if (strlen(URL) < data_size) {
@@ -712,28 +723,30 @@ RCOM_result_type_t sim900_HTTP_POST(char *URL, char *data, char *response) {
 			step_info.command = "AT+HTTPREAD\r\n";
 			step_info.timeout = 5;
 			step_info.expected_response = "\r\nOK\r\n";
+			RCOM_clear_rx_buf();
+			RCOM_enable_rx_buf();
 			break;
 		default:
-			return RCOM_FAIL;
+			return NULL;
 		}
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
 			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return RCOM_FAIL;
+			return NULL;
 		}
 	}
 
-	sim900_get_http_response_content(response);
+	char *result = sim900_get_http_response_content();
 
 	/* terminate session */
 	if (sim900_terminate_HTTP_session() == RCOM_FAIL) {
 		DEBUG("Can not terminate session\n");
 	}
 
-	return RCOM_SUCCESS_WITH_DATA;
+	return result;
 }
 
-RCOM_result_type_t sim900_HTTP_GET(char *URL, char *result) {
+char* sim900_HTTP_GET(char *URL) {
 	char cmd[32 + strlen(URL)];
 	RCOM_step_info_t step_info;
 
@@ -772,25 +785,27 @@ RCOM_result_type_t sim900_HTTP_GET(char *URL, char *result) {
 			step_info.command = "AT+HTTPREAD\r\n";
 			step_info.timeout = 5;
 			step_info.expected_response = "\r\nOK\r\n";
+			RCOM_clear_rx_buf();
+			RCOM_enable_rx_buf();
 			break;
 		default:
-			return RCOM_FAIL;
+			return NULL;
 		}
 
 		if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
 			sim900_terminate_HTTP_session();
 			DEBUG("step failed: %d\n", current_step);
-			return RCOM_FAIL;
+			return NULL;
 		}
 	}
 
-	sim900_get_http_response_content(result);
+	char *result = sim900_get_http_response_content();
 
 	if (sim900_terminate_HTTP_session() == RCOM_FAIL) {
 		DEBUG("Can not terminate session\n");
 	}
 
-	return RCOM_SUCCESS_WITH_DATA;
+	return result;
 }
 
 //void sim900_post_report(gw_rpt_para_t* pRptPara, RCOM_job_result_t *job_result) {
@@ -1303,7 +1318,7 @@ RCOM_result_type_t sim900_make_missed_voice_call(char* phone_number) {
 	return RCOM_SUCCESS_WITHOUT_DATA;
 }
 
-RCOM_result_type_t sim900_read_SMS_msg(uint8_t sms_index, char *result) {
+char* sim900_read_SMS_msg(uint8_t sms_index) {
 	RCOM_step_info_t step_info;
 	char cmd[16];
 	step_info.command = cmd;
@@ -1313,13 +1328,14 @@ RCOM_result_type_t sim900_read_SMS_msg(uint8_t sms_index, char *result) {
 	step_info.timeout = 5;
 	step_info.expected_response = "\r\nOK\r\n";
 
+	RCOM_clear_rx_buf();
+	RCOM_enable_rx_buf();
+
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
-		return RCOM_FAIL;
+		return NULL;
 	}
 
-	strcpy(result, RCOM_get_rx_buf());
-
-	return RCOM_SUCCESS_WITH_DATA;
+	return RCOM_get_rx_buf();
 }
 
 RCOM_result_type_t sim900_show_incoming_call_number(void) {

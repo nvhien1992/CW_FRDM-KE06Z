@@ -3,8 +3,8 @@
   <Header>
     <Name>sShrimp</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>106</ModificationStamp>
-    <Date>2015-04-21</Date>
+    <ModificationStamp>115</ModificationStamp>
+    <Date>2015-04-22</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>94</ProjectCompNumb>
+    <ProjectCompNumb>96</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -8571,7 +8571,7 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>1024</Value>
+              <Value>2048</Value>
               <Base>DEC</Base>
             </ItemState>
             <ItemState>

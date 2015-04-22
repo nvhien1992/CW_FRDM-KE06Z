@@ -53,13 +53,8 @@ typedef enum {
 	DEL_ALL, //del all msgs
 } SIM900_del_SMS_t;
 
-typedef struct {
-	char phone_number[12];
-	char msg_content[150];
-} SIM900_SMS_package_t;
-
 typedef enum {
-	INCOMING_VOICE_CALL, INCOMING_DATA_CALL, RECEIVED_SMS_MSG, RI_UNKNOWN,
+	INCOMING_VOICE_CALL, INCOMING_DATA_CALL, RECEIVED_SMS_MSG, URC, RI_UNKNOWN,
 } SIM900_RI_result_t;
 
 /*=======================================================================
@@ -115,9 +110,9 @@ void sim900_control_sleep_manually(bool sleep_sim900);
 void sim900_RI_callback(void);
 
 /**
- * 
+ * @return NULL if fail else RI result content will be returned.
  */
-SIM900_RI_result_t sim900_process_RI_task(char *result);
+SIM900_RI_result_t sim900_process_RI_task(char* RI_result);
 
 /**
  * 
@@ -132,12 +127,12 @@ void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass);
 /**
  * 
  */
-bool sim900_check_SIM_inserted(RCOM_result_type_t result_type);
+bool sim900_check_SIM_inserted(void);
 
 /**
- * 
+ * @return NULL if fail else MSP name will be returned.
  */
-RCOM_result_type_t sim900_get_MSP_name(char *MSP_name);
+char* sim900_get_MSP_name(void);
 
 /**
  * @brief  sim900 gprs config
@@ -209,7 +204,7 @@ RCOM_result_type_t sim900_create_HTTP_POST_session(char *URL);
 
 /**
  * @brief Send the size of HTTP data by UART before sending data.
- * sim900_create_HTTP_GET_session() must be exe-ed before calling this function.
+ * sim900_create_HTTP_POST_session() must be exe-ed before calling this function.
  * 
  * @param[in] data_size
  */
@@ -225,24 +220,31 @@ void sim900_uart_send_data(char *data);
  * sim900_create_HTTP_GET_session() and sim900_send_HTTP_data_size() must be exe-ed before calling this function.
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
- * @param[out] response
+ * @return NULL if fail else response content will be returned.
  */
-RCOM_result_type_t sim900_HTTP_POST_action(char *response);
+char* sim900_HTTP_POST_action(void);
 
 /**
+ * @brief Send data to webserver using POST method. 
  * 
+ * @param[in] URL
+ * @param[in] data
+ * 
+ * @return NULL if fail else response content will be returned.
  */
-RCOM_result_type_t sim900_HTTP_POST(char *URL, char *data, char *response);
+char* sim900_HTTP_POST(char *URL, char *data);
 
 /**
- * @brief Read data from webserver in GET method. 
+ * @brief Read data from webserver using GET method. 
  * sim900_create_HTTP_GET_session() must be exe-ed before calling this function.
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
  * @param[in] URL
- * @param[out] result
+ * @param[out] response -If 'response' = NULL then 'response' = RCOM_rx_buf, else copy content into 'response'.
+ * 
+ * @return NULL if fail else response content will be returned.
  */
-RCOM_result_type_t sim900_HTTP_GET(char *URL, char *result);
+char* sim900_HTTP_GET(char *URL);
 
 /**
  * 
@@ -265,9 +267,11 @@ RCOM_result_type_t sim900_send_sms(char* phone_number, char* msg);
 RCOM_result_type_t sim900_make_missed_voice_call(char* phone_number);
 
 /**
+ * @param[in] sms_index
  * 
+ * @return NULL if fail else sms content will be returned.
  */
-RCOM_result_type_t sim900_read_SMS_msg(uint8_t sms_index, char *result_buff);
+char* sim900_read_SMS_msg(uint8_t sms_index);
 
 /**
  * 
@@ -307,8 +311,7 @@ RCOM_result_type_t sim900_hang_up_voice_call(void);
 /**
  * 
  */
-RCOM_result_type_t sim900_delete_group_SMS_message(
-		SIM900_del_SMS_t del_type);
+RCOM_result_type_t sim900_delete_group_SMS_message(SIM900_del_SMS_t del_type);
 
 /**
  * 

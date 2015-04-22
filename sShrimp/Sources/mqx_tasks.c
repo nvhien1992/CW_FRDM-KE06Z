@@ -41,6 +41,7 @@ extern "C" {
 #include <cstring>
 #include "message_type.h"
 #include "remote_com.h"
+#include "SWM_controller.h"
 #include "cir_queue.h"
 
 #define NOTIFY_EN 	(1)
@@ -54,11 +55,20 @@ char sim900_rx_buffer[SIM900_RX_BUFF_MAX_CHAR];
 #define NUM_RCOM_MESSAGES 16
 #define MESSAGE_SIZE sizeof(SWM_msg_t)
 
-SWM_msg_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT)
+SWM_msg_t controller_msg_queue[sizeof(LWMSGQ_STRUCT)
 		+ NUM_CTRL_MESSAGES * MESSAGE_SIZE];
 
 SWM_msg_t rcom_msg_queue[sizeof(LWMSGQ_STRUCT)
 		+ NUM_RCOM_MESSAGES * MESSAGE_SIZE];
+
+#define RCOM_TO_CONTROLLER_BUFFER_SIZE (256)
+char controller_to_rcom_buffer[RCOM_TO_CONTROLLER_BUFFER_SIZE];
+
+#define CONTROLLER_TO_RCOM_BUFFER_SIZE (256)
+char rcom_to_controller_buffer[CONTROLLER_TO_RCOM_BUFFER_SIZE];
+
+cir_queue_t controller_to_rcom_cir_queue;
+cir_queue_t rcom_to_controller_cir_queue;
 
 uart_t SIM900_uart = { MB_UART_Init, //
 		MB_UART_SendBlock, //
@@ -100,10 +110,19 @@ static uint8_t get_systick_period_in_ms(void) {
  */
 void Control_task(uint32_t task_init_data) {
 	int counter = 0;
-DEBUG("%d\n", sizeof(SWM_msg_t));
+
 	/* init msg queues */
-	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_CTRL_MESSAGES, MESSAGE_SIZE);
+	_lwmsgq_init((pointer) controller_msg_queue, NUM_CTRL_MESSAGES,
+			MESSAGE_SIZE);
 	_lwmsgq_init((pointer) rcom_msg_queue, NUM_RCOM_MESSAGES, MESSAGE_SIZE);
+
+	cir_queue_init(&controller_to_rcom_cir_queue,
+			(uint8_t*) controller_to_rcom_buffer,
+			CONTROLLER_TO_RCOM_BUFFER_SIZE);
+
+	cir_queue_init(&rcom_to_controller_cir_queue,
+			(uint8_t*) rcom_to_controller_buffer,
+			RCOM_TO_CONTROLLER_BUFFER_SIZE);
 
 	if (_task_create_at(0, REMOTE_COM_TASK, 0, Remote_com_task_stack,
 			REMOTE_COM_TASK_STACK_SIZE) == MQX_NULL_TASK_ID ) {
@@ -120,48 +139,31 @@ DEBUG("%d\n", sizeof(SWM_msg_t));
 	_time_delay_ticks(200);
 	msg_ptr.cmd = RCOM_START;
 	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-	_time_delay_ticks(2000);
+	_time_delay_ticks(200);
 	msg_ptr.cmd = RCOM_CONFIGURE;
 	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
 	_time_delay_ticks(200);
-	msg_ptr.cmd = RCOM_CONNECT_INTERNET;
-	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-	_time_delay_ticks(200);
-	msg_ptr.cmd = RCOM_GET_TIMESTAMP;
-	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-//	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
-//	msg_ptr.content.value_ptr = "0947380243";
+//	msg_ptr.cmd = RCOM_CONNECT_INTERNET;
 //	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-//	msg_ptr.cmd = RCOM_SEND_SMS_MSG;
-//	SIM900_SMS_package_t sms_package = { "0947380243", "nvhien", };
-//	msg_ptr.content.value_ptr = (char*) &sms_package;
+//	_time_delay_ticks(200);
+//	msg_ptr.cmd = RCOM_GET_TIMESTAMP;
 //	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
+//	_time_delay_ticks(200);
+	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
+	char*pn = "0947380243";
+	cir_queue_add_byte(&controller_to_rcom_cir_queue, strlen(pn));
+	cir_queue_add_data(&controller_to_rcom_cir_queue, (uint8_t*) pn,
+			strlen(pn));
+	msg_ptr.content.data_ptr_in_cir_queue = cir_queue_get_tail(
+			&controller_to_rcom_cir_queue);
+	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
 
-	_mqx_uint msg = 0;
-//	cir_queue_t cir_queue;
-//	uint8_t queue[16];
-//	cir_queue.queue_p = queue;
-//	cir_queue.queue_size = 16;
-//	cir_queue_init(&cir_queue, queue, 16);
-//	uint8_t count = 0;
-//	for (count = 0; count < 17; count++) {
-//		cir_queue_add_byte(&cir_queue, count);
-//	}
-//	DEBUG("head: %ld\n", cir_queue.head);
-//	DEBUG("tail: %ld\n", cir_queue.tail);
-//	DEBUG("max_q_size: %d\n", cir_queue.queue_size);
-//	if (!cir_queue_is_full(&cir_queue)) {
-//		DEBUG("data size: %d\n", cir_queue_get_data_size(&cir_queue));
-//	} else {
-//		DEBUG("full\n");
-//	}
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		_lwmsgq_receive((pointer) ctrl_msg_queue, &msg,
-				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
-
+		controller_app((pointer) rcom_msg_queue, (pointer) controller_msg_queue,
+				&rcom_to_controller_cir_queue, &controller_to_rcom_cir_queue);
 	}
 }
 
@@ -191,23 +193,20 @@ void Remote_com_task(uint32_t task_init_data) {
 	DEBUG("routing pin setting\n");
 	/* route desired pins into peripherals */
 	Pin_Settings_Init();
-
+	sim900_delete_group_SMS_message(DEL_ALL);
 	/* create RI_process task to processing incoming call and received SMS */
 	if (_task_create_at(0, RI_PROCCESS_TASK, 0, RI_proccess_task_stack,
 			RI_PROCCESS_TASK_STACK_SIZE) == MQX_NULL_TASK_ID ) {
 		NOTIFY("Error on creating RI_process task\n");
 	}
 
-	_mqx_uint msg;
-
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		_lwmsgq_receive((pointer) rcom_msg_queue, &msg,
-				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
 
-		remote_com_app((SWM_msg_t*) &msg, &ctrl_msg_queue);
+		remote_com_app((pointer) rcom_msg_queue, (pointer) controller_msg_queue,
+				&rcom_to_controller_cir_queue, &controller_to_rcom_cir_queue);
 	}
 }
 
@@ -228,23 +227,13 @@ void Remote_com_task(uint32_t task_init_data) {
 void RI_proccess_task(uint32_t task_init_data) {
 	int counter = 0;
 
-	char phone_number_or_sms_content[16];
-
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		switch (sim900_process_RI_task(phone_number_or_sms_content)) {
-		case INCOMING_VOICE_CALL:
-			DEBUG("pn: %s\n", phone_number_or_sms_content);
-			break;
-		case RECEIVED_SMS_MSG:
-			DEBUG("sms indx: %d\n", (uint8_t)*phone_number_or_sms_content);
-			break;
-		default:
-			DEBUG("RI_UNKNOWN\n");
-			break;
-		}
+		remote_com_RI_processing((pointer) rcom_msg_queue,
+				(pointer) controller_msg_queue, &rcom_to_controller_cir_queue,
+				&controller_to_rcom_cir_queue);
 	}
 }
 

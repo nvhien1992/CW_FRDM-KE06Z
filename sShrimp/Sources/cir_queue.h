@@ -30,7 +30,8 @@ typedef struct {
  *
  * @return  none
  */
-void cir_queue_init(cir_queue_t *cir_queue, uint8_t *queue_p, uint16_t queue_size);
+void cir_queue_init(cir_queue_t *cir_queue, uint8_t *queue_p,
+		uint16_t queue_size);
 
 /**
  * @brief   add one byte to head of the circular queue.
@@ -58,7 +59,13 @@ void cir_queue_add_data(cir_queue_t *cir_queue, uint8_t* buf, uint16_t size);
  *
  * @return  data of a byte (0 if queue is empty).
  */
-uint8_t cir_queue_preview_data(cir_queue_t *cir_queue, bool cont);
+uint8_t cir_queue_preview_byte(cir_queue_t *cir_queue, bool cont);
+
+/**
+ * 
+ */
+uint16_t cir_queue_preview_data(cir_queue_t *cir_queue, uint8_t *buf,
+		uint16_t size);
 
 /**
  * @brief   get one byte from tail of the circular queue.
@@ -83,6 +90,11 @@ uint16_t cir_queue_get_data(cir_queue_t *cir_queue, uint8_t* buf, uint16_t size)
  * @return  size
  */
 uint16_t cir_queue_get_data_size(cir_queue_t *cir_queue);
+
+/**
+ * 
+ */
+void cir_queue_clear(cir_queue_t *cir_queue);
 
 /**
  * @brief   get head of the circular queue.

@@ -31,7 +31,6 @@ static LWEVENT_STRUCT SM_event;
 /*=======================================================================
  ======================DEFINE PRIVATE FUNCTIONS==========================
  =======================================================================*/
-static void RCOM_clear_rx_buf(void);
 static void RCOM_state_machine(void);
 static void RCOM_SM_enable(void);
 static void RCOM_SM_disable(void);
@@ -39,11 +38,6 @@ static void RCOM_SM_disable(void);
 /*=======================================================================
  ======================IMPLEMENT PRIVATE FUNCTIONS=======================
  =======================================================================*/
-static void RCOM_clear_rx_buf(void) {
-	rx_buf.buffer_counter = 0;
-	memset(rx_buf.buffer_ptr, 0, rx_buf.buffer_max_size);
-}
-
 static void RCOM_state_machine(void) {
 	if (RCOM_SM.SM_status) {
 		if (RCOM_SM.SM_buffer[RCOM_SM.SM_pointer] == r_char) {
@@ -103,9 +97,6 @@ void RCOM_store_rchar_into_buffer(RCOM_buff_t *a_buffer) {
 }
 
 RCOM_step_result_t RCOM_step_excution(RCOM_step_info_t* step_info) {
-	/* Clear rx buffer before receiving */
-//	RCOM_clear_rx_buf();
-
 	_mqx_uint ticks_waitting = 0;
 
 	switch (step_info->execution_method) {
@@ -113,9 +104,8 @@ RCOM_step_result_t RCOM_step_excution(RCOM_step_info_t* step_info) {
 		/* copy expected response to RCOM-state-machine-buffer */
 		RCOM_SM.SM_buffer = step_info->expected_response;
 
-		/* Enable RCOM-state-machine and Rx buffer */
+		/* Enable RCOM-state-machine*/
 		RCOM_SM_enable();
-		rx_buf.enable_buffer = TRUE;
 
 		/* Register to receive char */
 		RCOM_uart_get_char();
@@ -127,26 +117,23 @@ RCOM_step_result_t RCOM_step_excution(RCOM_step_info_t* step_info) {
 		if (_lwevent_wait_ticks(&SM_event, SM_EVT_BIT_MASK, TRUE,
 				ticks_waitting) != MQX_OK) {
 			RCOM_SM_disable();
-			rx_buf.enable_buffer = FALSE;
+			RCOM_disable_rx_buf();
 			return STEP_FAIL;
 		}
-		rx_buf.enable_buffer = FALSE;
+		RCOM_disable_rx_buf();
 
 		return STEP_SUCCESS;
 	case TIMEOUT_ONLY:
-		/* enable rx buffer */
-		rx_buf.enable_buffer = TRUE;
-
 		/* Register to receive char */
 		RCOM_uart_get_char();
 
 		/* send command to UART */
 		RCOM_uart_writef(step_info->command);
-
+		
 		ticks_waitting = step_info->timeout * 1000 / systick_period;
 		_lwevent_wait_ticks(&SM_event, SM_EVT_BIT_MASK, TRUE, ticks_waitting);
 
-		rx_buf.enable_buffer = FALSE;
+		RCOM_disable_rx_buf();
 
 		return STEP_SUCCESS;
 	case NOTHING:
@@ -199,6 +186,23 @@ void RCOM_set_rx_buf(char* buf_addr, uint16_t buf_max_size) {
 
 char* RCOM_get_rx_buf(void) {
 	return rx_buf.buffer_ptr;
+}
+
+void RCOM_clear_rx_buf(void) {
+	rx_buf.buffer_counter = 0;
+	memset(rx_buf.buffer_ptr, 0, rx_buf.buffer_max_size);
+}
+
+void RCOM_enable_rx_buf(void) {
+	rx_buf.enable_buffer = TRUE;
+}
+
+void RCOM_disable_rx_buf(void) {
+	rx_buf.enable_buffer = FALSE;
+}
+
+uint16_t RCOM_get_rx_buf_data_len(void) {
+	return rx_buf.buffer_counter;
 }
 
 uint8_t RCOM_get_systick(void) {

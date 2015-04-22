@@ -122,6 +122,26 @@ char* RCOM_get_rx_buf(void);
 /**
  * 
  */
+void RCOM_clear_rx_buf(void);
+
+/**
+ * 
+ */
+void RCOM_enable_rx_buf(void);
+
+/**
+ * 
+ */
+void RCOM_disable_rx_buf(void);
+
+/**
+ * 
+ */
+uint16_t RCOM_get_rx_buf_data_len(void);
+
+/**
+ * 
+ */
 uint8_t RCOM_get_systick(void);
 
 #endif //REMOTE_COM_RESOURCES_H_
