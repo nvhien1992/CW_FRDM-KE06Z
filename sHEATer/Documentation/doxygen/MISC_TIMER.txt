@@ -30,7 +30,7 @@ by the component.
     0x00000000
  </td><td>FTM0_C1SC register, peripheral MISC_TIMER.</td></tr>
 <tr><td>0x40038008</td><td>FTM0_MOD</td><td>
-    0x00000147
+    0x00000137
  </td><td>FTM0_MOD register, peripheral MISC_TIMER.</td></tr>
 <tr><td>0xE000E410</td><td>NVIC_IPR4</td><td>
     0x00004000
@@ -382,7 +382,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40038008</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000147</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000137</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 15</td><td>MOD</td><td>0x00</td><td>Modulo Value</td>

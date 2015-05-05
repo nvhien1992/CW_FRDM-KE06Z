@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-04-09, 21:31, # CodeGen: 135
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -48,13 +48,13 @@
 **              OnBreak                                    : Disabled
 **          CPU clock/configuration selection              : 
 **            Clock configuration 0                        : This component enabled
-**            Clock configuration 1                        : This component enabled
-**            Clock configuration 2                        : This component enabled
-**            Clock configuration 3                        : This component enabled
-**            Clock configuration 4                        : This component enabled
-**            Clock configuration 5                        : This component enabled
-**            Clock configuration 6                        : This component enabled
-**            Clock configuration 7                        : This component enabled
+**            Clock configuration 1                        : This component disabled
+**            Clock configuration 2                        : This component disabled
+**            Clock configuration 3                        : This component disabled
+**            Clock configuration 4                        : This component disabled
+**            Clock configuration 5                        : This component disabled
+**            Clock configuration 6                        : This component disabled
+**            Clock configuration 7                        : This component disabled
 **     Contents    :
 **         Init - LDD_TDeviceData* IO1_Init(LDD_TUserData *UserDataPtr);
 **         Main - void IO1_Main(LDD_TDeviceData *DeviceDataPtr);
@@ -176,7 +176,7 @@ LDD_TDeviceData* IO1_Init(LDD_TUserData *UserDataPtr)
   UART1_C3 = 0x00U;                    /*  Set the C3 register */
   /* UART1_S2: LBKDIF=0,RXEDGIF=0,??=0,RXINV=0,RWUID=0,BRK13=0,LBKDE=0,RAF=0 */
   UART1_S2 = 0x00U;                    /*  Set the S2 register */
-  UART_PDD_SetBaudRate(UART1_BASE_PTR, 137U); /* Set the baud rate register. */
+  UART_PDD_SetBaudRate(UART1_BASE_PTR, 52U); /* Set the baud rate register. */
   UART_PDD_EnableTransmitter(UART1_BASE_PTR, PDD_ENABLE); /* Enable transmitter */
   UART_PDD_EnableReceiver(UART1_BASE_PTR, PDD_ENABLE); /* Enable receiver */
   /* Registration of the device structure */

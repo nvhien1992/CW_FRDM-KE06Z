@@ -313,12 +313,12 @@ registers of the peripheral(s) configured by the component.
 **              OnBreak                                    : Disabled
 **          CPU clock/configuration selection              : 
 **            Clock configuration 0                        : This component enabled
-**            Clock configuration 1                        : This component enabled
-**            Clock configuration 2                        : This component enabled
-**            Clock configuration 3                        : This component enabled
-**            Clock configuration 4                        : This component enabled
-**            Clock configuration 5                        : This component enabled
-**            Clock configuration 6                        : This component enabled
-**            Clock configuration 7                        : This component enabled
+**            Clock configuration 1                        : This component disabled
+**            Clock configuration 2                        : This component disabled
+**            Clock configuration 3                        : This component disabled
+**            Clock configuration 4                        : This component disabled
+**            Clock configuration 5                        : This component disabled
+**            Clock configuration 6                        : This component disabled
+**            Clock configuration 7                        : This component disabled
 \endcode
 */

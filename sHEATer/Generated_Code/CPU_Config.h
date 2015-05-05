@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-04-09, 21:43, # CodeGen: 137
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -97,8 +97,9 @@ extern "C" {
     Constants containing frequencies of processor reference clock sources.
 */
 
-#define CPU_BUS_CLK_HZ                  20971520U /* Initial value of the bus clock frequency in Hz */
-#define CPU_CORE_CLK_HZ                 20971520U /* Initial value of the core/system clock frequency in Hz.  */
+#define CPU_BUS_CLK_HZ                  8000000U /* Initial value of the bus clock frequency in Hz */
+#define CPU_CORE_CLK_HZ                 8000000U /* Initial value of the core/system clock frequency in Hz.  */
+#define CPU_XTAL_CLK_HZ                 8000000U /* Value of the external crystal or oscillator clock frequency in Hz */
 #define CPU_INT_SLOW_CLK_HZ             32768U /* Value of the slow internal oscillator clock frequency in Hz  */
 
 /* 
@@ -118,21 +119,21 @@ extern "C" {
 
 #define CPU_CLOCK_CONFIG_NUMBER         0x01U /* Specifies number of defined clock configurations. */
 
-#define CPU_BUS_CLK_HZ_CLOCK_CONFIG0    20971520U /* Value of the bus clock frequency in the clock configuration 0 in Hz. */
-#define CPU_CORE_CLK_HZ_CLOCK_CONFIG0   20971520U /* Value of the core/system clock frequency in the clock configuration 0 in Hz. */
+#define CPU_BUS_CLK_HZ_CLOCK_CONFIG0    8000000U /* Value of the bus clock frequency in the clock configuration 0 in Hz. */
+#define CPU_CORE_CLK_HZ_CLOCK_CONFIG0   8000000U /* Value of the core/system clock frequency in the clock configuration 0 in Hz. */
 
 /* CPU frequencies in clock configuration 0 */
 #define CPU_CLOCK_CONFIG_0              0x00U /* Clock configuration 0 identifier */
-#define CPU_CORE_CLK_HZ_CONFIG_0        20971520UL /* Core clock frequency in clock configuration 0 */
-#define CPU_BUS_CLK_HZ_CONFIG_0         20971520UL /* Bus clock frequency in clock configuration 0 */
+#define CPU_CORE_CLK_HZ_CONFIG_0        8000000UL /* Core clock frequency in clock configuration 0 */
+#define CPU_BUS_CLK_HZ_CONFIG_0         8000000UL /* Bus clock frequency in clock configuration 0 */
 #define CPU_FLEXBUS_CLK_HZ_CONFIG_0     0UL /* Flexbus clock frequency in clock configuration 0 */
-#define CPU_FLASH_CLK_HZ_CONFIG_0       20971520UL /* FLASH clock frequency in clock configuration 0 */
+#define CPU_FLASH_CLK_HZ_CONFIG_0       8000000UL /* FLASH clock frequency in clock configuration 0 */
 #define CPU_USB_CLK_HZ_CONFIG_0         0UL /* USB clock frequency in clock configuration 0 */
-#define CPU_PLL_FLL_CLK_HZ_CONFIG_0     41943040UL /* PLL/FLL clock frequency in clock configuration 0 */
+#define CPU_PLL_FLL_CLK_HZ_CONFIG_0     40000000UL /* PLL/FLL clock frequency in clock configuration 0 */
 #define CPU_MCGIR_CLK_HZ_CONFIG_0       32768UL /* MCG internal reference clock frequency in clock configuration 0 */
-#define CPU_OSCER_CLK_HZ_CONFIG_0       0UL /* System OSC external reference clock frequency in clock configuration 0 */
+#define CPU_OSCER_CLK_HZ_CONFIG_0       8000000UL /* System OSC external reference clock frequency in clock configuration 0 */
 #define CPU_ERCLK32K_CLK_HZ_CONFIG_0    0UL /* External reference clock 32k frequency in clock configuration 0 */
-#define CPU_MCGFF_CLK_HZ_CONFIG_0       32768UL /* MCG fixed frequency clock */
+#define CPU_MCGFF_CLK_HZ_CONFIG_0       31250UL /* MCG fixed frequency clock */
 
 
 /* Clock configuration structure declaration. Structure is initialized in PE_LDD.c */
@@ -235,12 +236,12 @@ typedef struct {
 */
 
 /* Clock configuration 0 */
-#define CPU_ICS_MODE_CONFIG_0                              (CPU_ICS_MODE_FEI | CPU_CLOCK_SLOW_MASK) /* Clock generator mode */
-#define CPU_ICS_C1_CONFIG_0                                0x06U /* ICS_C1 */
-#define CPU_ICS_C2_CONFIG_0                                0x20U /* ICS_C2 */
+#define CPU_ICS_MODE_CONFIG_0                              (CPU_ICS_MODE_FBE | CPU_CLOCK_EXTERNAL_CRYSTAL_MASK | CPU_CLOCK_SLOW_MASK) /* Clock generator mode */
+#define CPU_ICS_C1_CONFIG_0                                0x9AU /* ICS_C1 */
+#define CPU_ICS_C2_CONFIG_0                                0x00U /* ICS_C2 */
 #define CPU_ICS_C4_CONFIG_0                                0x00U /* ICS_C4 */
 #define CPU_ICS_S_CONFIG_0                                 0x00U /* ICS_S */
-#define CPU_OSC_CR_CONFIG_0                                0x00U /* OSC_CR */
+#define CPU_OSC_CR_CONFIG_0                                0x94U /* OSC_CR */
 #define CPU_SIM_CLKDIV_CONFIG_0                            0x00UL /* SIM_CLKDIV */
 
 /* 
@@ -321,9 +322,10 @@ typedef struct {
 #define CPU_DEFAULT_BLPI_OSC_CR                            0x00U     /* OSC_CR value in BLPI default state */ 
 
 /* Clock generator default state in FEE mode
-   Clock source:                        External crystal (oscillator)
-   External frequency range:            Low
-   FLL external reference divider:      1
+   Clock source:                        External crystal (oscillator) (Property: Clock settings\Clock sources\System oscillator 0\Clock source)
+   Clock source frequency:              8 MHz (Property: Clock settings\Clock sources\System oscillator 0\Clock source\Clock frequency)
+   External frequency range:            High
+   FLL external reference divider:      256
    FLL:                                 Enabled, engaged
    FLL factor:                          1280
    Internal reference clock (ICSIRCLK): Disabled
@@ -331,21 +333,22 @@ typedef struct {
    External clock monitor:              Disabled
    Loss of clock reset:                 Disabled
 */
-/* ICS_C1: CLKS=0,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
-#define CPU_DEFAULT_FEE_ICS_C1                             0x00U     /* ICS_C1 value in FEE default state */ 
+/* ICS_C1: CLKS=0,RDIV|=3,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
+#define CPU_DEFAULT_FEE_ICS_C1                             0x18U     /* ICS_C1 value in FEE default state */ 
 /* ICS_C2:  */
 #define CPU_DEFAULT_FEE_ICS_C2                             0x00U     /* ICS_C2 value in FEE default state */ 
 /* ICS_C4: LOLIE=0,CME=0 */
 #define CPU_DEFAULT_FEE_ICS_C4                             0x00U     /* ICS_C4 value in FEE default state */ 
 /* ICS_S: LOLS=1 */
 #define CPU_DEFAULT_FEE_ICS_S                              0x80U     /* ICS_S value in FEE default state */ 
-/* OSC_CR: OSCEN=1,OSCOS=1 */
-#define CPU_DEFAULT_FEE_OSC_CR                             0x90U     /* OSC_CR value in FEE default state */ 
+/* OSC_CR: OSCEN=1,OSCOS=1,RANGE=1 */
+#define CPU_DEFAULT_FEE_OSC_CR                             0x94U     /* OSC_CR value in FEE default state */ 
 
 /* Clock generator default state in FBE mode
-   Clock source:                        External crystal (oscillator)
-   External frequency range:            Low
-   FLL external reference divider:      1
+   Clock source:                        External crystal (oscillator) (Property: Clock settings\Clock sources\System oscillator 0\Clock source)
+   Clock source frequency:              8 MHz (Property: Clock settings\Clock sources\System oscillator 0\Clock source\Clock frequency)
+   External frequency range:            High
+   FLL external reference divider:      256
    FLL:                                 Enabled, bypassed
    FLL factor:                          1280
    Internal reference clock (ICSIRCLK): Disabled
@@ -353,29 +356,30 @@ typedef struct {
    External clock monitor:              Disabled
    Loss of clock reset:                 Disabled
 */
-/* ICS_C1: CLKS|=2,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
-#define CPU_DEFAULT_FBE_ICS_C1                             0x80U     /* ICS_C1 value in FBE default state */ 
+/* ICS_C1: CLKS|=2,RDIV|=3,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
+#define CPU_DEFAULT_FBE_ICS_C1                             0x98U     /* ICS_C1 value in FBE default state */ 
 /* ICS_C2:  */
 #define CPU_DEFAULT_FBE_ICS_C2                             0x00U     /* ICS_C2 value in FBE default state */ 
 /* ICS_C4: LOLIE=0,CME=0 */
 #define CPU_DEFAULT_FBE_ICS_C4                             0x00U     /* ICS_C4 value in FBE default state */ 
 /* ICS_S: LOLS=1 */
 #define CPU_DEFAULT_FBE_ICS_S                              0x80U     /* ICS_S value in FBE default state */ 
-/* OSC_CR: OSCEN=1,OSCOS=1 */
-#define CPU_DEFAULT_FBE_OSC_CR                             0x90U     /* OSC_CR value in FBE default state */ 
+/* OSC_CR: OSCEN=1,OSCOS=1,RANGE=1 */
+#define CPU_DEFAULT_FBE_OSC_CR                             0x94U     /* OSC_CR value in FBE default state */ 
 
 /* Clock generator default state in BLPE mode
-   Clock source:                        External crystal (oscillator)
-   External frequency range:            Low
-   FLL external reference divider:      1
+   Clock source:                        External crystal (oscillator) (Property: Clock settings\Clock sources\System oscillator 0\Clock source)
+   Clock source frequency:              8 MHz (Property: Clock settings\Clock sources\System oscillator 0\Clock source\Clock frequency)
+   External frequency range:            High
+   FLL external reference divider:      256
    FLL:                                 Disabled
    Internal reference clock (ICSIRCLK): Disabled
    External reference clock (OSCERCLK): Disabled
    External clock monitor:              Disabled
    Loss of clock reset:                 Disabled
 */
-/* ICS_C1: CLKS|=1,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
-#define CPU_DEFAULT_BLPE_ICS_C1                            0x40U     /* ICS_C1 value in BLPE default state */ 
+/* ICS_C1: CLKS|=1,RDIV|=3,IREFS=0,IRCLKEN=0,IREFSTEN=0 */
+#define CPU_DEFAULT_BLPE_ICS_C1                            0x58U     /* ICS_C1 value in BLPE default state */ 
 /* ICS_C2: LP=1 */
 #define CPU_DEFAULT_BLPE_ICS_C2                            0x10U     /* ICS_C2 value in BLPE default state */ 
 /* ICS_C3: SCTRIM&=~0xA0 */
@@ -384,8 +388,8 @@ typedef struct {
 #define CPU_DEFAULT_BLPE_ICS_C4                            0x80U     /* ICS_C4 value in BLPE default state */ 
 /* ICS_S: LOLS=1 */
 #define CPU_DEFAULT_BLPE_ICS_S                             0x80U     /* ICS_S value in BLPE default state */ 
-/* OSC_CR: OSCEN=1,OSCOS=1 */
-#define CPU_DEFAULT_BLPE_OSC_CR                            0x90U     /* OSC_CR value in BLPE default state */ 
+/* OSC_CR: OSCEN=1,OSCOS=1,RANGE=1 */
+#define CPU_DEFAULT_BLPE_OSC_CR                            0x94U     /* OSC_CR value in BLPE default state */ 
 
 /* 
    Low power mode settings
@@ -467,15 +471,15 @@ typedef struct {
 
 /* ICS */
 
-#define STARTUP_ICS_C1_VALUE                               0x06U     /* ICS_C1 value */ 
-#define STARTUP_ICS_C2_VALUE                               0x20U     /* ICS_C2 value */ 
+#define STARTUP_ICS_C1_VALUE                               0x9AU     /* ICS_C1 value */ 
+#define STARTUP_ICS_C2_VALUE                               0x00U     /* ICS_C2 value */ 
 #define STARTUP_ICS_C3_VALUE                               0x00U     /* ICS_C3 value */ 
 #define STARTUP_ICS_C4_VALUE                               0x00U     /* ICS_C4 value */ 
 #define STARTUP_ICS_S_VALUE                                0x00U     /* ICS_S value */ 
 
 /* OSC */
 
-#define STARTUP_OSC_CR_VALUE                               0x00U     /* OSC_CR value */ 
+#define STARTUP_OSC_CR_VALUE                               0x94U     /* OSC_CR value */ 
 
 /* SIM */
 

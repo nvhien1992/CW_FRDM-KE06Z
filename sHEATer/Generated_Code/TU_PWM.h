@@ -6,7 +6,7 @@
 **     Component   : TimerUnit_LDD
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-04-09, 21:27, # CodeGen: 134
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -131,14 +131,14 @@ extern "C" {
 #define __BWUserType_TU_PWM_TValueType
   typedef uint16_t TU_PWM_TValueType ; /* Type for data parameters of methods */
 #endif
-#define TU_PWM_CNT_INP_FREQ_U_0 0x00A00000UL /* Counter input frequency in Hz */
-#define TU_PWM_CNT_INP_FREQ_R_0 10485807.459603427F /* Counter input frequency in Hz */
+#define TU_PWM_CNT_INP_FREQ_U_0 0x007A1200UL /* Counter input frequency in Hz */
+#define TU_PWM_CNT_INP_FREQ_R_0 8000000.0F /* Counter input frequency in Hz */
 #define TU_PWM_CNT_INP_FREQ_COUNT 0U   /* Count of predefined counter input frequencies */
-#define TU_PWM_PERIOD_TICKS 0x00010000UL /* Initialization value of period in 'counter ticks' */
+#define TU_PWM_PERIOD_TICKS 0xC350UL   /* Initialization value of period in 'counter ticks' */
 #define TU_PWM_NUMBER_OF_CHANNELS 0x01U /* Count of predefined channels */
 #define TU_PWM_COUNTER_WIDTH 0x10U     /* Counter width in bits  */
 #define TU_PWM_COUNTER_DIR DIR_UP      /* Direction of counting */
-#define TU_PWM_OFFSET_0_TICKS 0x7FFFul /* Initialization value of offset as 'counter ticks' for channel 0 */
+#define TU_PWM_OFFSET_0_TICKS 0x61A8ul /* Initialization value of offset as 'counter ticks' for channel 0 */
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define TU_PWM_PRPH_BASE_ADDRESS  0x4003A000U
   

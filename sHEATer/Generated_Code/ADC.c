@@ -6,7 +6,7 @@
 **     Component   : ADC_LDD
 **     Version     : Component 01.183, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:21, # CodeGen: 114
+**     Date/Time   : 2015-04-09, 21:27, # CodeGen: 134
 **     Abstract    :
 **         This device "ADC_LDD" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -30,11 +30,11 @@
 **          A/D resolution                                 : 12 bits
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : 3.5 clock periods
-**          Conversion time                                : 7.629395 µs
-**          ADC clock                                      : 2.621 MHz (381.47 ns)
-**          Single conversion time - Single-ended          : 9.012 us
+**          Conversion time                                : 5 µs
+**          ADC clock                                      : 4 MHz (250 ns)
+**          Single conversion time - Single-ended          : 6.375 us
 **          Single conversion time - Differential          : Differential mode not supported
-**          Additional conversion time - Single-ended      : 7.629 us
+**          Additional conversion time - Single-ended      : 5 us
 **          Additional conversion time - Differential      : Differential mode not supported
 **          Result type                                    : unsigned 16 bits, right justified
 **          Trigger                                        : Disabled
@@ -194,8 +194,8 @@ LDD_TDeviceData* ADC_Init(LDD_TUserData *UserDataPtr)
   ADC_SC2 &= (uint32_t)~(uint32_t)(ADC_SC2_REFSEL(0x03));
   /* ADC_APCTL1: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADPC=0x4001 */
   ADC_APCTL1 = ADC_APCTL1_ADPC(0x4001);
-  /* ADC_SC3: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADLPC=0,ADIV=3,ADLSMP=0,MODE=2,ADICLK=0 */
-  ADC_SC3 = (ADC_SC3_ADIV(0x03) | ADC_SC3_MODE(0x02) | ADC_SC3_ADICLK(0x00));
+  /* ADC_SC3: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADLPC=0,ADIV=1,ADLSMP=0,MODE=2,ADICLK=0 */
+  ADC_SC3 = (ADC_SC3_ADIV(0x01) | ADC_SC3_MODE(0x02) | ADC_SC3_ADICLK(0x00));
   /* ADC_SC2: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,ADACT=0,ADTRG=0,ACFE=0,ACFGT=0,FEMPTY=0,FFULL=0,REFSEL=0 */
   ADC_SC2 = ADC_SC2_REFSEL(0x00);
   /* ADC_SC4: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,HTRGME=0,??=0,ASCANE=0,ACFSEL=0,??=0,??=0,AFDEP=0 */

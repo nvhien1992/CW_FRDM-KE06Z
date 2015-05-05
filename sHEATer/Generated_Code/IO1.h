@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-04-09, 21:31, # CodeGen: 135
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -48,13 +48,13 @@
 **              OnBreak                                    : Disabled
 **          CPU clock/configuration selection              : 
 **            Clock configuration 0                        : This component enabled
-**            Clock configuration 1                        : This component enabled
-**            Clock configuration 2                        : This component enabled
-**            Clock configuration 3                        : This component enabled
-**            Clock configuration 4                        : This component enabled
-**            Clock configuration 5                        : This component enabled
-**            Clock configuration 6                        : This component enabled
-**            Clock configuration 7                        : This component enabled
+**            Clock configuration 1                        : This component disabled
+**            Clock configuration 2                        : This component disabled
+**            Clock configuration 3                        : This component disabled
+**            Clock configuration 4                        : This component disabled
+**            Clock configuration 5                        : This component disabled
+**            Clock configuration 6                        : This component disabled
+**            Clock configuration 7                        : This component disabled
 **     Contents    :
 **         Init - LDD_TDeviceData* IO1_Init(LDD_TUserData *UserDataPtr);
 **         Main - void IO1_Main(LDD_TDeviceData *DeviceDataPtr);

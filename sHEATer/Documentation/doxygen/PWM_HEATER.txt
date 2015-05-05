@@ -24,7 +24,7 @@ by the component.
     0x00000004
  </td><td>FTM2_MODE register, peripheral PWM_HEATER.</td></tr>
 <tr><td>0x4003A000</td><td>FTM2_SC</td><td>
-    0x00000009
+    0x00000008
  </td><td>FTM2_SC register, peripheral PWM_HEATER.</td></tr>
 <tr><td>0x4003A04C</td><td>FTM2_CNTIN</td><td>
     0x00000000
@@ -51,10 +51,10 @@ by the component.
     0x0000002C
  </td><td>FTM2_C5SC register, peripheral PWM_HEATER.</td></tr>
 <tr><td>0x4003A008</td><td>FTM2_MOD</td><td>
-    0x0000FFFF
+    0x0000C34F
  </td><td>FTM2_MOD register, peripheral PWM_HEATER.</td></tr>
 <tr><td>0x4003A038</td><td>FTM2_C5V</td><td>
-    0x00007FFF
+    0x000061A8
  </td><td>FTM2_C5V register, peripheral PWM_HEATER.</td></tr>
 <tr><td>0x40048010</td><td>SIM_PINSEL1</td><td>
     0x00000200
@@ -243,7 +243,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003A000</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000009</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000008</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>7</td><td>TOF</td><td>0x00</td><td>Timer Overflow Flag</td>
@@ -736,7 +736,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003A008</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0000FFFF</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0000C34F</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 15</td><td>MOD</td><td>0x8000</td><td>Modulo Value</td>
@@ -783,7 +783,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003A038</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00007FFF</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x000061A8</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 15</td><td>VAL</td><td>0x00</td><td>Channel Value</td>

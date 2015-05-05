@@ -104,10 +104,10 @@ lcd_pins_t lcd_pins = { { LCD_RS_SetVal, LCD_RS_ClrVal, }, //lcd_rs
 		};
 
 static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
-		uint16_t *conf_time_list);
+		uint8_t *conf_time_list);
 
 static void update_lcd(uint16_t real_temp, uint16_t conf_temp,
-		uint16_t *conf_time_list) {
+		uint8_t *conf_time_list) {
 //	lcd_printf("TMP:%d.%d/%d.%dC\r\nTIME:%d %d %d %d\r\n", real_temp / 10,
 //			real_temp % 10, conf_temp / 10, conf_temp % 10, conf_time_list[0],
 //			conf_time_list[1], conf_time_list[2], conf_time_list[3]);
@@ -137,7 +137,6 @@ void Ctrl_task(uint32_t task_init_data) {
 //	memcpy(&button_table[0], &button_template, sizeof(button_t));
 //	button_table[0].dev_id = RUN_STOP_BTN;
 //	button_table[0].ReadInputPin = RUN_STOP_BTN_GetVal;
-
 	memcpy(&button_table[1], &button_template, sizeof(button_t));
 	button_table[1].dev_id = ALARM_BTN;
 	button_table[1].GetVal = ALARM_BTN_GetVal;
@@ -171,14 +170,12 @@ void Ctrl_task(uint32_t task_init_data) {
 	turn_off(&buzzer);
 
 	/* Initialize alarm array */
-	conf_arr_t alarm_arr;
-	uint16_t time_list[MAX_ALARMS];
-	alarm_arr.element_list = time_list;
-	alarm_arr.max_elements = MAX_ALARMS;
-	init_conf_array(&alarm_arr);
-	
+	array_t alarm_arr;
+	uint8_t time_list[MAX_ALARMS];
+	init_array(&alarm_arr, time_list, MAX_ALARMS, sizeof(uint8_t));
+
 	/* Initialize LCD charactor */
-	init_lcd(&lcd_pins);
+//	init_lcd(&lcd_pins);
 
 	/* Initialize msg queue */
 	_mqx_uint msg = 0;
@@ -189,10 +186,13 @@ void Ctrl_task(uint32_t task_init_data) {
 
 	uint16_t real_temp = 0;
 	uint16_t conf_temp = DEFAULT_TEMP_VALUE;
-	uint16_t conf_time = 0;
+	uint8_t conf_time = 0;
 	state_e sys_state = RUN; //STOP;
 	state_e alarm_btn_state = UNHOLD;
 
+	uint8_t num_alarm = 0;
+	uint8_t first_time_value = 1;
+	DEBUG("init-ed\n");
 	while (1) {
 		counter++;
 
@@ -207,7 +207,7 @@ void Ctrl_task(uint32_t task_init_data) {
 				if ((uint8_t) msg != btn_no_pressed) {
 					sys_state = RUN;
 					turn_on(&status_led);
-					if (alarm_arr.num_elements > 0) {
+					if (get_num_valid_element(&alarm_arr) > 0) {
 						enable_alarm(&a_min_alarm);
 					}
 				}
@@ -262,12 +262,15 @@ void Ctrl_task(uint32_t task_init_data) {
 				if (buzzer.current_status != OFF) {
 					turn_off(&buzzer);
 				}
+
+				num_alarm = get_num_valid_element(&alarm_arr);
+
 				if (alarm_btn_state == HOLD) { //alarm button is hold
 					if ((uint8_t) msg == (uint8_t) btn_pressed) {
 						/* add a new alarm */
-						if ((alarm_arr.num_elements > 0)
-								&& (alarm_arr.num_elements < MAX_ALARMS)) {
-							insert(&alarm_arr, 1, alarm_arr.num_elements);
+						if ((num_alarm > 0) && (num_alarm < MAX_ALARMS)) {
+							insert_element_at_index(&alarm_arr,
+									&first_time_value, num_alarm);
 							/* update LCD */
 							update_lcd(real_temp, conf_temp, time_list);
 						}
@@ -275,8 +278,9 @@ void Ctrl_task(uint32_t task_init_data) {
 				} else { //un-hold
 					if ((uint8_t) msg != (uint8_t) btn_no_pressed) {
 						/* add the 1st alarm */
-						if (alarm_arr.num_elements == 0) {
-							insert(&alarm_arr, 1, alarm_arr.num_elements);
+						if (num_alarm == 0) {
+							insert_element_at_index(&alarm_arr,
+									&first_time_value, num_alarm);
 							restart_alarm(&a_min_alarm);
 							/* update LCD */
 							update_lcd(real_temp, conf_temp, time_list);
@@ -284,22 +288,22 @@ void Ctrl_task(uint32_t task_init_data) {
 						/* increase alarm value */
 						else {
 							/* get conf_time */
-							if (alarm_arr.num_elements == 1) { //only 1 alarm in queue
-								get_conf_value(&alarm_arr, &conf_time,
+							if (num_alarm == 1) { //only 1 alarm in queue
+								get_element_at_index(&alarm_arr, &conf_time,
 										ACTIVE_ALARM_INDEX);
 							} else { //more than 1 alarm in queue
-								get_conf_value(&alarm_arr, &conf_time,
+								get_element_at_index(&alarm_arr, &conf_time,
 										ACTIVE_ALARM_INDEX + 1);
 							}
 							/* modify and save conf_time just get */
 							if (conf_time < MAX_TIME_VALUE) {
 								conf_time++;
-								if (alarm_arr.num_elements == 1) { //only 1 alarm in queue
-									modify_value(&alarm_arr, conf_time,
-											ACTIVE_ALARM_INDEX);
+								if (num_alarm == 1) { //only 1 alarm in queue
+									modify_element_at_index(&alarm_arr,
+											&conf_time, ACTIVE_ALARM_INDEX);
 								} else { //more than 1 alarm in queue
-									modify_value(&alarm_arr, conf_time,
-											ACTIVE_ALARM_INDEX + 1);
+									modify_element_at_index(&alarm_arr,
+											&conf_time, ACTIVE_ALARM_INDEX + 1);
 								}
 								restart_alarm(&a_min_alarm);
 								/* update LCD */
@@ -313,11 +317,14 @@ void Ctrl_task(uint32_t task_init_data) {
 				if (buzzer.current_status != OFF) {
 					turn_off(&buzzer);
 				}
+
+				num_alarm = get_num_valid_element(&alarm_arr);
+
 				if (alarm_btn_state == HOLD) { //alarm btn is hold
 					if ((uint8_t) msg == (uint8_t) btn_pressed) {
 						/* remove the last alarm */
-						if (alarm_arr.num_elements > 0) {
-							delete(&alarm_arr, alarm_arr.num_elements - 1);
+						if (num_alarm > 0) {
+							delete_element_at_index(&alarm_arr, num_alarm - 1);
 							/* update LCD */
 							update_lcd(real_temp, conf_temp, time_list);
 						}
@@ -325,20 +332,21 @@ void Ctrl_task(uint32_t task_init_data) {
 				} else { //un-hold
 					/* decrease alarm value */
 					if ((uint8_t) msg != (uint8_t) btn_no_pressed) {
-						if (alarm_arr.num_elements > 0) {
+						if (num_alarm > 0) {
 							/* get conf_time */
-							get_conf_value(&alarm_arr, &conf_time,
-									alarm_arr.num_elements - 1);
+							get_element_at_index(&alarm_arr, &conf_time,
+									num_alarm - 1);
 							/* modify and save conf_time just get */
 							conf_time--;
 							if (conf_time == 0) {
-								delete(&alarm_arr, alarm_arr.num_elements - 1);
-								if (alarm_arr.num_elements == 0) {
+								delete_element_at_index(&alarm_arr,
+										num_alarm - 1);
+								if (get_num_valid_element(&alarm_arr) == 0) {
 									disable_alarm(&a_min_alarm);
 								}
 							} else {
-								modify_value(&alarm_arr, conf_time,
-										alarm_arr.num_elements - 1);
+								modify_element_at_index(&alarm_arr, &conf_time,
+										num_alarm - 1);
 								restart_alarm(&a_min_alarm);
 							}
 							/* update LCD */
@@ -357,16 +365,18 @@ void Ctrl_task(uint32_t task_init_data) {
 				update_lcd(real_temp, conf_temp, time_list);
 				break;
 			case (uint8_t) ALARM: //1min period
-				if (alarm_arr.num_elements > 0) {
+				if (get_num_valid_element(&alarm_arr) > 0) {
 					/* get conf_time */
-					get_conf_value(&alarm_arr, &conf_time, ACTIVE_ALARM_INDEX);
+					get_element_at_index(&alarm_arr, &conf_time,
+							ACTIVE_ALARM_INDEX);
 					/* modify and save conf_time */
 					conf_time--;
 					if (conf_time == 0) {
-						delete(&alarm_arr, ACTIVE_ALARM_INDEX);
+						delete_element_at_index(&alarm_arr, ACTIVE_ALARM_INDEX);
 						blink(&buzzer, FREQ_BUZZER_BLINK);
 					} else {
-						modify_value(&alarm_arr, conf_time, ACTIVE_ALARM_INDEX);
+						modify_element_at_index(&alarm_arr, &conf_time,
+								ACTIVE_ALARM_INDEX);
 					}
 					/* update LCD */
 					update_lcd(real_temp, conf_temp, time_list);

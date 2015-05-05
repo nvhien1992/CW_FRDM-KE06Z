@@ -6,7 +6,7 @@
 **     Component   : TimerUnit_LDD
 **     Version     : Component 01.164, Driver 01.11, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-04-09, 21:27, # CodeGen: 134
 **     Abstract    :
 **          This TimerUnit component provides a low level API for unified hardware access across
 **          various timer devices using the Prescaler-Counter-Compare-Capture timer structure.
@@ -119,10 +119,10 @@ extern "C" {
 #define __BWUserType_MISC_TIMER_TValueType
   typedef uint32_t MISC_TIMER_TValueType ; /* Type for data parameters of methods */
 #endif
-#define MISC_TIMER_CNT_INP_FREQ_U_0 0x8000UL /* Counter input frequency in Hz */
-#define MISC_TIMER_CNT_INP_FREQ_R_0 32768.00013421773F /* Counter input frequency in Hz */
+#define MISC_TIMER_CNT_INP_FREQ_U_0 0x7A12UL /* Counter input frequency in Hz */
+#define MISC_TIMER_CNT_INP_FREQ_R_0 31250.0F /* Counter input frequency in Hz */
 #define MISC_TIMER_CNT_INP_FREQ_COUNT 0U /* Count of predefined counter input frequencies */
-#define MISC_TIMER_PERIOD_TICKS 0x0148UL /* Initialization value of period in 'counter ticks' */
+#define MISC_TIMER_PERIOD_TICKS 0x0138UL /* Initialization value of period in 'counter ticks' */
 #define MISC_TIMER_NUMBER_OF_CHANNELS 0x00U /* Count of predefined channels */
 #define MISC_TIMER_COUNTER_WIDTH 0x10U /* Counter width in bits  */
 #define MISC_TIMER_COUNTER_DIR DIR_UP  /* Direction of counting */

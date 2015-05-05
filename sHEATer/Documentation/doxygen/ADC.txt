@@ -27,7 +27,7 @@ by the component.
     0x00004001
  </td><td>ADC_APCTL1 register, peripheral ADC.</td></tr>
 <tr><td>0x4003B008</td><td>ADC_SC3</td><td>
-    0x00000068
+    0x00000028
  </td><td>ADC_SC3 register, peripheral ADC.</td></tr>
 <tr><td>0x4003B00C</td><td>ADC_SC4</td><td>
     0x00000000
@@ -320,11 +320,11 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4003B008</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000068</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000028</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>7</td><td>ADLPC</td><td>0x00</td><td>Low-Power Configuration</td>
-<tr><td>5 - 6</td><td>ADIV</td><td>0x02</td><td>Clock Divide Select</td>
+<tr><td>5 - 6</td><td>ADIV</td><td>0x00</td><td>Clock Divide Select</td>
 <tr><td>4</td><td>ADLSMP</td><td>0x00</td><td>Long Sample Time Configuration</td>
 <tr><td>2 - 3</td><td>MODE</td><td>0x02</td><td>Conversion Mode Selection</td>
 <tr><td>0 - 1</td><td>ADICLK</td><td>0x00</td><td>Input Clock Select</td>
@@ -459,11 +459,11 @@ registers of the peripheral(s) configured by the component.
 **          A/D resolution                                 : 12 bits
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : 3.5 clock periods
-**          Conversion time                                : 7.629395 µs
-**          ADC clock                                      : 2.621 MHz (381.47 ns)
-**          Single conversion time - Single-ended          : 9.012 us
+**          Conversion time                                : 5 µs
+**          ADC clock                                      : 4 MHz (250 ns)
+**          Single conversion time - Single-ended          : 6.375 us
 **          Single conversion time - Differential          : Differential mode not supported
-**          Additional conversion time - Single-ended      : 7.629 us
+**          Additional conversion time - Single-ended      : 5 us
 **          Additional conversion time - Differential      : Differential mode not supported
 **          Result type                                    : unsigned 16 bits, right justified
 **          Trigger                                        : Disabled

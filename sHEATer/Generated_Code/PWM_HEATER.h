@@ -6,7 +6,7 @@
 **     Component   : PWM_LDD
 **     Version     : Component 01.013, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-03-10, 15:13, # CodeGen: 113
+**     Date/Time   : 2015-04-09, 21:27, # CodeGen: 134
 **     Abstract    :
 **          This component implements a pulse-width modulation generator
 **          that generates signal with variable duty and fixed cycle.
@@ -112,8 +112,8 @@ extern "C" {
 #endif 
 
 
-#define PWM_HEATER_PERIOD_VALUE 0x00UL /* Initial period value in ticks of the timer. */
-#define PWM_HEATER_PERIOD_VALUE_0 0x00UL /* Period value in ticks of the timer in clock configuration 0. */
+#define PWM_HEATER_PERIOD_VALUE 0xC350UL /* Initial period value in ticks of the timer. */
+#define PWM_HEATER_PERIOD_VALUE_0 0xC350UL /* Period value in ticks of the timer in clock configuration 0. */
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
 #define PWM_HEATER_PRPH_BASE_ADDRESS  0x4003A000U
