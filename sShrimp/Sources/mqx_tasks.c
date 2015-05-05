@@ -61,10 +61,10 @@ SWM_msg_t controller_msg_queue[sizeof(LWMSGQ_STRUCT)
 SWM_msg_t rcom_msg_queue[sizeof(LWMSGQ_STRUCT)
 		+ NUM_RCOM_MESSAGES * MESSAGE_SIZE];
 
-#define RCOM_TO_CONTROLLER_BUFFER_SIZE (256)
+#define RCOM_TO_CONTROLLER_BUFFER_SIZE (512)
 char controller_to_rcom_buffer[RCOM_TO_CONTROLLER_BUFFER_SIZE];
 
-#define CONTROLLER_TO_RCOM_BUFFER_SIZE (256)
+#define CONTROLLER_TO_RCOM_BUFFER_SIZE (512)
 char rcom_to_controller_buffer[CONTROLLER_TO_RCOM_BUFFER_SIZE];
 
 cir_queue_t controller_to_rcom_cir_queue;
@@ -134,30 +134,6 @@ void Control_task(uint32_t task_init_data) {
 		NOTIFY("Error on creating Remote_com task\n");
 	}
 
-	SWM_msg_t msg_ptr;
-
-	_time_delay_ticks(200);
-	msg_ptr.cmd = RCOM_START;
-	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-	_time_delay_ticks(200);
-	msg_ptr.cmd = RCOM_CONFIGURE;
-	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-	_time_delay_ticks(200);
-//	msg_ptr.cmd = RCOM_CONNECT_INTERNET;
-//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-//	_time_delay_ticks(200);
-//	msg_ptr.cmd = RCOM_GET_TIMESTAMP;
-//	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-//	_time_delay_ticks(200);
-	msg_ptr.cmd = RCOM_MAKE_MISSED_CALL;
-	char*pn = "0947380243";
-	cir_queue_add_byte(&controller_to_rcom_cir_queue, strlen(pn));
-	cir_queue_add_data(&controller_to_rcom_cir_queue, (uint8_t*) pn,
-			strlen(pn));
-	msg_ptr.content.data_ptr_in_cir_queue = cir_queue_get_tail(
-			&controller_to_rcom_cir_queue);
-	_lwmsgq_send((pointer) rcom_msg_queue, (_mqx_uint*) &msg_ptr, 0);
-
 	while (1) {
 		counter++;
 
@@ -193,7 +169,7 @@ void Remote_com_task(uint32_t task_init_data) {
 	DEBUG("routing pin setting\n");
 	/* route desired pins into peripherals */
 	Pin_Settings_Init();
-	sim900_delete_group_SMS_message(DEL_ALL);
+
 	/* create RI_process task to processing incoming call and received SMS */
 	if (_task_create_at(0, RI_PROCCESS_TASK, 0, RI_proccess_task_stack,
 			RI_PROCCESS_TASK_STACK_SIZE) == MQX_NULL_TASK_ID ) {
@@ -232,8 +208,7 @@ void RI_proccess_task(uint32_t task_init_data) {
 
 		/* Write your code here ... */
 		remote_com_RI_processing((pointer) rcom_msg_queue,
-				(pointer) controller_msg_queue, &rcom_to_controller_cir_queue,
-				&controller_to_rcom_cir_queue);
+				(pointer) controller_msg_queue, &rcom_to_controller_cir_queue);
 	}
 }
 

@@ -26,7 +26,6 @@ void remote_com_app(pointer rcom_msg_queue, pointer controller_msg_queue,
  * 
  */
 void remote_com_RI_processing(pointer rcom_msg_queue,
-		pointer controller_msg_queue, cir_queue_t *rcom_to_controller_queue,
-		cir_queue_t *controller_to_rcom_queue);
+		pointer controller_msg_queue, cir_queue_t *rcom_to_controller_queue);
 
 #endif //REMOTE_COM_H_

@@ -43,6 +43,10 @@ void cir_queue_add_data(cir_queue_t *cir_queue, uint8_t* buf, uint16_t size) {
 		return;
 	}
 
+	if (cir_queue->is_full) {
+		return;
+	}
+
 	/* copy data from buffer to queue */
 	uint16_t count = 0;
 	for (count = 0; count < size; count++) {
@@ -72,7 +76,7 @@ uint16_t cir_queue_preview_data(cir_queue_t *cir_queue, uint8_t *buf,
 	if (size < 1) {
 		return 0;
 	}
-	
+
 	uint16_t data_size = cir_queue_get_data_size(cir_queue);
 
 	uint16_t count = 0;
@@ -97,6 +101,7 @@ uint8_t cir_queue_get_byte(cir_queue_t *cir_queue) {
 	}
 
 	uint8_t retdata = cir_queue->queue_p[cir_queue->tail];
+	cir_queue->queue_p[cir_queue->tail] = 0;
 	cir_queue->tail = (cir_queue->tail + 1) % cir_queue->queue_size;
 
 	if (cir_queue->tail == cir_queue->head) {
@@ -138,6 +143,29 @@ uint16_t cir_queue_get_data_size(cir_queue_t *cir_queue) {
 			(cir_queue->head > cir_queue->tail ?
 					cir_queue->head - cir_queue->tail :
 					cir_queue->head + cir_queue->queue_size - cir_queue->tail);
+}
+
+uint16_t cir_queue_get_available_queue_size(cir_queue_t *cir_queue) {
+	return cir_queue->queue_size - cir_queue_get_data_size(cir_queue);
+}
+
+bool cir_queue_overflowed_if_adding(cir_queue_t *cir_queue, uint16_t data_size) {
+	if (cir_queue->is_full) {
+		return true;
+	}
+
+	if (cir_queue->tail == -1) {
+		if (data_size > cir_queue->queue_size) {
+			return true;
+		}
+		return false;
+	}
+
+	if (cir_queue_get_available_queue_size(cir_queue) < data_size) {
+		return true;
+	}
+
+	return false;
 }
 
 void cir_queue_clear(cir_queue_t *cir_queue) {

@@ -85,11 +85,22 @@ uint8_t cir_queue_get_byte(cir_queue_t *cir_queue);
 uint16_t cir_queue_get_data(cir_queue_t *cir_queue, uint8_t* buf, uint16_t size);
 
 /**
- * @brief   get size of the circular queue.
+ * @brief   get size of data added into the circular queue.
  *
- * @return  size
+ * @return  size of added data.
  */
 uint16_t cir_queue_get_data_size(cir_queue_t *cir_queue);
+
+/**
+ * @brief   get available size of the circular queue.
+ *
+ * @return  available size of the circular queue.
+ */
+uint16_t cir_queue_get_available_queue_size(cir_queue_t *cir_queue);
+
+/**
+ * 
+ */bool cir_queue_overflowed_if_adding(cir_queue_t *cir_queue, uint16_t data_size);
 
 /**
  * 

@@ -20,6 +20,7 @@ typedef enum {
 
 typedef enum {
 	RCOM_HAS_NOTHING, //
+	RCOM_STARTED,
 	RCOM_INITIALIZED, //
 	RCOM_INTERNET_CONNECTED //
 } RCOM_status_t;

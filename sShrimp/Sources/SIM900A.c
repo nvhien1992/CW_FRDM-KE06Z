@@ -31,10 +31,10 @@ SIM900_params_t SIM900_params;
 static LWEVENT_STRUCT RI_event;
 #define RI_EVT_BIT_MASK	0x01
 
+#define RI_BUF_SIZE (32)
 static bool RI_interrupt_flag = FALSE;
-char RI_unsolicited_buf[32];
-RCOM_buff_t RI_rx_buf = { RI_unsolicited_buf, sizeof(RI_unsolicited_buf), 0,
-		TRUE };
+static char RI_unsolicited_buf[RI_BUF_SIZE];
+static RCOM_buff_t RI_rx_buf = { NULL, 0, 0, TRUE };
 
 /*=======================================================================
  ==========================DEFINE PRIVATE FUNCTIONS======================
@@ -85,12 +85,14 @@ static int sim900_get_recv_SMS_msg_index(void) {
 
 static bool sim900_get_incoming_call_number(char *incoming_pn) {
 	if (!incoming_pn) {
+		DEBUG("Null buffer\n");
 		return FALSE;
 	}
 
 	/* check recv buffer */
-	char *pstr = strstr(RI_rx_buf.buffer_ptr, "+CLIP: \"");
+	char *pstr = strstr(RI_rx_buf.buffer_ptr, "+CLIP:");
 	if (!pstr) {
+		DEBUG("have no expected res\n");
 		return FALSE;
 	}
 
@@ -152,6 +154,8 @@ static void sim900_power_off(void) {
 void sim900_init(SIM900_pins_t *defined_pins) {
 	SIM900_pins = defined_pins;
 	SIM900_pins->RI.Disable(NULL);
+	RI_rx_buf.buffer_ptr = RI_unsolicited_buf;
+	RI_rx_buf.buffer_max_size = RI_BUF_SIZE;
 	_lwevent_create(&RI_event, LWEVENT_AUTO_CLEAR);
 }
 
@@ -316,7 +320,7 @@ RCOM_result_type_t sim900_connect_internet(void) {
 //			step_info.execution_method = SM_AND_TIMEOUT;
 			step_info.execution_method = TIMEOUT_ONLY;
 			step_info.command = "AT+SAPBR=1,1\r\n";
-			step_info.timeout = 3;
+			step_info.timeout = 4;
 //			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		default:
@@ -404,8 +408,8 @@ void sim900_control_sleep_manually(bool sleep_sim900) {
 }
 
 void sim900_RI_callback(void) {
-	DEBUG("RI int\n");
 	RI_interrupt_flag = TRUE;
+	RI_rx_buf.enable_buffer = TRUE;
 	RCOM_uart_get_char();
 	_lwevent_set(&RI_event, RI_EVT_BIT_MASK);
 }
@@ -418,27 +422,33 @@ SIM900_RI_result_t sim900_process_RI_task(char* RI_result) {
 	_time_delay_ticks(time_detect_SMS / RCOM_get_systick());
 
 	RI_interrupt_flag = FALSE;
-	if (SIM900_pins->RI.GetVal(NULL) == RI_HIGH_LV) { //received SMS
-		DEBUG("Received SMS msg\n");
-
+	if (SIM900_pins->RI.GetVal(NULL) == RI_HIGH_LV) { //maybe received SMS
 		/* get sms index */
 		int index = sim900_get_recv_SMS_msg_index();
 		if (index < 0) {
+			/* clear RI's rx buffer */
+			sim900_clear_RI_rx_buf();
+
 			return RI_UNKNOWN;
 		}
+
+		DEBUG("Received SMS msg\n");
+
 		*RI_result = index;
 
 		/* clear RI's rx buffer */
 		sim900_clear_RI_rx_buf();
 
 		return RECEIVED_SMS_MSG;
-	} else { //incoming call
-		DEBUG("Incoming call\n");
-
+	} else { //maybe incoming call
 		/* get phone number before hanging up */
 		if (!sim900_get_incoming_call_number(RI_result)) {
+			/* clear RI's rx buffer */
+			sim900_clear_RI_rx_buf();
+
 			return RI_UNKNOWN;
 		}
+		DEBUG("Incoming call\n");
 
 		/* clear RI's rx buffer */
 		sim900_clear_RI_rx_buf();
@@ -473,7 +483,7 @@ bool sim900_check_SIM_inserted(void) {
 
 	RCOM_clear_rx_buf();
 	RCOM_enable_rx_buf();
-	
+
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
 		return FALSE;
 	}
@@ -496,13 +506,14 @@ char* sim900_get_MSP_name(void) {
 
 	step_info.execution_method = SM_AND_TIMEOUT;
 	step_info.command = "AT+CSPN?\r\n";
-	step_info.timeout = 1;
+	step_info.timeout = 4;
 	step_info.expected_response = "\r\nOK\r\n";
 
 	RCOM_clear_rx_buf();
 	RCOM_enable_rx_buf();
 
 	if (STEP_SUCCESS != RCOM_step_excution(&step_info)) {
+		DEBUG("get msp fail\n");
 		return NULL;
 	}
 
@@ -1325,7 +1336,7 @@ char* sim900_read_SMS_msg(uint8_t sms_index) {
 
 	step_info.execution_method = SM_AND_TIMEOUT;
 	sprintf(step_info.command, "AT+CMGR=%d,0\r\n", sms_index);
-	step_info.timeout = 5;
+	step_info.timeout = 7;
 	step_info.expected_response = "\r\nOK\r\n";
 
 	RCOM_clear_rx_buf();
