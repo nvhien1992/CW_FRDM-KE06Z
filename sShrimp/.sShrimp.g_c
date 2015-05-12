@@ -210,9 +210,9 @@
       <GenExtraFileSrcDir6>lib\mqxlite\V1.1.1\source\psp\cortex_m\core\M0\</GenExtraFileSrcDir6>
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
-      <XtraAge1>1184015024</XtraAge1>
-      <XtraAge2>1184282488</XtraAge2>
-      <XtraAge3>1183624854</XtraAge3>
+      <XtraAge1>1185576439</XtraAge1>
+      <XtraAge2>1185580880</XtraAge2>
+      <XtraAge3>1185593830</XtraAge3>
       <XtraAge4>1180930538</XtraAge4>
       <XtraAge5>1180930538</XtraAge5>
       <XtraAge7>1180930538</XtraAge7>
@@ -441,7 +441,7 @@
         <Line>Control_task</Line>
         <Line>Remote_com_task</Line>
         <Line>RI_proccess_task</Line>
-        <Line>Kernel_log_task</Line>
+        <Line>kernel_log_task</Line>
       </GenMethodsInmqx_tasks>
       <GenAllModules lines_count="18">
         <Line>Console</Line>
@@ -480,7 +480,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>115</ProjectModificationStamp>
+    <ProjectModificationStamp>128</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -609,8 +609,8 @@
     <GenComponentVersion>01.110</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1184133936</HeaderAge>
-    <CodeAge>1184015024</CodeAge>
+    <HeaderAge>1185576439</HeaderAge>
+    <CodeAge>1185576439</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>157</GenNumMethods>
     <_int_default_isr>true</_int_default_isr>
@@ -1139,7 +1139,7 @@
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
     </InhrCompID_76>
-    <InhrCompID_85>
+    <InhrCompID_101>
       <Generated>true</Generated>
       <GenCompName>Task4</GenCompName>
       <GenComponentVersion>01.018</GenComponentVersion>
@@ -1151,14 +1151,14 @@
       <GenNumMethods>0</GenNumMethods>
       <GenNumEvents>1</GenNumEvents>
       <OnTask_Selected>3</OnTask_Selected>
-      <OnTask_Name>Kernel_log_task</OnTask_Name>
+      <OnTask_Name>kernel_log_task</OnTask_Name>
       <OnTask_Priority>interrupts disabled</OnTask_Priority>
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
       <GenMethodPos>0</GenMethodPos>
       <GenExtraFilesCount>0</GenExtraFilesCount>
-    </InhrCompID_85>
+    </InhrCompID_101>
   </ComponentID_4>
   <ComponentID_13>
     <Generated>true</Generated>

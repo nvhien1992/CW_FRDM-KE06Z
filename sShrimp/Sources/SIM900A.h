@@ -44,13 +44,18 @@ typedef struct {
 	char* apn_user;
 } SIM900_params_t;
 
+typedef struct {
+	char *phone_number;
+	char *content;
+} SIM900_SMS_msg_t;
+
 typedef enum {
-	DEL_READ, //del all read msgs
-	DEL_UNREAD, //del all unread msgs
-	DEL_SENT, //del all sent msgs
-	DEL_UNSENT, //del all unsent msgs
-	DEL_INBOX, //del all received msgs
-	DEL_ALL, //del all msgs
+	DEL_READ, //del all read msges
+	DEL_UNREAD, //del all unread msges
+	DEL_SENT, //del all sent msges
+	DEL_UNSENT, //del all unsent msges
+	DEL_INBOX, //del all received msges
+	DEL_ALL, //del all msges
 } SIM900_del_SMS_t;
 
 typedef enum {
@@ -68,33 +73,37 @@ typedef enum {
 void sim900_init(SIM900_pins_t *defined_pins);
 
 /**
- * 
+ * @brief
  */
 void sim900_control_ring_indicator(bool is_enabled);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_start(void);
+bool sim900_start(void);
 
 /**
  * @brief  Initialize sim900 using AT command.
  * 
- * @return 
+ * @return TRUE if success, FALSE if fail. 
  */
-RCOM_result_type_t sim900_default_config(void);
+bool sim900_default_config(void);
 
 /**
  * @brief Select sleeping mode controlled by DTR pin for SIM900A.
  * 
- * @return
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_enable_DTR_sleep_mode(void);
+bool sim900_enable_DTR_sleep_mode(void);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_disable_sleep_mode(void);
+bool sim900_disable_sleep_mode(void);
 
 /**
  * @brief Using DTR pin to wake up or allow SIM900 go to sleep.
@@ -105,17 +114,19 @@ RCOM_result_type_t sim900_disable_sleep_mode(void);
 void sim900_control_sleep_manually(bool sleep_sim900);
 
 /**
- * 
+ * @brief
  */
 void sim900_RI_callback(void);
 
 /**
+ * @brief
+ * 
  * @return NULL if fail else RI result content will be returned.
  */
 SIM900_RI_result_t sim900_process_RI_task(char* RI_result);
 
 /**
- * 
+ * @brief
  */
 void sim900_uart_callback(void);
 
@@ -125,11 +136,15 @@ void sim900_uart_callback(void);
 void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
 bool sim900_check_SIM_inserted(void);
 
 /**
+ * @brief
+ * 
  * @return NULL if fail else MSP name will be returned.
  */
 char* sim900_get_MSP_name(void);
@@ -137,16 +152,16 @@ char* sim900_get_MSP_name(void);
 /**
  * @brief  sim900 gprs config
  * 
- * @param[out] job_result
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_connect_internet(void);
+bool sim900_connect_internet(void);
 
 /**
  * @brief  stop SIM900.
  * 
- * @param[out] job_result
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_stop(void);
+bool sim900_stop(void);
 
 /*  
  * @description:  send report with gprs			            								
@@ -200,15 +215,17 @@ RCOM_result_type_t sim900_stop(void);
 /**
  * 
  */
-RCOM_result_type_t sim900_create_HTTP_POST_session(char *URL);
+bool sim900_create_HTTP_POST_session(char *URL);
 
 /**
  * @brief Send the size of HTTP data by UART before sending data.
  * sim900_create_HTTP_POST_session() must be exe-ed before calling this function.
  * 
  * @param[in] data_size
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_send_HTTP_data_size(uint16_t data_size);
+bool sim900_send_HTTP_data_size(uint16_t data_size);
 
 /**
  * 
@@ -248,74 +265,133 @@ char* sim900_HTTP_GET(char *URL);
 
 /**
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_terminate_HTTP_session(void);
+bool sim900_terminate_HTTP_session(void);
 
 /**
  * @brief Send an SMS message to the specified phone number.
  * 
  * @param[in] phone_number
  * @param[in] msg	
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_send_sms(char* phone_number, char* msg);
+bool sim900_send_sms(char* phone_number, char* msg);
 
 /**
  * @brief Make a voice call.
  * 
  * @param[in] phone_number
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_make_missed_voice_call(char* phone_number);
+bool sim900_make_missed_voice_call(char* phone_number);
 
 /**
+ * @brief
+ * 
  * @param[in] sms_index
  * 
- * @return NULL if fail else sms content will be returned.
+ * @return NULL if fail else raw sms msg will be returned.
  */
 char* sim900_read_SMS_msg(uint8_t sms_index);
 
 /**
+ * @brief 
  * 
+ * @param[in] raw_msg
+ * @param[out] phone_number
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_show_incoming_call_number(void);
+bool sim900_get_phone_number_from_SMS_msg(char *raw_msg, char *phone_number);
 
 /**
+ * @brief 
  * 
+ * @param[in] raw_msg
+ * @param[out] content
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_not_show_incoming_call_number(void);
+bool sim900_get_content_from_SMS_msg(char *raw_msg, char *content);
 
 /**
+ * @brief
  * 
+ * @param[in|out] phone_number
+ * @param[in] country_phone_code
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_enable_echo_mode(void);
+bool sim900_normalize_phone_number(char *phone_number, char *country_phone_code);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_disable_echo_mode(void);
+bool sim900_show_incoming_call_number(void);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_set_SMS_text_mode(void);
+bool sim900_not_show_incoming_call_number(void);
 
 /**
- * 
+ * @brief
+ *
+ * @return TRUE if success, FALSE if fail. 
  */
-RCOM_result_type_t sim900_set_SMS_PDU_mode(void);
+bool sim900_enable_echo_mode(void);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_hang_up_voice_call(void);
+bool sim900_disable_echo_mode(void);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_delete_group_SMS_message(SIM900_del_SMS_t del_type);
+bool sim900_set_SMS_text_mode(void);
 
 /**
+ * @brief
  * 
+ * @return TRUE if success, FALSE if fail.
  */
-RCOM_result_type_t sim900_delete_an_SMS_message(uint8_t index);
+bool sim900_set_SMS_PDU_mode(void);
+
+/**
+ * @brief
+ * 
+ * @return TRUE if success, FALSE if fail.
+ */
+bool sim900_hang_up_voice_call(void);
+
+/**
+ * @brief 
+ * 
+ * @param[in] del_type
+ * 
+ * @return TRUE if success, FALSE if fail.
+ */
+bool sim900_delete_group_SMS_msg(SIM900_del_SMS_t del_type);
+
+/**
+ * @brief 
+ * 
+ * @param[in] index
+ * 
+ * @return TRUE if success, FALSE if fail.
+ */
+bool sim900_delete_an_SMS_msg(uint8_t index);
 
 #endif //SIM900A_H_

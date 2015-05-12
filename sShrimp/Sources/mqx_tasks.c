@@ -42,33 +42,38 @@ extern "C" {
 #include "message_type.h"
 #include "remote_com.h"
 #include "SWM_controller.h"
-#include "cir_queue.h"
+#include "sync_buffer.h"
+//#include "cir_queue.h"
 
 #define NOTIFY_EN 	(1)
 #define DEBUG_EN	(1)
 #include "debug.h"
 
-#define SIM900_RX_BUFF_MAX_CHAR (128) //char
-char sim900_rx_buffer[SIM900_RX_BUFF_MAX_CHAR];
+#define EN_KERNEL_LOG (1)
 
-#define NUM_CTRL_MESSAGES 16
-#define NUM_RCOM_MESSAGES 16
-#define MESSAGE_SIZE sizeof(SWM_msg_t)
+/* definitions for IPC msgq */
+#define NUM_CTRL_MESSAGES 		(32)
+#define NUM_RCOM_MESSAGES 		(32)
+#define MESSAGE_SIZE_ALIGNED	sizeof(SWM_msg_t) / sizeof(_mqx_max_type)
 
-SWM_msg_t controller_msg_queue[sizeof(LWMSGQ_STRUCT)
-		+ NUM_CTRL_MESSAGES * MESSAGE_SIZE];
+uint8_t controller_msg_queue[sizeof(LWMSGQ_STRUCT)
+		+ NUM_CTRL_MESSAGES * sizeof(SWM_msg_t)];
 
-SWM_msg_t rcom_msg_queue[sizeof(LWMSGQ_STRUCT)
-		+ NUM_RCOM_MESSAGES * MESSAGE_SIZE];
+uint8_t rcom_msg_queue[sizeof(LWMSGQ_STRUCT)
+		+ NUM_RCOM_MESSAGES * sizeof(SWM_msg_t)];
 
-#define RCOM_TO_CONTROLLER_BUFFER_SIZE (512)
-char controller_to_rcom_buffer[RCOM_TO_CONTROLLER_BUFFER_SIZE];
+/* define buffers */
+#define RCOM_RX_BUFF_MAX_CHAR (256) //char
+char rcom_rx_buffer[RCOM_RX_BUFF_MAX_CHAR];
 
-#define CONTROLLER_TO_RCOM_BUFFER_SIZE (512)
-char rcom_to_controller_buffer[CONTROLLER_TO_RCOM_BUFFER_SIZE];
+#define RCOM_TO_CONTROLLER_BUFFER_SIZE (256)
+char rcom_to_controller_buffer[RCOM_TO_CONTROLLER_BUFFER_SIZE];
 
-cir_queue_t controller_to_rcom_cir_queue;
-cir_queue_t rcom_to_controller_cir_queue;
+#define RI_TO_CONTROLLER_BUFFER_SIZE (16)
+char ri_to_controller_buffer[RI_TO_CONTROLLER_BUFFER_SIZE];
+
+sync_buffer_t rcom_to_controller_sync_buffer;
+sync_buffer_t ri_to_controller_sync_buffer;
 
 uart_t SIM900_uart = { MB_UART_Init, //
 		MB_UART_SendBlock, //
@@ -112,34 +117,33 @@ void Control_task(uint32_t task_init_data) {
 	int counter = 0;
 
 	/* init msg queues */
-	_lwmsgq_init((pointer) controller_msg_queue, NUM_CTRL_MESSAGES,
-			MESSAGE_SIZE);
-	_lwmsgq_init((pointer) rcom_msg_queue, NUM_RCOM_MESSAGES, MESSAGE_SIZE);
-
-	cir_queue_init(&controller_to_rcom_cir_queue,
-			(uint8_t*) controller_to_rcom_buffer,
-			CONTROLLER_TO_RCOM_BUFFER_SIZE);
-
-	cir_queue_init(&rcom_to_controller_cir_queue,
-			(uint8_t*) rcom_to_controller_buffer,
-			RCOM_TO_CONTROLLER_BUFFER_SIZE);
+	if (_lwmsgq_init((pointer) controller_msg_queue, NUM_CTRL_MESSAGES, 
+	MESSAGE_SIZE_ALIGNED) != MQX_OK) {
+		DEBUG("Initialize msgq failed\n");
+	}
+	if (_lwmsgq_init((pointer) rcom_msg_queue, NUM_RCOM_MESSAGES, 
+	MESSAGE_SIZE_ALIGNED) != MQX_OK) {
+		DEBUG("Initialize msgq failed\n");
+	}
 
 	if (_task_create_at(0, REMOTE_COM_TASK, 0, Remote_com_task_stack,
 			REMOTE_COM_TASK_STACK_SIZE) == MQX_NULL_TASK_ID ) {
 		NOTIFY("Error on creating Remote_com task\n");
 	}
 
-	if (_task_create_at(0, KERNEL_LOG_TASK, 0, Kernel_log_task_stack,
+#if EN_KERNEL_LOG
+	if (_task_create_at(0, KERNEL_LOG_TASK, 0, kernel_log_task_stack,
 			KERNEL_LOG_TASK_STACK_SIZE) == MQX_NULL_TASK_ID ) {
-		NOTIFY("Error on creating Remote_com task\n");
+		NOTIFY("Error on creating kernel_log task\n");
 	}
+#endif
 
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		controller_app((pointer) rcom_msg_queue, (pointer) controller_msg_queue,
-				&rcom_to_controller_cir_queue, &controller_to_rcom_cir_queue);
+		controller_app((pointer) rcom_msg_queue,
+				(pointer) controller_msg_queue);
 	}
 }
 
@@ -162,9 +166,12 @@ void Remote_com_task(uint32_t task_init_data) {
 
 	DEBUG("initializing...\n");
 	RCOM_set_uart(&SIM900_uart);
-	RCOM_set_rx_buf(sim900_rx_buffer, SIM900_RX_BUFF_MAX_CHAR);
+	RCOM_set_rx_buf(rcom_rx_buffer, RCOM_RX_BUFF_MAX_CHAR);
 	RCOM_init(get_systick_period_in_ms());
 	sim900_init(&sim900_pins);
+	sync_buffer_init(&rcom_to_controller_sync_buffer,
+			(uint8_t*) rcom_to_controller_buffer,
+			RCOM_TO_CONTROLLER_BUFFER_SIZE);
 
 	DEBUG("routing pin setting\n");
 	/* route desired pins into peripherals */
@@ -180,9 +187,8 @@ void Remote_com_task(uint32_t task_init_data) {
 		counter++;
 
 		/* Write your code here ... */
-
 		remote_com_app((pointer) rcom_msg_queue, (pointer) controller_msg_queue,
-				&rcom_to_controller_cir_queue, &controller_to_rcom_cir_queue);
+				&rcom_to_controller_sync_buffer);
 	}
 }
 
@@ -203,18 +209,22 @@ void Remote_com_task(uint32_t task_init_data) {
 void RI_proccess_task(uint32_t task_init_data) {
 	int counter = 0;
 
+	sync_buffer_init(&ri_to_controller_sync_buffer,
+			(uint8_t*) ri_to_controller_buffer, RI_TO_CONTROLLER_BUFFER_SIZE);
+
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
 		remote_com_RI_processing((pointer) rcom_msg_queue,
-				(pointer) controller_msg_queue, &rcom_to_controller_cir_queue);
+				(pointer) controller_msg_queue, &ri_to_controller_sync_buffer);
 	}
 }
 
+#if EN_KERNEL_LOG
 /*
  ** ===================================================================
- **     Event       :  Kernel_log_task (module mqx_tasks)
+ **     Event       :  kernel_log_task (module mqx_tasks)
  **
  **     Component   :  Task4 [MQXLite_task]
  **     Description :
@@ -226,7 +236,7 @@ void RI_proccess_task(uint32_t task_init_data) {
  **     Returns     : Nothing
  ** ===================================================================
  */
-void Kernel_log_task(uint32_t task_init_data) {
+void kernel_log_task(uint32_t task_init_data) {
 	int counter = 0;
 
 	while (1) {
@@ -237,6 +247,7 @@ void Kernel_log_task(uint32_t task_init_data) {
 		_klog_show_stack_usage();
 	}
 }
+#endif
 
 /* END mqx_tasks */
 

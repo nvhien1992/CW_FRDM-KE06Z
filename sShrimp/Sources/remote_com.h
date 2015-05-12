@@ -8,9 +8,10 @@
 #ifndef REMOTE_COM_H_
 #define REMOTE_COM_H_
 
-#include "message_type.h"
+#include "PE_Types.h"
+#include "mqxlite.h"
 #include "SIM900A.h"
-#include "cir_queue.h"
+#include "sync_buffer.h"
 
 /*=======================================================================
  ===========================SHARED DEFINITIONS===========================
@@ -19,13 +20,13 @@
  * 
  */
 void remote_com_app(pointer rcom_msg_queue, pointer controller_msg_queue,
-		cir_queue_t *rcom_to_controller_queue,
-		cir_queue_t *controller_to_rcom_queue);
+		sync_buffer_t *rcom_to_controller_sync_buffer);
 
 /**
  * 
  */
 void remote_com_RI_processing(pointer rcom_msg_queue,
-		pointer controller_msg_queue, cir_queue_t *rcom_to_controller_queue);
+		pointer controller_msg_queue,
+		sync_buffer_t *ri_to_controller_sync_buffer);
 
 #endif //REMOTE_COM_H_

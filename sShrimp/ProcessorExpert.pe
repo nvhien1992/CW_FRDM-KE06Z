@@ -3,8 +3,8 @@
   <Header>
     <Name>sShrimp</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>115</ModificationStamp>
-    <Date>2015-04-28</Date>
+    <ModificationStamp>128</ModificationStamp>
+    <Date>2015-05-12</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>96</ProjectCompNumb>
+    <ProjectCompNumb>106</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -8681,7 +8681,7 @@
         <InheritedComponentState>
           <BeanType>MQXLite_task</BeanType>
           <Name>Task4</Name>
-          <CompNumb>85</CompNumb>
+          <CompNumb>101</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>OS_LDD</IconName>
@@ -8701,13 +8701,13 @@
               <ItemSymbol>TaskName</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>Kernel_log</Value>
+              <Value>kernel_log</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>TaskEntryFunction</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>Kernel_log_task</Value>
+              <Value>kernel_log_task</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>TaskStackSize</ItemSymbol>

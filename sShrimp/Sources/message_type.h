@@ -26,11 +26,17 @@ typedef enum {
 	RCOM_GET_TIMESTAMP_CMD,
 } SWM_cmd_t;
 
+typedef enum {
+	FAIL,
+	SUCCESS,
+} result_type_t;
+
 typedef struct {
 	SWM_cmd_t cmd;
+	result_type_t result_type;
 	union {
-		uint16_t value;
-		uint16_t result_type;
+		uint32_t value;
+		void *ptr;
 	} content;
 } SWM_msg_t;
 

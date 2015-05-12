@@ -5,8 +5,8 @@
  *      Author: nvhie_000
  */
 #include <cstring>
-#include "mqxlite.h"
 #include "remote_com.h"
+#include "message_type.h"
 
 #define NOTIFY_EN (1)
 #define DEBUG_EN (1)
@@ -25,32 +25,14 @@ char *apn_password[MSP_NUMBER] = { "", "mms", "mms" };
 char *URL_time_stamp = "i3s.edu.vn/swm/local-com/index.php?comType=timestamp";
 char *URL_post_report = "i3s.edu.vn/swm/local-com/index.php?comType=report";
 char *default_usr_phone_number[USR_PN_NUMBER] = { "0947380247", };
+char *VN_phone_code = "+84";
 
-static bool add_result_to_cir_queue(cir_queue_t *cir_queue, char *response);
-static RCOM_result_type_t set_APN_auto(void);
+static bool set_APN_auto(void);
 
-static bool add_result_to_cir_queue(cir_queue_t *cir_queue, char *response) {
-	if (!response) {
-		return false;
-	}
-
-	uint16_t data_size = strlen(response);
-
-	if (cir_queue_overflowed_if_adding(cir_queue, data_size)) {
-		return false;
-	}
-
-	cir_queue_add_byte(cir_queue, data_size);
-	cir_queue_add_data(cir_queue, (uint8_t*) response, data_size);
-
-	return true;
-}
-
-static RCOM_result_type_t set_APN_auto(void) {
+static bool set_APN_auto(void) {
 	char *msp_name_tmp = sim900_get_MSP_name();
 	if (!msp_name_tmp) {
-		DEBUG("NULL buffer\n");
-		return RCOM_FAIL;
+		return FALSE ;
 	}
 	uint8_t index = 0;
 	for (index = 0; index < MSP_NUMBER; index++) {
@@ -59,36 +41,36 @@ static RCOM_result_type_t set_APN_auto(void) {
 		}
 		if (index == MSP_NUMBER - 1) {
 			NOTIFY("MSP is not supported!\n");
-			return RCOM_FAIL;
+			return FALSE ;
 		}
 	}
 	sim900_set_apn_para(apn_name[index], apn_usrname[index],
 			apn_password[index]);
 
-	return RCOM_SUCCESS_WITHOUT_DATA;
+	return TRUE ;
 }
 
 void remote_com_app(pointer rcom_msg_queue, pointer controller_msg_queue,
-		cir_queue_t *rcom_to_controller_queue,
-		cir_queue_t *controller_to_rcom_queue) {
+		sync_buffer_t *rcom_to_controller_sync_buffer) {
 	SWM_msg_t msg;
-	_lwmsgq_receive(rcom_msg_queue, (_mqx_max_type_ptr) &msg,
-			LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
+	if (_lwmsgq_receive(rcom_msg_queue, (_mqx_max_type_ptr) &msg,
+			LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL ) != MQX_OK) {
+		DEBUG("ERR: receive msg failed\n");
+	}
 
-	uint8_t data_size = 0;
 	char *result = NULL;
-	char buffer[64];
+	char *rcom_to_controller_buffer = NULL;
+
 	switch (msg.cmd) {
 	case RCOM_START_CMD:
 		DEBUG("RCOM starting...\n");
-		cir_queue_clear(rcom_to_controller_queue);
-		if (sim900_start() == RCOM_FAIL) {
+		if (!sim900_start()) {
 			DEBUG("\tERR: SIM start failed\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
+			msg.result_type = FAIL;
 			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 			return;
 		}
-		msg.content.value = (uint8_t) RCOM_SUCCESS_WITHOUT_DATA;
+		msg.result_type = SUCCESS;
 		_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	case RCOM_STOP_CMD:
@@ -97,9 +79,9 @@ void remote_com_app(pointer rcom_msg_queue, pointer controller_msg_queue,
 		break;
 	case RCOM_CONFIGURE_CMD:
 		DEBUG("RCOM configuring...\n");
-		if (sim900_default_config() == RCOM_FAIL) {
+		if (!sim900_default_config()) {
 			DEBUG("\tERR: SIM configuration failed\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
+			msg.result_type = FAIL;
 			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 			return;
 		}
@@ -107,60 +89,61 @@ void remote_com_app(pointer rcom_msg_queue, pointer controller_msg_queue,
 		DEBUG("RCOM checking SIM inserted...\n");
 		if (!sim900_check_SIM_inserted()) {
 			DEBUG("\tERR: SIM removed\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
-			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
-			return;
-		}
-		
-		DEBUG("RCOM setting APN auto-ly...\n");
-		if (set_APN_auto() == RCOM_FAIL) {
-			DEBUG("\tERR: Can't set APN\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
+			msg.result_type = FAIL;
 			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 			return;
 		}
 
-		msg.content.value = (uint8_t) RCOM_SUCCESS_WITHOUT_DATA;
+		DEBUG("RCOM setting APN auto-ly...\n");
+		if (!set_APN_auto()) {
+			DEBUG("\tERR: Can't set APN\n");
+			msg.result_type = FAIL;
+			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
+			return;
+		}
+
+		msg.result_type = SUCCESS;
 		_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	case RCOM_CONNECT_INTERNET_CMD:
 		DEBUG("RCOM connecting internet...\n");
-		if (sim900_connect_internet() == RCOM_FAIL) {
+		if (!sim900_connect_internet()) {
 			DEBUG("\tERR: Can't connect internet\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
+			msg.result_type = FAIL;
 			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 			return;
 		}
 
-		msg.content.value = (uint8_t) RCOM_SUCCESS_WITHOUT_DATA;
+		msg.result_type = SUCCESS;
 		_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	case RCOM_SEND_SMS_MSG_CMD:
 		DEBUG("RCOM sending SMS msg...\n");
-//		data_size = cir_queue_preview_byte(controller_to_rcom_queue, TRUE);
-//		cir_queue_preview_data(controller_to_rcom_queue, (uint8_t*) buffer,
-//				data_size);
 //		sim900_send_sms("0947380243", "nvhien");
 		break;
 	case RCOM_HAVE_SMS_MSG_CMD:
 		DEBUG("RCOM reading SMS msg...\n");
 		result = sim900_read_SMS_msg(msg.content.value);
-		if (!add_result_to_cir_queue(rcom_to_controller_queue, result)) {
-			DEBUG("\tERR: Read SMS msg failed\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
-			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
-			return;
-		}
-		msg.content.result_type = (uint8_t) RCOM_SUCCESS_WITH_DATA;
+		rcom_to_controller_buffer = (char*) sync_buffer_get_resource_to_write(
+				rcom_to_controller_sync_buffer);
+		SIM900_SMS_msg_t sms_msg;
+		sms_msg.phone_number = rcom_to_controller_buffer
+				+ sizeof(SIM900_SMS_msg_t);
+		sim900_get_phone_number_from_SMS_msg(result, sms_msg.phone_number);
+		sim900_normalize_phone_number(sms_msg.phone_number, VN_phone_code);
+		sms_msg.content = sms_msg.phone_number + strlen(sms_msg.phone_number)
+				+ 1;
+		sim900_get_content_from_SMS_msg(result, sms_msg.content);
+		memcpy(rcom_to_controller_buffer, (void*) &sms_msg,
+				sizeof(SIM900_SMS_msg_t));
+		sync_buffer_allow_read(rcom_to_controller_sync_buffer);
+		msg.result_type = SUCCESS;
+		msg.content.ptr = (void*) rcom_to_controller_sync_buffer;
 		_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	case RCOM_MAKE_MISSED_CALL_CMD:
 		DEBUG("RCOM making missed voice call...\n");
-		data_size = cir_queue_get_byte(controller_to_rcom_queue);
-		cir_queue_get_data(controller_to_rcom_queue, (uint8_t*) buffer,
-				data_size);
-		buffer[data_size] = '\0';
-		sim900_make_missed_voice_call(buffer);
+//		sim900_make_missed_voice_call(buffer);
 		break;
 	case RCOM_REPORT_DATA_CMD:
 		break;
@@ -171,38 +154,44 @@ void remote_com_app(pointer rcom_msg_queue, pointer controller_msg_queue,
 	case RCOM_GET_TIMESTAMP_CMD:
 		DEBUG("RCOM getting timestamp...\n");
 		result = sim900_HTTP_GET(URL_time_stamp);
-		if (!add_result_to_cir_queue(rcom_to_controller_queue, result)) {
-			DEBUG("\tERR: Get timestamp failed\n");
-			msg.content.value = (uint8_t) RCOM_FAIL;
+		if (!result) {
+			msg.result_type = FAIL;
 			_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 			return;
 		}
-		msg.content.result_type = (uint8_t) RCOM_SUCCESS_WITH_DATA;
+		sync_buffer_write(rcom_to_controller_sync_buffer, (uint8_t*) result,
+				strlen(result) + 1);
+		sync_buffer_allow_read(rcom_to_controller_sync_buffer);
+		msg.result_type = SUCCESS;
+		msg.content.ptr = (void*) rcom_to_controller_sync_buffer;
 		_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	default:
 		break;
 	}
+	return;
 }
 
 void remote_com_RI_processing(pointer rcom_msg_queue,
-		pointer controller_msg_queue, cir_queue_t *rcom_to_controller_queue) {
-	char phone_number_or_sms_content[16];
+		pointer controller_msg_queue,
+		sync_buffer_t *ri_to_controller_sync_buffer) {
+	char phone_number_or_sms_index[16];
 	SWM_msg_t msg;
 
-	switch (sim900_process_RI_task(phone_number_or_sms_content)) {
+	switch (sim900_process_RI_task(phone_number_or_sms_index)) {
 	case INCOMING_VOICE_CALL:
-		if (!add_result_to_cir_queue(rcom_to_controller_queue,
-				phone_number_or_sms_content)) {
-			return;
-		}
 		msg.cmd = RCOM_HAVE_VOICE_CALL_CMD;
-		msg.content.result_type = (uint8_t) RCOM_SUCCESS_WITH_DATA;
+		sim900_normalize_phone_number(phone_number_or_sms_index, VN_phone_code);
+		sync_buffer_write(ri_to_controller_sync_buffer,
+				(uint8_t*) phone_number_or_sms_index,
+				strlen(phone_number_or_sms_index) + 1);
+		sync_buffer_allow_read(ri_to_controller_sync_buffer);
+		msg.content.ptr = (void*) ri_to_controller_sync_buffer;
 		_lwmsgq_send(controller_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	case RECEIVED_SMS_MSG:
 		msg.cmd = RCOM_HAVE_SMS_MSG_CMD;
-		msg.content.value = (uint8_t) *phone_number_or_sms_content;
+		msg.content.value = (uint8_t) *phone_number_or_sms_index;
 		_lwmsgq_send(rcom_msg_queue, (_mqx_max_type_ptr) &msg, 0);
 		break;
 	default:
@@ -210,4 +199,3 @@ void remote_com_RI_processing(pointer rcom_msg_queue,
 		break;
 	}
 }
-

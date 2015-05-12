@@ -129,6 +129,7 @@
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com_resources.c</PathName>
+      <PathName>D:\CW\sShrimp\Sources\sync_buffer.c</PathName>
       <PathName>D:\CW\sShrimp\Sources\uart_ll.c</PathName>
       <PathName>D:\CW\sShrimp\utilities\PID.c</PathName>
       <PathName>D:\CW\sShrimp\utilities\alarm.c</PathName>
@@ -234,6 +235,7 @@
       <PathName>D:\CW\sShrimp\Sources\mqx_tasks.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\remote_com_resources.h</PathName>
+      <PathName>D:\CW\sShrimp\Sources\sync_buffer.h</PathName>
       <PathName>D:\CW\sShrimp\Sources\uart_ll.h</PathName>
       <PathName>D:\CW\sShrimp\utilities\PID.h</PathName>
       <PathName>D:\CW\sShrimp\utilities\alarm.h</PathName>

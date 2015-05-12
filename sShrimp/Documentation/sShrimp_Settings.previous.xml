@@ -1149,7 +1149,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="Remote_com" />
               <Entry_point_function v="Remote_com_task" />
-              <Stack_size v="4096" />
+              <Stack_size v="2048" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">
@@ -1199,8 +1199,8 @@ PE_DEBUGHALT();
             <Enabled v="Y" />
             <Template v="Task" />
             <Properties>
-              <Name v="Kernel_log" />
-              <Entry_point_function v="Kernel_log_task" />
+              <Name v="kernel_log" />
+              <Entry_point_function v="kernel_log_task" />
               <Stack_size v="1024" />
               <Priority v="8" />
               <Creation_parameter v="0" />
@@ -1215,7 +1215,7 @@ PE_DEBUGHALT();
             <Events>
               <Event_module_name v="mqx_tasks" />
               <event name="OnTask" v="generate code">
-                <Event_procedure_name v="Kernel_log_task" />
+                <Event_procedure_name v="kernel_log_task" />
               </event>
             </Events>
           </inhrbean>
@@ -1228,7 +1228,7 @@ PE_DEBUGHALT();
           <Lightweight_Message_Queues v="yes" />
           <Mutexes v="no" />
           <Lightweight_Timer v="no" />
-          <Kernel_Logging v="yes" />
+          <Kernel_Logging v="no" />
           <Lightweight_Memory_Allocation v="no" />
           <Floating_point_context_saving v="no" />
         </group>

@@ -10,13 +10,12 @@
 
 #include "PE_Types.h"
 #include "mqxlite.h"
-#include "cir_queue.h"
+#include "SIM900A.h"
+#include "sync_buffer.h"
 
 /**
  * 
  */
-void controller_app(pointer rcom_msg_queue, pointer controller_msg_queue,
-		cir_queue_t *rcom_to_controller_queue,
-		cir_queue_t *controller_to_rcom_queue);
+void controller_app(pointer rcom_msg_queue, pointer controller_msg_queue);
 
 #endif /* SWM_CONTROLLER_H_ */

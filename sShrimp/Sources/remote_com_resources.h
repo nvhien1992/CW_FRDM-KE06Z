@@ -13,15 +13,9 @@
  ===========================PUBLIC RCOM DEFINITIONS======================
  =======================================================================*/
 typedef enum {
-	RCOM_FAIL = 0x00, //
-	RCOM_SUCCESS_WITH_DATA = 0x01, //
-	RCOM_SUCCESS_WITHOUT_DATA = 0x02, //
-} RCOM_result_type_t;
-
-typedef enum {
 	RCOM_HAS_NOTHING, //
-	RCOM_STARTED,
-	RCOM_INITIALIZED, //
+	RCOM_STARTED, //
+	RCOM_CONFIGURED, //
 	RCOM_INTERNET_CONNECTED //
 } RCOM_status_t;
 
