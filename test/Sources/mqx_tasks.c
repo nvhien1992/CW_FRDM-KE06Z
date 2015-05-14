@@ -55,8 +55,7 @@ typedef struct {
 							REAL_MSG_SIZE : \
 							sizeof(_mqx_max_type)*(REAL_MSG_SIZE / sizeof(_mqx_max_type) + 1))
 /* using when initialize msg queue because of reading 4bytes once time in receiving */
-#define MSG_SIZE_MAX_TYPE_ALIGNED	((MSG_SIZE_ALIGNED <= sizeof(_mqx_max_type)) ? 1 : \
-									MSG_SIZE_ALIGNED/sizeof(_mqx_max_type))
+#define MSG_SIZE_MAX_TYPE_ALIGNED	(MSG_SIZE_ALIGNED / sizeof(_mqx_max_type))
 
 /* Use light weight message queues */
 uint8_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) + NUM_MESSAGES * MSG_SIZE_ALIGNED];
@@ -82,6 +81,11 @@ void gpio_task(uint32_t task_init_data) {
 
 	LDD_TDeviceData *device_data = NULL;
 	device_data = GPIO1_Init(NULL);
+
+	printf("real msg size: %d\n", REAL_MSG_SIZE);
+	printf("msg size aligned: %d\n", MSG_SIZE_ALIGNED);
+	printf("msg size aligned with mqx_max_type: %d\n",
+			MSG_SIZE_MAX_TYPE_ALIGNED);
 
 	mesg_t msg;
 	msg.digit = 0;
