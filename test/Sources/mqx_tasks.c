@@ -41,14 +41,25 @@ extern "C" {
 #include "global.h"
 
 #define SYSTICK_PERIOD 5 //ms
+typedef struct {
+	/* ==== user can modify this content ==== */
+	uint8_t digit;
+	uint16_t buffer[3];
+} mesg_t;
 
 /* Definitions for LW Message Queue Component */
-#define NUM_MESSAGES		16
-#define MSG_SIZE			1
+#define NUM_MESSAGES		(16)
+#define REAL_MSG_SIZE		(sizeof(mesg_t))
+/* using when declare msg queue buffer */
+#define MSG_SIZE_ALIGNED	((REAL_MSG_SIZE % sizeof(_mqx_max_type) == 0) ? \
+							REAL_MSG_SIZE : \
+							sizeof(_mqx_max_type)*(REAL_MSG_SIZE / sizeof(_mqx_max_type) + 1))
+/* using when initialize msg queue because of reading 4bytes once time in receiving */
+#define MSG_SIZE_MAX_TYPE_ALIGNED	((MSG_SIZE_ALIGNED <= sizeof(_mqx_max_type)) ? 1 : \
+									MSG_SIZE_ALIGNED/sizeof(_mqx_max_type))
 
 /* Use light weight message queues */
-uint32_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) / sizeof(uint32_t)
-		+ NUM_MESSAGES * MSG_SIZE];
+uint8_t ctrl_msg_queue[sizeof(LWMSGQ_STRUCT) + NUM_MESSAGES * MSG_SIZE_ALIGNED];
 
 LWEVENT_STRUCT an_event;
 
@@ -72,10 +83,12 @@ void gpio_task(uint32_t task_init_data) {
 	LDD_TDeviceData *device_data = NULL;
 	device_data = GPIO1_Init(NULL);
 
-	_mqx_uint msg = 1;
+	mesg_t msg;
+	msg.digit = 0;
 	/* init msg queue */
-	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES, MSG_SIZE);
-	
+	_lwmsgq_init((pointer) ctrl_msg_queue, NUM_MESSAGES,
+			MSG_SIZE_MAX_TYPE_ALIGNED);
+
 	/* init lwevent */
 	_lwevent_create(&an_event, LWEVENT_AUTO_CLEAR);
 
@@ -89,13 +102,19 @@ void gpio_task(uint32_t task_init_data) {
 		counter++;
 
 		/* Write your code here ... */
-		_mqx_uint ticks = 2*1000/SYSTICK_PERIOD; //timeout 2s
-		if(_lwevent_wait_ticks(&an_event, EVT_BIT_MASK, TRUE, ticks) == LWEVENT_WAIT_TIMEOUT) {
+		_mqx_uint ticks = 2 * 1000 / SYSTICK_PERIOD; //timeout 2s
+		if (_lwevent_wait_ticks(&an_event, EVT_BIT_MASK, TRUE,
+				ticks) == LWEVENT_WAIT_TIMEOUT) {
 			printf("lwevent timeout\n");
 		}
 		GPIO1_ToggleFieldBits(device_data, led_red, 0xFFFFFFFF);
 		_time_delay_ticks(10);
-		_lwmsgq_send((pointer) ctrl_msg_queue, &msg, LWMSGQ_SEND_BLOCK_ON_FULL);
+		msg.digit++;
+		msg.buffer[0] = 25;
+		msg.buffer[1] = 5;
+		msg.buffer[2] = 92;
+		_lwmsgq_send((pointer) ctrl_msg_queue, (_mqx_max_type_ptr) &msg,
+				LWMSGQ_SEND_BLOCK_ON_FULL);
 	}
 }
 
@@ -116,17 +135,16 @@ void gpio_task(uint32_t task_init_data) {
 void console_task(uint32_t task_init_data) {
 	int counter = 0;
 
-	_mqx_uint msg = 0;
+	mesg_t msg;
 
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		_lwmsgq_receive((pointer) ctrl_msg_queue, &msg,
+		_lwmsgq_receive((pointer) ctrl_msg_queue, (_mqx_max_type_ptr) &msg,
 				LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL);
-		if (msg == 1) {
-			printf("received msg\n");
-		}
+		printf("digit: %d\nbuffer: %d-%d-%d\n", msg.digit, msg.buffer[0],
+				msg.buffer[1], msg.buffer[2]);
 	}
 }
 
