@@ -66,26 +66,26 @@ typedef enum {
  ============================DEFINE FUNCTIONS============================
  =======================================================================*/
 /**
- * @brief config gpio for sim900 connection.
+ * @brief Initialize SIM900. Must be called before calling other functions in this file.
  * 
- * @param[in] defined_pins 
+ * @param[in] defined_pins Contains function pointers created in PE’s components.
  */
 void sim900_init(SIM900_pins_t *defined_pins);
 
 /**
- * @brief
+ * @brief Enable or Disable RI.
  */
 void sim900_control_ring_indicator(bool is_enabled);
 
 /**
- * @brief
+ * @brief Start SIM900.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_start(void);
 
 /**
- * @brief  Initialize sim900 using AT command.
+ * @brief Configure sim900 using AT command.
  * 
  * @return TRUE if success, FALSE if fail. 
  */
@@ -99,7 +99,7 @@ bool sim900_default_config(void);
 bool sim900_enable_DTR_sleep_mode(void);
 
 /**
- * @brief
+ * @brief Disable auto-sleep mode.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -114,50 +114,57 @@ bool sim900_disable_sleep_mode(void);
 void sim900_control_sleep_manually(bool sleep_sim900);
 
 /**
- * @brief
+ * @brief The callback function called in interrupt handle.
  */
 void sim900_RI_callback(void);
 
 /**
- * @brief
+ * @brief Call this function in a task to process RI.
  * 
- * @return NULL if fail else RI result content will be returned.
+ * @param[out] RI_result Contains phone number if RI indicates incoming call or 
+ * 			SMS msg index if RI indicates recv-ed SMS msg. 
+ * 
+ * @return SIM900_RI_result_t Incoming call or received SMS msg.
  */
 SIM900_RI_result_t sim900_process_RI_task(char* RI_result);
 
 /**
- * @brief
+ * @brief Received RI unsolited response when RI occurs.
  */
 void sim900_uart_callback(void);
 
 /**
+ * @brief Set APN parameter before connecting internet.
  * 
+ * @param[in] apn_name
+ * @param[in] apn_user
+ * @param[in] apn_pass
  */
 void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass);
 
 /**
- * @brief
+ * @brief Check SIM inserted or not.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_check_SIM_inserted(void);
 
 /**
- * @brief
+ * @brief Get Mobile Pervice Provider's name
  * 
  * @return NULL if fail else MSP name will be returned.
  */
 char* sim900_get_MSP_name(void);
 
 /**
- * @brief  sim900 gprs config
+ * @brief Connect internet using GPRS.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_connect_internet(void);
 
 /**
- * @brief  stop SIM900.
+ * @brief Stop SIM900.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -213,13 +220,17 @@ bool sim900_stop(void);
  */
 //void sim900_post_update(RCOM_job_result_t *job_result);
 /**
+ * @brief Create POST session.
  * 
+ * @param[in] URL Web address will be accessed.
+ * 
+ * @return TRUE if success, FALSE if fail.
  */
 bool sim900_create_HTTP_POST_session(char *URL);
 
 /**
  * @brief Send the size of HTTP data by UART before sending data.
- * sim900_create_HTTP_POST_session() must be exe-ed before calling this function.
+ * sim900_create_HTTP_POST_session() must be called before calling this function.
  * 
  * @param[in] data_size
  * 
@@ -228,7 +239,9 @@ bool sim900_create_HTTP_POST_session(char *URL);
 bool sim900_send_HTTP_data_size(uint16_t data_size);
 
 /**
+ * @brief Write a string data into SIM900's buffer before sending over GPRS.
  * 
+ * @param[in] data Pointer to string buffer.
  */
 void sim900_uart_send_data(char *data);
 
@@ -257,13 +270,13 @@ char* sim900_HTTP_POST(char *URL, char *data);
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
  * @param[in] URL
- * @param[out] response -If 'response' = NULL then 'response' = RCOM_rx_buf, else copy content into 'response'.
  * 
  * @return NULL if fail else response content will be returned.
  */
 char* sim900_HTTP_GET(char *URL);
 
 /**
+ * @brief Terminate an HTTP session.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -280,7 +293,7 @@ bool sim900_terminate_HTTP_session(void);
 bool sim900_send_sms(char* phone_number, char* msg);
 
 /**
- * @brief Make a voice call.
+ * @brief Make a missed voice call.
  * 
  * @param[in] phone_number
  * 
@@ -289,7 +302,7 @@ bool sim900_send_sms(char* phone_number, char* msg);
 bool sim900_make_missed_voice_call(char* phone_number);
 
 /**
- * @brief
+ * @brief Read SMS msg at index in SIM900's memory.
  * 
  * @param[in] sms_index
  * 
@@ -298,9 +311,9 @@ bool sim900_make_missed_voice_call(char* phone_number);
 char* sim900_read_SMS_msg(uint8_t sms_index);
 
 /**
- * @brief 
+ * @brief Return phone number that sent the SMS msg.
  * 
- * @param[in] raw_msg
+ * @param[in] raw_msg Raw content when receiving response by UART.
  * @param[out] phone_number
  * 
  * @return TRUE if success, FALSE if fail.
@@ -308,7 +321,7 @@ char* sim900_read_SMS_msg(uint8_t sms_index);
 bool sim900_get_phone_number_from_SMS_msg(char *raw_msg, char *phone_number);
 
 /**
- * @brief 
+ * @brief Return content in SMS msg.
  * 
  * @param[in] raw_msg
  * @param[out] content
@@ -318,7 +331,7 @@ bool sim900_get_phone_number_from_SMS_msg(char *raw_msg, char *phone_number);
 bool sim900_get_content_from_SMS_msg(char *raw_msg, char *content);
 
 /**
- * @brief
+ * @brief Normalize the phone number (zero is first charactor).
  * 
  * @param[in|out] phone_number
  * @param[in] country_phone_code
@@ -328,56 +341,62 @@ bool sim900_get_content_from_SMS_msg(char *raw_msg, char *content);
 bool sim900_normalize_phone_number(char *phone_number, char *country_phone_code);
 
 /**
- * @brief
+ * @brief Allow receiving phone number when RI occurs.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_show_incoming_call_number(void);
 
 /**
- * @brief
+ * @brief Not allow receiving phone number when RI occurs.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_not_show_incoming_call_number(void);
 
 /**
- * @brief
+ * @brief Enable echo mode.
  *
  * @return TRUE if success, FALSE if fail. 
  */
 bool sim900_enable_echo_mode(void);
 
 /**
- * @brief
+ * @brief Disable echo mode.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_disable_echo_mode(void);
 
 /**
- * @brief
+ * @brief SMS in text mode.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_set_SMS_text_mode(void);
 
 /**
- * @brief
+ * @brief SMS in PDU mode.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_set_SMS_PDU_mode(void);
 
 /**
- * @brief
+ * @brief Hang up a voice call.
  * 
  * @return TRUE if success, FALSE if fail.
  */
 bool sim900_hang_up_voice_call(void);
 
 /**
- * @brief 
+ * @brief Delete a group of SMS msg:
+ * 		"DEL ALL"
+ * 		"DEL READ"
+ * 		"DEL UNREAD"
+ * 		"DEL SENT"
+ * 		"DEL UNSENT"
+ * 		"DEL INBOX"
  * 
  * @param[in] del_type
  * 
@@ -386,9 +405,9 @@ bool sim900_hang_up_voice_call(void);
 bool sim900_delete_group_SMS_msg(SIM900_del_SMS_t del_type);
 
 /**
- * @brief 
+ * @brief Delete an SMS msg at index in SIM900's memory.
  * 
- * @param[in] index
+ * @param[in] index 
  * 
  * @return TRUE if success, FALSE if fail.
  */

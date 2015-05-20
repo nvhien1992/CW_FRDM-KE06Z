@@ -54,13 +54,20 @@ extern "C" {
 /* definitions for IPC msgq */
 #define NUM_CTRL_MESSAGES 		(32)
 #define NUM_RCOM_MESSAGES 		(32)
-#define MESSAGE_SIZE_ALIGNED	sizeof(SWM_msg_t) / sizeof(_mqx_max_type)
+#define REAL_MSG_SIZE			(sizeof(SWM_msg_t))
+/* using when declare msg queue buffer */
+/* aligned msg size must be divisible by the size of mqx max type (4bytes)  */
+#define MESSAGE_SIZE_ALIGNED	((REAL_MSG_SIZE % sizeof(_mqx_max_type) == 0) ? \
+								REAL_MSG_SIZE : \
+								sizeof(_mqx_max_type)*(REAL_MSG_SIZE / sizeof(_mqx_max_type) + 1))
+/* using when initialize msg queue */
+#define MESSAGE_SIZE_MAX_TYPE_ALIGNED	(MESSAGE_SIZE_ALIGNED / sizeof(_mqx_max_type))
 
 uint8_t controller_msg_queue[sizeof(LWMSGQ_STRUCT)
-		+ NUM_CTRL_MESSAGES * sizeof(SWM_msg_t)];
+		+ NUM_CTRL_MESSAGES * MESSAGE_SIZE_ALIGNED];
 
 uint8_t rcom_msg_queue[sizeof(LWMSGQ_STRUCT)
-		+ NUM_RCOM_MESSAGES * sizeof(SWM_msg_t)];
+		+ NUM_RCOM_MESSAGES * MESSAGE_SIZE_ALIGNED];
 
 /* define buffers */
 #define RCOM_RX_BUFF_MAX_CHAR (256) //char
@@ -117,12 +124,12 @@ void Control_task(uint32_t task_init_data) {
 	int counter = 0;
 
 	/* init msg queues */
-	if (_lwmsgq_init((pointer) controller_msg_queue, NUM_CTRL_MESSAGES, 
-	MESSAGE_SIZE_ALIGNED) != MQX_OK) {
+	if (_lwmsgq_init((pointer) controller_msg_queue, NUM_CTRL_MESSAGES,
+			MESSAGE_SIZE_MAX_TYPE_ALIGNED) != MQX_OK) {
 		DEBUG("Initialize msgq failed\n");
 	}
-	if (_lwmsgq_init((pointer) rcom_msg_queue, NUM_RCOM_MESSAGES, 
-	MESSAGE_SIZE_ALIGNED) != MQX_OK) {
+	if (_lwmsgq_init((pointer) rcom_msg_queue, NUM_RCOM_MESSAGES,
+			MESSAGE_SIZE_MAX_TYPE_ALIGNED) != MQX_OK) {
 		DEBUG("Initialize msgq failed\n");
 	}
 
