@@ -1,9 +1,9 @@
 /**
  @file SIM900A.h
- @brief Implementing internal function of SIM900 
- @author   Nguyen Van Hien <nvhien1992@gmail.com>
- @	Huynh Trung Tin <tinvuong51003405@gmail.com>
- @	Bui Van Hieu <bvhieu@cse.hcmut.edu.vn>
+ @brief Declare data structures and functions for SIM900's library. 
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com><br>
+ @author <b>Huynh Trung Tin</b> <tinvuong51003405@gmail.com><br>
+ @author <b>Bui Van Hieu</b> <bvhieu@cse.hcmut.edu.vn>
  @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
  */
 
@@ -39,27 +39,31 @@ typedef struct {
 } SIM900_pins_t;
 
 typedef struct {
-	char* apn_name;
-	char* apn_pass;
-	char* apn_user;
-} SIM900_params_t;
+	char* apn_name; /*!< the name of Access Point Name */
+	char* apn_pass; /*!< password for Access Point Name */
+	char* apn_user; /*!< username for Access Point Name */
+} SIM900_apn_t;
 
 typedef struct {
-	char *phone_number;
-	char *content;
+	char *phone_number; /*!< the phone number that sent or received SMS message */
+	char *content; /*!< content of an SMS message */
 } SIM900_SMS_msg_t;
 
 typedef enum {
-	DEL_READ, //del all read msges
-	DEL_UNREAD, //del all unread msges
-	DEL_SENT, //del all sent msges
-	DEL_UNSENT, //del all unsent msges
-	DEL_INBOX, //del all received msges
-	DEL_ALL, //del all msges
+	DEL_READ, /*!< delete all read messages */
+	DEL_UNREAD, /*!< delete all unread messages */
+	DEL_SENT, /*!< delete all sent messages */
+	DEL_UNSENT, /*!< delete all unsent messages */
+	DEL_INBOX, /*!< delete all received messages */
+	DEL_ALL, /*!< delete all messages */
 } SIM900_del_SMS_t;
 
 typedef enum {
-	INCOMING_VOICE_CALL, INCOMING_DATA_CALL, RECEIVED_SMS_MSG, URC, RI_UNKNOWN,
+	INCOMING_VOICE_CALL, /*!< having incoming voice call */
+	INCOMING_DATA_CALL, /*!< having incoming data call */
+	RECEIVED_SMS_MSG, /*!< received an SMS message */ 
+	URC, /*!<  */
+	RI_UNKNOWN, /*!< Unknown Ring Indicator */
 } SIM900_RI_result_t;
 
 /*=======================================================================
@@ -68,7 +72,7 @@ typedef enum {
 /**
  * @brief Initialize SIM900. Must be called before calling other functions in this file.
  * 
- * @param[in] defined_pins Contains function pointers created in PE’s components.
+ * @param[in] defined_pins Contains function pointers created in PE's components.
  */
 void sim900_init(SIM900_pins_t *defined_pins);
 
@@ -109,27 +113,27 @@ bool sim900_disable_sleep_mode(void);
  * @brief Using DTR pin to wake up or allow SIM900 go to sleep.
  * Set sleep mode = 1 (sleeping mode controlled by DTR pin).
  * 
- * @param[in] sleep_sim900 -TRUE if allowing sleeping, FALSE if waking up SIM900.
+ * @param[in] sleep_sim900 TRUE if allowing sleeping, FALSE if waking SIM900 up.
  */
 void sim900_control_sleep_manually(bool sleep_sim900);
 
 /**
- * @brief The callback function called in interrupt handle.
+ * @brief The callback function called in interrupt's handler.
  */
 void sim900_RI_callback(void);
 
 /**
- * @brief Call this function in a task to process RI.
+ * @brief Call this function in a task to process Ring Indicator.
  * 
  * @param[out] RI_result Contains phone number if RI indicates incoming call or 
  * 			SMS msg index if RI indicates recv-ed SMS msg. 
  * 
- * @return SIM900_RI_result_t Incoming call or received SMS msg.
+ * @return Incoming call or received SMS msg.
  */
 SIM900_RI_result_t sim900_process_RI_task(char* RI_result);
 
 /**
- * @brief Received RI unsolited response when RI occurs.
+ * @brief Received RI unsolicited response when RI occurs.
  */
 void sim900_uart_callback(void);
 
@@ -170,55 +174,6 @@ bool sim900_connect_internet(void);
  */
 bool sim900_stop(void);
 
-/*  
- * @description:  send report with gprs			            								
- *    method: http post											  				
- *    Data Format (To send Webserver):													
- *    fN=...&rDN=...&nD=...&n0=...&d0=...&v0=...&sT0=...  v.v. 
- *    fN: farm Name
- *    rDN: received Data Number
- *    nD: Number data of report			
- *    n0: ID of node 0
- *    d0: ID of sensor 0
- *    v0: Value of sensor 0
- *    sT0:Sensing time of sensor 0
- *    n1: ID of node 1
- *    d1: ID of sensor 1
- *    v1: Value of sensor 1
- *    sT1:Sensing time of sensor 1
-
- *    ...		
- * @param[in]
- * @param[out]
- */
-//void sim900_post_report(gw_rpt_para_t* pRptPara, RCOM_job_result_t *job_result);
-/*
- * @brief	Get unit (in string format) from unit (in int format)
- */
-//void SWM_Get_Unit_Str(ss_unit_t unit, char unit_str[]);
-/**
- * @brief Send update with gprs	
- *   -method: http post	
- *   Data Format (To send Webserver):
- *      fN=...&n0=...&aT0=...&d0=...&u0=...&lES0=...&lEC0=...
- *              &lWS0=...&lWC0=...&hWC0=...&hWS0=...&hEC0=...&hES0=... .v.v. 
- *      fN: farm Name
- *      n0: ID of node 0
- *      aT0: actived Time of node 0
- *      d0: ID of sensor 0
- *      u0: unit of sensor 0
- *      lES0: low Emergency Set of sensor 0
- *      lEC0: low Emergency Clear of sensor 0
- *      lWS0: low Warning Set of sensor 0
- *      lWC0: low Warning Clear of sensor 0
- *      hWC0: high Warning Clear of sensor 0
- *      hWS0: high Warning Set of sensor 0
- *      hEC0: high Emergency Clear of sensor 0
- *      hES0: high Emergency Set of sensor 0
- *      ...	
- * @param[out] job_result
- */
-//void sim900_post_update(RCOM_job_result_t *job_result);
 /**
  * @brief Create POST session.
  * 
@@ -247,7 +202,7 @@ void sim900_uart_send_data(char *data);
 
 /**
  * @brief Send HTTP data to the connected URL. 
- * sim900_create_HTTP_GET_session() and sim900_send_HTTP_data_size() must be exe-ed before calling this function.
+ * sim900_create_HTTP_POST_session() and sim900_send_HTTP_data_size() must be exe-ed before calling this function.
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
  * @return NULL if fail else response content will be returned.
@@ -255,7 +210,8 @@ void sim900_uart_send_data(char *data);
 char* sim900_HTTP_POST_action(void);
 
 /**
- * @brief Send data to webserver using POST method. 
+ * @brief Send data to webserver using POST method.
+ * Call sim900_terminate_HTTP_session() to finish session. 
  * 
  * @param[in] URL
  * @param[in] data
@@ -266,7 +222,6 @@ char* sim900_HTTP_POST(char *URL, char *data);
 
 /**
  * @brief Read data from webserver using GET method. 
- * sim900_create_HTTP_GET_session() must be exe-ed before calling this function.
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
  * @param[in] URL
@@ -331,9 +286,9 @@ bool sim900_get_phone_number_from_SMS_msg(char *raw_msg, char *phone_number);
 bool sim900_get_content_from_SMS_msg(char *raw_msg, char *content);
 
 /**
- * @brief Normalize the phone number (zero is first charactor).
+ * @brief Normalize the phone number (zero is first character).
  * 
- * @param[in|out] phone_number
+ * @param[in,out] phone_number
  * @param[in] country_phone_code
  * 
  * @return TRUE if success, FALSE if fail.

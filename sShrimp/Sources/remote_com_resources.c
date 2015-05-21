@@ -1,5 +1,7 @@
 /**
- @author Nguyen Van Hien <nvhien1992@gmail.com>
+ @file remote_com_resources.c
+ @brief 
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
  @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
  */
 #include <stdio.h>

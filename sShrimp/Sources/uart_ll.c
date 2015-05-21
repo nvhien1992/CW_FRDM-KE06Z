@@ -1,8 +1,8 @@
-/*
- * uart_ll.c
- *
- *  Created on: Mar 22, 2015
- *      Author: nvhie_000
+/**
+ @file uart_ll.c
+ @brief
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
  */
 #include <stdarg.h>
 #include <cstring>

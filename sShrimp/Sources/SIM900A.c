@@ -1,3 +1,11 @@
+/**
+ @file SIM900A.c
+ @brief Implement functions for SIM900's library. 
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com><br>
+ @author <b>Huynh Trung Tin</b> <tinvuong51003405@gmail.com><br>
+ @author <b>Bui Van Hieu</b> <bvhieu@cse.hcmut.edu.vn>
+ @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ */
 #include <cstring>
 #include <cstdlib>
 #include "mqxlite.h"
@@ -9,7 +17,7 @@
 #include "debug.h"
 
 SIM900_pins_t *SIM900_pins;
-SIM900_params_t SIM900_params;
+SIM900_apn_t SIM900_apn;
 
 /* definitions depend on design of SIM900 board */
 /* nPW */
@@ -294,21 +302,21 @@ bool sim900_connect_internet(void) {
 		case 4: //Set APN_NAME
 			step_info.execution_method = SM_AND_TIMEOUT;
 			sprintf(step_info.command, "AT+SAPBR=3,1,\"APN\",\"%s\"\r\n",
-					SIM900_params.apn_name);
+					SIM900_apn.apn_name);
 			step_info.timeout = 1;
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		case 5: //Set APN_USER
 			step_info.execution_method = SM_AND_TIMEOUT;
 			sprintf(step_info.command, "AT+SAPBR=3,1,\"USER\",\"%s\"\r\n",
-					SIM900_params.apn_user);
+					SIM900_apn.apn_user);
 			step_info.timeout = 1;
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
 		case 6: //Set APN_PASSWORD
 			step_info.execution_method = SM_AND_TIMEOUT;
 			sprintf(step_info.command, "AT+SAPBR=3,1,\"PWD\",\"%s\"\r\n",
-					SIM900_params.apn_pass);
+					SIM900_apn.apn_pass);
 			step_info.timeout = 1;
 			step_info.expected_response = "\r\nOK\r\n";
 			break;
@@ -469,9 +477,9 @@ void sim900_uart_callback(void) {
 }
 
 void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass) {
-	SIM900_params.apn_name = apn_name;
-	SIM900_params.apn_user = apn_user;
-	SIM900_params.apn_pass = apn_pass;
+	SIM900_apn.apn_name = apn_name;
+	SIM900_apn.apn_user = apn_user;
+	SIM900_apn.apn_pass = apn_pass;
 }
 
 bool sim900_check_SIM_inserted(void) {

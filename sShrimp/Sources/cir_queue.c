@@ -1,8 +1,9 @@
-/*
- * cir_queue.c
- *
- *  Created on: Apr 20, 2015
- *      Author: nvhie_000
+/**
+ @file cir_queue.c
+ @brief
+ @author <b>Pham Huu Dang Nhat</b> <phamhuudangnhat@gmail.com><br> 
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
  */
 #include "cir_queue.h"
 

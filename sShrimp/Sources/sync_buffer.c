@@ -1,8 +1,8 @@
-/*
- * sync_buffer.c
- *
- *  Created on: May 9, 2015
- *      Author: nvhie_000
+/**
+ @file sync_buffer.c
+ @brief
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
  */
 #include <cstring> 
 #include "sync_buffer.h"

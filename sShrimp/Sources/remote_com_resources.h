@@ -1,5 +1,7 @@
 /**
- @author Nguyen Van Hien <nvhien1992@gmail.com>
+ @file remote_com_resources.h
+ @brief 
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
  @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
  */
 
@@ -13,10 +15,10 @@
  ===========================PUBLIC RCOM DEFINITIONS======================
  =======================================================================*/
 typedef enum {
-	RCOM_HAS_NOTHING, //
-	RCOM_STARTED, //
-	RCOM_CONFIGURED, //
-	RCOM_INTERNET_CONNECTED //
+	RCOM_HAS_NOTHING, /*!< rcom didn't start successfully */
+	RCOM_STARTED, /*!< rcom started successfully */
+	RCOM_CONFIGURED, /*!< rcom configured successfully */
+	RCOM_INTERNET_CONNECTED /*!< rcom connected internet successfully */
 } RCOM_status_t;
 
 /*=======================================================================
