@@ -3,7 +3,7 @@
  @brief
  @author <b>Pham Huu Dang Nhat</b> <phamhuudangnhat@gmail.com><br> 
  @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
- @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 #include "cir_queue.h"
 

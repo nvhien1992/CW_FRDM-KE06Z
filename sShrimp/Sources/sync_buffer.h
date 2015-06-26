@@ -2,7 +2,7 @@
  @file sync_buffer.h
  @brief
  @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
- @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 
 #ifndef SYNC_BUFFER_H_

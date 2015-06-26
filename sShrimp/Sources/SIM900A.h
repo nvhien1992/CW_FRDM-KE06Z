@@ -4,7 +4,7 @@
  @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com><br>
  @author <b>Huynh Trung Tin</b> <tinvuong51003405@gmail.com><br>
  @author <b>Bui Van Hieu</b> <bvhieu@cse.hcmut.edu.vn>
- @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 
 #ifndef SIM900A_H_
@@ -46,24 +46,24 @@ typedef struct {
 
 typedef struct {
 	char *phone_number; /*!< the phone number that sent or received SMS message */
-	char *content; /*!< content of an SMS message */
+	char *content; 		/*!< content of an SMS message */
 } SIM900_SMS_msg_t;
 
 typedef enum {
-	DEL_READ, /*!< delete all read messages */
+	DEL_READ, 	/*!< delete all read messages */
 	DEL_UNREAD, /*!< delete all unread messages */
-	DEL_SENT, /*!< delete all sent messages */
+	DEL_SENT, 	/*!< delete all sent messages */
 	DEL_UNSENT, /*!< delete all unsent messages */
-	DEL_INBOX, /*!< delete all received messages */
-	DEL_ALL, /*!< delete all messages */
+	DEL_INBOX, 	/*!< delete all received messages */
+	DEL_ALL, 	/*!< delete all messages */
 } SIM900_del_SMS_t;
 
 typedef enum {
-	INCOMING_VOICE_CALL, /*!< having incoming voice call */
-	INCOMING_DATA_CALL, /*!< having incoming data call */
-	RECEIVED_SMS_MSG, /*!< received an SMS message */ 
-	URC, /*!<  */
-	RI_UNKNOWN, /*!< Unknown Ring Indicator */
+	INCOMING_VOICE_CALL, 	/*!< having incoming voice call */
+	INCOMING_DATA_CALL, 	/*!< having incoming data call */
+	RECEIVED_SMS_MSG, 		/*!< received an SMS message */ 
+	URC, 					/*!<  */
+	RI_UNKNOWN, 			/*!< Unknown Ring Indicator */
 } SIM900_RI_result_t;
 
 /*=======================================================================
@@ -140,9 +140,9 @@ void sim900_uart_callback(void);
 /**
  * @brief Set APN parameter before connecting internet.
  * 
- * @param[in] apn_name
- * @param[in] apn_user
- * @param[in] apn_pass
+ * @param[in] apn_name The name of Access Point Name.
+ * @param[in] apn_user The username for Access Point Name.
+ * @param[in] apn_pass The password for Access Point Name.
  */
 void sim900_set_apn_para(char* apn_name, char* apn_user, char* apn_pass);
 
@@ -187,7 +187,7 @@ bool sim900_create_HTTP_POST_session(char *URL);
  * @brief Send the size of HTTP data by UART before sending data.
  * sim900_create_HTTP_POST_session() must be called before calling this function.
  * 
- * @param[in] data_size
+ * @param[in] data_size Size of data needed to send.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -196,7 +196,7 @@ bool sim900_send_HTTP_data_size(uint16_t data_size);
 /**
  * @brief Write a string data into SIM900's buffer before sending over GPRS.
  * 
- * @param[in] data Pointer to string buffer.
+ * @param[in] data Pointer to data string buffer.
  */
 void sim900_uart_send_data(char *data);
 
@@ -213,8 +213,8 @@ char* sim900_HTTP_POST_action(void);
  * @brief Send data to webserver using POST method.
  * Call sim900_terminate_HTTP_session() to finish session. 
  * 
- * @param[in] URL
- * @param[in] data
+ * @param[in] URL Web address will be accessed.
+ * @param[in] data Data needed to send.
  * 
  * @return NULL if fail else response content will be returned.
  */
@@ -224,7 +224,7 @@ char* sim900_HTTP_POST(char *URL, char *data);
  * @brief Read data from webserver using GET method. 
  * Call sim900_terminate_HTTP_session() to finish session.
  * 
- * @param[in] URL
+ * @param[in] URL Web address will be accessed.
  * 
  * @return NULL if fail else response content will be returned.
  */
@@ -240,8 +240,8 @@ bool sim900_terminate_HTTP_session(void);
 /**
  * @brief Send an SMS message to the specified phone number.
  * 
- * @param[in] phone_number
- * @param[in] msg	
+ * @param[in] phone_number Phone number of receiver.
+ * @param[in] msg Content of SMS msg.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -250,7 +250,7 @@ bool sim900_send_sms(char* phone_number, char* msg);
 /**
  * @brief Make a missed voice call.
  * 
- * @param[in] phone_number
+ * @param[in] phone_number Phone number of receiver.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -259,7 +259,7 @@ bool sim900_make_missed_voice_call(char* phone_number);
 /**
  * @brief Read SMS msg at index in SIM900's memory.
  * 
- * @param[in] sms_index
+ * @param[in] sms_index Index of SMS message saved in SIM900's memory.
  * 
  * @return NULL if fail else raw sms msg will be returned.
  */
@@ -269,7 +269,7 @@ char* sim900_read_SMS_msg(uint8_t sms_index);
  * @brief Return phone number that sent the SMS msg.
  * 
  * @param[in] raw_msg Raw content when receiving response by UART.
- * @param[out] phone_number
+ * @param[out] phone_number Phone number of sender.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -278,8 +278,8 @@ bool sim900_get_phone_number_from_SMS_msg(char *raw_msg, char *phone_number);
 /**
  * @brief Return content in SMS msg.
  * 
- * @param[in] raw_msg
- * @param[out] content
+ * @param[in] raw_msg Contains all information about SMS msg.
+ * @param[out] content Content of SMS msg.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -288,8 +288,8 @@ bool sim900_get_content_from_SMS_msg(char *raw_msg, char *content);
 /**
  * @brief Normalize the phone number (zero is first character).
  * 
- * @param[in,out] phone_number
- * @param[in] country_phone_code
+ * @param[in,out] phone_number Phone number buffer.
+ * @param[in] country_phone_code Country phone number code (VN: +84,...).
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -346,14 +346,14 @@ bool sim900_hang_up_voice_call(void);
 
 /**
  * @brief Delete a group of SMS msg:
- * 		"DEL ALL"
- * 		"DEL READ"
- * 		"DEL UNREAD"
- * 		"DEL SENT"
- * 		"DEL UNSENT"
- * 		"DEL INBOX"
+ * 		<br>"DEL ALL"
+ * 		<br>"DEL READ"
+ * 		<br>"DEL UNREAD"
+ * 		<br>"DEL SENT"
+ * 		<br>"DEL UNSENT"
+ * 		<br>"DEL INBOX"
  * 
- * @param[in] del_type
+ * @param[in] del_type Delete method.
  * 
  * @return TRUE if success, FALSE if fail.
  */
@@ -362,7 +362,7 @@ bool sim900_delete_group_SMS_msg(SIM900_del_SMS_t del_type);
 /**
  * @brief Delete an SMS msg at index in SIM900's memory.
  * 
- * @param[in] index 
+ * @param[in] index Index of SMS message saved in SIM900's memory.
  * 
  * @return TRUE if success, FALSE if fail.
  */

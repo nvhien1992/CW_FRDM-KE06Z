@@ -1,8 +1,8 @@
-/*
- * remote_com.c
- *
- *  Created on: Apr 7, 2015
- *      Author: nvhie_000
+/**
+ @file remote_com.c
+ @brief Implementing functions for remote communication in SWM Project.
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 #include <cstring>
 #include "remote_com.h"

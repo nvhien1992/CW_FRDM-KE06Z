@@ -1,8 +1,8 @@
-/*
- * message_type.h
- *
- *  Created on: Apr 16, 2015
- *      Author: nvhie_000
+/**
+ @file message_type.h
+ @brief
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 
 #ifndef MESSAGE_TYPE_H_

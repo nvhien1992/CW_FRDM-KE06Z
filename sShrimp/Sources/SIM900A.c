@@ -4,7 +4,7 @@
  @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com><br>
  @author <b>Huynh Trung Tin</b> <tinvuong51003405@gmail.com><br>
  @author <b>Bui Van Hieu</b> <bvhieu@cse.hcmut.edu.vn>
- @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 #include <cstring>
 #include <cstdlib>
@@ -16,8 +16,8 @@
 #define DEBUG_EN (1)
 #include "debug.h"
 
-SIM900_pins_t *SIM900_pins;
-SIM900_apn_t SIM900_apn;
+static SIM900_pins_t *SIM900_pins;
+static SIM900_apn_t SIM900_apn;
 
 /* definitions depend on design of SIM900 board */
 /* nPW */
@@ -54,22 +54,43 @@ static RCOM_buff_t RI_rx_buf = { NULL, 0, 0, TRUE };
  ==========================DEFINE PRIVATE FUNCTIONS======================
  =======================================================================*/
 /**
- * @brief turn on sim900.
+ * @private
+ * @brief Turn on sim900.
  */
-static void sim900_power_on();
+static void sim900_power_on(void);
 
 /**
- * @brief turn off sim900.
+ * @private
+ * @brief Turn off sim900.
  */
 static void sim900_power_off(void);
 
 /**
- * 
+ * @private
+ * @brief Clear RI's RX buffer.
  */
 static void sim900_clear_RI_rx_buf(void);
-static int sim900_get_recv_SMS_msg_index(void);
-static bool sim900_get_incoming_call_number(char *incoming_pn);
+
 /**
+ * @private
+ * @brief Get index of SMS msg when receive SMS msg intermediately.
+ * 
+ * @return Index of SMS msg.
+ */
+static int sim900_get_recv_SMS_msg_index(void);
+
+/**
+ * @private
+ * @brief Get incoming call phone number. 
+ * 
+ * @param[out] incoming_pn Phone number buffer.
+ * 
+ * @return TRUE if success, otherwise FALSE.
+ */
+static bool sim900_get_incoming_call_number(char *incoming_pn);
+
+/**
+ * @private
  * @brief get response content from webserver. Response format:
  * "+HTTPREAD:<data_size>\r\n<response_content>\r\nOK\r\n".
  * 
@@ -152,7 +173,7 @@ static char* sim900_get_http_response_content(void) {
 	return out_buff;
 }
 
-static void sim900_power_on() {
+static void sim900_power_on(void) {
 	NPW_SET();
 }
 

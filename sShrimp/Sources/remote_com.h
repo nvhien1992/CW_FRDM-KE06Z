@@ -1,8 +1,8 @@
 /**
- @brief Implementing functions for SWM Project
- @author Huynh Trung Tin <tinvuong51003405@gmail.com>
- Nguyen Van Hien <nvhien1992@gmail.com>
- @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ @file remote_com.h
+ @brief Declare functions for remote communication in SWM Project.
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 
 #ifndef REMOTE_COM_H_

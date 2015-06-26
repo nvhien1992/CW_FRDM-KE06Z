@@ -2,7 +2,7 @@
  @file remote_com_resources.c
  @brief 
  @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
- @copyright Copyright (C) 2015 <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b> , All rights reserved 
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 #include <stdio.h>
 #include <cstring>
@@ -16,25 +16,35 @@
 #define SM_EVT_BIT_MASK (0x01)
 
 /* static vars */
-static RCOM_SM_t RCOM_SM = { FALSE, //SM_status
-		NULL, //SM_buffer
-		0, //SM_pointer
-		};
+static RCOM_SM_t RCOM_SM = { FALSE, NULL, 0, }; 
 
 static uart_t *RCOM_uart;
-static RCOM_buff_t rx_buf = { NULL, 0, 0, FALSE };
+static RCOM_buff_t rx_buf = { NULL, 0, 0, FALSE }; /*!< internal rx buffer. */
 static unsigned char r_char;
 static RCOM_status_t RCOM_status = RCOM_HAS_NOTHING;
-static uint8_t systick_period = 5; //5ms as default.
+static uint8_t systick_period = 5; /*!< 5ms as default. */
 
-/* internal lwevent */
-static LWEVENT_STRUCT SM_event;
+static LWEVENT_STRUCT SM_event; /*!< internal lwevent. */
 
 /*=======================================================================
  ======================DEFINE PRIVATE FUNCTIONS==========================
  =======================================================================*/
+/**
+ * @private
+ * @brief Simple state machine processing response from SIM900.
+ */
 static void RCOM_state_machine(void);
+
+/**
+ * @private
+ * @brief Enable state machine.
+ */
 static void RCOM_SM_enable(void);
+
+/**
+ * @private
+ * @brief Disable state machine.
+ */
 static void RCOM_SM_disable(void);
 
 /*=======================================================================
@@ -131,7 +141,7 @@ RCOM_step_result_t RCOM_step_excution(RCOM_step_info_t* step_info) {
 
 		/* send command to UART */
 		RCOM_uart_writef(step_info->command);
-		
+
 		ticks_waitting = step_info->timeout * 1000 / systick_period;
 		_lwevent_wait_ticks(&SM_event, SM_EVT_BIT_MASK, TRUE, ticks_waitting);
 

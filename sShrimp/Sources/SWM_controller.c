@@ -1,8 +1,8 @@
-/*
- * SWM_controller.c
- *
- *  Created on: Apr 22, 2015
- *      Author: nvhie_000
+/**
+ @file SWM_controller.c
+ @brief
+ @author <b>Nguyen Van Hien</b> <nvhien1992@gmail.com>
+ @copyright Copyright &copy; 2015, <b>SMART SENSSING AND INTELLIGENT CONTROL GROUP</b>, All rights reserved. 
  */
 #include <cstring>
 #include "SWM_controller.h"
