@@ -66,8 +66,9 @@ static void button_hold_processing(button_t *a_button, void *dest_queue) {
 		if (!dest_queue) {
 			return;
 		}
-		_mqx_uint msg = (_mqx_uint) (((uint32_t) a_button->dev_id << 16)
-				| (uint16_t) get_button_status(a_button));
+		_mqx_uint msg = (_mqx_uint) (((uint32_t) a_button->dev_id
+				<< BTN_NUM_BITS_IN_VALUE)
+		| (uint16_t) get_button_status(a_button));
 		_lwmsgq_send((pointer) dest_queue, &msg, 0);
 	}
 }
@@ -108,8 +109,9 @@ void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns,
 				if (!dest_queue) {
 					return;
 				}
-				_mqx_uint msg = (_mqx_uint) (((uint32_t) button_table[i].dev_id
-						<< 16) | (uint16_t) get_button_status(&button_table[i]));
+				_mqx_uint msg =
+						(_mqx_uint) (((uint32_t) button_table[i].dev_id
+								<< BTN_NUM_BITS_IN_VALUE)| (uint16_t) get_button_status(&button_table[i]));
 				_lwmsgq_send((pointer) dest_queue, &msg, 0);
 			} else {
 				if (button_table[i].current_status == btn_on_hold) {
