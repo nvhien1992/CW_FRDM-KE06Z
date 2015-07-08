@@ -35,121 +35,121 @@
     <FLASHsize>128k</FLASHsize>
   </PROCESSOR>
   <PATHS>
-    <LinkerCommandFile>D:\Work\CodeSpace\CW\sShrimp\Project_Settings\Linker_Files\ProcessorExpert.ld</LinkerCommandFile>
+    <LinkerCommandFile>D:\Work\GitLocal\CodeWarrior\sShrimp\Project_Settings\Linker_Files\ProcessorExpert.ld</LinkerCommandFile>
     <IncludePaths>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\config\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\core\M0\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\compiler\cwgcc\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\config\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\core\M0\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\compiler\cwgcc\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\iofiles\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\Sources\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\</Path>
     </IncludePaths>
     <SourceCodePaths>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\</Path>
       <Path>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\config\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\Project_Settings\Startup_Code\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\Sources\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\utilities\</Path>
-      <Path>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\core\M0\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\config\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\Project_Settings\Startup_Code\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\</Path>
+      <Path>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\core\M0\</Path>
     </SourceCodePaths>
   </PATHS>
   <FILES>
     <GeneratedCs>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Console.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Cpu.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\IO1.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_DTR.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_NPW.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_NRST.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_RI.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_STATUS.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_UART.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MQX1.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\PE_LDD.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Console.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Cpu.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\IO1.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_DTR.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_NPW.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_NRST.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_RI.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_STATUS.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_UART.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MQX1.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\PE_LDD.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI0_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI1_Init.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Pin_Settings.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Pin_Settings.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Vectors.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\SystemTimer1.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\config\task_template_list.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\idletask.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\int.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\klog.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\lwevent.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\lwlog.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\lwmem.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\lwmsgq.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\lwsem.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\lwtimer.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\mqx_utils.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\mqxlite.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\mutex.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\qu_test.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\sched.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\task.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\kernel\time_ticks.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\cortex.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_gkis.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_inst.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_kisr.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_pvta.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_unx.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_vtab.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\int_xcpt.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\mem_zero.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_iinit.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_supp.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_tiad.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_tinm.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_tipr.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_tisu.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\sc_irdyq.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\stack_bu.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\stack_de.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\stack_st.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Project_Settings\Startup_Code\__arm_end.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Project_Settings\Startup_Code\__arm_start.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\Events.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\SIM900A.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\SWM_controller.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\cir_queue.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\main.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\mqx_tasks.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\remote_com.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\remote_com_resources.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\sync_buffer.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\uart_ll.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\PID.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\alarm.c</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\array_utils.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\SystemTimer1.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\config\task_template_list.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\idletask.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\int.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\klog.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\lwevent.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\lwlog.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\lwmem.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\lwmsgq.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\lwsem.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\lwtimer.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\mqx_utils.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\mqxlite.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\mutex.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\qu_test.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\sched.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\task.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\kernel\time_ticks.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\cortex.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_gkis.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_inst.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_kisr.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_pvta.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_unx.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_vtab.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\int_xcpt.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\mem_zero.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_iinit.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_supp.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_tiad.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_tinm.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_tipr.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_tisu.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\sc_irdyq.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\stack_bu.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\stack_de.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\stack_st.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Project_Settings\Startup_Code\__arm_end.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Project_Settings\Startup_Code\__arm_start.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\Events.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\SIM900A.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\SWM_controller.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\cir_queue.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\main.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\mqx_tasks.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\remote_com.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\remote_com_resources.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\sync_buffer.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\uart_ll.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\PID.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\alarm.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\array_utils.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\CPU_Config.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Console.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Cpu.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\IO1.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\CPU_Config.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Console.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Cpu.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\IO1.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\iofiles\MKE06Z4.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\IO_Map.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Init_Config.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_DTR.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_NPW.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_NRST.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_RI.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_STATUS.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MB_UART.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\MQX1.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\IO_Map.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Init_Config.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_DTR.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_NPW.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_NRST.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_RI.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_STATUS.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MB_UART.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\MQX1.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\ADC_PDD.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\CMP_PDD.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\CRC_PDD.h</PathName>
@@ -174,76 +174,76 @@
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\SysTick_PDD.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\UART_PDD.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\WDOG_PDD.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\PE_Const.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\PE_Error.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\PE_LDD.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\PE_Types.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\PE_Const.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\PE_Error.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\PE_LDD.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\PE_Types.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI0_Init.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\KBI1_Init.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Pin_Settings.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Pin_Settings.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\SystemTimer1.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Generated_Code\Vectors_Config.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\config\task_template_list.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\config\user_config.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\klog.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\log.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwevent.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwevent_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwlog.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwlog_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwmem.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwmem_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwmsgq.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwmsgq_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwsem.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwsem_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwtimer.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\lwtimer_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqx_cnfg.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqx_cpudef.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqx_inc.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqx_macros.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqx_str.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqxlite.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqxlite_cnfg.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mqxlite_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mutex.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\mutex_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\include\queue.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\compiler\cwgcc\asm_mac.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\compiler\cwgcc\comp.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\cortex.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\kinetis.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_comp.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_cpu.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_cpudef.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_prv.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_supp.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psp_ticks.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psplite.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\psptypes.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\Events.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\SIM900A.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\SWM_controller.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\cir_queue.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\message_type.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\mqx_tasks.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\remote_com.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\remote_com_resources.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\sync_buffer.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\Sources\uart_ll.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\PID.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\alarm.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\array_utils.h</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\utilities\debug.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\SystemTimer1.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Generated_Code\Vectors_Config.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\config\task_template_list.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\config\user_config.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\klog.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\log.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwevent.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwevent_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwlog.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwlog_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwmem.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwmem_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwmsgq.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwmsgq_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwsem.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwsem_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwtimer.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\lwtimer_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqx_cnfg.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqx_cpudef.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqx_inc.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqx_macros.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqx_str.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqxlite.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqxlite_cnfg.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mqxlite_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mutex.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\mutex_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\include\queue.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\compiler\cwgcc\asm_mac.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\compiler\cwgcc\comp.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\cortex.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\kinetis.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_comp.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_cpu.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_cpudef.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_prv.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_supp.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psp_ticks.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psplite.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\psptypes.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\Events.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\SIM900A.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\SWM_controller.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\cir_queue.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\message_type.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\mqx_tasks.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\remote_com.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\remote_com_resources.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\sync_buffer.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\Sources\uart_ll.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\PID.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\alarm.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\array_utils.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\utilities\debug.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\core\M0\boot.S</PathName>
-      <PathName>D:\Work\CodeSpace\CW\sShrimp\MQXLITE\psp\cortex_m\core\M0\dispatch.S</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\core\M0\boot.S</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\sShrimp\MQXLITE\psp\cortex_m\core\M0\dispatch.S</PathName>
     </GeneratedASMs>
   </FILES>
   <OPTIONS>
