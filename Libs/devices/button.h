@@ -26,7 +26,28 @@ typedef struct {
 	btn_status_t old_status;
 	bool old_value_reg;
 	bool new_value_reg[3];
+	bool enable_btn_evt;
 } button_t;
+
+/**
+ * 
+ */
+void enable_button_event(button_t *a_button);
+
+/**
+ * 
+ */
+void disable_button_event(button_t *a_button);
+
+/**
+ * 
+ */
+void enable_all_button_events(void);
+
+/**
+ * 
+ */
+void disable_all_button_events(void);
 
 /**
  * 

@@ -7,26 +7,47 @@
 #include <stdarg.h>
 #include <cstdio>
 #include "LCD.h"
+#include "mqxlite.h"
 
 #define SYS_CLK 48 //MHz
-#define LCD20x4
-//#define LCD16x2
+//#define LCD20x4
+#define LCD16x2
 
 #ifdef LCD20x4
 #define MAX_CHAR_IN_LINE 20
 #define MAX_LINE 4
-#elif LCD16x2
+#endif
+
+#ifdef LCD16x2
 #define MAX_CHAR_IN_LINE 16
 #define MAX_LINE 2
 #endif
 
 /*--------------------- LCD-specific data, definitions -----------------------*/
+static lcd_pins_t *lcd_pins;
+/** register select **/
+#define RS_CMD()	lcd_pins->lcd_rs.ClrVal(NULL)
+#define RS_DATA()	lcd_pins->lcd_rs.SetVal(NULL)
+/** lcd EN **/
+#define RW_EN()		lcd_pins->lcd_en.SetVal(NULL)
+#define RW_DIS()	lcd_pins->lcd_en.ClrVal(NULL)
+/** data pins **/
+#define SET_DB7()	lcd_pins->lcd_db7.SetVal(NULL)
+#define SET_DB6()	lcd_pins->lcd_db6.SetVal(NULL)
+#define SET_DB5()	lcd_pins->lcd_db5.SetVal(NULL)
+#define SET_DB4()	lcd_pins->lcd_db4.SetVal(NULL)
+#define CLR_DB7()	lcd_pins->lcd_db7.ClrVal(NULL)
+#define CLR_DB6()	lcd_pins->lcd_db6.ClrVal(NULL)
+#define CLR_DB5()	lcd_pins->lcd_db5.ClrVal(NULL)
+#define CLR_DB4()	lcd_pins->lcd_db4.ClrVal(NULL)
+/** backlight pin **/
+#define BL_ON()		lcd_pins->lcd_bl.ClrVal(NULL);
+#define BL_OFF()	lcd_pins->lcd_bl.SetVal(NULL);
+
+
 /* define cLCD's pin state */
 enum RS_state_e {
 	cmd = 0, data = 1
-};
-enum RW_state_e {
-	write = 0, read = 1
 };
 /* end define pin state */
 
@@ -119,137 +140,91 @@ enum instruction_e {
 };
 
 /* private variables */
-static lcd_pins_t *lcd_pins;
 static uint8_t current_line = 1;
 static uint8_t current_pos = 1;
 
 /* declare private functions */
 static void wait_for_lcd(void);
-static void send_4bits(uint8_t RS, uint8_t RW, uint8_t D7D4);
-static void send_byte_wo_waiting(uint8_t RS, uint8_t RW, uint8_t D7D0);
-static void send_byte(uint8_t RS, uint8_t RW, uint8_t D7D0);
+static void send_4bits(uint8_t RS, uint8_t D7D4);
+static void send_byte_wo_waiting(uint8_t RS, uint8_t D7D0);
+static void send_byte(uint8_t RS, uint8_t D7D0);
 static void delay_us(uint32_t usec);
 
 /* implement private functions */
 static void wait_for_lcd(void) {
-	/* wait at least 80us before checking BF */
-	delay_us(80);
-
-	/* set DB7 to input */
-	lcd_pins->lcd_db7.SetInput(NULL);
-
-	/* check BF */
-	cmd ? lcd_pins->lcd_rs.SetVal(NULL) : lcd_pins->lcd_rs.ClrVal(NULL);
-//	read ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
-
-	/* addition delay */
-	delay_us(1);
-
-	while (1) {
-		/* EN = 1 */
-		lcd_pins->lcd_en.SetVal(NULL);
-
-		/* Tpw = 480 ns */
-		delay_us(1);
-
-		/* check BF, breaking if DB7 = 0 */
-		if (lcd_pins->lcd_db7.GetVal(NULL) == FALSE) {
-			break;
-		}
-
-		/* EN = 0 */
-		lcd_pins->lcd_en.ClrVal(NULL);
-	}/* end while : cLCD is ready */
-
-	/* EN = 0 */
-	lcd_pins->lcd_en.ClrVal(NULL);
-
-	/* set DB7 to output */
-	lcd_pins->lcd_db7.SetOutput(NULL);
+	/* waiting for lcd in 0.12ms */
+	delay_us(120);
 }
 
-static void send_4bits(uint8_t RS, uint8_t RW, uint8_t D7D4) {
-	RS ? lcd_pins->lcd_rs.SetVal(NULL) : lcd_pins->lcd_rs.ClrVal(NULL);
-//	RW ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
+static void send_4bits(uint8_t RS, uint8_t D7D4) {
+	/* cmd = 0; data = 1 */
+	RS ? RS_DATA() : RS_CMD();
 
 	/* addition delay */
 	delay_us(1);
 
 	/* EN = 1 */
-	lcd_pins->lcd_en.SetVal(NULL);
+	RW_EN();
 
 	/* Send data */
-	((D7D4 & 0x80) >> 7) ?
-			lcd_pins->lcd_db7.SetVal(NULL) : lcd_pins->lcd_db7.ClrVal(NULL);
-	((D7D4 & 0x40) >> 6) ?
-			lcd_pins->lcd_db6.SetVal(NULL) : lcd_pins->lcd_db6.ClrVal(NULL);
-	((D7D4 & 0x20) >> 5) ?
-			lcd_pins->lcd_db5.SetVal(NULL) : lcd_pins->lcd_db5.ClrVal(NULL);
-	((D7D4 & 0x10) >> 4) ?
-			lcd_pins->lcd_db4.SetVal(NULL) : lcd_pins->lcd_db4.ClrVal(NULL);
+	((D7D4 & 0x80) >> 7) ? SET_DB7() : CLR_DB7();
+	((D7D4 & 0x40) >> 6) ? SET_DB6() : CLR_DB6();
+	((D7D4 & 0x20) >> 5) ? SET_DB5() : CLR_DB5();
+	((D7D4 & 0x10) >> 4) ? SET_DB4() : CLR_DB4();
 
 	/* addition delay */
 	delay_us(1);
 
 	/* EN = 0 */
-	lcd_pins->lcd_en.ClrVal(NULL);
+	RW_DIS();
 }
 
-static void send_byte_wo_waiting(uint8_t RS, uint8_t RW, uint8_t D7D0) {
+static void send_byte_wo_waiting(uint8_t RS, uint8_t D7D0) {
 	RS ? lcd_pins->lcd_rs.SetVal(NULL) : lcd_pins->lcd_rs.ClrVal(NULL);
-//	RW ? LCD_RW_SetVal(NULL) : LCD_RW_ClrVal(NULL);
 
 	/* addition delay */
 	delay_us(1);
 
 	/* Send 4 MSB bits D7-D4 */
 	/* EN = 1 */
-	lcd_pins->lcd_en.SetVal(NULL);
+	RW_EN();
 
-	((D7D0 & 0x80) >> 7) ?
-			lcd_pins->lcd_db7.SetVal(NULL) : lcd_pins->lcd_db7.ClrVal(NULL);
-	((D7D0 & 0x40) >> 6) ?
-			lcd_pins->lcd_db6.SetVal(NULL) : lcd_pins->lcd_db6.ClrVal(NULL);
-	((D7D0 & 0x20) >> 5) ?
-			lcd_pins->lcd_db5.SetVal(NULL) : lcd_pins->lcd_db5.ClrVal(NULL);
-	((D7D0 & 0x10) >> 4) ?
-			lcd_pins->lcd_db4.SetVal(NULL) : lcd_pins->lcd_db4.ClrVal(NULL);
+	((D7D0 & 0x80) >> 7) ? SET_DB7() : CLR_DB7();
+	((D7D0 & 0x40) >> 6) ? SET_DB6() : CLR_DB6();
+	((D7D0 & 0x20) >> 5) ? SET_DB5() : CLR_DB5();
+	((D7D0 & 0x10) >> 4) ? SET_DB4() : CLR_DB4();
 
 	/* addition delay */
 	delay_us(1);
 
 	/* EN = 0 */
-	lcd_pins->lcd_en.ClrVal(NULL);
+	RW_DIS();
 
 	/* tEC > 1.2 us */
 	delay_us(2);
 
 	/* Send next 4 bits D3-D0 */
 	/* EN = 1 */
-	lcd_pins->lcd_en.SetVal(NULL);
+	RW_EN();
 
-	((D7D0 & 0x08) >> 3) ?
-			lcd_pins->lcd_db7.SetVal(NULL) : lcd_pins->lcd_db7.ClrVal(NULL);
-	((D7D0 & 0x04) >> 2) ?
-			lcd_pins->lcd_db6.SetVal(NULL) : lcd_pins->lcd_db6.ClrVal(NULL);
-	((D7D0 & 0x02) >> 1) ?
-			lcd_pins->lcd_db5.SetVal(NULL) : lcd_pins->lcd_db5.ClrVal(NULL);
-	(D7D0 & 0x01) ?
-			lcd_pins->lcd_db4.SetVal(NULL) : lcd_pins->lcd_db4.ClrVal(NULL);
+	((D7D0 & 0x08) >> 3) ? SET_DB7() : CLR_DB7();
+	((D7D0 & 0x04) >> 2) ? SET_DB6() : CLR_DB6();
+	((D7D0 & 0x02) >> 1) ? SET_DB5() : CLR_DB5();
+	(D7D0 & 0x01) ? SET_DB4() : CLR_DB4();
 
 	/* addition delay */
 	delay_us(1);
 
 	/* EN = 0 */
-	lcd_pins->lcd_en.ClrVal(NULL);
+	RW_DIS();
 }
 
-static void send_byte(uint8_t RS, uint8_t RW, uint8_t D7D0) {
+static void send_byte(uint8_t RS, uint8_t D7D0) {
 	/* wait for lcd is not busy */
 	wait_for_lcd();
 
 	/* send data */
-	send_byte_wo_waiting(RS, RW, D7D0);
+	send_byte_wo_waiting(RS, D7D0);
 }
 
 static void delay_us(uint32_t usec) {
@@ -263,41 +238,41 @@ static void delay_us(uint32_t usec) {
 /* end implementing private functions */
 
 /* implement public functions */
-bool init_lcd(lcd_pins_t *lcd) {
+bool lcd_init(lcd_pins_t *lcd) {
 	if (!lcd) {
 		return FALSE;
 	}
 	lcd_pins = lcd;
 
 	/* Set back light BL = 1 */
-	lcd_pins->lcd_bl.SetVal(NULL);
+	BL_ON();
 
 	/* wait for >40ms */
-	delay_us(100000);
+	delay_us(80000);
 
 	/* send function set 1 */
-	send_4bits(cmd, write, 0x30);
+	send_4bits(cmd, 0x30);
 	/* wait for >37us */
 	delay_us(50);
 
 	/* send function set 2 */
-	send_byte_wo_waiting(cmd, write, cLCD_cmd_FS_4bit_2line);
+	send_byte_wo_waiting(cmd, cLCD_cmd_FS_4bit_2line);
 	/* wait for >37us */
 	delay_us(50);
 
 	/* send function set 3 */
-	send_byte_wo_waiting(cmd, write, cLCD_cmd_FS_4bit_2line);
+	send_byte_wo_waiting(cmd, cLCD_cmd_FS_4bit_2line);
 	/* wait for >37us */
 	delay_us(50);
 
 	/* send display control, Display on */
-	send_byte(cmd, write, cLCD_cmd_D_on);
+	send_byte(cmd, cLCD_cmd_D_on);
 
 	/* send display clear, clear all DDRAM to 20H, set DDRAM address to 0 from AC */
-	send_byte(cmd, write, cLCD_cmd_ClearDisplay);
+	send_byte(cmd, cLCD_cmd_ClearDisplay);
 
 	/* send Entry mode set, AC++ */
-	send_byte(cmd, write, cLCD_cmd_EntryMode_inc);
+	send_byte(cmd, cLCD_cmd_EntryMode_inc);
 
 	/* additional delay */
 	delay_us(1000);
@@ -305,7 +280,7 @@ bool init_lcd(lcd_pins_t *lcd) {
 	return TRUE;
 }
 
-bool set_cursor(uint8_t line, uint8_t pos) {
+bool lcd_set_cursor(uint8_t line, uint8_t pos) {
 	uint8_t ddram_addr = 0;
 
 	/* check line and pos */
@@ -336,7 +311,7 @@ bool set_cursor(uint8_t line, uint8_t pos) {
 		return FALSE;
 	}
 	/* send set DDRAM address command */
-	send_byte(cmd, write, ddram_addr | 0x80);
+	send_byte(cmd, ddram_addr | 0x80);
 
 	/* save state */
 	current_line = line;
@@ -352,7 +327,7 @@ void lcd_putc(int8_t a_char) {
 	switch (a_char) {
 	case '\n':
 		if (current_line < MAX_LINE) {
-			set_cursor(++current_line, 1);
+			lcd_set_cursor(++current_line, 1);
 		}
 		break;
 	case '\t':
@@ -362,15 +337,15 @@ void lcd_putc(int8_t a_char) {
 			tab_pos = (current_pos / 2 + 1) * 2;
 		}
 		if (tab_pos < MAX_CHAR_IN_LINE) {
-			set_cursor(current_line, tab_pos);
+			lcd_set_cursor(current_line, tab_pos);
 		}
 		break;
 	case '\r':
-		set_cursor(current_line, 1);
+		lcd_set_cursor(current_line, 1);
 		break;
 	default:
 		/* send data */
-		send_byte(data, write, a_char);
+		send_byte(data, a_char);
 
 		/* save state (only correct when in 2 line mode) */
 		current_pos++;
@@ -380,7 +355,7 @@ void lcd_putc(int8_t a_char) {
 			if (current_line > MAX_LINE) {
 				current_line = 1;
 			}
-			set_cursor(current_line, current_pos);
+			lcd_set_cursor(current_line, current_pos);
 		}
 		break;
 	}
@@ -412,9 +387,9 @@ int16_t lcd_printf(const char *format, ...) {
 	return retval;
 }
 
-void clear(void) {
+void lcd_clear(void) {
 	/* send clear command */
-	send_byte(cmd, write, cLCD_cmd_ClearDisplay);
+	send_byte(cmd, cLCD_cmd_ClearDisplay);
 
 	/* save state */
 	current_line = 1;
@@ -424,20 +399,20 @@ void clear(void) {
 	delay_us(200);
 }
 
-void return_home(void) {
+void lcd_return_home(void) {
 	/* send clear command */
-	send_byte(cmd, write, cLCD_cmd_ReturnHome);
+	send_byte(cmd, cLCD_cmd_ReturnHome);
 
 	/* save state */
 	current_line = 1;
 	current_pos = 1;
 }
 
-void return_home_wo_shifting(void) {
-	set_cursor(1, 1);
+void lcd_return_home_wo_shifting(void) {
+	lcd_set_cursor(1, 1);
 }
 
-void gen_pattern(const uint8_t *pattern, uint8_t addr) {
+void lcd_gen_pattern(const uint8_t *pattern, uint8_t addr) {
 	uint16_t count;
 
 	/* check addr */
@@ -446,13 +421,13 @@ void gen_pattern(const uint8_t *pattern, uint8_t addr) {
 	}
 
 	/* send set CGRAM address command */
-	send_byte(cmd, write, (addr << 3) | 0x40);
+	send_byte(cmd, (addr << 3) | 0x40);
 
 	/* send pattern */
 	for (count = 0; count < 8; count++) {
-		send_byte(data, write, pattern[count]);
+		send_byte(data, pattern[count]);
 	}
 
 	/* set cursor to current state */
-	set_cursor(current_line, current_pos);
+	lcd_set_cursor(current_line, current_pos);
 }

@@ -23,6 +23,8 @@ static uint16_t button_hold_time_count = 0;
 static void button_processing(button_t *a_button);
 static void button_hold_processing(button_t *a_button, void *dest_queue);
 
+static bool enable_all_btn_evts = TRUE;
+
 static void button_processing(button_t *a_button) {
 	/* sampling */
 	a_button->new_value_reg[2] = a_button->new_value_reg[1];
@@ -63,7 +65,8 @@ static void button_hold_processing(button_t *a_button, void *dest_queue) {
 	if (button_hold_time_count == BTN_HOLD_PERIOD) {
 		button_hold_time_count = 0;
 		a_button->old_status = btn_no_pressed;
-		if (!dest_queue) {
+		if (!dest_queue || !(a_button->enable_btn_evt)
+				|| !enable_all_btn_evts) {
 			return;
 		}
 		_mqx_uint msg = (_mqx_uint) (((uint32_t) a_button->dev_id
@@ -71,6 +74,22 @@ static void button_hold_processing(button_t *a_button, void *dest_queue) {
 		| (uint16_t) get_button_status(a_button));
 		_lwmsgq_send((pointer) dest_queue, &msg, 0);
 	}
+}
+
+void enable_button_event(button_t *a_button) {
+	a_button->enable_btn_evt = TRUE;
+}
+
+void disable_button_event(button_t *a_button) {
+	a_button->enable_btn_evt = FALSE;
+}
+
+void enable_all_button_events(void) {
+	enable_all_btn_evts = TRUE;
+}
+
+void disable_all_button_events(void) {
+	enable_all_btn_evts = FALSE;
 }
 
 uint8_t get_button_id(button_t *a_button) {
@@ -106,7 +125,8 @@ void button_callback_timer_isr(button_t *button_table, uint8_t num_of_btns,
 		for (i = 0; i < num_of_btns; i++) {
 			button_processing(&button_table[i]);
 			if (is_changed_status(&button_table[i])) {
-				if (!dest_queue) {
+				if (!dest_queue || !(&button_table[i].enable_btn_evt)
+						|| !enable_all_btn_evts) {
 					return;
 				}
 				_mqx_uint msg =

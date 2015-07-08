@@ -21,21 +21,13 @@ typedef struct {
 } out_pin_t;
 
 typedef struct {
-	void (*SetInput)(LDD_TDeviceData *arg);
-	void (*SetOutput)(LDD_TDeviceData *arg);
-	void (*SetVal)(LDD_TDeviceData *arg);
-	void (*ClrVal)(LDD_TDeviceData *arg);
-	bool (*GetVal)(LDD_TDeviceData *arg);
-} status_pin_t;
-
-typedef struct {
 	out_pin_t lcd_rs;
 	out_pin_t lcd_en;
 	out_pin_t lcd_bl;
 	out_pin_t lcd_db4;
 	out_pin_t lcd_db5;
 	out_pin_t lcd_db6;
-	status_pin_t lcd_db7;
+	out_pin_t lcd_db7;
 } lcd_pins_t;
 
 /**
@@ -43,7 +35,7 @@ typedef struct {
  * 
  * @return false if lcd_pins is null, true otherwise.
  */
-bool init_lcd(lcd_pins_t *lcd_pins);
+bool lcd_init(lcd_pins_t *lcd_pins);
 
 /**
  * @brief set position of cursor.
@@ -52,7 +44,7 @@ bool init_lcd(lcd_pins_t *lcd_pins);
  * @param[in] pos, should be between 1 and 20.
  *
  * @return success=true or failed=false.
- */bool set_cursor(uint8_t line, uint8_t pos);
+ */bool lcd_set_cursor(uint8_t line, uint8_t pos);
 
 /**
  * @brief print a character to LCD.
@@ -82,17 +74,17 @@ int16_t lcd_printf(const char *format, ...);
 /**
  * @brief clear screen and set cursor to 1-1.
  */
-void clear(void);
+void lcd_clear(void);
 
 /**
  * @brief Set cursor to 1-1. (no clearing)
  */
-void return_home(void);
+void lcd_return_home(void);
 
 /**
  * @brief Set cursor to 1-1 without shifting. (no clearing)
  */
-void return_home_wo_shifting(void);
+void lcd_return_home_wo_shifting(void);
 
 /**
  * @brief store a custom code generated pattern to CGRAM.
@@ -101,6 +93,6 @@ void return_home_wo_shifting(void);
  * @param[in] addr, DDRAM address for generated pattern; should be between 0 and 7.
  * (CGRAM address = addr << 3).
  */
-void gen_pattern(const uint8_t *pattern, uint8_t addr);
+void lcd_gen_pattern(const uint8_t *pattern, uint8_t addr);
 
 #endif /* LCD_H_ */
