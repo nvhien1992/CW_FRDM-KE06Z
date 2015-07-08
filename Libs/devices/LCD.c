@@ -265,8 +265,8 @@ bool lcd_init(lcd_pins_t *lcd) {
 	/* wait for >37us */
 	delay_us(50);
 
-	/* send display control, Display on */
-	send_byte(cmd, cLCD_cmd_D_on);
+	/* send display control, Display/Blink_cursor on */
+	send_byte(cmd, cLCD_cmd_D_on | cLCD_cmd_B_on);
 
 	/* send display clear, clear all DDRAM to 20H, set DDRAM address to 0 from AC */
 	send_byte(cmd, cLCD_cmd_ClearDisplay);
@@ -347,7 +347,7 @@ void lcd_putc(int8_t a_char) {
 		/* send data */
 		send_byte(data, a_char);
 
-		/* save state (only correct when in 2 line mode) */
+		/* save state */
 		current_pos++;
 		if (current_pos > MAX_CHAR_IN_LINE) {
 			current_pos = 1;
@@ -373,12 +373,12 @@ int16_t lcd_puts(int8_t *a_string) {
 }
 
 int16_t lcd_printf(const char *format, ...) {
-	int8_t buffer[MAX_CHAR_IN_LINE * MAX_LINE];
+	int8_t buffer[MAX_CHAR_IN_LINE * MAX_LINE + 1];
 	int16_t retval;
 	va_list args;
 
 	va_start(args, format);
-	vsnprintf((char*) buffer, MAX_CHAR_IN_LINE * MAX_LINE, format, args);
+	vsnprintf((char*) buffer, MAX_CHAR_IN_LINE * MAX_LINE + 1, format, args);
 	va_end(args);
 
 	/* print buffer to lcd */
@@ -395,8 +395,8 @@ void lcd_clear(void) {
 	current_line = 1;
 	current_pos = 1;
 
-	/* additional delay */ //FIXME(later): why do we need this?
-	delay_us(200);
+	/* additional delay */
+	delay_us(10);
 }
 
 void lcd_return_home(void) {
