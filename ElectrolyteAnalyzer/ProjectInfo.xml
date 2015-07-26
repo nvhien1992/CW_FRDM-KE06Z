@@ -145,6 +145,7 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\menus\src\service_functions.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\mqx_tasks.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\system_devices\src\button_devs.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\system_devices\src\lcd_dev.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\CPU_Config.h</PathName>

@@ -8,7 +8,6 @@
 #ifndef PROGRAM_INSTRUMENT_H_
 #define PROGRAM_INSTRUMENT_H_
 
-#include "button_devs.h"
 #include "menu_id.h"
 
 void program_instrument_menu_enter(menu_id_t* next_main_menu);

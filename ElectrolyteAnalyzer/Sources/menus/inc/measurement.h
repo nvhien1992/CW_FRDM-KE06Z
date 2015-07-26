@@ -8,7 +8,6 @@
 #ifndef MEASUREMENT_H_
 #define MEASUREMENT_H_
 
-#include "button_devs.h"
 #include "menu_id.h"
 
 void measurement_menu_enter(menu_id_t* next_main_menu);

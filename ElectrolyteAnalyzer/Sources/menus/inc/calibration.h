@@ -8,7 +8,6 @@
 #ifndef CALIBRATION_H_
 #define CALIBRATION_H_
 
-#include "button_devs.h"
 #include "menu_id.h"
 
 void calibration_menu_enter(menu_id_t* next_main_menu);

@@ -8,7 +8,6 @@
 #ifndef OPERATOR_FUNCTIONS_H_
 #define OPERATOR_FUNCTIONS_H_
 
-#include "button_devs.h"
 #include "menu_id.h"
 
 void operator_functions_menu_enter(menu_id_t* next_main_menu);

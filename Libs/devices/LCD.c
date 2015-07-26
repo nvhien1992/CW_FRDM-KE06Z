@@ -396,7 +396,7 @@ void lcd_clear(void) {
 	current_pos = 1;
 
 	/* additional delay */
-	delay_us(10);
+	delay_us(50);
 }
 
 void lcd_return_home(void) {

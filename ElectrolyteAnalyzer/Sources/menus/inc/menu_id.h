@@ -8,6 +8,8 @@
 #ifndef MENU_ID_H_
 #define MENU_ID_H_
 
+#include "PE_Types.h"
+
 typedef uint8_t menu_id_t;
 #define MEASUREMENT_MENU		(0x02)
 #define PRINT_FUNCTIONS_MENU 	(0x03)

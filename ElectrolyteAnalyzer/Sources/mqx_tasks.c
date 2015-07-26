@@ -38,7 +38,7 @@ extern "C" {
 #endif 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "lcd_dev.h"
+#include "main_menu.h"
 
 /*
  ** ===================================================================
@@ -58,17 +58,14 @@ void Controller_task(uint32_t task_init_data) {
 	int counter = 0;
 
 	uint8_t indx = 0;
+	menus_init();
+	MISC_TIMER_Init(NULL);
 	
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		if(indx != 2) {
-			indx++;
-			lcd_init(&lcd_pins);
-		}
-		lcd_printf("Hello everybody!");
-		lcd_clear();
+		main_menu();
 	}
 }
 

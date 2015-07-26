@@ -8,7 +8,6 @@
 #ifndef PRINT_FUNCTIONS_H_
 #define PRINT_FUNCTIONS_H_
 
-#include "button_devs.h"
 #include "menu_id.h"
 
 void print_functions_menu_enter(menu_id_t* next_main_menu);

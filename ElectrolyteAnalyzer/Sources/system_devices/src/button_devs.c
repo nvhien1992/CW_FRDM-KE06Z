@@ -25,7 +25,7 @@ button_t yes_btn = { YES_BTN_GetVal, //(*GetVal)()
 		btn_no_pressed, //current_status
 		btn_no_pressed, //old_status
 		FALSE, //old_value_reg
-		{},	//new_value_reg[]
+		{ },	//new_value_reg[]
 		TRUE , //enable_btn_evt
 		};
 
@@ -35,7 +35,7 @@ button_t no_btn = { NO_BTN_GetVal, //(*GetVal)()
 		btn_no_pressed, //current_status
 		btn_no_pressed, //old_status
 		FALSE, //old_value_reg
-		{}, //new_value_reg[]
+		{ }, //new_value_reg[]
 		TRUE , //enable_btn_evt
 		};
 
@@ -58,4 +58,19 @@ void enable_buttons(void) {
 
 void disable_buttons(void) {
 	disable_all_button_events();
+}
+
+btn_id_t waiting_button_pressed(void) {
+	_mqx_uint msg = 0;
+	enable_buttons();
+	_lwmsgq_receive((pointer) btns_msg_queue, &msg,
+			LWMSGQ_RECEIVE_BLOCK_ON_EMPTY, 0, NULL );
+	disable_buttons();
+	uint16_t btn_status = (uint16_t) msg;
+	btn_id_t btn_id = (btn_id_t) (msg >> BTN_NUM_BITS_IN_VALUE);
+	if (btn_status == btn_pressed) {
+		return btn_id;
+	} else {
+		return UNKNOWN_BTN_ID;
+	}
 }

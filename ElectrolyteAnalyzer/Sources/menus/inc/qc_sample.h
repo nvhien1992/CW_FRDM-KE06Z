@@ -8,7 +8,6 @@
 #ifndef QC_SAMPLE_H_
 #define QC_SAMPLE_H_
 
-#include "button_devs.h"
 #include "menu_id.h"
 
 void qc_sample_menu_enter(menu_id_t* next_main_menu);
