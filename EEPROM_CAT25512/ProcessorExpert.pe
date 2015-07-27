@@ -3,8 +3,8 @@
   <Header>
     <Name>EEPROM_CAT25512</Name>
     <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>35</ModificationStamp>
-    <Date>2015-07-26</Date>
+    <ModificationStamp>37</ModificationStamp>
+    <Date>2015-07-27</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>24</ProjectCompNumb>
+    <ProjectCompNumb>26</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -8085,7 +8085,7 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <Value>1256</Value>
+              <Value>2048</Value>
               <Base>DEC</Base>
             </ItemState>
             <ItemState>

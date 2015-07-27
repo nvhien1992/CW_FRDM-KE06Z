@@ -8,7 +8,7 @@
 **     Component   : ConsoleIO
 **     Version     : Component 01.016, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-10, 11:52, # CodeGen: 6
+**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
 **     Abstract    :
 **         This component generates low-level methods for redirecting console I/O to the selected UART.
 **         These methods are typically used by printf()/scanf() methods.

@@ -17,12 +17,6 @@ typedef uint8_t srom_err_t;
 
 void SROM_Reinit(void);
 
-void SROM_write_enable(void);
-
-void SROM_write_disable(void);
-
-bool SROM_write_status(void);
-
 /**
  \brief Read a data block from the SPI EEPROM to a buffer in internal SRAM
  \para startAddress Start address of the data block
@@ -31,7 +25,7 @@ bool SROM_write_status(void);
  \retval SROM_ERR_OK Read OK
  \retval SROM_ERR_DAMAGED The SROM does not respond (not yet)
  */
-srom_err_t SROM_Read(uint16_t startAddress, uint16_t numByteRead,
+srom_err_t SROM_Read(uint32_t startAddress, uint16_t numByteRead,
 		uint8_t readBuf[]);
 
 /**
@@ -42,7 +36,7 @@ srom_err_t SROM_Read(uint16_t startAddress, uint16_t numByteRead,
  \retval SROM_ERR_OK Write OK
  \retval SROM_ERR_DAMAGED The SROM does not respond (not yet)
  */
-srom_err_t SROM_Write(uint16_t startAddress, uint16_t numByteWrite,
+srom_err_t SROM_Write(uint32_t startAddress, uint16_t numByteWrite,
 		uint8_t writeBuf[]);
 
 /**
@@ -55,7 +49,7 @@ srom_err_t SROM_Write(uint16_t startAddress, uint16_t numByteWrite,
  \retval SROM_ERR_DAMAGED The SROM does not respond (not yet)
  \retval SROM_ERR_VALIDATE_FAIL Reread data are always differ with previous read data
  */
-srom_err_t SROM_ReadValidated(uint16_t startAddress, uint16_t numByteRead,
+srom_err_t SROM_ReadValidated(uint32_t startAddress, uint16_t numByteRead,
 		uint8_t readBuf[], uint8_t numRetry);
 
 /**
@@ -68,7 +62,7 @@ srom_err_t SROM_ReadValidated(uint16_t startAddress, uint16_t numByteRead,
  \retval SROM_ERR_DAMAGED The SROM does not respond (not yet)
  \retval SROM_ERR_VALIDATE_FAIL Reread data are always differ with written data
  */
-srom_err_t SROM_WriteValidated(uint16_t startAddress, uint16_t numByte,
+srom_err_t SROM_WriteValidated(uint32_t startAddress, uint16_t numByte,
 		uint8_t writeBuf[], uint8_t numRetry);
 
 #endif /* CAT25512_H_ */

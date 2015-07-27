@@ -32,8 +32,8 @@ typedef uint8_t srom_cmd_t;
 /* a mem page size */
 #define PAGE_SIZE	(64) //bytes
 /* internal functions */
-static void SROM_SR_write_bit(uint8_t SR_mask, uint8_t set_or_clear);
 static uint8_t SROM_SR_read(void);
+static void SROM_write_enable(void);
 static void delay_5ms(void);
 static void delay_us(uint32_t us);
 
@@ -48,27 +48,6 @@ static void delay_us(uint32_t us) {
 	for (count = 0; count < num_clocks; count++) {
 		__asm__ __volatile__("nop");
 	}
-}
-
-static void SROM_SR_write_bit(uint8_t SR_mask, uint8_t set_or_clear) {
-	uint8_t SR_data = SROM_SR_read();
-	if (set_or_clear > 0) {
-		SR_data |= SR_mask;
-	} else {
-		SR_data &= (~SR_mask);
-	}
-	uint8_t data_send[2];
-	data_send[0] = WRSR_CMD;
-	data_send[1] = SR_data;
-
-	SPI_CS_ClrVal(NULL );
-	delay_us(1);
-	SPIW_BlockedSend(2, data_send);
-	delay_us(1);
-	SPI_CS_SetVal(NULL );
-
-	/* delay 5ms after writing */
-	delay_5ms();
 }
 
 static uint8_t SROM_SR_read(void) {
@@ -90,7 +69,7 @@ void SROM_Reinit(void) {
 	SROM_write_enable();
 }
 
-void SROM_write_enable(void) {
+static void SROM_write_enable(void) {
 	uint8_t cmd = WREN_CMD;
 
 //	SPIW_Acquire();
@@ -104,36 +83,14 @@ void SROM_write_enable(void) {
 	delay_5ms();
 }
 
-void SROM_write_disable(void) {
-	uint8_t cmd = WRDI_CMD;
-
-//	SPIW_Acquire();
-	SPI_CS_ClrVal(NULL );
-	delay_us(1);
-	SPIW_BlockedSend(1, &cmd);
-	delay_us(1);
-	SPI_CS_SetVal(NULL );
-//	SPIW_Release();
-
-	delay_5ms();
-}
-
-bool SROM_write_status(void) {
-	uint8_t sr = SROM_SR_read();
-
-	sr &= WEL_MASK;
-
-	return (sr != 0);
-}
-
-srom_err_t SROM_Read(uint16_t startAddress, uint16_t numByteRead,
+srom_err_t SROM_Read(uint32_t startAddress, uint16_t numByteRead,
 		uint8_t readBuf[]) {
 	uint8_t data_send[3];
 	data_send[0] = READ_CMD;
 	data_send[1] = (uint8_t) (startAddress >> 8);
 	data_send[2] = (uint8_t) startAddress;
 
-	uint8_t i = 0;
+	uint16_t i = 0;
 
 //	SPIW_Acquire();
 	SPI_CS_ClrVal(NULL );
@@ -147,34 +104,50 @@ srom_err_t SROM_Read(uint16_t startAddress, uint16_t numByteRead,
 	return SROM_ERR_OK;
 }
 
-srom_err_t SROM_Write(uint16_t startAddress, uint16_t numByteWrite,
+srom_err_t SROM_Write(uint32_t startAddress, uint16_t numByteWrite,
 		uint8_t writeBuf[]) {
-	uint8_t data_send[3 + numByteWrite];
+	uint8_t data_send[3];
 	data_send[0] = WRITE_CMD;
 	data_send[1] = (uint8_t) (startAddress >> 8);
 	data_send[2] = (uint8_t) startAddress;
-	memcpy(&data_send[3], writeBuf, numByteWrite);
 
-//	SPIW_Acquire();
-	if (numByteWrite > PAGE_SIZE) {
-		SROM_SR_write_bit(IPL_MASK, 1);
+	/* write data */
+	while ((numByteWrite + (startAddress % PAGE_SIZE))> PAGE_SIZE) {
+		/* re-enable write */
+		SROM_write_enable();
+
+		SPI_CS_ClrVal(NULL );
+		delay_us(1);
+		SPIW_BlockedSend(3, data_send);
+		SPIW_BlockedSend(PAGE_SIZE - (startAddress % PAGE_SIZE), writeBuf);
+		delay_us(1);
+		SPI_CS_SetVal(NULL );
+		delay_5ms();
+		numByteWrite -= PAGE_SIZE - (startAddress % PAGE_SIZE);
+		writeBuf += PAGE_SIZE - (startAddress % PAGE_SIZE);
+		startAddress += PAGE_SIZE - (startAddress % PAGE_SIZE);
+		data_send[1] = (uint8_t) (startAddress >> 8);
+		data_send[2] = (uint8_t) startAddress;
 	}
+
+	/* re-enable write */
+	SROM_write_enable();
+
 	SPI_CS_ClrVal(NULL );
 	delay_us(1);
-	SPIW_BlockedSend(numByteWrite + 3, data_send);
+	SPIW_BlockedSend(3, data_send);
+	SPIW_BlockedSend(numByteWrite, writeBuf);
 	delay_us(1);
 	SPI_CS_SetVal(NULL );
-//	SPIW_Release();
-
 	delay_5ms();
 
 	return SROM_ERR_OK;
 }
 
-srom_err_t SROM_ReadValidated(uint16_t startAddress, uint16_t numByteRead,
+srom_err_t SROM_ReadValidated(uint32_t startAddress, uint16_t numByteRead,
 		uint8_t readBuf[], uint8_t numRetry) {
 	uint8_t read_back = 0;
-	uint8_t index = 0;
+	uint16_t index = 0;
 	bool retry = FALSE;
 	uint8_t data_send[3];
 
@@ -203,23 +176,23 @@ srom_err_t SROM_ReadValidated(uint16_t startAddress, uint16_t numByteRead,
 		SPI_CS_SetVal(NULL );
 	} while (retry && numRetry > 0);
 
-	if (numRetry == 0 || retry == TRUE) {
+	if (numRetry == 0 || retry == TRUE ) {
 		return SROM_ERR_VALIDATE_FAIL;
 	}
 
 	return SROM_ERR_OK;
 }
 
-srom_err_t SROM_WriteValidated(uint16_t startAddress, uint16_t numByteWrite,
+srom_err_t SROM_WriteValidated(uint32_t startAddress, uint16_t numByteWrite,
 		uint8_t writeBuf[], uint8_t numRetry) {
 	uint8_t read_back = 0;
-	uint8_t index = 0;
+	uint16_t index = 0;
 	bool retry = FALSE;
 	uint8_t data_send[3];
 
-	SROM_Write(startAddress, numByteWrite, writeBuf);
-
 	do {
+		SROM_Write(startAddress, numByteWrite, writeBuf);
+
 		/* send cmd and addr before read data back */
 		data_send[0] = READ_CMD;
 		data_send[1] = (uint8_t) (startAddress >> 8);
@@ -242,7 +215,7 @@ srom_err_t SROM_WriteValidated(uint16_t startAddress, uint16_t numByteWrite,
 		SPI_CS_SetVal(NULL );
 	} while (retry && numRetry > 0);
 
-	if (numRetry == 0 || retry == TRUE) {
+	if (numRetry == 0 || retry == TRUE ) {
 		return SROM_ERR_VALIDATE_FAIL;
 	}
 

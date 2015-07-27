@@ -1128,7 +1128,7 @@ PE_DEBUGHALT();
             <Properties>
               <Name v="Test" />
               <Entry_point_function v="Test_task" />
-              <Stack_size v="1256" />
+              <Stack_size v="2048" />
               <Priority v="8" />
               <Creation_parameter v="0" />
               <group name="Attributes">

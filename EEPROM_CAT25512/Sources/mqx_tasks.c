@@ -57,27 +57,46 @@ extern "C" {
  */
 void Test_task(uint32_t task_init_data) {
 	int counter = 0;
-	uint8_t num = 64;
+	uint16_t num = 255;
 	SROM_Reinit();
 	uint8_t buff[num];
-	uint8_t i = 0;
+	uint16_t i = 0;
 	for (i = 0; i < num; i++) {
 		buff[i] = i + 1;
 	}
 
-	if (SROM_WriteValidated(1, num, buff, 1) != SROM_ERR_OK) {
+	if (SROM_WriteValidated(0, num, buff, 1) != SROM_ERR_OK) {
 		printf("write validated fail\n");
 	} else {
 		printf("write validated ok\n");
 	}
 	uint8_t rbuf[num];
-	if (SROM_ReadValidated(1, num, rbuf, 1) != SROM_ERR_OK) {
+	if (SROM_ReadValidated(0, num, rbuf, 1) != SROM_ERR_OK) {
 		printf("read validated fail\n");
 	} else {
 		printf("read validated ok\n");
 	}
 	
-	uint8_t indx = 0;
+	uint16_t indx = 0;
+	for (indx = 0; indx < num; indx++) {
+		printf("%d\n", rbuf[indx]);
+	}
+	
+	for (i = 0; i < num; i++) {
+		buff[i] = num - i;
+	}
+
+	if (SROM_WriteValidated(63, num, buff, 1) != SROM_ERR_OK) {
+		printf("write validated fail\n");
+	} else {
+		printf("write validated ok\n");
+	}
+	if (SROM_ReadValidated(63, num, rbuf, 1) != SROM_ERR_OK) {
+		printf("read validated fail\n");
+	} else {
+		printf("read validated ok\n");
+	}
+	
 	for (indx = 0; indx < num; indx++) {
 		printf("%d\n", rbuf[indx]);
 	}

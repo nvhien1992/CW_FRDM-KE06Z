@@ -1160,7 +1160,7 @@ PE_DEBUGHALT();
           <Floating_point_context_saving v="no" />
         </group>
         <group name="Interrupts">
-          <Interrupt_stack_size v="256" />
+          <Interrupt_stack_size v="512" />
         </group>
         <group name="Idle Task">
           <Use_Idle_Task v="yes" />
