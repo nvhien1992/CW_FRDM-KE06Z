@@ -249,24 +249,6 @@ Module "SPIP"      (component SPIMaster_LDD)
                 number of characters is received. The method <CancelBlockReception> can be used to cancel a running receive 
                 operation.
 
-Module "SPI_CS"    (component BitIO_LDD)
-   - SPI_CS_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
-                interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
-                then the device is also enabled(see the description of the Enable() method). In this case the Enable() method 
-                is not necessary and needn't to be generated.
-   - SPI_CS_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
-                returned. If the direction is [output] then the last written value is read and returned (see <Safe mode> 
-                property for limitations). This method cannot be disabled if direction is [input].
-   - SPI_CS_PutVal -The specified output value is set. If the direction is <b>input</b>, the component saves the value to a 
-                memory or a register and this value will be written to the pin after switching to the output mode (using 
-                <tt>SetDir(TRUE)</tt>; see <a href="BitIOProperties.html#SafeMode">Safe mode</a> property for limitations). If 
-                the direction is <b>output</b>, it writes the value to the pin. (Method is available only if the direction = 
-                <u><tt>output</tt></u> or <u><tt>input/output</tt></u>).
-   - SPI_CS_ClrVal -Clears (set to zero) the output value. It is equivalent to the [PutVal(FALSE)]. This method is available 
-                only if the direction = _[output]_ or _[input/output]_.
-   - SPI_CS_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
-                the direction = _[output]_ or _[input/output]_.
-
 Module "CsIO1"     (component ConsoleIO)
 
 Module "WP"        (component BitIO_LDD)
@@ -286,6 +268,28 @@ Module "WP"        (component BitIO_LDD)
                 if the direction = _[output]_ or _[input/output]_.
    - WP_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if the 
                 direction = _[output]_ or _[input/output]_.
+
+Module "SPIWP_CS"  (component BitsIO_LDD)
+   - SPIWP_CS_Init -This method initializes the associated peripheral(s) and the component internal variables. The method is 
+                called automatically as a part of the application initialization code.
+   - SPIWP_CS_GetVal -Returns the value of the Input/Output component. If the direction is [input] then reads the input value 
+                of the pins and returns it. If the direction is [output] then returns the last written value (see <Safe mode> 
+                property for limitations).
+   - SPIWP_CS_PutVal -Specified value is passed to the Input/Output component. If the direction is [input] saves the value to a 
+                memory or a register, this value will be written to the pins after switching to the output mode - using 
+                [SetDir(TRUE)] (see <Safe mode> property for limitations). If the direction is [output] it writes the value to 
+                the pins. (Method is available only if the Direction = _[output]_ or _[input/output]_).
+   - SPIWP_CS_GetBit -Returns the value of the specified bit/pin of the Input/Output component. If the direction is [input] 
+                then it reads the input value of the pin and returns it. If the direction is [output] then it returns the last 
+                written value (see <Safe mode> property for limitations).
+   - SPIWP_CS_PutBit -Specified value is passed to the specified bit/pin of the Input/Output component. If the direction is 
+                [input] it saves the value to a memory or register, this value will be written to the pin after switching to 
+                the output mode - using [SetDir(TRUE)] (see <Safe mode> property for limitations). If the direction is [output] 
+                it writes the value to the pin. (Method is available only if the Direction = _[output]_ or _[input/output]_).
+   - SPIWP_CS_SetBit -Sets (to one) the specified bit of the Input/Output component. It is the same as [PutBit(Bit, TRUE)]. 
+                (Method is available only if the Direction = _[output]_ or _[input/output]_).
+   - SPIWP_CS_ClrBit -Clears (sets to zero) the specified bit of the Input/Output component. It is the same as [PutBit(Bit, 
+                FALSE)]. (Method is available only if the Direction = _[output]_ or _[input/output]_).
 
 Module "Cpu"       (component MKE06Z128LK4)
 

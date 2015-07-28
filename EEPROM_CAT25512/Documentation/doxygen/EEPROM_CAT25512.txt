@@ -32,9 +32,9 @@
 
 - \subpage SystemTimer1
 - \subpage SPIP
-- \subpage SPI_CS
 - \subpage IO1
 - \subpage WP
+- \subpage SPIWP_CS
 
 
 */
@@ -83,9 +83,9 @@
 
 - \subpage SystemTimer1
 - \subpage SPIP
-- \subpage SPI_CS
 - \subpage IO1
 - \subpage WP
+- \subpage SPIWP_CS
 
 
 */

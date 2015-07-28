@@ -76,7 +76,7 @@ void Cpu_OnNMI(void) {
 /* ===================================================================*/
 void SPIP_OnBlockSent(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
-	SPIW_send_callback_in_event();
+	SendBlock_Success();
 }
 
 /*
@@ -98,7 +98,7 @@ void SPIP_OnBlockSent(LDD_TUserData *UserDataPtr) {
 /* ===================================================================*/
 void SPIP_OnBlockReceived(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
-	SPIW_recv_callback_in_event();
+	ReceiveBlock_Success();
 }
 
 /* END Events */

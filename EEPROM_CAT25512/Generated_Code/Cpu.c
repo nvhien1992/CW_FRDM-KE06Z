@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
+**     Date/Time   : 2015-07-28, 10:49, # CodeGen: 58
 **     Abstract    :
 **
 **     Settings    :
@@ -111,12 +111,12 @@ void Components_Init(void)
 {
   /* ### SPIMaster_LDD "SPIP" component auto initializatation. Auto initialization feature can be disabled by component's property "Auto initialization". */
   (void)SPIP_Init(NULL);
-  /* ### BitIO_LDD "SPI_CS" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)SPI_CS_Init(NULL);
   /* ### Serial_LDD "IO1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)IO1_Init(NULL);
   /* ### BitIO_LDD "WP" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)WP_Init(NULL);
+  /* ### GPIO_LDD "SPIWP_CS" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)SPIWP_CS_Init(NULL);
 }
 #endif /* CPU_COMPONENTS_INIT */
 

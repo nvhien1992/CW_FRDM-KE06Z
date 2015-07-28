@@ -38,10 +38,10 @@
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "SPIP.h"
-#include "SPI_CS.h"
 #include "CsIO1.h"
 #include "IO1.h"
 #include "WP.h"
+#include "SPIWP_CS.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,6 +63,38 @@ extern "C" {
 */
 void Test_task(uint32_t task_init_data);
 
+
+/*
+** ===================================================================
+**     Event       :  klog_task (module mqx_tasks)
+**
+**     Component   :  Task2 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void klog_task(uint32_t task_init_data);
+
+/*
+** ===================================================================
+**     Event       :  parallel_task (module mqx_tasks)
+**
+**     Component   :  Task3 [MQXLite_task]
+**     Description :
+**         MQX task routine. The routine is generated into mqx_tasks.c
+**         file.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         task_init_data  - 
+**     Returns     : Nothing
+** ===================================================================
+*/
+void parallel_task(uint32_t task_init_data);
 
 /* END mqx_tasks */
 

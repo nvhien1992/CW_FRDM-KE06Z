@@ -38,10 +38,10 @@
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "SPIP.h"
-#include "SPI_CS.h"
 #include "CsIO1.h"
 #include "IO1.h"
 #include "WP.h"
+#include "SPIWP_CS.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -15,7 +15,7 @@ typedef uint8_t srom_err_t;
 #define SROM_ERR_DAMAGED		(0x01)
 #define SROM_ERR_VALIDATE_FAIL	(0x02)
 
-void SROM_Reinit(void);
+void SROM_Reinit(uint16_t a_page_size);
 
 /**
  \brief Read a data block from the SPI EEPROM to a buffer in internal SRAM

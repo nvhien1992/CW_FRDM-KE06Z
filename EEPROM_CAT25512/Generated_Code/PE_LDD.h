@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
+**     Date/Time   : 2015-07-28, 10:49, # CodeGen: 58
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -58,10 +58,10 @@
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "SPIP.h"
-#include "SPI_CS.h"
 #include "CsIO1.h"
 #include "IO1.h"
 #include "WP.h"
+#include "SPIWP_CS.h"
 
 
 /*

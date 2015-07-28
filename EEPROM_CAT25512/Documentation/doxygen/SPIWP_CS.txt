@@ -1,32 +1,32 @@
 /*!
-\page SPI_CS SPI_CS (BitIO_LDD)
-**         The HAL BitIO component provides a low level API for unified
-**         access to general purpose digital input/output pins across
+\page SPIWP_CS SPIWP_CS (BitsIO_LDD)
+**         The HAL BitsIO component provides a low level API for unified
+**         access to general purpose digital input/output 32 pins across
 **         various device designs.
 **
-**         RTOS drivers using HAL BitIO API are simpler and more
+**         RTOS drivers using HAL BitsIO API are simpler and more
 **         portable to various microprocessors.
 
-- \subpage SPI_CS_settings
-- \subpage SPI_CS_regs_overview  
-- \subpage SPI_CS_regs_details
-- \ref SPI_CS_module "Component documentation" 
+- \subpage SPIWP_CS_settings
+- \subpage SPIWP_CS_regs_overview  
+- \subpage SPIWP_CS_regs_details
+- \ref SPIWP_CS_module "Component documentation" 
 
-\page SPI_CS_regs_overview Registers Initialization Overview
+\page SPIWP_CS_regs_overview Registers Initialization Overview
 This page initialization values for the registers of the peripheral(s) configured
 by the component. 
 <table>
-<tr><td colspan="4" class="ttitle1">SPI_CS Initialization</td></tr>
+<tr><td colspan="4" class="ttitle1">SPIWP_CS Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x400FF054</td><td>GPIOB_PDDR</td><td>
-    0x00000100
- </td><td>GPIOB_PDDR register, peripheral SPI_CS.</td></tr>
+    0x00080100
+ </td><td>GPIOB_PDDR register, peripheral SPIWP_CS.</td></tr>
 <tr><td>0x400FF040</td><td>GPIOB_PDOR</td><td>
-    0x00000100
- </td><td>GPIOB_PDOR register, peripheral SPI_CS.</td></tr>
+    0x00080100
+ </td><td>GPIOB_PDOR register, peripheral SPIWP_CS.</td></tr>
 </table>
 <br/>
-\page SPI_CS_regs_details Register Initialization Details
+\page SPIWP_CS_regs_details Register Initialization Details
 This page contains detailed description of initialization values for the 
 registers of the peripheral(s) configured by the component. 
 
@@ -67,7 +67,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF054</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000100</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00080100</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PDD</td><td>0x00</td><td>Port Data Direction</td>
@@ -109,18 +109,21 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF040</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000100</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00080100</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PDO</td><td>0x00</td><td>Port Data Output</td>
 </tr></table>
 */
 /*!
-\page SPI_CS_settings Component Settings
+\page SPIWP_CS_settings Component Settings
 \code
-**          Component name                                 : SPI_CS
-**          Pin for I/O                                    : PTF0/KBI1_P8/FTM2_CH0
-**          Pin signal                                     : 
+**          Component name                                 : SPIWP_CS
+**          Port                                           : GPIOB
+**          Pins                                           : 1
+**            Pin0                                         : 
+**              Pin                                        : PTF0/KBI1_P8/FTM2_CH0
+**              Pin signal                                 : 
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

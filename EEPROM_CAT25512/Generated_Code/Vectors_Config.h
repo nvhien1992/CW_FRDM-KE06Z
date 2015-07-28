@@ -53,10 +53,10 @@
 #include "MQX1.h"
 #include "SystemTimer1.h"
 #include "SPIP.h"
-#include "SPI_CS.h"
 #include "CsIO1.h"
 #include "IO1.h"
 #include "WP.h"
+#include "SPIWP_CS.h"
 #include "Events.h"
 #include "mqx_tasks.h"
 

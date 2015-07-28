@@ -9,7 +9,6 @@
 #define SPIW_H_
 
 /* User include*/
-#include "PE_Types.h"
 #include "mqxlite.h"
 
 ////////////////////////////////////////////////
@@ -22,18 +21,8 @@ typedef uint8_t spiw_err_t;
 #define SPIW_ERR_INVALID		2	/**! Input parameters of the function is invalid */
 #define SPIW_ERR_NOT_RESPOND	3	/**! SPI is not respond as expected */
 ////////////////////////////////////////////////
-
 #define EVT_BIT_MASK_SEND 0x01
 #define EVT_BIT_MASK_RECEIVE 0x02
-typedef struct {
-	LDD_TDeviceData *spi_user_ptr;
-	LDD_TDeviceData *chip_select;
-} spiw_t;
-
-typedef struct {
-	_mqx_uint_ptr old_ceiling_ptr;
-	_mqx_uint priority;
-} spiw_queue;
 
 /**
  \brief Reinit the SPI wrapper. Reset related Kinetis peripheral and all the local variables
@@ -83,14 +72,14 @@ spiw_err_t SPIW_BlockedSendReceive(uint16_t numByte, uint8_t sendBuf[],
  */
 void SPIW_Release(void);
 
-/**
- * @brief Called in send event after sending completely.
- */
-void SPIW_send_callback_in_event(void);
+/*
+ * @brief Call back after sending block spi success
+ */ 
+void SendBlock_Success(void);
 
-/**
- * @brief Called in receiving event after receiving completely.
- */
-void SPIW_recv_callback_in_event(void);
+/*
+ * @brief Call back after receiving block spi success
+ */ 
+void ReceiveBlock_Success(void);
 
 #endif /* SPIW_H_ */

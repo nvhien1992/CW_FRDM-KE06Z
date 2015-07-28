@@ -8,8 +8,9 @@
 #include <stdio.h>
 #include "CAT25512.h"
 #include "mqxlite.h"
-#include "SPI_CS.h"
 #include "WP.h"
+
+#define EEPROM_SLAVE_INDEX (0)
 
 #define SYS_CLK (48) //MHz
 /* cmds */
@@ -29,15 +30,18 @@ typedef uint8_t srom_cmd_t;
 #define BP0_MASK	(0x04) //bit 2
 #define WEL_MASK	(0x02) //bit 1
 #define NRDY_MASK	(0x01) //bit 0
-/* a mem page size */
-#define PAGE_SIZE	(64) //bytes
+
+/* a mem page size, default as 64bytes */
+static uint16_t page_size = 64; //bytes
+
 /* internal functions */
 static uint8_t SROM_SR_read(void);
 static void SROM_write_enable(void);
-static void delay_5ms(void);
+static srom_err_t SROM_write_waiting(void);
+static void delay_some_ms(void);
 static void delay_us(uint32_t us);
 
-static void delay_5ms(void) {
+static void delay_some_ms(void) {
 	_time_delay_ticks(1);
 }
 
@@ -54,33 +58,46 @@ static uint8_t SROM_SR_read(void) {
 	uint8_t cmd = RDSR_CMD;
 	uint8_t SR_data = 0xff;
 
-	SPI_CS_ClrVal(NULL );
+	SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 	SPIW_BlockedSend(1, &cmd);
 	SPIW_BlockedSendReceive(1, &SR_data, &SR_data);
-	SPI_CS_SetVal(NULL );
+	SPIW_Release();
 
 	return SR_data;
 }
 
-void SROM_Reinit(void) {
+static srom_err_t SROM_write_waiting(void) {
+	uint8_t indx = 0;
+	uint8_t rdy = 1;
+	while(rdy != 0) {
+		if(indx == 3) {
+			return SROM_ERR_DAMAGED;
+		}
+		delay_some_ms();
+		rdy = SROM_SR_read();
+		rdy &= NRDY_MASK;
+		indx++;
+	}
+	
+	return SROM_ERR_OK;
+}
+
+void SROM_Reinit(uint16_t a_page_size) {
+	page_size = a_page_size;
 	SPIW_Reinit();
-	SPI_CS_SetVal(NULL );
 	WP_SetVal(NULL );
-	SROM_write_enable();
 }
 
 static void SROM_write_enable(void) {
 	uint8_t cmd = WREN_CMD;
 
-//	SPIW_Acquire();
-	SPI_CS_ClrVal(NULL );
+	SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 	delay_us(1);
 	SPIW_BlockedSend(1, &cmd);
 	delay_us(1);
-	SPI_CS_SetVal(NULL );
-//	SPIW_Release();
+	SPIW_Release();
 
-	delay_5ms();
+	SROM_write_waiting();
 }
 
 srom_err_t SROM_Read(uint32_t startAddress, uint16_t numByteRead,
@@ -92,14 +109,12 @@ srom_err_t SROM_Read(uint32_t startAddress, uint16_t numByteRead,
 
 	uint16_t i = 0;
 
-//	SPIW_Acquire();
-	SPI_CS_ClrVal(NULL );
+	SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 	SPIW_BlockedSend(3, data_send);
 	for (i = 0; i < numByteRead; i++) {
 		SPIW_BlockedSendReceive(1, &readBuf[i], &readBuf[i]);
 	}
-	SPI_CS_SetVal(NULL );
-//	SPIW_Release();
+	SPIW_Release();
 
 	return SROM_ERR_OK;
 }
@@ -112,34 +127,37 @@ srom_err_t SROM_Write(uint32_t startAddress, uint16_t numByteWrite,
 	data_send[2] = (uint8_t) startAddress;
 
 	/* write data */
-	while ((numByteWrite + (startAddress % PAGE_SIZE))> PAGE_SIZE) {
+	while ((numByteWrite + (startAddress % page_size)) > page_size) {
 		/* re-enable write */
 		SROM_write_enable();
 
-		SPI_CS_ClrVal(NULL );
+		SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 		delay_us(1);
 		SPIW_BlockedSend(3, data_send);
-		SPIW_BlockedSend(PAGE_SIZE - (startAddress % PAGE_SIZE), writeBuf);
+		SPIW_BlockedSend(page_size - (startAddress % page_size), writeBuf);
 		delay_us(1);
-		SPI_CS_SetVal(NULL );
-		delay_5ms();
-		numByteWrite -= PAGE_SIZE - (startAddress % PAGE_SIZE);
-		writeBuf += PAGE_SIZE - (startAddress % PAGE_SIZE);
-		startAddress += PAGE_SIZE - (startAddress % PAGE_SIZE);
+		SPIW_Release();
+		if(SROM_write_waiting() != SROM_ERR_OK) {
+			return SROM_ERR_DAMAGED;
+		}
+		numByteWrite -= page_size - (startAddress % page_size);
+		writeBuf += page_size - (startAddress % page_size);
+		startAddress += page_size - (startAddress % page_size);
 		data_send[1] = (uint8_t) (startAddress >> 8);
 		data_send[2] = (uint8_t) startAddress;
 	}
-
 	/* re-enable write */
 	SROM_write_enable();
 
-	SPI_CS_ClrVal(NULL );
+	SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 	delay_us(1);
 	SPIW_BlockedSend(3, data_send);
 	SPIW_BlockedSend(numByteWrite, writeBuf);
 	delay_us(1);
-	SPI_CS_SetVal(NULL );
-	delay_5ms();
+	SPIW_Release();
+	if(SROM_write_waiting() != SROM_ERR_OK) {
+		return SROM_ERR_DAMAGED;
+	}
 
 	return SROM_ERR_OK;
 }
@@ -158,14 +176,13 @@ srom_err_t SROM_ReadValidated(uint32_t startAddress, uint16_t numByteRead,
 		data_send[0] = READ_CMD;
 		data_send[1] = (uint8_t) (startAddress >> 8);
 		data_send[2] = (uint8_t) startAddress;
-		SPI_CS_ClrVal(NULL );
+		SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 		SPIW_BlockedSend(3, data_send);
 
 		/* read back */
 		for (index = 0; index < numByteRead; index++) {
 			SPIW_BlockedSendReceive(1, &read_back, &read_back);
 			if (read_back != readBuf[index]) {
-				SPI_CS_SetVal(NULL );
 				retry = TRUE;
 				numRetry--;
 				break;
@@ -173,7 +190,7 @@ srom_err_t SROM_ReadValidated(uint32_t startAddress, uint16_t numByteRead,
 				retry = FALSE;
 			}
 		}
-		SPI_CS_SetVal(NULL );
+		SPIW_Release();
 	} while (retry && numRetry > 0);
 
 	if (numRetry == 0 || retry == TRUE ) {
@@ -197,14 +214,13 @@ srom_err_t SROM_WriteValidated(uint32_t startAddress, uint16_t numByteWrite,
 		data_send[0] = READ_CMD;
 		data_send[1] = (uint8_t) (startAddress >> 8);
 		data_send[2] = (uint8_t) startAddress;
-		SPI_CS_ClrVal(NULL );
+		SPIW_WaitAndAcquire(EEPROM_SLAVE_INDEX);
 		SPIW_BlockedSend(3, data_send);
 
 		/* read back */
 		for (index = 0; index < numByteWrite; index++) {
 			SPIW_BlockedSendReceive(1, &read_back, &read_back);
 			if (read_back != writeBuf[index]) {
-				SPI_CS_SetVal(NULL );
 				retry = TRUE;
 				numRetry--;
 				break;
@@ -212,7 +228,7 @@ srom_err_t SROM_WriteValidated(uint32_t startAddress, uint16_t numByteWrite,
 				retry = FALSE;
 			}
 		}
-		SPI_CS_SetVal(NULL );
+		SPIW_Release();
 	} while (retry && numRetry > 0);
 
 	if (numRetry == 0 || retry == TRUE ) {

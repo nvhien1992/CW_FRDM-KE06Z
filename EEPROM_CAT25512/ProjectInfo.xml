@@ -69,7 +69,7 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\PE_LDD.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\Pins1.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\SPIP.c</PathName>
-      <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\SPI_CS.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\SPIWP_CS.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.c</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Vectors.c</PathName>
@@ -158,7 +158,7 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\PE_Types.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\Pins1.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\SPIP.h</PathName>
-      <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\SPI_CS.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\SPIWP_CS.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\CPU_Init.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\PDD_Includes.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\system\Peripherals_Init.h</PathName>
