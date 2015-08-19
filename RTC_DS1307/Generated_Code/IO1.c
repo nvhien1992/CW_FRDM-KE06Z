@@ -6,7 +6,7 @@
 **     Component   : Serial_LDD
 **     Version     : Component 01.187, Driver 01.12, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-19, 15:25, # CodeGen: 1
+**     Date/Time   : 2015-08-19, 23:25, # CodeGen: 4
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -114,6 +114,7 @@
 #include "mqxlite_prv.h"
 #include "IO1.h"
 #include "UART_PDD.h"
+#include "SIM_PDD.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -252,11 +253,11 @@ static void InterruptTx(IO1_TDeviceDataPtr DeviceDataPrv)
 void IO1_Main(LDD_TDeviceData *DeviceDataPtr)
 {
   IO1_TDeviceDataPtr DeviceDataPrv = (IO1_TDeviceDataPtr)DeviceDataPtr;
-  register uint16_t StatReg = UART_PDD_ReadInterruptStatusReg(UART1_BASE_PTR); /* Read status register */
+  register uint32_t StatReg = UART_PDD_ReadInterruptStatusReg(UART1_BASE_PTR); /* Read status register */
 
   if (StatReg & (UART_S1_NF_MASK | UART_S1_OR_MASK | UART_S1_FE_MASK | UART_S1_PF_MASK)) { /* Is any error flag set? */
     (void)UART_PDD_GetChar8(UART1_BASE_PTR); /* Dummy read 8-bit character from receiver */
-    StatReg &= (uint16_t)(~(uint16_t)UART_S1_RDRF_MASK); /* Clear the receive data flag to discard the errorneous data */
+    StatReg &= (uint32_t)(~(uint32_t)UART_S1_RDRF_MASK); /* Clear the receive data flag to discard the errorneous data */
   }
   if (StatReg & UART_S1_RDRF_MASK) {   /* Is the receiver's interrupt flag set? */
     InterruptRx(DeviceDataPrv);        /* If yes, then invoke the internal service routine. This routine is inlined. */

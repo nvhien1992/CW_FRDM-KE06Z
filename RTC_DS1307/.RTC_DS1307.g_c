@@ -227,9 +227,9 @@
       <GenExtraFileSrcDir6>lib\mqxlite\V1.1.0\source\psp\cortex_m\core\M0\</GenExtraFileSrcDir6>
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.0\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.0\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
-      <XtraAge1>1192457281</XtraAge1>
-      <XtraAge2>1192459153</XtraAge2>
-      <XtraAge3>1192459153</XtraAge3>
+      <XtraAge1>1192475432</XtraAge1>
+      <XtraAge2>1192475431</XtraAge2>
+      <XtraAge3>1192475432</XtraAge3>
       <XtraAge4>1192457280</XtraAge4>
       <XtraAge5>1192457280</XtraAge5>
       <XtraAge7>1192457280</XtraAge7>
@@ -307,7 +307,7 @@
       <XtraAge96>1192459074</XtraAge96>
       <XtraAge97>1192459074</XtraAge97>
       <XtraAge99>1192459074</XtraAge99>
-      <XtraAge100>1192459185</XtraAge100>
+      <XtraAge100>1192475432</XtraAge100>
       <XtraAge101>1192459185</XtraAge101>
       <GenExtraFileType105>5</GenExtraFileType105>
       <GenExtraFileType104>4</GenExtraFileType104>
@@ -414,6 +414,7 @@
       <GenExtraFileType3>4</GenExtraFileType3>
       <GenExtraFileType2>4</GenExtraFileType2>
       <GenExtraFileType1>4</GenExtraFileType1>
+      <GenExtraFileType0>4</GenExtraFileType0>
       <GenLinkedFiles lines_count="101">
         <Line>Generated_Code\Peripherals\ACMP0_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\ACMP0_Init.c</Line>
         <Line>Generated_Code\Peripherals\ACMP0_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\ACMP0_Init.h</Line>
@@ -473,10 +474,10 @@
         <Line>Generated_Code\Peripherals\SPI0_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SPI0_Init.h</Line>
         <Line>Generated_Code\Peripherals\SPI1_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SPI1_Init.c</Line>
         <Line>Generated_Code\Peripherals\SPI1_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SPI1_Init.h</Line>
-        <Line>Generated_Code\Peripherals\SystemControl_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SystemControl_Init.c</Line>
-        <Line>Generated_Code\Peripherals\SystemControl_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SystemControl_Init.h</Line>
         <Line>Generated_Code\Peripherals\SysTick_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SysTick_Init.c</Line>
         <Line>Generated_Code\Peripherals\SysTick_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SysTick_Init.h</Line>
+        <Line>Generated_Code\Peripherals\SystemControl_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SystemControl_Init.c</Line>
+        <Line>Generated_Code\Peripherals\SystemControl_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\SystemControl_Init.h</Line>
         <Line>Generated_Code\Peripherals\UART0_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\UART0_Init.c</Line>
         <Line>Generated_Code\Peripherals\UART0_Init.h=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\UART0_Init.h</Line>
         <Line>Generated_Code\Peripherals\UART1_Init.c=C:\Freescale\CW MCU v10.6\MCU\ProcessorExpert\lib\Kinetis\pdd2\MKE06Z128LK4\peripherals\UART1_Init.c</Line>
@@ -564,7 +565,7 @@
     <GenComponentVersion>01.011</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1192457281</HeaderAge>
+    <HeaderAge>1192475432</HeaderAge>
     <CodeAge>1192459074</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>6</GenNumMethods>
@@ -594,27 +595,9 @@
     <OnLossOfLock_Name>Cpu_OnLossOfLock</OnLossOfLock_Name>
     <OnLossOfLock_Priority>interrupts disabled</OnLossOfLock_Priority>
     <ISR_IntNMIISRHandle>Cpu_INT_NMIInterrupt</ISR_IntNMIISRHandle>
-    <ISR_ISRnameNMI />
+    <ISR_ISRnameNMI>Cpu_INT_NMIInterrupt</ISR_ISRnameNMI>
     <ISR_ISRDefaultName>isr_default</ISR_ISRDefaultName>
     <ISR_ISRnameINITPC>_startup</ISR_ISRnameINITPC>
-    <ISR_IntHardFaultISRHandle />
-    <ISR_ISRnameHardfault />
-    <ISR_IntMPUISRHandle />
-    <ISR_ISRnameMPU />
-    <ISR_IntMemManageFaultISRHandle />
-    <ISR_ISRnameMemManageFault />
-    <ISR_IntBusFaultISRHandle />
-    <ISR_ISRnameBusFault />
-    <ISR_IntUsageFaultISRHandle />
-    <ISR_ISRnameUsageFault />
-    <ISR_IntSVCallISRHandle />
-    <ISR_ISRnameSVCall />
-    <ISR_IntPendSVISRHandle />
-    <ISR_ISRnamePendSV />
-    <ISR_IntLossOfLockISRHandle />
-    <ISR_ISRnameLossOfLock />
-    <ISR_IntICSLossOfLockISRHandle />
-    <ISR_ISRnameICSLossOfLock />
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -663,10 +646,10 @@
     <ExtraFile41>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\UART1_Init.c</ExtraFile41>
     <ExtraFile42>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\UART0_Init.h</ExtraFile42>
     <ExtraFile43>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\UART0_Init.c</ExtraFile43>
-    <ExtraFile44>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SysTick_Init.h</ExtraFile44>
-    <ExtraFile45>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SysTick_Init.c</ExtraFile45>
-    <ExtraFile46>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SystemControl_Init.h</ExtraFile46>
-    <ExtraFile47>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SystemControl_Init.c</ExtraFile47>
+    <ExtraFile44>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SystemControl_Init.h</ExtraFile44>
+    <ExtraFile45>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SystemControl_Init.c</ExtraFile45>
+    <ExtraFile46>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SysTick_Init.h</ExtraFile46>
+    <ExtraFile47>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SysTick_Init.c</ExtraFile47>
     <ExtraFile48>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SPI1_Init.h</ExtraFile48>
     <ExtraFile49>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SPI1_Init.c</ExtraFile49>
     <ExtraFile50>D:\Work\GitLocal\CodeWarrior\RTC_DS1307\Generated_Code\Peripherals\SPI0_Init.h</ExtraFile50>
@@ -760,13 +743,13 @@
   <ComponentID_4>
     <Generated>true</Generated>
     <GenCompName>MQX1</GenCompName>
-    <GenComponentVersion>01.106</GenComponentVersion>
+    <GenComponentVersion>01.110</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1192459074</HeaderAge>
-    <CodeAge>1192457281</CodeAge>
+    <HeaderAge>1192475432</HeaderAge>
+    <CodeAge>1192475432</CodeAge>
     <AsemblAge>-1</AsemblAge>
-    <GenNumMethods>184</GenNumMethods>
+    <GenNumMethods>157</GenNumMethods>
     <_int_default_isr>true</_int_default_isr>
     <_int_disable>true</_int_disable>
     <_int_enable>true</_int_enable>
@@ -924,33 +907,6 @@
     <_lwtimer_cancel_timer>true</_lwtimer_cancel_timer>
     <_lwtimer_create_periodic_queue>true</_lwtimer_create_periodic_queue>
     <_lwtimer_test>true</_lwtimer_test>
-    <_usr_lwevent_create>true</_usr_lwevent_create>
-    <_usr_lwevent_destroy>true</_usr_lwevent_destroy>
-    <_usr_lwevent_set_auto_clear>true</_usr_lwevent_set_auto_clear>
-    <_usr_lwevent_set>true</_usr_lwevent_set>
-    <_usr_lwevent_clear>true</_usr_lwevent_clear>
-    <_usr_lwevent_wait_for>true</_usr_lwevent_wait_for>
-    <_usr_lwevent_wait_ticks>true</_usr_lwevent_wait_ticks>
-    <_usr_lwevent_wait_until>true</_usr_lwevent_wait_until>
-    <_usr_lwevent_get_signalled>true</_usr_lwevent_get_signalled>
-    <_usr_lwsem_create>true</_usr_lwsem_create>
-    <_usr_lwsem_destroy>true</_usr_lwsem_destroy>
-    <_usr_lwsem_poll>true</_usr_lwsem_poll>
-    <_usr_lwsem_post>true</_usr_lwsem_post>
-    <_usr_lwsem_wait>true</_usr_lwsem_wait>
-    <_usr_lwsem_wait_ticks>true</_usr_lwsem_wait_ticks>
-    <_usr_lwsem_wait_for>true</_usr_lwsem_wait_for>
-    <_usr_lwsem_wait_until>true</_usr_lwsem_wait_until>
-    <_usr_task_create>true</_usr_task_create>
-    <_usr_task_destroy>true</_usr_task_destroy>
-    <_usr_task_abort>true</_usr_task_abort>
-    <_usr_task_set_error>true</_usr_task_set_error>
-    <_usr_task_get_td>true</_usr_task_get_td>
-    <_usr_task_ready>true</_usr_task_ready>
-    <_usr_time_delay>true</_usr_time_delay>
-    <_usr_time_delay_ticks>true</_usr_time_delay_ticks>
-    <_usr_time_get_elapsed_ticks>true</_usr_time_get_elapsed_ticks>
-    <_usr_lwmsgq_init>true</_usr_lwmsgq_init>
     <GenNumEvents>0</GenNumEvents>
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
@@ -1137,7 +1093,6 @@
       <OnChannel7_Selected>0</OnChannel7_Selected>
       <OnChannel7_Name>SystemTimer1_OnChannel7</OnChannel7_Name>
       <OnChannel7_Priority>interrupts disabled</OnChannel7_Priority>
-      <ISR_CounterIntISRHandle />
       <ISR_ModuloIntISRHandle>SystemTimer1_Interrupt</ISR_ModuloIntISRHandle>
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
@@ -1515,7 +1470,7 @@
       <GenDriverVersion>01.12</GenDriverVersion>
       <GenEventModule>Events</GenEventModule>
       <HeaderAge>1192459074</HeaderAge>
-      <CodeAge>1192459074</CodeAge>
+      <CodeAge>1192475432</CodeAge>
       <AsemblAge>-1</AsemblAge>
       <GenNumMethods>36</GenNumMethods>
       <Init>true</Init>
@@ -1570,10 +1525,6 @@
       <OnTxComplete_Selected>0</OnTxComplete_Selected>
       <OnTxComplete_Name>IO1_OnTxComplete</OnTxComplete_Name>
       <OnTxComplete_Priority>interrupts disabled</OnTxComplete_Priority>
-      <ISR_InpIntISRHandle />
-      <ISR_OutIntISRHandle />
-      <ISR_ErrIntISRHandle />
-      <ISR_IdleIntISRHandle />
       <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
       <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
       <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
@@ -1596,29 +1547,29 @@
         <MethodPos2>Init</MethodPos2>
         <MethodType>method</MethodType>
         <ModuleType>Code</ModuleType>
-        <LineBeg>125</LineBeg>
-        <LineEnd>184</LineEnd>
+        <LineBeg>126</LineBeg>
+        <LineEnd>185</LineEnd>
       </MethodPos>
       <MethodPos>
         <MethodPos3>InterruptRx</MethodPos3>
         <MethodType>internal_method</MethodType>
         <ModuleType>Code</ModuleType>
-        <LineBeg>185</LineBeg>
-        <LineEnd>208</LineEnd>
+        <LineBeg>186</LineBeg>
+        <LineEnd>209</LineEnd>
       </MethodPos>
       <MethodPos>
         <MethodPos4>InterruptTx</MethodPos4>
         <MethodType>internal_method</MethodType>
         <ModuleType>Code</ModuleType>
-        <LineBeg>209</LineBeg>
-        <LineEnd>232</LineEnd>
+        <LineBeg>210</LineBeg>
+        <LineEnd>233</LineEnd>
       </MethodPos>
       <MethodPos>
         <MethodPos5>Main</MethodPos5>
         <MethodType>method</MethodType>
         <ModuleType>Code</ModuleType>
-        <LineBeg>233</LineBeg>
-        <LineEnd>269</LineEnd>
+        <LineBeg>234</LineBeg>
+        <LineEnd>270</LineEnd>
       </MethodPos>
       <GenExtraFilesCount>1</GenExtraFilesCount>
       <ExtraFile0>Documentation\doxygen\IO1.txt</ExtraFile0>
@@ -1634,13 +1585,13 @@
     <SrcFile6>Drivers\Kinetis\IsSupported_VREF_PDD.prg=1146382935</SrcFile6>
     <SrcFile7>Drivers\Common\CommonSubroutines.prg=1116866294</SrcFile7>
     <SrcFile8>Drivers\Common\GenInitConfigSequence.prg=1123053043</SrcFile8>
-    <SrcFile9>Drivers\Kinetis\Static_Kinetis_ICS.prg=1146382935</SrcFile9>
+    <SrcFile9>Drivers\Kinetis\Static_Kinetis_ICS.prg=1154056003</SrcFile9>
     <SrcFile10>Drivers\sw\ConsoleIO.drv=1146382935</SrcFile10>
     <SrcFile11>Drivers\Kinetis\IsSupported_LPTMR_PDD.prg=1146382935</SrcFile11>
     <SrcFile12>Drivers\Common\MQXLiteSettings.inc=1116872437</SrcFile12>
     <SrcFile13>Drivers\Common\Static_SupportSubroutines.prg=1146382935</SrcFile13>
     <SrcFile14>Drivers\Kinetis\PinSettings_MKE06Z128LK4.prg=1146382935</SrcFile14>
-    <SrcFile15>Drivers\Kinetis\Static_Kinetis.drv=1148340896</SrcFile15>
+    <SrcFile15>Drivers\Kinetis\Static_Kinetis.drv=1153730074</SrcFile15>
     <SrcFile16>Drivers\Kinetis\IsSupported_PMC_PDD.prg=1146382935</SrcFile16>
     <SrcFile17>Drivers\Common\Init_ConfigAbstract.inc=1124477581</SrcFile17>
     <SrcFile18>Drivers\sw\PinSettings.drv=1146382935</SrcFile18>
@@ -1685,7 +1636,7 @@
     <SrcFile57>Drivers\Common\IO_MapAbstract.inc=1116866294</SrcFile57>
     <SrcFile58>Drivers\Kinetis\IsSupported_PORT_PDD.prg=1146382935</SrcFile58>
     <SrcFile59>Drivers\Common\Init_ConfigSettings.inc=1124477581</SrcFile59>
-    <SrcFile60>Drivers\sw\MQXLite_task.drv=1147442077</SrcFile60>
+    <SrcFile60>Drivers\sw\MQXLite_task.drv=1192474247</SrcFile60>
     <SrcFile61>Drivers\Common\HeaderFreescale.C=1116866294</SrcFile61>
     <SrcFile62>Drivers\Kinetis\IsSupported_MCM_PDD.prg=1146382935</SrcFile62>
     <SrcFile63>Drivers\Kinetis\IsSupported_DRY_PDD.prg=1146382935</SrcFile63>
@@ -1748,11 +1699,11 @@
     <SrcFile120>Drivers\Common\I2C_LDDSelectSlaveDevice.inc=1116866294</SrcFile120>
     <SrcFile121>Drivers\Common\GeneralParameters.inc=1116866294</SrcFile121>
     <SrcFile122>Drivers\Common\Serial_LDDInit.inc=1116866294</SrcFile122>
-    <SrcFile123>Drivers\Kinetis\Serial_LDD.drv=1146382935</SrcFile123>
+    <SrcFile123>Drivers\Kinetis\Serial_LDD.drv=1153262242</SrcFile123>
     <SrcFile124>Drivers\Common\MQXLiteAbstract.inc=1116872437</SrcFile124>
     <SrcFile125>Drivers\Common\GeneralPublicGlobal.inc=1116866294</SrcFile125>
     <SrcFile126>Drivers\Common\HeaderGeneral.C=1116866294</SrcFile126>
-    <SrcFile127>Drivers\Kinetis\Static_KinetisE_Cpu_Config_h.prg=1146382935</SrcFile127>
+    <SrcFile127>Drivers\Kinetis\Static_KinetisE_Cpu_Config_h.prg=1154109222</SrcFile127>
     <SrcFile128>Drivers\Kinetis\IsSupported_LCD_PDD.prg=1119719539</SrcFile128>
     <SrcFile129>Drivers\Common\MQXLite_taskOnTask.inc=1116872437</SrcFile129>
     <SrcFile130>Drivers\Common\TimerUnit_LDDSettings.inc=1146382935</SrcFile130>
@@ -1777,7 +1728,7 @@
     <SrcFile149>Drivers\Common\PE_ErrorAbstract.inc=1116866294</SrcFile149>
     <SrcFile150>Drivers\sw\MQXLite_shared.prg=1128496915</SrcFile150>
     <SrcFile151>Drivers\Common\Serial_LDDMain.inc=1146382935</SrcFile151>
-    <SrcFile152>lib\doxygen\pex.doxyfile=1146389079</SrcFile152>
+    <SrcFile152>lib\doxygen\pex.doxyfile=1192474247</SrcFile152>
     <SrcFile153>Drivers\Kinetis\IsSupported_NFC_PDD.prg=1119719549</SrcFile153>
     <SrcFile154>Drivers\PinSettings.src=1146382935</SrcFile154>
     <SrcFile155>Drivers\Common\GeneralEvent.inc=1116866294</SrcFile155>
@@ -1808,11 +1759,11 @@
     <SrcFile180>Drivers\Kinetis\IsSupported_FTFE_PDD.prg=1146382935</SrcFile180>
     <SrcFile181>Drivers\Kinetis\IsSupported_USBHS_PDD.prg=1119719708</SrcFile181>
     <SrcFile182>Drivers\Common\CommonRegInitialization_NotRst.prg=1116866294</SrcFile182>
-    <SrcFile183>Drivers\sw\MQXLite.drv=1129746299</SrcFile183>
+    <SrcFile183>Drivers\sw\MQXLite.drv=1192474247</SrcFile183>
     <SrcFile184>Drivers\Kinetis\IsSupported_I2S_PDD.prg=1119719530</SrcFile184>
     <SrcFile185>Drivers\Common\InitReg32Block.prg=1116866294</SrcFile185>
     <SrcFile186>Drivers\Kinetis\IsSupported_IRQ_PDD.prg=1146382935</SrcFile186>
-    <SrcFile187>Drivers\Kinetis\I2C_LDD.drv=1146382935</SrcFile187>
+    <SrcFile187>Drivers\Kinetis\I2C_LDD.drv=1146714696</SrcFile187>
     <SrcFile188>Drivers\Kinetis\Static_Kinetis_InterruptVectorTable.prg=1127381294</SrcFile188>
     <SrcFile189>Drivers\VAR\InitPinProperty.prg=1123044898</SrcFile189>
     <SrcFile190>Drivers\Common\KinetisAbstract.inc=1116866294</SrcFile190>

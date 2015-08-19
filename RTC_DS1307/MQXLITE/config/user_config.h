@@ -3,9 +3,9 @@
 **     Filename    : user_config.h
 **     Project     : RTC_DS1307
 **     Processor   : MKE06Z128VLK4
-**     Version     : Component 01.106, Driver 01.00, CPU db: 3.00.000
+**     Version     : Component 01.110, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-19, 15:28, # CodeGen: 2
+**     Date/Time   : 2015-08-19, 23:25, # CodeGen: 4
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -75,6 +75,7 @@
 #define MQX_INTERRUPT_STACK_SIZE       256
 
 /* PSP Settings */
+#define MQXCFG_ENABLE_FP               0
 #define PSP_HAS_FPU                    0
 #define PSP_MAXIMUM_INTERRUPT_VECTORS  (sizeof(__vect_table)/sizeof(tIsrFunc))
 
