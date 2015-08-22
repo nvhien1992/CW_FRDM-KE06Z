@@ -19,10 +19,10 @@ by the component.
 <tr><td colspan="4" class="ttitle1">SPIWP_CS Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x400FF054</td><td>GPIOB_PDDR</td><td>
-    0x00080100
+    0x00880000
  </td><td>GPIOB_PDDR register, peripheral SPIWP_CS.</td></tr>
 <tr><td>0x400FF040</td><td>GPIOB_PDOR</td><td>
-    0x00080100
+    0x00880000
  </td><td>GPIOB_PDOR register, peripheral SPIWP_CS.</td></tr>
 </table>
 <br/>
@@ -67,7 +67,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF054</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00080100</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00880000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PDD</td><td>0x00</td><td>Port Data Direction</td>
@@ -109,7 +109,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400FF040</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00080100</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00880000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>0 - 31</td><td>PDO</td><td>0x00</td><td>Port Data Output</td>
@@ -122,7 +122,7 @@ registers of the peripheral(s) configured by the component.
 **          Port                                           : GPIOB
 **          Pins                                           : 1
 **            Pin0                                         : 
-**              Pin                                        : PTF0/KBI1_P8/FTM2_CH0
+**              Pin                                        : PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS
 **              Pin signal                                 : 
 **          Direction                                      : Output
 **          Initialization                                 : 

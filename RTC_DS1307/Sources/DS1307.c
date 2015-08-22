@@ -21,9 +21,6 @@
 #define YEAR_REG	(0x06) //year register
 /* hour modes */
 #define HOUR_BITS_MASK	(0x3F) //only support 24h mode (bit6=0)
-/* wr/rd bit */
-//#define WRITE	(0xFE)
-//#define READ	(0x01)
 
 static uint8_t dec2bcd(uint8_t dec_num);
 static uint8_t bcd2dec(uint8_t bcd_num);

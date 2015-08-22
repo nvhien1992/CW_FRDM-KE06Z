@@ -557,7 +557,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>5</ProjectModificationStamp>
+    <ProjectModificationStamp>10</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -566,7 +566,7 @@
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
     <HeaderAge>1192475432</HeaderAge>
-    <CodeAge>1192459074</CodeAge>
+    <CodeAge>1192588362</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>6</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
@@ -1254,8 +1254,8 @@
     <GenComponentVersion>01.016</GenComponentVersion>
     <GenDriverVersion>01.07</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1192459186</HeaderAge>
-    <CodeAge>1192459186</CodeAge>
+    <HeaderAge>1192588362</HeaderAge>
+    <CodeAge>1192656605</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>33</GenNumMethods>
     <Init>true</Init>
@@ -1343,36 +1343,36 @@
       <MethodPos0>Init</MethodPos0>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>181</LineBeg>
-      <LineEnd>205</LineEnd>
+      <LineBeg>184</LineBeg>
+      <LineEnd>208</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos1>MasterSendBlock</MethodPos1>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>206</LineBeg>
-      <LineEnd>252</LineEnd>
+      <LineBeg>209</LineBeg>
+      <LineEnd>255</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos2>MasterReceiveBlock</MethodPos2>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>253</LineBeg>
-      <LineEnd>303</LineEnd>
+      <LineBeg>256</LineBeg>
+      <LineEnd>306</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos3>SelectSlaveDevice</MethodPos3>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>304</LineBeg>
-      <LineEnd>338</LineEnd>
+      <LineBeg>307</LineBeg>
+      <LineEnd>341</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos4>Interrupt</MethodPos4>
       <MethodType>internal_method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>339</LineBeg>
-      <LineEnd>351</LineEnd>
+      <LineBeg>342</LineBeg>
+      <LineEnd>354</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos5>Interrupt</MethodPos5>

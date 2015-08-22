@@ -1634,7 +1634,7 @@ PE_DEBUGHALT();
       <Port v="GPIOB" />
       <list name="Pins" v="1">
         <group name="Pin0">
-          <Pin v="PTF0/KBI1_P8/FTM2_CH0" />
+          <Pin v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
         </group>
       </list>
       <Direction v="Output" />

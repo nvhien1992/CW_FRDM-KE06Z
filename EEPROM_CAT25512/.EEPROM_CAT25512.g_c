@@ -207,88 +207,88 @@
       <GenExtraFileSrcDir6>lib\mqxlite\V1.1.1\source\psp\cortex_m\core\M0\</GenExtraFileSrcDir6>
       <GenExtraFileSrcDir5>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir5>
       <GenExtraFileSrcDir4>lib\mqxlite\V1.1.1\source\psp\cortex_m\compiler\cwgcc\</GenExtraFileSrcDir4>
-      <XtraAge1>1190944276</XtraAge1>
-      <XtraAge2>1190944276</XtraAge2>
-      <XtraAge3>1190943798</XtraAge3>
-      <XtraAge4>1189588569</XtraAge4>
-      <XtraAge5>1189588569</XtraAge5>
-      <XtraAge7>1189588569</XtraAge7>
-      <XtraAge8>1189588569</XtraAge8>
-      <XtraAge10>1189588569</XtraAge10>
-      <XtraAge11>1189588569</XtraAge11>
-      <XtraAge12>1189588569</XtraAge12>
-      <XtraAge13>1189588569</XtraAge13>
-      <XtraAge14>1189588569</XtraAge14>
-      <XtraAge15>1189588569</XtraAge15>
-      <XtraAge16>1189588569</XtraAge16>
-      <XtraAge17>1189588569</XtraAge17>
-      <XtraAge18>1189588569</XtraAge18>
-      <XtraAge19>1189588569</XtraAge19>
-      <XtraAge20>1189588569</XtraAge20>
-      <XtraAge21>1189588569</XtraAge21>
-      <XtraAge22>1189588569</XtraAge22>
-      <XtraAge23>1189588569</XtraAge23>
-      <XtraAge24>1189588569</XtraAge24>
-      <XtraAge25>1189588569</XtraAge25>
-      <XtraAge26>1189588569</XtraAge26>
-      <XtraAge27>1189588569</XtraAge27>
-      <XtraAge28>1189588569</XtraAge28>
-      <XtraAge29>1189588569</XtraAge29>
-      <XtraAge30>1189588569</XtraAge30>
-      <XtraAge31>1189588569</XtraAge31>
-      <XtraAge32>1189588569</XtraAge32>
-      <XtraAge33>1189588569</XtraAge33>
-      <XtraAge34>1189588569</XtraAge34>
-      <XtraAge35>1189588569</XtraAge35>
-      <XtraAge36>1189588569</XtraAge36>
-      <XtraAge37>1189588569</XtraAge37>
-      <XtraAge38>1189588569</XtraAge38>
-      <XtraAge39>1189588569</XtraAge39>
-      <XtraAge40>1189588569</XtraAge40>
-      <XtraAge41>1189588569</XtraAge41>
-      <XtraAge42>1189588569</XtraAge42>
-      <XtraAge43>1189588569</XtraAge43>
-      <XtraAge44>1189588569</XtraAge44>
-      <XtraAge45>1189588569</XtraAge45>
-      <XtraAge46>1189588569</XtraAge46>
-      <XtraAge47>1189588569</XtraAge47>
-      <XtraAge48>1189588569</XtraAge48>
-      <XtraAge49>1189588568</XtraAge49>
-      <XtraAge50>1189588568</XtraAge50>
-      <XtraAge51>1189588568</XtraAge51>
-      <XtraAge52>1189588568</XtraAge52>
-      <XtraAge53>1189588568</XtraAge53>
-      <XtraAge54>1189588568</XtraAge54>
-      <XtraAge56>1189588568</XtraAge56>
-      <XtraAge57>1189588568</XtraAge57>
-      <XtraAge58>1189588568</XtraAge58>
-      <XtraAge59>1189588568</XtraAge59>
-      <XtraAge60>1189588568</XtraAge60>
-      <XtraAge61>1189588568</XtraAge61>
-      <XtraAge62>1189588568</XtraAge62>
-      <XtraAge63>1189588568</XtraAge63>
-      <XtraAge64>1189588568</XtraAge64>
-      <XtraAge65>1189588568</XtraAge65>
-      <XtraAge66>1189588568</XtraAge66>
-      <XtraAge67>1189588568</XtraAge67>
-      <XtraAge68>1189588568</XtraAge68>
-      <XtraAge69>1189588568</XtraAge69>
-      <XtraAge70>1189588568</XtraAge70>
-      <XtraAge71>1189588568</XtraAge71>
-      <XtraAge72>1189588568</XtraAge72>
-      <XtraAge73>1189588568</XtraAge73>
-      <XtraAge74>1189588568</XtraAge74>
-      <XtraAge75>1189588568</XtraAge75>
-      <XtraAge76>1189588568</XtraAge76>
-      <XtraAge77>1189588568</XtraAge77>
-      <XtraAge78>1189588568</XtraAge78>
-      <XtraAge79>1189588568</XtraAge79>
-      <XtraAge80>1189588568</XtraAge80>
+      <XtraAge1>1192459313</XtraAge1>
+      <XtraAge2>1192459313</XtraAge2>
+      <XtraAge3>1192459313</XtraAge3>
+      <XtraAge4>1192459313</XtraAge4>
+      <XtraAge5>1192459313</XtraAge5>
+      <XtraAge7>1192459313</XtraAge7>
+      <XtraAge8>1192459313</XtraAge8>
+      <XtraAge10>1192459313</XtraAge10>
+      <XtraAge11>1192459313</XtraAge11>
+      <XtraAge12>1192459313</XtraAge12>
+      <XtraAge13>1192459313</XtraAge13>
+      <XtraAge14>1192459313</XtraAge14>
+      <XtraAge15>1192459313</XtraAge15>
+      <XtraAge16>1192459313</XtraAge16>
+      <XtraAge17>1192459313</XtraAge17>
+      <XtraAge18>1192459313</XtraAge18>
+      <XtraAge19>1192459313</XtraAge19>
+      <XtraAge20>1192459313</XtraAge20>
+      <XtraAge21>1192459313</XtraAge21>
+      <XtraAge22>1192459313</XtraAge22>
+      <XtraAge23>1192459313</XtraAge23>
+      <XtraAge24>1192459313</XtraAge24>
+      <XtraAge25>1192459313</XtraAge25>
+      <XtraAge26>1192459313</XtraAge26>
+      <XtraAge27>1192459313</XtraAge27>
+      <XtraAge28>1192459313</XtraAge28>
+      <XtraAge29>1192459313</XtraAge29>
+      <XtraAge30>1192459313</XtraAge30>
+      <XtraAge31>1192459313</XtraAge31>
+      <XtraAge32>1192459313</XtraAge32>
+      <XtraAge33>1192459313</XtraAge33>
+      <XtraAge34>1192459313</XtraAge34>
+      <XtraAge35>1192459313</XtraAge35>
+      <XtraAge36>1192459313</XtraAge36>
+      <XtraAge37>1192459313</XtraAge37>
+      <XtraAge38>1192459313</XtraAge38>
+      <XtraAge39>1192459313</XtraAge39>
+      <XtraAge40>1192459313</XtraAge40>
+      <XtraAge41>1192459313</XtraAge41>
+      <XtraAge42>1192459313</XtraAge42>
+      <XtraAge43>1192459313</XtraAge43>
+      <XtraAge44>1192459313</XtraAge44>
+      <XtraAge45>1192459313</XtraAge45>
+      <XtraAge46>1192459313</XtraAge46>
+      <XtraAge47>1192459313</XtraAge47>
+      <XtraAge48>1192459313</XtraAge48>
+      <XtraAge49>1192459313</XtraAge49>
+      <XtraAge50>1192459313</XtraAge50>
+      <XtraAge51>1192459313</XtraAge51>
+      <XtraAge52>1192459313</XtraAge52>
+      <XtraAge53>1192459313</XtraAge53>
+      <XtraAge54>1192459313</XtraAge54>
+      <XtraAge56>1192459313</XtraAge56>
+      <XtraAge57>1192459313</XtraAge57>
+      <XtraAge58>1192459313</XtraAge58>
+      <XtraAge59>1192459313</XtraAge59>
+      <XtraAge60>1192459313</XtraAge60>
+      <XtraAge61>1192459313</XtraAge61>
+      <XtraAge62>1192459313</XtraAge62>
+      <XtraAge63>1192459313</XtraAge63>
+      <XtraAge64>1192459313</XtraAge64>
+      <XtraAge65>1192459313</XtraAge65>
+      <XtraAge66>1192459313</XtraAge66>
+      <XtraAge67>1192459313</XtraAge67>
+      <XtraAge68>1192459313</XtraAge68>
+      <XtraAge69>1192459313</XtraAge69>
+      <XtraAge70>1192459313</XtraAge70>
+      <XtraAge71>1192459313</XtraAge71>
+      <XtraAge72>1192459313</XtraAge72>
+      <XtraAge73>1192459313</XtraAge73>
+      <XtraAge74>1192459313</XtraAge74>
+      <XtraAge75>1192459313</XtraAge75>
+      <XtraAge76>1192459313</XtraAge76>
+      <XtraAge77>1192459313</XtraAge77>
+      <XtraAge78>1192459313</XtraAge78>
+      <XtraAge79>1192459313</XtraAge79>
+      <XtraAge80>1192459313</XtraAge80>
       <XtraAge87>1190942255</XtraAge87>
       <XtraAge88>1190942255</XtraAge88>
       <XtraAge90>1190942255</XtraAge90>
-      <XtraAge91>1190833157</XtraAge91>
-      <XtraAge92>1190833157</XtraAge92>
+      <XtraAge91>1192459313</XtraAge91>
+      <XtraAge92>1192459313</XtraAge92>
       <GenExtraFileType96>5</GenExtraFileType96>
       <GenExtraFileType95>4</GenExtraFileType95>
       <GenExtraFileType94>4</GenExtraFileType94>
@@ -463,7 +463,7 @@
     </GenFiles>
     <SignalListFile />
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>45</ProjectModificationStamp>
+    <ProjectModificationStamp>46</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>
@@ -471,7 +471,7 @@
     <GenComponentVersion>01.011</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1190833157</HeaderAge>
+    <HeaderAge>1192459313</HeaderAge>
     <CodeAge>1190942254</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>6</GenNumMethods>
@@ -589,8 +589,8 @@
     <GenComponentVersion>01.110</GenComponentVersion>
     <GenDriverVersion>01.00</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1190944276</HeaderAge>
-    <CodeAge>1190944276</CodeAge>
+    <HeaderAge>1192459313</HeaderAge>
+    <CodeAge>1192459313</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>157</GenNumMethods>
     <_int_default_isr>true</_int_default_isr>
@@ -1310,7 +1310,7 @@
       <GenDriverVersion>01.12</GenDriverVersion>
       <GenEventModule>Events</GenEventModule>
       <HeaderAge>1190833158</HeaderAge>
-      <CodeAge>1190833158</CodeAge>
+      <CodeAge>1192459313</CodeAge>
       <AsemblAge>-1</AsemblAge>
       <GenNumMethods>36</GenNumMethods>
       <Init>true</Init>
@@ -1522,8 +1522,8 @@
     <GenComponentVersion>01.029</GenComponentVersion>
     <GenDriverVersion>01.05</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1190943687</HeaderAge>
-    <CodeAge>1190943687</CodeAge>
+    <HeaderAge>1192657579</HeaderAge>
+    <CodeAge>1192657579</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>18</GenNumMethods>
     <Init>true</Init>
@@ -1722,7 +1722,7 @@
     <SrcFile68>Drivers\Kinetis\IsSupported_PORT_PDD.prg=1146382935</SrcFile68>
     <SrcFile69>Drivers\Common\IO_MapAbstract.inc=1116866294</SrcFile69>
     <SrcFile70>Drivers\Common\Init_ConfigSettings.inc=1124477581</SrcFile70>
-    <SrcFile71>Drivers\sw\MQXLite_task.drv=1178380625</SrcFile71>
+    <SrcFile71>Drivers\sw\MQXLite_task.drv=1192474247</SrcFile71>
     <SrcFile72>Drivers\Common\HeaderFreescale.C=1116866294</SrcFile72>
     <SrcFile73>Drivers\Kinetis\IsSupported_MCM_PDD.prg=1146382935</SrcFile73>
     <SrcFile74>Drivers\Kinetis\IsSupported_DRY_PDD.prg=1146382935</SrcFile74>
@@ -1821,7 +1821,7 @@
     <SrcFile167>Drivers\Common\PE_ErrorAbstract.inc=1116866294</SrcFile167>
     <SrcFile168>Drivers\sw\MQXLite_shared.prg=1128496915</SrcFile168>
     <SrcFile169>Drivers\Common\Serial_LDDMain.inc=1146382935</SrcFile169>
-    <SrcFile170>lib\doxygen\pex.doxyfile=1178380625</SrcFile170>
+    <SrcFile170>lib\doxygen\pex.doxyfile=1192474247</SrcFile170>
     <SrcFile171>Drivers\Kinetis\IsSupported_NFC_PDD.prg=1119719549</SrcFile171>
     <SrcFile172>Drivers\PinSettings.src=1146382935</SrcFile172>
     <SrcFile173>Drivers\Common\LDDSupport\GPIO\GPIO.inc=1124477581</SrcFile173>
@@ -1859,7 +1859,7 @@
     <SrcFile205>Drivers\Kinetis\IsSupported_FTFE_PDD.prg=1146382935</SrcFile205>
     <SrcFile206>Drivers\Kinetis\IsSupported_USBHS_PDD.prg=1119719708</SrcFile206>
     <SrcFile207>Drivers\Common\CommonRegInitialization_NotRst.prg=1116866294</SrcFile207>
-    <SrcFile208>Drivers\sw\MQXLite.drv=1178380625</SrcFile208>
+    <SrcFile208>Drivers\sw\MQXLite.drv=1192474247</SrcFile208>
     <SrcFile209>Drivers\Kinetis\IsSupported_I2S_PDD.prg=1119719530</SrcFile209>
     <SrcFile210>Drivers\Common\InitReg32Block.prg=1116866294</SrcFile210>
     <SrcFile211>Drivers\Kinetis\IsSupported_IRQ_PDD.prg=1146382935</SrcFile211>

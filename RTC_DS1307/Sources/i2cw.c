@@ -45,6 +45,8 @@ bool I2CW_Reinit(void) {
 		return FALSE ;
 	}
 
+	is_inited = TRUE;
+
 	/* init i2c */
 	I2CP_dev_data = I2CP_Init(NULL );
 

@@ -2,9 +2,9 @@
 <PEproject>
   <Header>
     <Name>EEPROM_CAT25512</Name>
-    <SavedBy>nvhie_000</SavedBy>
-    <ModificationStamp>45</ModificationStamp>
-    <Date>2015-07-28</Date>
+    <SavedBy>nvhie</SavedBy>
+    <ModificationStamp>46</ModificationStamp>
+    <Date>2015-08-22</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -12862,7 +12862,7 @@
         <ItemSymbol>Pin0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>PTF0/KBI1_P8/FTM2_CH0</Value>
+        <Value>PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>

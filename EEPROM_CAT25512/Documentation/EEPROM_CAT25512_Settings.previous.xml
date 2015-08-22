@@ -1120,7 +1120,7 @@ PE_DEBUGHALT();
           <event name="OnChannel7" v="don&amp;apos;t generate code" />
         </Events>
       </inhrbean>
-      <list name="Task Template List" v="3">
+      <list name="Task Template List" v="2">
         <boolgroup name="Task1" v="Enabled">
           <inhrbean type="MQXLite_task">
             <Enabled v="Y" />
@@ -1169,32 +1169,6 @@ PE_DEBUGHALT();
               <Event_module_name v="mqx_tasks" />
               <event name="OnTask" v="generate code">
                 <Event_procedure_name v="klog_task" />
-              </event>
-            </Events>
-          </inhrbean>
-        </boolgroup>
-        <boolgroup name="Task3" v="Enabled">
-          <inhrbean type="MQXLite_task">
-            <Enabled v="Y" />
-            <Template v="Task" />
-            <Properties>
-              <Name v="parallel" />
-              <Entry_point_function v="parallel_task" />
-              <Stack_size v="2048" />
-              <Priority v="8" />
-              <Creation_parameter v="0" />
-              <group name="Attributes">
-                <MQX_AUTO_START_TASK v="Disabled" />
-                <MQX_FLOATING_POINT_TASK v="Disabled" />
-              </group>
-            </Properties>
-            <Methods>
-              <EmptySection_DummyValue />
-            </Methods>
-            <Events>
-              <Event_module_name v="mqx_tasks" />
-              <event name="OnTask" v="generate code">
-                <Event_procedure_name v="parallel_task" />
               </event>
             </Events>
           </inhrbean>

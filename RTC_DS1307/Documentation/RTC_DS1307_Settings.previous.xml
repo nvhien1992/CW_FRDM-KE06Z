@@ -1157,6 +1157,7 @@ PE_DEBUGHALT();
           <Lightweight_Timer v="no" />
           <Kernel_Logging v="no" />
           <Lightweight_Memory_Allocation v="no" />
+          <Floating_point_context_saving v="no" />
         </group>
         <group name="Interrupts">
           <Interrupt_stack_size v="256" />
@@ -1339,33 +1340,6 @@ PE_DEBUGHALT();
       <_lwtimer_cancel_timer v="generate code" />
       <_lwtimer_create_periodic_queue v="generate code" />
       <_lwtimer_test v="generate code" />
-      <_usr_lwevent_create v="generate code" />
-      <_usr_lwevent_destroy v="generate code" />
-      <_usr_lwevent_set_auto_clear v="generate code" />
-      <_usr_lwevent_set v="generate code" />
-      <_usr_lwevent_clear v="generate code" />
-      <_usr_lwevent_wait_for v="generate code" />
-      <_usr_lwevent_wait_ticks v="generate code" />
-      <_usr_lwevent_wait_until v="generate code" />
-      <_usr_lwevent_get_signalled v="generate code" />
-      <_usr_lwsem_create v="generate code" />
-      <_usr_lwsem_destroy v="generate code" />
-      <_usr_lwsem_poll v="generate code" />
-      <_usr_lwsem_post v="generate code" />
-      <_usr_lwsem_wait v="generate code" />
-      <_usr_lwsem_wait_ticks v="generate code" />
-      <_usr_lwsem_wait_for v="generate code" />
-      <_usr_lwsem_wait_until v="generate code" />
-      <_usr_task_create v="generate code" />
-      <_usr_task_destroy v="generate code" />
-      <_usr_task_abort v="generate code" />
-      <_usr_task_set_error v="generate code" />
-      <_usr_task_get_td v="generate code" />
-      <_usr_task_ready v="generate code" />
-      <_usr_time_delay v="generate code" />
-      <_usr_time_delay_ticks v="generate code" />
-      <_usr_time_get_elapsed_ticks v="generate code" />
-      <_usr_lwmsgq_init v="generate code" />
     </Methods>
     <Events>
       <EmptySection_DummyValue />
@@ -1378,7 +1352,7 @@ PE_DEBUGHALT();
       <I2C_channel v="I2C0" />
       <boolgroup name="Interrupt service" v="Enabled">
         <Interrupt v="INT_I2C0" />
-        <Interrupt_priority v="medium priority" />
+        <Interrupt_priority v="high priority" />
         <ISR_name v="I2CP_Interrupt" />
       </boolgroup>
       <group name="Settings">

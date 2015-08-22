@@ -6,7 +6,7 @@
 **     Component   : BitsIO_LDD
 **     Version     : Component 01.029, Driver 01.05, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-28, 11:30, # CodeGen: 61
+**     Date/Time   : 2015-08-22, 16:21, # CodeGen: 66
 **     Abstract    :
 **         The HAL BitsIO component provides a low level API for unified
 **         access to general purpose digital input/output 32 pins across
@@ -19,7 +19,7 @@
 **          Port                                           : GPIOB
 **          Pins                                           : 1
 **            Pin0                                         : 
-**              Pin                                        : PTF0/KBI1_P8/FTM2_CH0
+**              Pin                                        : PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS
 **              Pin signal                                 : 
 **          Direction                                      : Output
 **          Initialization                                 : 
@@ -94,10 +94,10 @@ extern "C" {
 /* Definition of implementation constants */
 #define SPIWP_CS_MODULE_BASE_ADDRESS GPIOB_BASE_PTR /*!< Name of macro used as the base address */
 #define SPIWP_CS_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define SPIWP_CS_PORT_MASK 0x0100U     /*!< Mask of the allocated pin from the port */
+#define SPIWP_CS_PORT_MASK 0x00800000U /*!< Mask of the allocated pin from the port */
 #define SPIWP_CS_PORT_VALID_VALUE_MASK 0x01 /*!< Mask of the allocated pins from the port as the first pin would be zero i.e. valid bits to be set in method PutVal */
-#define SPIWP_CS_PIN_ALLOC_0_MASK 0x0100 /*!< Mask of the first allocated pin from the port */
-#define SPIWP_CS_PIN_ALLOC_0_INDEX 8U  /*!< The index of the first allocated pin from the port */
+#define SPIWP_CS_PIN_ALLOC_0_MASK 0x00800000 /*!< Mask of the first allocated pin from the port */
+#define SPIWP_CS_PIN_ALLOC_0_INDEX 23U /*!< The index of the first allocated pin from the port */
 
 
 

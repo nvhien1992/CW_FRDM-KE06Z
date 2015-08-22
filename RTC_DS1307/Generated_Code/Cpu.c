@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-19, 15:25, # CodeGen: 1
+**     Date/Time   : 2015-08-21, 14:34, # CodeGen: 11
 **     Abstract    :
 **
 **     Settings    :
@@ -109,6 +109,8 @@ void Common_Init(void)
 #if CPU_COMPONENTS_INIT
 void Components_Init(void)
 {
+  /* ### I2C_LDD "I2CP" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)I2CP_Init(NULL);
   /* ### Serial_LDD "IO1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)IO1_Init(NULL);
 }

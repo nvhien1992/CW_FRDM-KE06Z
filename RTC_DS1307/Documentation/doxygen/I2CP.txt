@@ -615,7 +615,7 @@ registers of the peripheral(s) configured by the component.
 **          I2C channel                                    : I2C0
 **          Interrupt service                              : Enabled
 **            Interrupt                                    : INT_I2C0
-**            Interrupt priority                           : medium priority
+**            Interrupt priority                           : high priority
 **            ISR name                                     : I2CP_Interrupt
 **          Settings                                       : 
 **            Mode selection                               : MASTER
@@ -643,7 +643,7 @@ registers of the peripheral(s) configured by the component.
 **            Low timeout                                  : Disabled
 **          Initialization                                 : 
 **            Enabled in init code                         : yes
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **            Event mask                                   : 
 **              OnMasterBlockSent                          : Enabled
 **              OnMasterBlockReceived                      : Enabled

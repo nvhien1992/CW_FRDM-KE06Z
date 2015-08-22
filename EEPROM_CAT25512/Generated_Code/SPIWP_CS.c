@@ -6,7 +6,7 @@
 **     Component   : BitsIO_LDD
 **     Version     : Component 01.029, Driver 01.05, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-28, 11:30, # CodeGen: 61
+**     Date/Time   : 2015-08-22, 16:21, # CodeGen: 66
 **     Abstract    :
 **         The HAL BitsIO component provides a low level API for unified
 **         access to general purpose digital input/output 32 pins across
@@ -19,7 +19,7 @@
 **          Port                                           : GPIOB
 **          Pins                                           : 1
 **            Pin0                                         : 
-**              Pin                                        : PTF0/KBI1_P8/FTM2_CH0
+**              Pin                                        : PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS
 **              Pin signal                                 : 
 **          Direction                                      : Output
 **          Initialization                                 : 
@@ -72,7 +72,7 @@ typedef struct {
 typedef SPIWP_CS_TDeviceData *SPIWP_CS_TDeviceDataPtr ; /* Pointer to the device data structure. */
 
 static const uint32_t SPIWP_CS_PIN_MASK_MAP[1U] = {
-   0x0100U
+   0x00800000U
 };                                     /* Map of masks for each pin */
 
 /* {MQXLite RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
@@ -107,11 +107,11 @@ LDD_TDeviceData* SPIWP_CS_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   /* Configure pin directions */
-  /* GPIOB_PDDR: PDD|=0x0100 */
-  GPIOB_PDDR |= GPIO_PDDR_PDD(0x0100);
+  /* GPIOB_PDDR: PDD|=0x00800000 */
+  GPIOB_PDDR |= GPIO_PDDR_PDD(0x00800000);
   /* Set initialization value */
-  /* GPIOB_PDOR: PDO|=0x0100 */
-  GPIOB_PDOR |= GPIO_PDOR_PDO(0x0100);
+  /* GPIOB_PDOR: PDO|=0x00800000 */
+  GPIOB_PDOR |= GPIO_PDOR_PDO(0x00800000);
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_SPIWP_CS_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv);

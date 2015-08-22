@@ -6,7 +6,7 @@
 **     Component   : I2C_LDD
 **     Version     : Component 01.016, Driver 01.07, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-19, 15:29, # CodeGen: 3
+**     Date/Time   : 2015-08-22, 15:54, # CodeGen: 12
 **     Abstract    :
 **          This component encapsulates the internal I2C communication
 **          interface. The implementation of the interface is based
@@ -29,7 +29,7 @@
 **          I2C channel                                    : I2C0
 **          Interrupt service                              : Enabled
 **            Interrupt                                    : INT_I2C0
-**            Interrupt priority                           : medium priority
+**            Interrupt priority                           : high priority
 **            ISR name                                     : I2CP_Interrupt
 **          Settings                                       : 
 **            Mode selection                               : MASTER
@@ -57,7 +57,7 @@
 **            Low timeout                                  : Disabled
 **          Initialization                                 : 
 **            Enabled in init code                         : yes
-**            Auto initialization                          : no
+**            Auto initialization                          : yes
 **            Event mask                                   : 
 **              OnMasterBlockSent                          : Enabled
 **              OnMasterBlockReceived                      : Enabled
