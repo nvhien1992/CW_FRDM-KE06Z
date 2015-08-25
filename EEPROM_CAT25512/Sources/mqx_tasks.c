@@ -70,10 +70,12 @@ void Test_task(uint32_t task_init_data) {
 	for (i = 0; i < num; i++) {
 		buff[i] = i % 2;
 	}
-
+//	Bit1_ClrVal(NULL);
+	Bit1_SetVal(NULL);
 	if (SROM_WriteValidated(63, num, buff, 1) != SROM_ERR_OK) {
 		printf("write validated fail\n");
 	} else {
+//		Bit1_SetVal(NULL);
 		printf("write validated ok\n");
 	}
 	if (SROM_ReadValidated(63, num, buff, 1) != SROM_ERR_OK) {

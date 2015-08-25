@@ -42,6 +42,7 @@
 #include "IO1.h"
 #include "WP.h"
 #include "SPIWP_CS.h"
+#include "Bit1.h"
 
 #ifdef __cplusplus
 extern "C" {

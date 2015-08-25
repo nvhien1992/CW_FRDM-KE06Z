@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z128VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-28, 10:49, # CodeGen: 58
+**     Date/Time   : 2015-08-22, 16:37, # CodeGen: 67
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -62,6 +62,7 @@
 #include "IO1.h"
 #include "WP.h"
 #include "SPIWP_CS.h"
+#include "Bit1.h"
 
 
 /*

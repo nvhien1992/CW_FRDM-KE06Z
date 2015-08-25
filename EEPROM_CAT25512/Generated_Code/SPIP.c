@@ -6,29 +6,29 @@
 **     Component   : SPIMaster_LDD
 **     Version     : Component 01.111, Driver 01.02, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
+**     Date/Time   : 2015-08-23, 14:05, # CodeGen: 69
 **     Abstract    :
 **         This component "SPIMaster_LDD" implements MASTER part of synchronous
 **         serial master-slave communication.
 **     Settings    :
 **          Component name                                 : SPIP
-**          Device                                         : SPI0
+**          Device                                         : SPI1
 **          Interrupt service/event                        : Enabled
-**            Input interrupt                              : INT_SPI0
+**            Input interrupt                              : INT_SPI1
 **            Input interrupt priority                     : medium priority
 **            Input ISR name                               : SPIP_Interrupt
-**            Output interrupt                             : INT_SPI0
+**            Output interrupt                             : INT_SPI1
 **            Output interrupt priority                    : medium priority
 **            Output ISR name                              : SPIP_Interrupt
 **          Settings                                       : 
 **            Input pin                                    : Enabled
-**              Pin                                        : PTE2/KBI1_P2/SPI0_MISO/PWT_IN0
+**              Pin                                        : PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO
 **              Pin signal                                 : 
 **            Output pin                                   : Enabled
-**              Pin                                        : PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL
+**              Pin                                        : PTG5/KBI1_P21/FTM2_CH3/SPI1_MOSI
 **              Pin signal                                 : 
 **            Clock pin                                    : 
-**              Pin                                        : PTE0/KBI1_P0/SPI0_SCK/TCLK1/I2C1_SDA
+**              Pin                                        : PTG4/KBI1_P20/FTM2_CH2/SPI1_SCK
 **              Pin signal                                 : 
 **            Chip select list                             : 0
 **            Attribute set list                           : 1
@@ -185,8 +185,8 @@ LDD_TDeviceData* SPIP_Init(LDD_TUserData *UserDataPtr)
   /* Interrupt vector(s) allocation */
   /* {MQXLite RTOS Adapter} Save old and set new interrupt vector (function handler and ISR parameter) */
   /* Note: Exception handler for interrupt is not saved, because it is not modified */
-  DeviceDataPrv->SavedISRSettings_Interrupt.isrData = _int_get_isr_data(LDD_ivIndex_INT_SPI0);
-  DeviceDataPrv->SavedISRSettings_Interrupt.isrFunction = _int_install_isr(LDD_ivIndex_INT_SPI0, SPIP_Interrupt, DeviceDataPrv);
+  DeviceDataPrv->SavedISRSettings_Interrupt.isrData = _int_get_isr_data(LDD_ivIndex_INT_SPI1);
+  DeviceDataPrv->SavedISRSettings_Interrupt.isrFunction = _int_install_isr(LDD_ivIndex_INT_SPI1, SPIP_Interrupt, DeviceDataPrv);
   DeviceDataPrv->EnUser = TRUE;        /* Enable device */
   DeviceDataPrv->ErrFlag = 0x00U;      /* Clear error flags */
   /* Clear the receive counters and pointer */
@@ -197,29 +197,29 @@ LDD_TDeviceData* SPIP_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv->OutSentDataNum = 0x00U; /* Clear the counter of sent characters */
   DeviceDataPrv->OutDataNumReq = 0x00U; /* Clear the counter of characters to be send by SendBlock() */
   DeviceDataPrv->OutDataPtr = NULL;    /* Clear the buffer pointer for data to be transmitted */
-  /* SIM_SCGC: SPI0=1 */
-  SIM_SCGC |= SIM_SCGC_SPI0_MASK;
+  /* SIM_SCGC: SPI1=1 */
+  SIM_SCGC |= SIM_SCGC_SPI1_MASK;
   /* Interrupt vector(s) priority setting */
-  /* NVIC_IPR2: PRI_10=1 */
+  /* NVIC_IPR2: PRI_11=1 */
   NVIC_IPR2 = (uint32_t)((NVIC_IPR2 & (uint32_t)~(uint32_t)(
-               NVIC_IP_PRI_10(0x02)
+               NVIC_IP_PRI_11(0x02)
               )) | (uint32_t)(
-               NVIC_IP_PRI_10(0x01)
+               NVIC_IP_PRI_11(0x01)
               ));
-  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=0,SETENA14=0,SETENA13=0,SETENA12=0,SETENA11=0,SETENA10=1,SETENA9=0,SETENA8=0,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
-  NVIC_ISER = NVIC_ISER_SETENA10_MASK;
+  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=0,SETENA14=0,SETENA13=0,SETENA12=0,SETENA11=1,SETENA10=0,SETENA9=0,SETENA8=0,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
+  NVIC_ISER = NVIC_ISER_SETENA11_MASK;
   /* NVIC_ICER: CLRENA31=0,CLRENA30=0,CLRENA29=0,CLRENA28=0,CLRENA27=0,CLRENA26=0,CLRENA25=0,CLRENA24=0,CLRENA23=0,CLRENA22=0,CLRENA21=0,CLRENA20=0,CLRENA19=0,CLRENA18=0,CLRENA17=0,CLRENA16=0,CLRENA15=0,CLRENA14=0,CLRENA13=0,CLRENA12=0,CLRENA11=0,CLRENA10=0,CLRENA9=0,CLRENA8=0,CLRENA7=0,CLRENA6=0,CLRENA5=0,CLRENA4=0,CLRENA3=0,CLRENA2=0,CLRENA1=0,CLRENA0=0 */
   NVIC_ICER = 0x00U;
-  /* SIM_PINSEL0: SPI0PS=1 */
-  SIM_PINSEL0 |= SIM_PINSEL_SPI0PS_MASK;
-  /* SPI0_C1: SPIE=0,SPE=0,SPTIE=0,MSTR=1,CPOL=0,CPHA=0,SSOE=1,LSBFE=0 */
-  SPI0_C1 = (SPI_C1_MSTR_MASK | SPI_C1_SSOE_MASK); /* Set configuration register */
-  /* SPI0_C2: SPMIE=0,??=0,??=0,MODFEN=1,BIDIROE=0,??=0,SPISWAI=0,SPC0=0 */
-  SPI0_C2 = SPI_C2_MODFEN_MASK;        /* Set configuration register */
-  /* SPI0_BR: ??=0,SPPR=4,SPR=3 */
-  SPI0_BR = (SPI_BR_SPPR(0x04) | SPI_BR_SPR(0x03)); /* Set baud rate register */
-  /* SPI0_C1: SPE=1 */
-  SPI0_C1 |= SPI_C1_SPE_MASK;          /* Enable SPI module */
+  /* SIM_PINSEL1: SPI1PS=1 */
+  SIM_PINSEL1 |= SIM_PINSEL1_SPI1PS_MASK;
+  /* SPI1_C1: SPIE=0,SPE=0,SPTIE=0,MSTR=1,CPOL=0,CPHA=0,SSOE=1,LSBFE=0 */
+  SPI1_C1 = (SPI_C1_MSTR_MASK | SPI_C1_SSOE_MASK); /* Set configuration register */
+  /* SPI1_C2: SPMIE=0,??=0,??=0,MODFEN=1,BIDIROE=0,??=0,SPISWAI=0,SPC0=0 */
+  SPI1_C2 = SPI_C2_MODFEN_MASK;        /* Set configuration register */
+  /* SPI1_BR: ??=0,SPPR=4,SPR=3 */
+  SPI1_BR = (SPI_BR_SPPR(0x04) | SPI_BR_SPR(0x03)); /* Set baud rate register */
+  /* SPI1_C1: SPE=1 */
+  SPI1_C1 |= SPI_C1_SPE_MASK;          /* Enable SPI module */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_SPIP_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv); /* Return pointer to the data data structure */
@@ -330,10 +330,10 @@ LDD_TError SPIP_ReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *BufferPt
   ((SPIP_TDeviceDataPtr)DeviceDataPtr)->InpDataPtr = (uint8_t*)BufferPtr; /* Store a pointer to the input data. */
   ((SPIP_TDeviceDataPtr)DeviceDataPtr)->InpDataNumReq = Size; /* Store a number of characters to be received. */
   ((SPIP_TDeviceDataPtr)DeviceDataPtr)->InpRecvDataNum = 0x00U; /* Set number of received characters to zero. */
-  if ((SPI_PDD_ReadStatusReg(SPI0_BASE_PTR) & SPI_PDD_RX_BUFFER_FULL) != 0U) {
-    (void)SPI_PDD_ReadData8bit(SPI0_BASE_PTR); /* Dummy read of the data register */
+  if ((SPI_PDD_ReadStatusReg(SPI1_BASE_PTR) & SPI_PDD_RX_BUFFER_FULL) != 0U) {
+    (void)SPI_PDD_ReadData8bit(SPI1_BASE_PTR); /* Dummy read of the data register */
   }
-  SPI_PDD_EnableInterruptMask(SPI0_BASE_PTR, SPI_PDD_RX_BUFFER_FULL_OR_FAULT); /* Enable Rx buffer full interrupt */
+  SPI_PDD_EnableInterruptMask(SPI1_BASE_PTR, SPI_PDD_RX_BUFFER_FULL_OR_FAULT); /* Enable Rx buffer full interrupt */
   /* {MQXLite RTOS Adapter} Critical section ends (RTOS function call is defined by MQXLite RTOS Adapter property) */
   _int_enable();
   return ERR_OK;                       /* OK */
@@ -382,7 +382,7 @@ LDD_TError SPIP_SendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *BufferPtr, 
   ((SPIP_TDeviceDataPtr)DeviceDataPtr)->OutDataPtr = (uint8_t*)BufferPtr; /* Set a pointer to the output data. */
   ((SPIP_TDeviceDataPtr)DeviceDataPtr)->OutDataNumReq = Size; /* Set the counter of characters to be sent. */
   ((SPIP_TDeviceDataPtr)DeviceDataPtr)->OutSentDataNum = 0x00U; /* Clear the counter of sent characters. */
-  SPI_PDD_EnableInterruptMask(SPI0_BASE_PTR, SPI_PDD_TX_BUFFER_EMPTY); /* Enable Tx buffer empty interrupt */
+  SPI_PDD_EnableInterruptMask(SPI1_BASE_PTR, SPI_PDD_TX_BUFFER_EMPTY); /* Enable Tx buffer empty interrupt */
   /* {MQXLite RTOS Adapter} Critical section ends (RTOS function call is defined by MQXLite RTOS Adapter property) */
   _int_enable();
   return ERR_OK;                       /* OK */
@@ -402,15 +402,15 @@ void SPIP_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
 {
   /* {MQXLite RTOS Adapter} ISR parameter is passed as parameter from RTOS interrupt dispatcher */
   SPIP_TDeviceDataPtr DeviceDataPrv = (SPIP_TDeviceDataPtr)_isrParameter;
-  uint8_t StatReg = SPI_PDD_ReadStatusReg(SPI0_BASE_PTR); /* Read status register */
+  uint8_t StatReg = SPI_PDD_ReadStatusReg(SPI1_BASE_PTR); /* Read status register */
 
   (void)DeviceDataPrv;                 /* Supress unused variable warning if needed */
   if ((StatReg & SPI_PDD_RX_BUFFER_FULL) != 0U) { /* Is any char in HW Rx buffer? */
     if (DeviceDataPrv->InpDataNumReq != 0x00U) { /* Is the receive block operation pending? */
-      *(DeviceDataPrv->InpDataPtr++) = SPI_PDD_ReadData8bit(SPI0_BASE_PTR); /* Put a character to the receive buffer and increment pointer to receive buffer */
+      *(DeviceDataPrv->InpDataPtr++) = SPI_PDD_ReadData8bit(SPI1_BASE_PTR); /* Put a character to the receive buffer and increment pointer to receive buffer */
       DeviceDataPrv->InpRecvDataNum++; /* Increment received char. counter */
       if (DeviceDataPrv->InpRecvDataNum == DeviceDataPrv->InpDataNumReq) { /* Is the requested number of characters received? */
-        SPI_PDD_DisableInterruptMask(SPI0_BASE_PTR, SPI_PDD_RX_BUFFER_FULL_OR_FAULT); /* Disable Rx buffer full interrupt */
+        SPI_PDD_DisableInterruptMask(SPI1_BASE_PTR, SPI_PDD_RX_BUFFER_FULL_OR_FAULT); /* Disable Rx buffer full interrupt */
         DeviceDataPrv->InpDataNumReq = 0x00U; /* If yes then clear number of requested characters to be received. */
         SPIP_OnBlockReceived(DeviceDataPrv->UserData);
       }
@@ -418,14 +418,14 @@ void SPIP_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
   }
   if ((StatReg & SPI_PDD_TX_BUFFER_EMPTYG) != 0U) { /* Is HW Tx buffer empty? */
     if (DeviceDataPrv->OutSentDataNum < DeviceDataPrv->OutDataNumReq) { /* Is number of sent characters less than the number of requested incoming characters? */
-      SPI_PDD_WriteData8Bit(SPI0_BASE_PTR, (*((uint8_t *)DeviceDataPrv->OutDataPtr++))); /* Put a character with command to the transmit register and increment pointer to the transmitt buffer */
+      SPI_PDD_WriteData8Bit(SPI1_BASE_PTR, (*((uint8_t *)DeviceDataPrv->OutDataPtr++))); /* Put a character with command to the transmit register and increment pointer to the transmitt buffer */
       DeviceDataPrv->OutSentDataNum++; /* Increment the counter of sent characters. */
       if (DeviceDataPrv->OutSentDataNum == DeviceDataPrv->OutDataNumReq) {
         DeviceDataPrv->OutDataNumReq = 0x00U; /* Clear the counter of characters to be send by SendBlock() */
         SPIP_OnBlockSent(DeviceDataPrv->UserData);
       }
     } else {
-      SPI_PDD_DisableInterruptMask(SPI0_BASE_PTR, SPI_PDD_TX_BUFFER_EMPTY); /* Disable TX interrupt */
+      SPI_PDD_DisableInterruptMask(SPI1_BASE_PTR, SPI_PDD_TX_BUFFER_EMPTY); /* Disable TX interrupt */
     }
   }
 }
@@ -450,10 +450,10 @@ static void HWEnDi(LDD_TDeviceData *DeviceDataPtr)
     DeviceDataPrv->OutSentDataNum = 0x00U; /* Clear the counter of sent characters. */
     DeviceDataPrv->InpDataNumReq = 0x00U; /* Clear the counter of requested incoming characters. */
     DeviceDataPrv->InpRecvDataNum = 0x00U; /* Clear the counter of received characters. */
-    SPI_PDD_EnableDevice(SPI0_BASE_PTR,PDD_ENABLE); /* Enable device */
+    SPI_PDD_EnableDevice(SPI1_BASE_PTR,PDD_ENABLE); /* Enable device */
   } else {
-    SPI_PDD_DisableInterruptMask(SPI0_BASE_PTR, (SPI_PDD_TX_BUFFER_EMPTY|SPI_PDD_RX_BUFFER_FULL_OR_FAULT));
-    SPI_PDD_EnableDevice(SPI0_BASE_PTR,PDD_DISABLE); /* Disable device */
+    SPI_PDD_DisableInterruptMask(SPI1_BASE_PTR, (SPI_PDD_TX_BUFFER_EMPTY|SPI_PDD_RX_BUFFER_FULL_OR_FAULT));
+    SPI_PDD_EnableDevice(SPI1_BASE_PTR,PDD_DISABLE); /* Disable device */
   }
 }
 

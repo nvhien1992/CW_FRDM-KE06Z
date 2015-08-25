@@ -57,6 +57,7 @@
 #include "IO1.h"
 #include "WP.h"
 #include "SPIWP_CS.h"
+#include "Bit1.h"
 #include "Events.h"
 #include "mqx_tasks.h"
 
@@ -93,8 +94,8 @@ extern "C" {
 #define VECTOR_23         (tIsrFunc)&_int_kernel_isr            /* 0x17 -    ivINT_IRQ                     used by PE */
 #define VECTOR_24         (tIsrFunc)&_int_kernel_isr            /* 0x18 -    ivINT_I2C0                    used by PE */
 #define VECTOR_25         (tIsrFunc)&_int_kernel_isr            /* 0x19 -    ivINT_I2C1                    used by PE */
-#define VECTOR_26         (tIsrFunc)&_int_kernel_isr            /* 0x1A 64   ivINT_SPI0                    used by PE */
-#define VECTOR_27         (tIsrFunc)&_int_kernel_isr            /* 0x1B -    ivINT_SPI1                    used by PE */
+#define VECTOR_26         (tIsrFunc)&_int_kernel_isr            /* 0x1A -    ivINT_SPI0                    used by PE */
+#define VECTOR_27         (tIsrFunc)&_int_kernel_isr            /* 0x1B 64   ivINT_SPI1                    used by PE */
 #define VECTOR_28         (tIsrFunc)&_int_kernel_isr            /* 0x1C -    ivINT_UART0                   used by PE */
 #define VECTOR_29         (tIsrFunc)&_int_kernel_isr            /* 0x1D -    ivINT_UART1                   used by PE */
 #define VECTOR_30         (tIsrFunc)&_int_kernel_isr            /* 0x1E -    ivINT_UART2                   used by PE */

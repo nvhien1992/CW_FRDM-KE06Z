@@ -15,29 +15,29 @@ by the component.
 <tr><td colspan="4" class="ttitle1">SPIP Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x40048014</td><td>SIM_SCGC</td><td>
-    0x00040000
+    0x00080000
  </td><td>SIM_SCGC register, peripheral SPIP.</td></tr>
 <tr><td>0xE000E408</td><td>NVIC_IPR2</td><td>
-    0x00400000
+    0x40000000
  </td><td>NVIC_IPR2 register, peripheral SPIP.</td></tr>
 <tr><td>0xE000E100</td><td>NVIC_ISER</td><td>
-    0x00000400
+    0x00000800
  </td><td>NVIC_ISER register, peripheral SPIP.</td></tr>
 <tr><td>0xE000E180</td><td>NVIC_ICER</td><td>
     0x00000000
  </td><td>NVIC_ICER register, peripheral SPIP.</td></tr>
-<tr><td>0x4004800C</td><td>SIM_PINSEL0</td><td>
-    0x00000040
- </td><td>SIM_PINSEL0 register, peripheral SPIP.</td></tr>
-<tr><td>0x40076000</td><td>SPI0_C1</td><td>
+<tr><td>0x40048010</td><td>SIM_PINSEL1</td><td>
+    0x00000800
+ </td><td>SIM_PINSEL1 register, peripheral SPIP.</td></tr>
+<tr><td>0x40077000</td><td>SPI1_C1</td><td>
     0x00000056
- </td><td>SPI0_C1 register, peripheral SPIP.</td></tr>
-<tr><td>0x40076001</td><td>SPI0_C2</td><td>
+ </td><td>SPI1_C1 register, peripheral SPIP.</td></tr>
+<tr><td>0x40077001</td><td>SPI1_C2</td><td>
     0x00000010
- </td><td>SPI0_C2 register, peripheral SPIP.</td></tr>
-<tr><td>0x40076002</td><td>SPI0_BR</td><td>
+ </td><td>SPI1_C2 register, peripheral SPIP.</td></tr>
+<tr><td>0x40077002</td><td>SPI1_BR</td><td>
     0x00000043
- </td><td>SPI0_BR register, peripheral SPIP.</td></tr>
+ </td><td>SPI1_BR register, peripheral SPIP.</td></tr>
 </table>
 <br/>
 \page SPIP_regs_details Register Initialization Details
@@ -91,7 +91,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40048014</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00040000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00080000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00003000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>31</td><td>ACMP1</td><td>0x00</td><td>ACMP1 Clock Gate Control</td>
@@ -103,8 +103,8 @@ registers of the peripheral(s) configured by the component.
 <tr><td>22</td><td>UART2</td><td>0x00</td><td>UART2 Clock Gate Control</td>
 <tr><td>21</td><td>UART1</td><td>0x00</td><td>UART1 Clock Gate Control</td>
 <tr><td>20</td><td>UART0</td><td>0x00</td><td>UART0 Clock Gate Control</td>
-<tr><td>19</td><td>SPI1</td><td>0x00</td><td>SPI1 Clock Gate Control</td>
-<tr><td>18</td><td>SPI0</td><td>0x01</td><td>SPI0 Clock Gate Control</td>
+<tr><td>19</td><td>SPI1</td><td>0x01</td><td>SPI1 Clock Gate Control</td>
+<tr><td>18</td><td>SPI0</td><td>0x00</td><td>SPI0 Clock Gate Control</td>
 <tr><td>17</td><td>I2C1</td><td>0x00</td><td>I2C1 Clock Gate Control</td>
 <tr><td>16</td><td>I2C0</td><td>0x00</td><td>I2C0 Clock Gate Control</td>
 <tr><td>15</td><td>MSCAN</td><td>0x00</td><td>MSCAN Clock Gate Control</td>
@@ -163,7 +163,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E408</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00400000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x40000000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>30 - 31</td><td>PRI_11</td><td>0x00</td><td>Priority of the Serial Peripheral Interface 1 interrupt</td>
@@ -218,7 +218,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0xE000E100</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000400</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000800</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>31</td><td>SETENA31</td><td>0x00</td><td>Freescale&apos;s Scalable Controller Area Network Tx and error interrupt set-enable bit</td>
@@ -241,8 +241,8 @@ registers of the peripheral(s) configured by the component.
 <tr><td>14</td><td>SETENA14</td><td>0x00</td><td>UART2 status and error interrupt set-enable bit</td>
 <tr><td>13</td><td>SETENA13</td><td>0x00</td><td>UART1 status and error interrupt set-enable bit</td>
 <tr><td>12</td><td>SETENA12</td><td>0x00</td><td>UART0 status and error interrupt set-enable bit</td>
-<tr><td>11</td><td>SETENA11</td><td>0x00</td><td>Serial Peripheral Interface 1 interrupt set-enable bit</td>
-<tr><td>10</td><td>SETENA10</td><td>0x01</td><td>Serial Peripheral Interface 0 interrupt set-enable bit</td>
+<tr><td>11</td><td>SETENA11</td><td>0x01</td><td>Serial Peripheral Interface 1 interrupt set-enable bit</td>
+<tr><td>10</td><td>SETENA10</td><td>0x00</td><td>Serial Peripheral Interface 0 interrupt set-enable bit</td>
 <tr><td>9</td><td>SETENA9</td><td>0x00</td><td>Inter-Integrated Circuit 1 interrupt set-enable bit</td>
 <tr><td>8</td><td>SETENA8</td><td>0x00</td><td>Inter-Integrated Circuit 0 interrupt set-enable bit</td>
 <tr><td>7</td><td>SETENA7</td><td>0x00</td><td>External Interrupt interrupt set-enable bit</td>
@@ -337,7 +337,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>1</td><td>CLRENA1</td><td>0x00</td><td>Reserved iv 17 interrupt clear-enable bit</td>
 <tr><td>0</td><td>CLRENA0</td><td>0x00</td><td>Reserved iv 16 interrupt clear-enable bit</td>
 </tr></table>
-<div class="reghdr1">SIM_PINSEL0</div>
+<div class="reghdr1">SIM_PINSEL1</div>
 <div class="regdiag">
 <table class="regtbl">
 <tr class="trd1r">
@@ -345,11 +345,12 @@ registers of the peripheral(s) configured by the component.
 <td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td>
 </tr>
 <tr>
-<td class="trd1c">R</td><td colspan="2" rowspan="2">PWTCLKPS</td><td colspan="2" rowspan="2">FTM2CLKPS</td>
-<td colspan="2" rowspan="2">FTM1CLKPS</td><td colspan="2" rowspan="2">FTM0CLKPS</td><td colspan="1" rowspan="2">-</td>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
 <td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
 <td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
-<td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">MSCANPS</td>
 </tr>
 <tr>
 <td class="trd1c">W</td>
@@ -365,11 +366,11 @@ registers of the peripheral(s) configured by the component.
 <td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
 </tr>
 <tr>
-<td class="trd1c">R</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
-<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">FTM1PS1</td><td colspan="1" rowspan="2">FTM1PS0</td>
-<td colspan="1" rowspan="2">FTM0PS1</td><td colspan="1" rowspan="2">FTM0PS0</td><td colspan="1" rowspan="2">UART0PS</td>
-<td colspan="1" rowspan="2">SPI0PS</td><td colspan="1" rowspan="2">I2C0PS</td><td colspan="1" rowspan="2">RTCPS</td>
-<td colspan="1" rowspan="2">-</td><td colspan="3" rowspan="2">IRQPS</td>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">PWTIN1PS</td><td colspan="1" rowspan="2">PWTIN0PS</td>
+<td colspan="1" rowspan="2">UART2PS</td><td colspan="1" rowspan="2">UART1PS</td><td colspan="1" rowspan="2">SPI1PS</td>
+<td colspan="1" rowspan="2">I2C1PS</td><td colspan="1" rowspan="2">FTM2PS5</td><td colspan="1" rowspan="2">FTM2PS4</td>
+<td colspan="2" rowspan="2">FTM2PS3</td><td colspan="2" rowspan="2">FTM2PS2</td><td colspan="2" rowspan="2">FTM2PS1</td>
+<td colspan="2" rowspan="2">FTM2PS0</td>
 </tr>
 <tr>
 <td class="trd1c">W</td>
@@ -381,25 +382,25 @@ registers of the peripheral(s) configured by the component.
 </table>
         
 </div>
-<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4004800C</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000040</td></tr>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40048010</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000800</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
-<tr><td>30 - 31</td><td>PWTCLKPS</td><td>0x00</td><td>PWT TCLK Pin Select</td>
-<tr><td>28 - 29</td><td>FTM2CLKPS</td><td>0x00</td><td>FTM2 TCLK Pin Select</td>
-<tr><td>26 - 27</td><td>FTM1CLKPS</td><td>0x00</td><td>FTM1 TCLK Pin Select</td>
-<tr><td>24 - 25</td><td>FTM0CLKPS</td><td>0x00</td><td>FTM0 TCLK Pin Select</td>
-<tr><td>11</td><td>FTM1PS1</td><td>0x00</td><td>FTM1_CH1 Port Pin Select</td>
-<tr><td>10</td><td>FTM1PS0</td><td>0x00</td><td>FTM1_CH0 Port Pin Select</td>
-<tr><td>9</td><td>FTM0PS1</td><td>0x00</td><td>FTM0_CH1 Port Pin Select</td>
-<tr><td>8</td><td>FTM0PS0</td><td>0x00</td><td>FTM0_CH0 Port Pin Select</td>
-<tr><td>7</td><td>UART0PS</td><td>0x00</td><td>UART0 Pin Select</td>
-<tr><td>6</td><td>SPI0PS</td><td>0x01</td><td>SPI0 Pin Select</td>
-<tr><td>5</td><td>I2C0PS</td><td>0x00</td><td>I2C0 Port Pin Select</td>
-<tr><td>4</td><td>RTCPS</td><td>0x00</td><td>RTCO Pin Select</td>
-<tr><td>0 - 2</td><td>IRQPS</td><td>0x00</td><td>IRQ Port Pin Select</td>
+<tr><td>16</td><td>MSCANPS</td><td>0x00</td><td>MSCAN Pin Select</td>
+<tr><td>15</td><td>PWTIN1PS</td><td>0x00</td><td>PWTIN1 Pin Select</td>
+<tr><td>14</td><td>PWTIN0PS</td><td>0x00</td><td>PWTIN0 Pin Select</td>
+<tr><td>13</td><td>UART2PS</td><td>0x00</td><td>UART2 Pin Select</td>
+<tr><td>12</td><td>UART1PS</td><td>0x00</td><td>UART1 Pin Select</td>
+<tr><td>11</td><td>SPI1PS</td><td>0x01</td><td>SPI1 Pin Select</td>
+<tr><td>10</td><td>I2C1PS</td><td>0x00</td><td>I2C1 Pin Select</td>
+<tr><td>9</td><td>FTM2PS5</td><td>0x00</td><td>FTM2 Channel 5 Pin Select</td>
+<tr><td>8</td><td>FTM2PS4</td><td>0x00</td><td>FTM2 Channel4 Pin Select</td>
+<tr><td>6 - 7</td><td>FTM2PS3</td><td>0x00</td><td>FTM2 Channel 3 Pin Select</td>
+<tr><td>4 - 5</td><td>FTM2PS2</td><td>0x00</td><td>FTM2 Channel 2 Pin Select</td>
+<tr><td>2 - 3</td><td>FTM2PS1</td><td>0x00</td><td>FTM2 Channel 1 Pin Select</td>
+<tr><td>0 - 1</td><td>FTM2PS0</td><td>0x00</td><td>FTM2 Channel 0 Pin Select</td>
 </tr></table>
-<div class="reghdr1">SPI0_C1</div>
+<div class="reghdr1">SPI1_C1</div>
 <div class="regdiag">
 <table class="regtbl">
 <tr class="trd1r">
@@ -419,7 +420,7 @@ registers of the peripheral(s) configured by the component.
 </table>
         
 </div>
-<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40076000</td></tr>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40077000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000056</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000004</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
@@ -432,7 +433,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>1</td><td>SSOE</td><td>0x01</td><td>Slave Select Output Enable</td>
 <tr><td>0</td><td>LSBFE</td><td>0x00</td><td>LSB First (shifter direction)</td>
 </tr></table>
-<div class="reghdr1">SPI0_C2</div>
+<div class="reghdr1">SPI1_C2</div>
 <div class="regdiag">
 <table class="regtbl">
 <tr class="trd1r">
@@ -452,7 +453,7 @@ registers of the peripheral(s) configured by the component.
 </table>
         
 </div>
-<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40076001</td></tr>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40077001</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000010</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
@@ -462,7 +463,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>1</td><td>SPISWAI</td><td>0x00</td><td>SPI Stop in Wait Mode</td>
 <tr><td>0</td><td>SPC0</td><td>0x00</td><td>SPI Pin Control 0</td>
 </tr></table>
-<div class="reghdr1">SPI0_BR</div>
+<div class="reghdr1">SPI1_BR</div>
 <div class="regdiag">
 <table class="regtbl">
 <tr class="trd1r">
@@ -481,7 +482,7 @@ registers of the peripheral(s) configured by the component.
 </table>
         
 </div>
-<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40076002</td></tr>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40077002</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000043</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
@@ -493,23 +494,23 @@ registers of the peripheral(s) configured by the component.
 \page SPIP_settings Component Settings
 \code
 **          Component name                                 : SPIP
-**          Device                                         : SPI0
+**          Device                                         : SPI1
 **          Interrupt service/event                        : Enabled
-**            Input interrupt                              : INT_SPI0
+**            Input interrupt                              : INT_SPI1
 **            Input interrupt priority                     : medium priority
 **            Input ISR name                               : SPIP_Interrupt
-**            Output interrupt                             : INT_SPI0
+**            Output interrupt                             : INT_SPI1
 **            Output interrupt priority                    : medium priority
 **            Output ISR name                              : SPIP_Interrupt
 **          Settings                                       : 
 **            Input pin                                    : Enabled
-**              Pin                                        : PTE2/KBI1_P2/SPI0_MISO/PWT_IN0
+**              Pin                                        : PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO
 **              Pin signal                                 : 
 **            Output pin                                   : Enabled
-**              Pin                                        : PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL
+**              Pin                                        : PTG5/KBI1_P21/FTM2_CH3/SPI1_MOSI
 **              Pin signal                                 : 
 **            Clock pin                                    : 
-**              Pin                                        : PTE0/KBI1_P0/SPI0_SCK/TCLK1/I2C1_SDA
+**              Pin                                        : PTG4/KBI1_P20/FTM2_CH2/SPI1_SCK
 **              Pin signal                                 : 
 **            Chip select list                             : 0
 **            Attribute set list                           : 1

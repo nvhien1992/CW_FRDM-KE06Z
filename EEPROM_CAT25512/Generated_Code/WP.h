@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
+**     Date/Time   : 2015-08-23, 11:03, # CodeGen: 68
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,7 +16,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : WP
-**          Pin for I/O                                    : PTG3/KBI1_P19
+**          Pin for I/O                                    : PTE4/KBI1_P4
 **          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 
@@ -116,7 +116,7 @@ extern "C" {
 /* Definition of implementation constants */
 #define WP_MODULE_BASE_ADDRESS GPIOB_BASE_PTR /*!< Name of macro used as the base address */
 #define WP_PORTCONTROL_BASE_ADDRESS PORT_BASE_PTR /*!< Name of macro used as the base address */
-#define WP_PORT_MASK 0x00080000U       /*!< Mask of the allocated pin from the port */
+#define WP_PORT_MASK 0x10U             /*!< Mask of the allocated pin from the port */
 
 
 

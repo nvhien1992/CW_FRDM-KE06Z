@@ -62,6 +62,7 @@
   </PATHS>
   <FILES>
     <GeneratedCs>
+      <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\Bit1.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\Cpu.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\CsIO1.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\IO1.c</PathName>
@@ -120,6 +121,7 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Sources\spiw.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
+      <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\Bit1.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\CPU_Config.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\Cpu.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\EEPROM_CAT25512\Generated_Code\CsIO1.h</PathName>

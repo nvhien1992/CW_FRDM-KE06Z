@@ -6,7 +6,7 @@
 **     Component   : PinSettings
 **     Version     : Component 01.002, Driver 1.1, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
+**     Date/Time   : 2015-08-23, 14:05, # CodeGen: 69
 **     Abstract    :
 **
 **     Settings    :
@@ -80,10 +80,12 @@ void Pins1_Init(void)
   SIM_SOPT0 |= SIM_SOPT0_SWDE_MASK |
                SIM_SOPT0_RSTPE_MASK |
                SIM_SOPT0_NMIE_MASK;
-  /* SIM_PINSEL0: SPI0PS=1 */
-  SIM_PINSEL0 |= SIM_PINSEL_SPI0PS_MASK;
-  /* SIM_PINSEL1: UART1PS=0 */
-  SIM_PINSEL1 &= (uint32_t)~(uint32_t)(SIM_PINSEL1_UART1PS_MASK);
+  /* SIM_PINSEL1: UART1PS=0,SPI1PS=1 */
+  SIM_PINSEL1 = (uint32_t)((SIM_PINSEL1 & (uint32_t)~(uint32_t)(
+                 SIM_PINSEL1_UART1PS_MASK
+                )) | (uint32_t)(
+                 SIM_PINSEL1_SPI1PS_MASK
+                ));
   /* PORT_PUE0: PTDPE7=0,PTDPE6=0,PTDPE5=0,PTDPE4=0,PTDPE3=0,PTDPE2=0,PTDPE1=0,PTDPE0=0,PTCPE7=0,PTCPE6=0,PTCPE5=0,PTCPE4=1,PTCPE3=0,PTCPE2=0,PTCPE1=0,PTCPE0=0,PTBPE7=0,PTBPE6=0,PTBPE5=0,PTBPE4=0,PTBPE3=0,PTBPE2=0,PTBPE1=0,PTBPE0=0,PTAPE7=0,PTAPE6=0,PTAPE5=0,PTAPE4=0,PTAPE3=0,PTAPE2=0,PTAPE1=0,PTAPE0=0 */
   PORT_PUE0 = PORT_PUE0_PTCPE4_MASK;
   /* PORT_HDRVE: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,??=0,PTH1=0,PTH0=0,PTE1=0,PTE0=0,PTD1=0,PTD0=0,PTB5=0,PTB4=0 */

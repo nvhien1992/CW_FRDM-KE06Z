@@ -1,32 +1,32 @@
 /*!
-\page SPIWP_CS SPIWP_CS (BitsIO_LDD)
-**         The HAL BitsIO component provides a low level API for unified
-**         access to general purpose digital input/output 32 pins across
+\page Bit1 Bit1 (BitIO_LDD)
+**         The HAL BitIO component provides a low level API for unified
+**         access to general purpose digital input/output pins across
 **         various device designs.
 **
-**         RTOS drivers using HAL BitsIO API are simpler and more
+**         RTOS drivers using HAL BitIO API are simpler and more
 **         portable to various microprocessors.
 
-- \subpage SPIWP_CS_settings
-- \subpage SPIWP_CS_regs_overview  
-- \subpage SPIWP_CS_regs_details
-- \ref SPIWP_CS_module "Component documentation" 
+- \subpage Bit1_settings
+- \subpage Bit1_regs_overview  
+- \subpage Bit1_regs_details
+- \ref Bit1_module "Component documentation" 
 
-\page SPIWP_CS_regs_overview Registers Initialization Overview
+\page Bit1_regs_overview Registers Initialization Overview
 This page initialization values for the registers of the peripheral(s) configured
 by the component. 
 <table>
-<tr><td colspan="4" class="ttitle1">SPIWP_CS Initialization</td></tr>
+<tr><td colspan="4" class="ttitle1">Bit1 Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x400FF054</td><td>GPIOB_PDDR</td><td>
     0x00800010
- </td><td>GPIOB_PDDR register, peripheral SPIWP_CS.</td></tr>
+ </td><td>GPIOB_PDDR register, peripheral Bit1.</td></tr>
 <tr><td>0x400FF040</td><td>GPIOB_PDOR</td><td>
     0x00800010
- </td><td>GPIOB_PDOR register, peripheral SPIWP_CS.</td></tr>
+ </td><td>GPIOB_PDOR register, peripheral Bit1.</td></tr>
 </table>
 <br/>
-\page SPIWP_CS_regs_details Register Initialization Details
+\page Bit1_regs_details Register Initialization Details
 This page contains detailed description of initialization values for the 
 registers of the peripheral(s) configured by the component. 
 
@@ -116,18 +116,15 @@ registers of the peripheral(s) configured by the component.
 </tr></table>
 */
 /*!
-\page SPIWP_CS_settings Component Settings
+\page Bit1_settings Component Settings
 \code
-**          Component name                                 : SPIWP_CS
-**          Port                                           : GPIOB
-**          Pins                                           : 1
-**            Pin0                                         : 
-**              Pin                                        : PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS
-**              Pin signal                                 : 
+**          Component name                                 : Bit1
+**          Pin for I/O                                    : PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS
+**          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output
-**            Init. value                                  : 1
+**            Init. value                                  : 0
 **            Auto initialization                          : yes
 **          Safe mode                                      : no
 \endcode

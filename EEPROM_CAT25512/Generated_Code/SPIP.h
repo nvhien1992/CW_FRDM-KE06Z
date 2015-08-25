@@ -6,29 +6,29 @@
 **     Component   : SPIMaster_LDD
 **     Version     : Component 01.111, Driver 01.02, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-26, 21:32, # CodeGen: 47
+**     Date/Time   : 2015-08-23, 14:05, # CodeGen: 69
 **     Abstract    :
 **         This component "SPIMaster_LDD" implements MASTER part of synchronous
 **         serial master-slave communication.
 **     Settings    :
 **          Component name                                 : SPIP
-**          Device                                         : SPI0
+**          Device                                         : SPI1
 **          Interrupt service/event                        : Enabled
-**            Input interrupt                              : INT_SPI0
+**            Input interrupt                              : INT_SPI1
 **            Input interrupt priority                     : medium priority
 **            Input ISR name                               : SPIP_Interrupt
-**            Output interrupt                             : INT_SPI0
+**            Output interrupt                             : INT_SPI1
 **            Output interrupt priority                    : medium priority
 **            Output ISR name                              : SPIP_Interrupt
 **          Settings                                       : 
 **            Input pin                                    : Enabled
-**              Pin                                        : PTE2/KBI1_P2/SPI0_MISO/PWT_IN0
+**              Pin                                        : PTG6/KBI1_P22/FTM2_CH4/SPI1_MISO
 **              Pin signal                                 : 
 **            Output pin                                   : Enabled
-**              Pin                                        : PTE1/KBI1_P1/SPI0_MOSI/I2C1_SCL
+**              Pin                                        : PTG5/KBI1_P21/FTM2_CH3/SPI1_MOSI
 **              Pin signal                                 : 
 **            Clock pin                                    : 
-**              Pin                                        : PTE0/KBI1_P0/SPI0_SCK/TCLK1/I2C1_SDA
+**              Pin                                        : PTG4/KBI1_P20/FTM2_CH2/SPI1_SCK
 **              Pin signal                                 : 
 **            Chip select list                             : 0
 **            Attribute set list                           : 1
@@ -134,7 +134,7 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define SPIP_PRPH_BASE_ADDRESS  0x40076000U
+#define SPIP_PRPH_BASE_ADDRESS  0x40077000U
   
 /*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
 #define SPIP_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_SPIP_ID))

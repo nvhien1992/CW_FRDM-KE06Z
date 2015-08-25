@@ -9,6 +9,7 @@
 #define SPIW_H_
 
 /* User include*/
+#include "PE_Types.h"
 #include "mqxlite.h"
 
 ////////////////////////////////////////////////
@@ -28,7 +29,7 @@ typedef uint8_t spiw_err_t;
  \brief Reinit the SPI wrapper. Reset related Kinetis peripheral and all the local variables
  \return NONE
  */
-void SPIW_Reinit(void);
+bool SPIW_Reinit(void);
 
 /**
  \brief Acquire the SPI wrapper for communicating. 

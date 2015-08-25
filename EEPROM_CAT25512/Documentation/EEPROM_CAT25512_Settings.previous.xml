@@ -1599,7 +1599,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="WP" />
-      <Pin_for_I_O v="PTG3/KBI1_P19" />
+      <Pin_for_I_O v="PTE4/KBI1_P4" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1634,7 +1634,7 @@ PE_DEBUGHALT();
       <Port v="GPIOB" />
       <list name="Pins" v="1">
         <group name="Pin0">
-          <Pin v="PTF0/KBI1_P8/FTM2_CH0" />
+          <Pin v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
         </group>
       </list>
       <Direction v="Output" />
@@ -1662,6 +1662,38 @@ PE_DEBUGHALT();
       <GetRawVal v="don&amp;apos;t generate code" />
       <GetRawBit v="don&amp;apos;t generate code" />
       <ConnectPin v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="Bit1" type="BitIO_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Bit1" />
+      <Pin_for_I_O v="PTG7/KBI1_P23/FTM2_CH5/SPI1_PCS" />
+      <Direction v="Output" />
+      <group name="Initialization">
+        <Init__direction v="Output" />
+        <Init__value v="0" />
+        <Auto_initialization v="yes" />
+      </group>
+      <Safe_mode v="no" />
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="generate code" />
+      <ClrVal v="generate code" />
+      <SetVal v="generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
     </Methods>
     <Events>
       <EmptySection_DummyValue />

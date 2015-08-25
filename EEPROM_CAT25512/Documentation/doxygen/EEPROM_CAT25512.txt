@@ -35,6 +35,7 @@
 - \subpage IO1
 - \subpage WP
 - \subpage SPIWP_CS
+- \subpage Bit1
 
 
 */
@@ -86,6 +87,7 @@
 - \subpage IO1
 - \subpage WP
 - \subpage SPIWP_CS
+- \subpage Bit1
 
 
 */
