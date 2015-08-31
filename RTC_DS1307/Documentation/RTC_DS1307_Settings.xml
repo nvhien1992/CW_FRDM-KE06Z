@@ -1349,9 +1349,9 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="I2CP" />
-      <I2C_channel v="I2C0" />
+      <I2C_channel v="I2C1" />
       <boolgroup name="Interrupt service" v="Enabled">
-        <Interrupt v="INT_I2C0" />
+        <Interrupt v="INT_I2C1" />
         <Interrupt_priority v="high priority" />
         <ISR_name v="I2CP_Interrupt" />
       </boolgroup>
@@ -1366,10 +1366,10 @@ PE_DEBUGHALT();
         <boolgroup name="SLAVE mode" v="Disabled" />
         <group name="Pins">
           <group name="SDA pin">
-            <SDA_pin v="PTA2/KBI0_P2/UART0_RX/I2C0_SDA" />
+            <SDA_pin v="PTH3/KBI1_P27/I2C1_SDA" />
           </group>
           <group name="SCL pin">
-            <SCL_pin v="PTA3/KBI0_P3/UART0_TX/I2C0_SCL" />
+            <SCL_pin v="PTH4/KBI1_P28/I2C1_SCL" />
           </group>
           <Input_Glitch_filter v="0" />
         </group>

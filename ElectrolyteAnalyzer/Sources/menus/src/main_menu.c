@@ -6,17 +6,14 @@
  */
 #include "main_menu.h"
 #include "menu_id.h"
-#include "lcd_dev.h"
 #include "button_devs.h"
+#include "LCD.h"
 
 menu_id_t next_main_menu = MEASUREMENT_MENU;
 
 void menus_init(void) {
 	buttons_init();
-	uint8_t indx = 0;
-	for (indx = 0; indx < 2; indx++) {
-		lcd_init(&lcd_pins);
-	}
+	lcd_init();
 }
 
 void main_menu(void) {

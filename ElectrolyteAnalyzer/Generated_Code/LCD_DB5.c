@@ -6,7 +6,7 @@
 **     Component   : BitIO_LDD
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-05, 09:41, # CodeGen: 9
+**     Date/Time   : 2015-08-23, 11:46, # CodeGen: 39
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -16,7 +16,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : LCD_DB5
-**          Pin for I/O                                    : PTB1/KBI0_P9/UART0_TX/ADC0_SE5
+**          Pin for I/O                                    : PTF5/KBI1_P13/ADC0_SE13
 **          Pin signal                                     : 
 **          Direction                                      : Output
 **          Initialization                                 : 
@@ -128,11 +128,11 @@ LDD_TDeviceData* LCD_DB5_Init(LDD_TUserData *UserDataPtr)
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
   DeviceDataPrv->UserDataPtr = UserDataPtr; /* Store the RTOS device structure */
   /* Configure pin as output */
-  /* GPIOA_PDDR: PDD|=0x0200 */
-  GPIOA_PDDR |= GPIO_PDDR_PDD(0x0200);
+  /* GPIOB_PDDR: PDD|=0x2000 */
+  GPIOB_PDDR |= GPIO_PDDR_PDD(0x2000);
   /* Set initialization value */
-  /* GPIOA_PDOR: PDO&=~0x0200 */
-  GPIOA_PDOR &= (uint32_t)~(uint32_t)(GPIO_PDOR_PDO(0x0200));
+  /* GPIOB_PDOR: PDO&=~0x2000 */
+  GPIOB_PDOR &= (uint32_t)~(uint32_t)(GPIO_PDOR_PDO(0x2000));
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_LCD_DB5_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv);

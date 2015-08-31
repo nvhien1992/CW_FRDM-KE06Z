@@ -78,7 +78,7 @@ void Cpu_OnNMI(void) {
 /* ===================================================================*/
 void MISC_TIMER_OnCounterRestart(LDD_TUserData *UserDataPtr) {
 	/* Write your code here ... */
-	buttons_processing_in_timer_isr();
+//	buttons_processing_in_timer_isr();
 }
 
 /* END Events */

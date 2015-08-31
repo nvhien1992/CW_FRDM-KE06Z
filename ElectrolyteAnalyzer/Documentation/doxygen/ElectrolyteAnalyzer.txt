@@ -42,6 +42,7 @@
 - \subpage LCD_DB7
 - \subpage MISC_TIMER
 - \subpage IO1
+- \subpage LCD_RW
 
 
 */
@@ -100,6 +101,7 @@
 - \subpage LCD_DB7
 - \subpage MISC_TIMER
 - \subpage IO1
+- \subpage LCD_RW
 
 
 */

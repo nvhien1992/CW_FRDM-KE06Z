@@ -89,8 +89,8 @@ extern "C" {
 #define VECTOR_21         (tIsrFunc)&_int_kernel_isr            /* 0x15 -    ivINT_FTMRE                   used by PE */
 #define VECTOR_22         (tIsrFunc)&_int_kernel_isr            /* 0x16 -    ivINT_PMC                     used by PE */
 #define VECTOR_23         (tIsrFunc)&_int_kernel_isr            /* 0x17 -    ivINT_IRQ                     used by PE */
-#define VECTOR_24         (tIsrFunc)&_int_kernel_isr            /* 0x18 64   ivINT_I2C0                    used by PE */
-#define VECTOR_25         (tIsrFunc)&_int_kernel_isr            /* 0x19 -    ivINT_I2C1                    used by PE */
+#define VECTOR_24         (tIsrFunc)&_int_kernel_isr            /* 0x18 -    ivINT_I2C0                    used by PE */
+#define VECTOR_25         (tIsrFunc)&_int_kernel_isr            /* 0x19 64   ivINT_I2C1                    used by PE */
 #define VECTOR_26         (tIsrFunc)&_int_kernel_isr            /* 0x1A -    ivINT_SPI0                    used by PE */
 #define VECTOR_27         (tIsrFunc)&_int_kernel_isr            /* 0x1B -    ivINT_SPI1                    used by PE */
 #define VECTOR_28         (tIsrFunc)&_int_kernel_isr            /* 0x1C -    ivINT_UART0                   used by PE */

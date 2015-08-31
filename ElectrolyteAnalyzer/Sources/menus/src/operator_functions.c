@@ -6,7 +6,7 @@
  */
 #include "operator_functions.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* operator_menu = "OPERATOR FUNCTIONS?";
 

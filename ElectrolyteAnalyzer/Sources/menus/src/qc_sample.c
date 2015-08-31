@@ -6,7 +6,7 @@
  */
 #include "qc_sample.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* qc_menu = "QC/STD/DIALYSATE/URINE SAMPLE?";
 

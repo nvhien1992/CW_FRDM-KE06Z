@@ -6,7 +6,7 @@
  */
 #include "service_functions.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* service_menu = "SERVICE FUNCTIONS?";
 

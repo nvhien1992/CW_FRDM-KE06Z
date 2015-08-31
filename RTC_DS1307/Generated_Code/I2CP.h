@@ -6,7 +6,7 @@
 **     Component   : I2C_LDD
 **     Version     : Component 01.016, Driver 01.07, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-21, 14:34, # CodeGen: 11
+**     Date/Time   : 2015-08-31, 09:58, # CodeGen: 13
 **     Abstract    :
 **          This component encapsulates the internal I2C communication
 **          interface. The implementation of the interface is based
@@ -26,9 +26,9 @@
 **            - General call address detection provided
 **     Settings    :
 **          Component name                                 : I2CP
-**          I2C channel                                    : I2C0
+**          I2C channel                                    : I2C1
 **          Interrupt service                              : Enabled
-**            Interrupt                                    : INT_I2C0
+**            Interrupt                                    : INT_I2C1
 **            Interrupt priority                           : high priority
 **            ISR name                                     : I2CP_Interrupt
 **          Settings                                       : 
@@ -40,10 +40,10 @@
 **            SLAVE mode                                   : Disabled
 **            Pins                                         : 
 **              SDA pin                                    : 
-**                SDA pin                                  : PTA2/KBI0_P2/UART0_RX/I2C0_SDA
+**                SDA pin                                  : PTH3/KBI1_P27/I2C1_SDA
 **                SDA pin signal                           : 
 **              SCL pin                                    : 
-**                SCL pin                                  : PTA3/KBI0_P3/UART0_TX/I2C0_SCL
+**                SCL pin                                  : PTH4/KBI1_P28/I2C1_SCL
 **                SCL pin signal                           : 
 **              Input Glitch filter                        : 0
 **            Internal frequency (multiplier factor)       : 8 MHz
@@ -165,7 +165,7 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define I2CP_PRPH_BASE_ADDRESS  0x40066000U
+#define I2CP_PRPH_BASE_ADDRESS  0x40067000U
   
 /*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
 #define I2CP_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_I2CP_ID))

@@ -39,6 +39,7 @@ extern "C" {
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "main_menu.h"
+#include "LCD.h"
 
 /*
  ** ===================================================================
@@ -57,15 +58,18 @@ extern "C" {
 void Controller_task(uint32_t task_init_data) {
 	int counter = 0;
 
-	uint8_t indx = 0;
-	menus_init();
-	MISC_TIMER_Init(NULL);
-	
+//	menus_init();
+//	MISC_TIMER_Init(NULL);
+
+	lcd_init();
+	lcd_clear();
+	lcd_printf("nguyenvanhien");
+
 	while (1) {
 		counter++;
 
 		/* Write your code here ... */
-		main_menu();
+//		main_menu();
 	}
 }
 

@@ -5,7 +5,7 @@
 **     Processor   : MKE06Z64VLK4
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-05, 11:01, # CodeGen: 14
+**     Date/Time   : 2015-08-23, 11:46, # CodeGen: 39
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -63,7 +63,8 @@
 ** Array of initialized device structures of LDD components.
 ** ===========================================================================
 */
-LDD_TDeviceData *PE_LDD_DeviceDataList[12] = {
+LDD_TDeviceData *PE_LDD_DeviceDataList[13] = {
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -149,6 +150,8 @@ bool PE_PeripheralUsed(uint32_t PrphBaseAddress)
     case 0xE000E010UL:
     /* Base address allocated by peripheral(s) GPIOA */
     case 0x400FF000UL:
+    /* Base address allocated by peripheral(s) GPIOB */
+    case 0x400FF040UL:
     /* Base address allocated by peripheral(s) FTM0 */
     case 0x40038000UL:
     /* Base address allocated by peripheral(s) UART1 */

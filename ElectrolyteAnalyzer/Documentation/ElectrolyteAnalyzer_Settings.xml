@@ -1402,7 +1402,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_RS" />
-      <Pin_for_I_O v="PTA6/KBI0_P6/FTM2_FLT1/ACMP1_IN0/ADC0_SE2" />
+      <Pin_for_I_O v="PTA7/KBI0_P7/FTM2_FLT2/ACMP1_IN1/ADC0_SE3" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1434,7 +1434,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_EN" />
-      <Pin_for_I_O v="PTA7/KBI0_P7/FTM2_FLT2/ACMP1_IN1/ADC0_SE3" />
+      <Pin_for_I_O v="PTD4/KBI0_P28" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1466,7 +1466,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_BL" />
-      <Pin_for_I_O v="PTC0/KBI0_P16/FTM2_CH0/ADC0_SE8" />
+      <Pin_for_I_O v="PTC1/KBI0_P17/FTM2_CH1/ADC0_SE9" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1498,7 +1498,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB4" />
-      <Pin_for_I_O v="PTB0/KBI0_P8/UART0_RX/PWT_IN1/ADC0_SE4" />
+      <Pin_for_I_O v="PTF4/KBI1_P12/ADC0_SE12" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1530,7 +1530,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB5" />
-      <Pin_for_I_O v="PTB1/KBI0_P9/UART0_TX/ADC0_SE5" />
+      <Pin_for_I_O v="PTF5/KBI1_P13/ADC0_SE13" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1562,7 +1562,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB6" />
-      <Pin_for_I_O v="PTB2/KBI0_P10/SPI0_SCK/FTM0_CH0/ADC0_SE6" />
+      <Pin_for_I_O v="PTF6/KBI1_P14/ADC0_SE14" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1594,7 +1594,7 @@ PE_DEBUGHALT();
     <Enabled v="Y" />
     <Properties>
       <Component_name v="LCD_DB7" />
-      <Pin_for_I_O v="PTB3/KBI0_P11/SPI0_MOSI/FTM0_CH1/ADC0_SE7" />
+      <Pin_for_I_O v="PTF7/KBI1_P15/ADC0_SE15" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -1829,6 +1829,38 @@ PE_DEBUGHALT();
     </Properties>
     <Methods>
       <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="LCD_RW" type="BitIO_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="LCD_RW" />
+      <Pin_for_I_O v="PTB0/KBI0_P8/UART0_RX/PWT_IN1/ADC0_SE4" />
+      <Direction v="Output" />
+      <group name="Initialization">
+        <Init__direction v="Output" />
+        <Init__value v="0" />
+        <Auto_initialization v="yes" />
+      </group>
+      <Safe_mode v="no" />
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="generate code" />
+      <ClrVal v="generate code" />
+      <SetVal v="generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
     </Methods>
     <Events>
       <EmptySection_DummyValue />

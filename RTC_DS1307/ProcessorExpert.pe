@@ -3,8 +3,8 @@
   <Header>
     <Name>RTC_DS1307</Name>
     <SavedBy>nvhie</SavedBy>
-    <ModificationStamp>10</ModificationStamp>
-    <Date>2015-08-22</Date>
+    <ModificationStamp>11</ModificationStamp>
+    <Date>2015-08-31</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -8319,7 +8319,7 @@
         <ItemSymbol>LastAllocatedInt</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>INT_I2C0</Value>
+        <Value>INT_I2C1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>MQXFunctionsGrp</ItemSymbol>
@@ -10053,7 +10053,7 @@
         <ItemSymbol>Ser</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>I2C0</Value>
+        <Value>I2C1</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -10074,7 +10074,7 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>Int</ItemSymbol>
-        <Value>INT_I2C0</Value>
+        <Value>INT_I2C1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>InitPriority</ItemSymbol>
@@ -10266,7 +10266,7 @@
         <ItemSymbol>SDA</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>PTA2/KBI0_P2/UART0_RX/I2C0_SDA</Value>
+        <Value>PTH3/KBI1_P27/I2C1_SDA</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -10290,7 +10290,7 @@
         <ItemSymbol>SCL</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>PTA3/KBI0_P3/UART0_TX/I2C0_SCL</Value>
+        <Value>PTH4/KBI1_P28/I2C1_SCL</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>

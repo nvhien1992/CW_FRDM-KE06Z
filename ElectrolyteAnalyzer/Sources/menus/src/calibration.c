@@ -6,7 +6,7 @@
  */
 #include "calibration.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* calib_menu = "CALIBRATION?";
 

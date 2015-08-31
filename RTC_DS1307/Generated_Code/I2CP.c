@@ -6,7 +6,7 @@
 **     Component   : I2C_LDD
 **     Version     : Component 01.016, Driver 01.07, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-22, 15:54, # CodeGen: 12
+**     Date/Time   : 2015-08-31, 09:58, # CodeGen: 13
 **     Abstract    :
 **          This component encapsulates the internal I2C communication
 **          interface. The implementation of the interface is based
@@ -26,9 +26,9 @@
 **            - General call address detection provided
 **     Settings    :
 **          Component name                                 : I2CP
-**          I2C channel                                    : I2C0
+**          I2C channel                                    : I2C1
 **          Interrupt service                              : Enabled
-**            Interrupt                                    : INT_I2C0
+**            Interrupt                                    : INT_I2C1
 **            Interrupt priority                           : high priority
 **            ISR name                                     : I2CP_Interrupt
 **          Settings                                       : 
@@ -40,10 +40,10 @@
 **            SLAVE mode                                   : Disabled
 **            Pins                                         : 
 **              SDA pin                                    : 
-**                SDA pin                                  : PTA2/KBI0_P2/UART0_RX/I2C0_SDA
+**                SDA pin                                  : PTH3/KBI1_P27/I2C1_SDA
 **                SDA pin signal                           : 
 **              SCL pin                                    : 
-**                SCL pin                                  : PTA3/KBI0_P3/UART0_TX/I2C0_SCL
+**                SCL pin                                  : PTH4/KBI1_P28/I2C1_SCL
 **                SCL pin signal                           : 
 **              Input Glitch filter                        : 0
 **            Internal frequency (multiplier factor)       : 8 MHz
@@ -212,13 +212,13 @@ void I2CP_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
   I2CP_TDeviceDataPtr DeviceDataPrv = (I2CP_TDeviceDataPtr)_isrParameter;
   register uint8_t Status;             /* Temporary variable for status register */
 
-  Status = I2C_PDD_ReadStatusReg(I2C0_BASE_PTR); /* Safe status register */
-  I2C_PDD_ClearInterruptFlags(I2C0_BASE_PTR, (Status)); /* Clear interrupt flag */
-  if (I2C_PDD_GetMasterMode(I2C0_BASE_PTR) == I2C_PDD_MASTER_MODE) { /* Is device in master mode? */
-    if (I2C_PDD_GetTransmitMode(I2C0_BASE_PTR) == I2C_PDD_TX_DIRECTION) { /* Is device in Tx mode? */
+  Status = I2C_PDD_ReadStatusReg(I2C1_BASE_PTR); /* Safe status register */
+  I2C_PDD_ClearInterruptFlags(I2C1_BASE_PTR, (Status)); /* Clear interrupt flag */
+  if (I2C_PDD_GetMasterMode(I2C1_BASE_PTR) == I2C_PDD_MASTER_MODE) { /* Is device in master mode? */
+    if (I2C_PDD_GetTransmitMode(I2C1_BASE_PTR) == I2C_PDD_TX_DIRECTION) { /* Is device in Tx mode? */
       if ((Status & I2C_PDD_RX_ACKNOWLEDGE) != 0x00U){ /* NACK received? */
-        I2C_PDD_SetMasterMode(I2C0_BASE_PTR, I2C_PDD_SLAVE_MODE); /* Switch device to slave mode (stop signal sent) */
-        I2C_PDD_SetTransmitMode(I2C0_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
+        I2C_PDD_SetMasterMode(I2C1_BASE_PTR, I2C_PDD_SLAVE_MODE); /* Switch device to slave mode (stop signal sent) */
+        I2C_PDD_SetTransmitMode(I2C1_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
         DeviceDataPrv->OutLenM = 0x00U; /* No character for sending */
         DeviceDataPrv->InpLenM = 0x00U; /* No character for reception */
         DeviceDataPrv->SerFlag &= (uint8_t)~(MASTER_IN_PROGRES); /* No character for sending or reception */
@@ -227,33 +227,33 @@ void I2CP_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
         if ((DeviceDataPrv->SerFlag & ADDR_COMPLETE) != 0x00U) { /* If 10-bit addr has been completed */
           if (DeviceDataPrv->OutLenM != 0x00U) { /* Is any char. for transmitting? */
             DeviceDataPrv->OutLenM--;  /* Decrease number of chars for the transmit */
-            I2C_PDD_WriteDataReg(I2C0_BASE_PTR, *(DeviceDataPrv->OutPtrM)++); /* Send character */
+            I2C_PDD_WriteDataReg(I2C1_BASE_PTR, *(DeviceDataPrv->OutPtrM)++); /* Send character */
           } else {
             if (DeviceDataPrv->InpLenM != 0x00U) { /* Is any char. for reception? */
               if ((DeviceDataPrv->SerFlag & REP_ADDR_COMPLETE) != 0x00U) { /* If repeated start and addr tx has been completed for 10-bit mode ?*/
                 if (DeviceDataPrv->InpLenM == 0x01U) { /* If only one char to receive */
-                  I2C_PDD_EnableTransmitAcknowledge(I2C0_BASE_PTR, PDD_DISABLE); /* then transmit ACK disable */
+                  I2C_PDD_EnableTransmitAcknowledge(I2C1_BASE_PTR, PDD_DISABLE); /* then transmit ACK disable */
                 } else {
-                  I2C_PDD_EnableTransmitAcknowledge(I2C0_BASE_PTR, PDD_ENABLE); /* else transmit ACK enable */
+                  I2C_PDD_EnableTransmitAcknowledge(I2C1_BASE_PTR, PDD_ENABLE); /* else transmit ACK enable */
                 }
-                I2C_PDD_SetTransmitMode(I2C0_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
-                (void)I2C_PDD_ReadDataReg(I2C0_BASE_PTR); /* Dummy read character */
+                I2C_PDD_SetTransmitMode(I2C1_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
+                (void)I2C_PDD_ReadDataReg(I2C1_BASE_PTR); /* Dummy read character */
               } else {                 /* Repeated address has not been completed for 10-bit addressing mode */
-                I2C_PDD_RepeatStart(I2C0_BASE_PTR); /* Repeat start cycle generated */
-                I2C_PDD_WriteDataReg(I2C0_BASE_PTR, (uint8_t)(DeviceDataPrv->SlaveAddrHigh | 0x01U)); /* Send slave address high byte*/
+                I2C_PDD_RepeatStart(I2C1_BASE_PTR); /* Repeat start cycle generated */
+                I2C_PDD_WriteDataReg(I2C1_BASE_PTR, (uint8_t)(DeviceDataPrv->SlaveAddrHigh | 0x01U)); /* Send slave address high byte*/
                 DeviceDataPrv->SerFlag |= REP_ADDR_COMPLETE;
               }
             } else {
               DeviceDataPrv->SerFlag &= (uint8_t)~(MASTER_IN_PROGRES); /* Clear flag "busy" */
               if (DeviceDataPrv->SendStop == LDD_I2C_SEND_STOP) {
-                I2C_PDD_SetMasterMode(I2C0_BASE_PTR, I2C_PDD_SLAVE_MODE); /* Switch device to slave mode (stop signal sent) */
-                I2C_PDD_SetTransmitMode(I2C0_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
+                I2C_PDD_SetMasterMode(I2C1_BASE_PTR, I2C_PDD_SLAVE_MODE); /* Switch device to slave mode (stop signal sent) */
+                I2C_PDD_SetTransmitMode(I2C1_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
               }
               I2CP_OnMasterBlockSent(DeviceDataPrv->UserData); /* Invoke OnMasterBlockSent event */
             }
           }
         } else {
-          I2C_PDD_WriteDataReg(I2C0_BASE_PTR, DeviceDataPrv->SlaveAddr); /* Send second part of the 10-bit addres */
+          I2C_PDD_WriteDataReg(I2C1_BASE_PTR, DeviceDataPrv->SlaveAddr); /* Send second part of the 10-bit addres */
           DeviceDataPrv->SerFlag |= (ADDR_COMPLETE); /* Address complete */
         }
       }
@@ -261,14 +261,14 @@ void I2CP_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
       DeviceDataPrv->InpLenM--;        /* Decrease number of chars for the receive */
       if (DeviceDataPrv->InpLenM != 0x00U) { /* Is any char. for reception? */
         if (DeviceDataPrv->InpLenM == 0x01U) {
-          I2C_PDD_EnableTransmitAcknowledge(I2C0_BASE_PTR, PDD_DISABLE); /* Transmit NACK */
+          I2C_PDD_EnableTransmitAcknowledge(I2C1_BASE_PTR, PDD_DISABLE); /* Transmit NACK */
         }
       } else {
         DeviceDataPrv->SerFlag &= (uint8_t)~(MASTER_IN_PROGRES); /* Clear flag "busy" */
-        I2C_PDD_SetMasterMode(I2C0_BASE_PTR, I2C_PDD_SLAVE_MODE); /* If no, switch device to slave mode (stop signal sent) */
-        I2C_PDD_EnableTransmitAcknowledge(I2C0_BASE_PTR, PDD_ENABLE); /* Transmit ACK */
+        I2C_PDD_SetMasterMode(I2C1_BASE_PTR, I2C_PDD_SLAVE_MODE); /* If no, switch device to slave mode (stop signal sent) */
+        I2C_PDD_EnableTransmitAcknowledge(I2C1_BASE_PTR, PDD_ENABLE); /* Transmit ACK */
       }
-      *(DeviceDataPrv->InpPtrM)++ = I2C_PDD_ReadDataReg(I2C0_BASE_PTR); /* Receive character */
+      *(DeviceDataPrv->InpPtrM)++ = I2C_PDD_ReadDataReg(I2C1_BASE_PTR); /* Receive character */
       if (DeviceDataPrv->InpLenM == 0x00U) { /* Is any char. for reception? */
         I2CP_OnMasterBlockReceived(DeviceDataPrv->UserData); /* Invoke OnMasterBlockReceived event */
       }
@@ -279,7 +279,7 @@ void I2CP_Interrupt(LDD_RTOS_TISRParameter _isrParameter)
       DeviceDataPrv->InpLenM = 0x00U;  /* Any character is not for reception */
       DeviceDataPrv->SendStop = LDD_I2C_SEND_STOP; /* Set variable for sending stop condition (for master mode) */
       DeviceDataPrv->SerFlag &= (uint8_t)~(MASTER_IN_PROGRES); /* Any character is not for sent or reception*/
-      I2C_PDD_SetTransmitMode(I2C0_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
+      I2C_PDD_SetTransmitMode(I2C1_BASE_PTR, I2C_PDD_RX_DIRECTION); /* Switch to Rx mode */
     }
   }
 }
@@ -319,43 +319,43 @@ LDD_TDeviceData* I2CP_Init(LDD_TUserData *UserDataPtr)
   /* Allocate interrupt vector */
   /* {MQXLite RTOS Adapter} Save old and set new interrupt vector (function handler and ISR parameter) */
   /* Note: Exception handler for interrupt is not saved, because it is not modified */
-  DeviceDataPrv->SavedISRSettings.isrData = _int_get_isr_data(LDD_ivIndex_INT_I2C0);
-  DeviceDataPrv->SavedISRSettings.isrFunction = _int_install_isr(LDD_ivIndex_INT_I2C0, I2CP_Interrupt, DeviceDataPrv);
+  DeviceDataPrv->SavedISRSettings.isrData = _int_get_isr_data(LDD_ivIndex_INT_I2C1);
+  DeviceDataPrv->SavedISRSettings.isrFunction = _int_install_isr(LDD_ivIndex_INT_I2C1, I2CP_Interrupt, DeviceDataPrv);
   DeviceDataPrv->SerFlag = ADDR_7;     /* Reset all flags start with 7-bit address mode */
   DeviceDataPrv->SlaveAddr = 0x00U;    /* Set variable for slave address */
   DeviceDataPrv->SendStop = LDD_I2C_SEND_STOP; /* Set variable for sending stop condition (for master mode) */
   DeviceDataPrv->InpLenM = 0x00U;      /* Set zero counter of data of reception */
   DeviceDataPrv->OutLenM = 0x00U;      /* Set zero counter of data of transmission */
-  /* SIM_SCGC: I2C0=1 */
-  SIM_SCGC |= SIM_SCGC_I2C0_MASK;
-  /* I2C0_C1: IICEN=0,IICIE=0,MST=0,TX=0,TXAK=0,RSTA=0,WUEN=0,??=0 */
-  I2C0_C1 = 0x00U;                     /* Clear control register */
-  /* I2C0_FLT: SHEN=0,STOPF=1,SSIE=0,STARTF=1,FLT=0 */
-  I2C0_FLT = (I2C_FLT_STOPF_MASK | I2C_FLT_STARTF_MASK | I2C_FLT_FLT(0x00)); /* Clear bus status interrupt flags */
-  /* I2C0_S1: TCF=0,IAAS=0,BUSY=0,ARBL=0,RAM=0,SRW=0,IICIF=1,RXAK=0 */
-  I2C0_S1 = I2C_S_IICIF_MASK;          /* Clear interrupt flag */
-  /* SIM_PINSEL0: I2C0PS=0 */
-  SIM_PINSEL0 &= (uint32_t)~(uint32_t)(SIM_PINSEL_I2C0PS_MASK);
-  /* NVIC_IPR2: PRI_8=1 */
+  /* SIM_SCGC: I2C1=1 */
+  SIM_SCGC |= SIM_SCGC_I2C1_MASK;
+  /* I2C1_C1: IICEN=0,IICIE=0,MST=0,TX=0,TXAK=0,RSTA=0,WUEN=0,??=0 */
+  I2C1_C1 = 0x00U;                     /* Clear control register */
+  /* I2C1_FLT: SHEN=0,STOPF=1,SSIE=0,STARTF=1,FLT=0 */
+  I2C1_FLT = (I2C_FLT_STOPF_MASK | I2C_FLT_STARTF_MASK | I2C_FLT_FLT(0x00)); /* Clear bus status interrupt flags */
+  /* I2C1_S1: TCF=0,IAAS=0,BUSY=0,ARBL=0,RAM=0,SRW=0,IICIF=1,RXAK=0 */
+  I2C1_S1 = I2C_S_IICIF_MASK;          /* Clear interrupt flag */
+  /* SIM_PINSEL1: I2C1PS=1 */
+  SIM_PINSEL1 |= SIM_PINSEL1_I2C1PS_MASK;
+  /* NVIC_IPR2: PRI_9=1 */
   NVIC_IPR2 = (uint32_t)((NVIC_IPR2 & (uint32_t)~(uint32_t)(
-               NVIC_IP_PRI_8(0x02)
+               NVIC_IP_PRI_9(0x02)
               )) | (uint32_t)(
-               NVIC_IP_PRI_8(0x01)
+               NVIC_IP_PRI_9(0x01)
               ));
-  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=0,SETENA14=0,SETENA13=0,SETENA12=0,SETENA11=0,SETENA10=0,SETENA9=0,SETENA8=1,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
-  NVIC_ISER = NVIC_ISER_SETENA8_MASK;
+  /* NVIC_ISER: SETENA31=0,SETENA30=0,SETENA29=0,SETENA28=0,SETENA27=0,SETENA26=0,SETENA25=0,SETENA24=0,SETENA23=0,SETENA22=0,SETENA21=0,SETENA20=0,SETENA19=0,SETENA18=0,SETENA17=0,SETENA16=0,SETENA15=0,SETENA14=0,SETENA13=0,SETENA12=0,SETENA11=0,SETENA10=0,SETENA9=1,SETENA8=0,SETENA7=0,SETENA6=0,SETENA5=0,SETENA4=0,SETENA3=0,SETENA2=0,SETENA1=0,SETENA0=0 */
+  NVIC_ISER = NVIC_ISER_SETENA9_MASK;
   /* NVIC_ICER: CLRENA31=0,CLRENA30=0,CLRENA29=0,CLRENA28=0,CLRENA27=0,CLRENA26=0,CLRENA25=0,CLRENA24=0,CLRENA23=0,CLRENA22=0,CLRENA21=0,CLRENA20=0,CLRENA19=0,CLRENA18=0,CLRENA17=0,CLRENA16=0,CLRENA15=0,CLRENA14=0,CLRENA13=0,CLRENA12=0,CLRENA11=0,CLRENA10=0,CLRENA9=0,CLRENA8=0,CLRENA7=0,CLRENA6=0,CLRENA5=0,CLRENA4=0,CLRENA3=0,CLRENA2=0,CLRENA1=0,CLRENA0=0 */
   NVIC_ICER = 0x00U;
-  /* I2C0_C2: GCAEN=0,ADEXT=0,??=0,SBRC=0,RMEN=0,AD=0 */
-  I2C0_C2 = I2C_C2_AD(0x00);
-  /* I2C0_FLT: SHEN=0,STOPF=0,SSIE=0,STARTF=0,FLT=0 */
-  I2C0_FLT = I2C_FLT_FLT(0x00);        /* Set glitch filter register */
-  /* I2C0_SMB: FACK=0,ALERTEN=0,SIICAEN=0,TCKSEL=0,SLTF=1,SHTF1=0,SHTF2=0,SHTF2IE=0 */
-  I2C0_SMB = I2C_SMB_SLTF_MASK;
-  /* I2C0_F: MULT=0,ICR=0x14 */
-  I2C0_F = (I2C_F_MULT(0x00) | I2C_F_ICR(0x14)); /* Set prescaler bits */
-  I2C_PDD_EnableDevice(I2C0_BASE_PTR, PDD_ENABLE); /* Enable device */
-  I2C_PDD_EnableInterrupt(I2C0_BASE_PTR); /* Enable interrupt */
+  /* I2C1_C2: GCAEN=0,ADEXT=0,??=0,SBRC=0,RMEN=0,AD=0 */
+  I2C1_C2 = I2C_C2_AD(0x00);
+  /* I2C1_FLT: SHEN=0,STOPF=0,SSIE=0,STARTF=0,FLT=0 */
+  I2C1_FLT = I2C_FLT_FLT(0x00);        /* Set glitch filter register */
+  /* I2C1_SMB: FACK=0,ALERTEN=0,SIICAEN=0,TCKSEL=0,SLTF=1,SHTF1=0,SHTF2=0,SHTF2IE=0 */
+  I2C1_SMB = I2C_SMB_SLTF_MASK;
+  /* I2C1_F: MULT=0,ICR=0x14 */
+  I2C1_F = (I2C_F_MULT(0x00) | I2C_F_ICR(0x14)); /* Set prescaler bits */
+  I2C_PDD_EnableDevice(I2C1_BASE_PTR, PDD_ENABLE); /* Enable device */
+  I2C_PDD_EnableInterrupt(I2C1_BASE_PTR); /* Enable interrupt */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_I2CP_ID,DeviceDataPrv);
   return ((LDD_TDeviceData *)DeviceDataPrv); /* Return pointer to the data data structure */
@@ -414,7 +414,7 @@ LDD_TError I2CP_MasterSendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *Buffe
     return ERR_OK;                     /* If zero then OK */
   }
   if (DeviceDataPrv->SendStop == LDD_I2C_SEND_STOP) {
-    if ((I2C_PDD_GetBusStatus(I2C0_BASE_PTR) == I2C_PDD_BUS_BUSY) || /* Is the bus busy? */  \
+    if ((I2C_PDD_GetBusStatus(I2C1_BASE_PTR) == I2C_PDD_BUS_BUSY) || /* Is the bus busy? */  \
        ((DeviceDataPrv->SerFlag & MASTER_IN_PROGRES) != 0x00U) || \
        (DeviceDataPrv->OutLenM != 0x00U))  {
       return ERR_BUSY;                 /* If yes then error */
@@ -431,23 +431,23 @@ LDD_TError I2CP_MasterSendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *Buffe
   DeviceDataPrv->OutPtrM = (uint8_t *)BufferPtr; /* Save pointer to data for transmitting */
   DeviceDataPrv->OutLenM = Size;       /* Set the counter of output bufer's content */
   DeviceDataPrv->SendStop = SendStop;  /* Set generating stop condition */
-  I2C_PDD_SetTransmitMode(I2C0_BASE_PTR, I2C_PDD_TX_DIRECTION); /* Set TX mode */
-  if (I2C_PDD_GetMasterMode(I2C0_BASE_PTR) == I2C_PDD_MASTER_MODE) { /* Is device in master mode? */
-    I2C_PDD_RepeatStart(I2C0_BASE_PTR); /* If yes then repeat start cycle generated */
+  I2C_PDD_SetTransmitMode(I2C1_BASE_PTR, I2C_PDD_TX_DIRECTION); /* Set TX mode */
+  if (I2C_PDD_GetMasterMode(I2C1_BASE_PTR) == I2C_PDD_MASTER_MODE) { /* Is device in master mode? */
+    I2C_PDD_RepeatStart(I2C1_BASE_PTR); /* If yes then repeat start cycle generated */
   } else {
-    I2C_PDD_SetMasterMode(I2C0_BASE_PTR, I2C_PDD_MASTER_MODE); /* If no then start signal generated */
+    I2C_PDD_SetMasterMode(I2C1_BASE_PTR, I2C_PDD_MASTER_MODE); /* If no then start signal generated */
   }
   if ((DeviceDataPrv->SerFlag & ADDR_7) != 0x00U) { /* Is 7-bit addressing set ? */
     DeviceDataPrv->SerFlag |= (ADDR_COMPLETE | REP_ADDR_COMPLETE); /* Only one byte of address will be sent 7-bit address mode*/
-    I2C_PDD_WriteDataReg(I2C0_BASE_PTR, DeviceDataPrv->SlaveAddr); /* Send slave address */
+    I2C_PDD_WriteDataReg(I2C1_BASE_PTR, DeviceDataPrv->SlaveAddr); /* Send slave address */
   } else {
     if ((DeviceDataPrv->SerFlag & ADDR_10) != 0x00U) { /* Is 10-bit addressing set ? */
       DeviceDataPrv->SerFlag &= (uint8_t)~(ADDR_COMPLETE | REP_ADDR_COMPLETE); /* Second byte of address will be sent later */
-      I2C_PDD_WriteDataReg(I2C0_BASE_PTR, DeviceDataPrv->SlaveAddrHigh); /* Send slave address - high byte */
+      I2C_PDD_WriteDataReg(I2C1_BASE_PTR, DeviceDataPrv->SlaveAddrHigh); /* Send slave address - high byte */
     } else {
       if ((DeviceDataPrv->SerFlag & GENERAL_CALL) != 0x00U) { /* Is general call command required ? */
         DeviceDataPrv->SerFlag |= ADDR_COMPLETE; /* Only one byte of address will be sent in general call address mode*/
-        I2C_PDD_WriteDataReg(I2C0_BASE_PTR, 0x00U); /* Send general call address */
+        I2C_PDD_WriteDataReg(I2C1_BASE_PTR, 0x00U); /* Send general call address */
       }
     }
   }
@@ -519,7 +519,7 @@ LDD_TError I2CP_MasterReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *Bu
     return ERR_NOTAVAIL;               /* It is not possible to receive data - Call SelectSlaveDevice method */
   }
   if (DeviceDataPrv->SendStop == LDD_I2C_SEND_STOP) {
-    if ((I2C_PDD_GetBusStatus(I2C0_BASE_PTR) == I2C_PDD_BUS_BUSY) || /* Is the bus busy? */  \
+    if ((I2C_PDD_GetBusStatus(I2C1_BASE_PTR) == I2C_PDD_BUS_BUSY) || /* Is the bus busy? */  \
       ((DeviceDataPrv->SerFlag & MASTER_IN_PROGRES) != 0x00U) || \
       (DeviceDataPrv->InpLenM != 0x00U)) {
       return ERR_BUSY;                 /* If yes then error */
@@ -536,19 +536,19 @@ LDD_TError I2CP_MasterReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *Bu
   DeviceDataPrv->InpPtrM = (uint8_t *)BufferPtr; /* Save pointer to data for reception */
   DeviceDataPrv->InpLenM = Size;       /* Set the counter of input bufer's content */
   DeviceDataPrv->SendStop = SendStop;  /* Set generating stop condition */
-  I2C_PDD_SetTransmitMode(I2C0_BASE_PTR, I2C_PDD_TX_DIRECTION); /* Set TX mode */
-  if (I2C_PDD_GetMasterMode(I2C0_BASE_PTR) == I2C_PDD_MASTER_MODE) { /* Is device in master mode? */
-    I2C_PDD_RepeatStart(I2C0_BASE_PTR); /* If yes then repeat start cycle generated */
+  I2C_PDD_SetTransmitMode(I2C1_BASE_PTR, I2C_PDD_TX_DIRECTION); /* Set TX mode */
+  if (I2C_PDD_GetMasterMode(I2C1_BASE_PTR) == I2C_PDD_MASTER_MODE) { /* Is device in master mode? */
+    I2C_PDD_RepeatStart(I2C1_BASE_PTR); /* If yes then repeat start cycle generated */
   } else {
-    I2C_PDD_SetMasterMode(I2C0_BASE_PTR, I2C_PDD_MASTER_MODE); /* If no then start signal generated */
+    I2C_PDD_SetMasterMode(I2C1_BASE_PTR, I2C_PDD_MASTER_MODE); /* If no then start signal generated */
   }
   if ((DeviceDataPrv->SerFlag & ADDR_7) != 0x00U) { /* Is 7-bit addressing set ? */
     DeviceDataPrv->SerFlag |= (ADDR_COMPLETE|REP_ADDR_COMPLETE); /* Only one byte of address will be sent 7-bit address mode*/
-    I2C_PDD_WriteDataReg(I2C0_BASE_PTR, (uint8_t)(DeviceDataPrv->SlaveAddr | 0x01U)); /* Send slave address */
+    I2C_PDD_WriteDataReg(I2C1_BASE_PTR, (uint8_t)(DeviceDataPrv->SlaveAddr | 0x01U)); /* Send slave address */
   } else {
     if ((DeviceDataPrv->SerFlag & ADDR_10) != 0x00U) { /* Is 10-bit addressing set ? */
       DeviceDataPrv->SerFlag &= (uint8_t)~(ADDR_COMPLETE | REP_ADDR_COMPLETE); /* Second byte of address will be sent later */
-      I2C_PDD_WriteDataReg(I2C0_BASE_PTR, DeviceDataPrv->SlaveAddrHigh); /* Send slave address - high byte */
+      I2C_PDD_WriteDataReg(I2C1_BASE_PTR, DeviceDataPrv->SlaveAddrHigh); /* Send slave address - high byte */
     }
   }
   /* {MQXLite RTOS Adapter} Critical section ends (RTOS function call is defined by MQXLite RTOS Adapter property) */

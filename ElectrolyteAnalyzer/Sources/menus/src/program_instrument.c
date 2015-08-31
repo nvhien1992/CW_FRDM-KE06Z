@@ -6,7 +6,7 @@
  */
 #include "program_instrument.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* program_ins_menu = "PROGRAM INSTRUMENT?";
 

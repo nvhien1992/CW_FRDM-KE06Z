@@ -19,10 +19,10 @@ by the component.
 <tr><td colspan="4" class="ttitle1">IO1 Initialization</td></tr>
 <tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
 <tr><td>0x40048014</td><td>SIM_SCGC</td><td>
-    0x00210000
+    0x00220000
  </td><td>SIM_SCGC register, peripheral IO1.</td></tr>
 <tr><td>0x40048010</td><td>SIM_PINSEL1</td><td>
-    0x00000000
+    0x00000400
  </td><td>SIM_PINSEL1 register, peripheral IO1.</td></tr>
 <tr><td>0x4006B002</td><td>UART1_C1</td><td>
     0x00000000
@@ -86,7 +86,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40048014</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00210000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00220000</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00003000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>31</td><td>ACMP1</td><td>0x00</td><td>ACMP1 Clock Gate Control</td>
@@ -100,8 +100,8 @@ registers of the peripheral(s) configured by the component.
 <tr><td>20</td><td>UART0</td><td>0x00</td><td>UART0 Clock Gate Control</td>
 <tr><td>19</td><td>SPI1</td><td>0x00</td><td>SPI1 Clock Gate Control</td>
 <tr><td>18</td><td>SPI0</td><td>0x00</td><td>SPI0 Clock Gate Control</td>
-<tr><td>17</td><td>I2C1</td><td>0x00</td><td>I2C1 Clock Gate Control</td>
-<tr><td>16</td><td>I2C0</td><td>0x01</td><td>I2C0 Clock Gate Control</td>
+<tr><td>17</td><td>I2C1</td><td>0x01</td><td>I2C1 Clock Gate Control</td>
+<tr><td>16</td><td>I2C0</td><td>0x00</td><td>I2C0 Clock Gate Control</td>
 <tr><td>15</td><td>MSCAN</td><td>0x00</td><td>MSCAN Clock Gate Control</td>
 <tr><td>13</td><td>SWD</td><td>0x00</td><td>SWD (single wire debugger) Clock Gate Control</td>
 <tr><td>12</td><td>FLASH</td><td>0x00</td><td>Flash Clock Gate Control</td>
@@ -159,7 +159,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40048010</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000400</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>16</td><td>MSCANPS</td><td>0x00</td><td>MSCAN Pin Select</td>
@@ -168,7 +168,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>13</td><td>UART2PS</td><td>0x00</td><td>UART2 Pin Select</td>
 <tr><td>12</td><td>UART1PS</td><td>0x00</td><td>UART1 Pin Select</td>
 <tr><td>11</td><td>SPI1PS</td><td>0x00</td><td>SPI1 Pin Select</td>
-<tr><td>10</td><td>I2C1PS</td><td>0x00</td><td>I2C1 Pin Select</td>
+<tr><td>10</td><td>I2C1PS</td><td>0x01</td><td>I2C1 Pin Select</td>
 <tr><td>9</td><td>FTM2PS5</td><td>0x00</td><td>FTM2 Channel 5 Pin Select</td>
 <tr><td>8</td><td>FTM2PS4</td><td>0x00</td><td>FTM2 Channel4 Pin Select</td>
 <tr><td>6 - 7</td><td>FTM2PS3</td><td>0x00</td><td>FTM2 Channel 3 Pin Select</td>

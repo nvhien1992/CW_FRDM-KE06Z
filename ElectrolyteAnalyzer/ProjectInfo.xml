@@ -76,6 +76,7 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_DB7.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_EN.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_RS.c</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_RW.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\MISC_TIMER.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\MQX1.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\NO_BTN.c</PathName>
@@ -145,7 +146,6 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\menus\src\service_functions.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\mqx_tasks.c</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\system_devices\src\button_devs.c</PathName>
-      <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\system_devices\src\lcd_dev.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\CPU_Config.h</PathName>
@@ -162,6 +162,7 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_DB7.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_EN.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_RS.h</PathName>
+      <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\LCD_RW.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\MISC_TIMER.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\MQX1.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Generated_Code\NO_BTN.h</PathName>
@@ -262,7 +263,6 @@
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\menus\inc\service_functions.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\mqx_tasks.h</PathName>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\system_devices\inc\button_devs.h</PathName>
-      <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\Sources\system_devices\inc\lcd_dev.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>
       <PathName>D:\Work\GitLocal\CodeWarrior\ElectrolyteAnalyzer\MQXLITE\psp\cortex_m\core\M0\boot.S</PathName>

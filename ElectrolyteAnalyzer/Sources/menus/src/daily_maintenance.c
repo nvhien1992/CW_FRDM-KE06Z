@@ -6,7 +6,7 @@
  */
 #include "daily_maintenance.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* daily_maintenance_menu = "DAILY MAINTENANCE?";
 

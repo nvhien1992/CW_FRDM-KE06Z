@@ -7,6 +7,14 @@
 #include <stdarg.h>
 #include <cstdio>
 #include "LCD.h"
+#include "LCD_RS.h"
+#include "LCD_EN.h"
+#include "LCD_RW.h"
+#include "LCD_DB4.h"
+#include "LCD_DB5.h"
+#include "LCD_DB6.h"
+#include "LCD_DB7.h"
+#include "LCD_BL.h"
 #include "mqxlite.h"
 
 #define SYS_CLK 48 //MHz
@@ -24,26 +32,27 @@
 #endif
 
 /*--------------------- LCD-specific data, definitions -----------------------*/
-static lcd_pins_t *lcd_pins;
 /** register select **/
-#define RS_CMD()	lcd_pins->lcd_rs.ClrVal(NULL)
-#define RS_DATA()	lcd_pins->lcd_rs.SetVal(NULL)
+#define RS_CMD()	LCD_RS_ClrVal(NULL)
+#define RS_DATA()	LCD_RS_SetVal(NULL)
 /** lcd EN **/
-#define RW_EN()		lcd_pins->lcd_en.SetVal(NULL)
-#define RW_DIS()	lcd_pins->lcd_en.ClrVal(NULL)
+#define RW_EN()		LCD_EN_SetVal(NULL)
+#define RW_DIS()	LCD_EN_ClrVal(NULL)
 /** data pins **/
-#define SET_DB7()	lcd_pins->lcd_db7.SetVal(NULL)
-#define SET_DB6()	lcd_pins->lcd_db6.SetVal(NULL)
-#define SET_DB5()	lcd_pins->lcd_db5.SetVal(NULL)
-#define SET_DB4()	lcd_pins->lcd_db4.SetVal(NULL)
-#define CLR_DB7()	lcd_pins->lcd_db7.ClrVal(NULL)
-#define CLR_DB6()	lcd_pins->lcd_db6.ClrVal(NULL)
-#define CLR_DB5()	lcd_pins->lcd_db5.ClrVal(NULL)
-#define CLR_DB4()	lcd_pins->lcd_db4.ClrVal(NULL)
+#define SET_DB7()	LCD_DB7_SetVal(NULL)
+#define SET_DB6()	LCD_DB6_SetVal(NULL)
+#define SET_DB5()	LCD_DB5_SetVal(NULL)
+#define SET_DB4()	LCD_DB4_SetVal(NULL)
+#define CLR_DB7()	LCD_DB7_ClrVal(NULL)
+#define CLR_DB6()	LCD_DB6_ClrVal(NULL)
+#define CLR_DB5()	LCD_DB5_ClrVal(NULL)
+#define CLR_DB4()	LCD_DB4_ClrVal(NULL)
 /** backlight pin **/
-#define BL_ON()		lcd_pins->lcd_bl.ClrVal(NULL);
-#define BL_OFF()	lcd_pins->lcd_bl.SetVal(NULL);
-
+#define BL_ON()		LCD_BL_SetVal(NULL)
+#define BL_OFF()	LCD_BL_ClrVal(NULL)
+/** rw en/dis **/
+#define READ()		LCD_RW_SetVal(NULL)
+#define WRITE()		LCD_RW_ClrVal(NULL)
 
 /* define cLCD's pin state */
 enum RS_state_e {
@@ -180,10 +189,10 @@ static void send_4bits(uint8_t RS, uint8_t D7D4) {
 }
 
 static void send_byte_wo_waiting(uint8_t RS, uint8_t D7D0) {
-	RS ? lcd_pins->lcd_rs.SetVal(NULL) : lcd_pins->lcd_rs.ClrVal(NULL);
+	RS ? RS_DATA() : RS_CMD();
 
 	/* addition delay */
-	delay_us(1);
+	delay_us(5);
 
 	/* Send 4 MSB bits D7-D4 */
 	/* EN = 1 */
@@ -238,32 +247,30 @@ static void delay_us(uint32_t usec) {
 /* end implementing private functions */
 
 /* implement public functions */
-bool lcd_init(lcd_pins_t *lcd) {
-	if (!lcd) {
-		return FALSE;
-	}
-	lcd_pins = lcd;
+bool lcd_init(void) {
+	/* only write mode */
+	WRITE();
 
 	/* Set back light BL = 1 */
 	BL_ON();
 
 	/* wait for >40ms */
-	delay_us(80000);
+	delay_us(100000);
 
 	/* send function set 1 */
 	send_4bits(cmd, 0x30);
 	/* wait for >37us */
-	delay_us(50);
+	delay_us(100);
 
 	/* send function set 2 */
 	send_byte_wo_waiting(cmd, cLCD_cmd_FS_4bit_2line);
 	/* wait for >37us */
-	delay_us(50);
+	delay_us(100);
 
 	/* send function set 3 */
 	send_byte_wo_waiting(cmd, cLCD_cmd_FS_4bit_2line);
 	/* wait for >37us */
-	delay_us(50);
+	delay_us(100);
 
 	/* send display control, Display/Blink_cursor on */
 	send_byte(cmd, cLCD_cmd_D_on | cLCD_cmd_B_on);
@@ -275,7 +282,7 @@ bool lcd_init(lcd_pins_t *lcd) {
 	send_byte(cmd, cLCD_cmd_EntryMode_inc);
 
 	/* additional delay */
-	delay_us(1000);
+	delay_us(1500);
 
 	return TRUE;
 }

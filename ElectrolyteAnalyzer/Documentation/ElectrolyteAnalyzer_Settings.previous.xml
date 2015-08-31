@@ -127,7 +127,7 @@
           <boolgroup name="Flash configuration field" v="Enabled">
             <group name="Security settings">
               <Flash_security v="Unsecured" />
-              <Backdoor_key v="Disabled (11)" />
+              <Backdoor_key v="Enabled" />
               <Backdoor_key_0 v="255" />
               <Backdoor_key_1 v="255" />
               <Backdoor_key_2 v="255" />

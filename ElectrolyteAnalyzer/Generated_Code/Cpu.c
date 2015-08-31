@@ -7,7 +7,7 @@
 **     Version     : Component 01.011, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MKE06P80M48SF0RM, Rev. 1, Dec 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-05, 11:01, # CodeGen: 14
+**     Date/Time   : 2015-08-23, 11:46, # CodeGen: 39
 **     Abstract    :
 **
 **     Settings    :
@@ -129,6 +129,8 @@ void Components_Init(void)
   (void)LCD_DB7_Init(NULL);
   /* ### Serial_LDD "IO1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)IO1_Init(NULL);
+  /* ### BitIO_LDD "LCD_RW" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)LCD_RW_Init(NULL);
 }
 #endif /* CPU_COMPONENTS_INIT */
 

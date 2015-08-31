@@ -1386,7 +1386,7 @@ PE_DEBUGHALT();
       <group name="Initialization">
         <Enabled_in_init_code v="yes" />
         <list name="Auto Initialization" v="1">
-          <Auto_initialization v="no" />
+          <Auto_initialization v="yes" />
         </list>
         <group name="Event mask">
           <OnMasterBlockSent v="Enabled" />

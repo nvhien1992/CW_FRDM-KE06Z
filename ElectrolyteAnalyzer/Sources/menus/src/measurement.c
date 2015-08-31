@@ -6,7 +6,7 @@
  */
 #include "measurement.h"
 #include "button_devs.h"
-#include "lcd_dev.h"
+#include "LCD.h"
 
 const char* meas_menu = "Na K Cl READY?";
 

@@ -64,6 +64,7 @@
 #include "MISC_TIMER.h"
 #include "CsIO1.h"
 #include "IO1.h"
+#include "LCD_RW.h"
 #include "Events.h"
 #include "mqx_tasks.h"
 

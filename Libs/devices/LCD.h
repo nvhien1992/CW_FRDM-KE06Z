@@ -15,27 +15,12 @@
 
 #include "PE_Types.h"
 
-typedef struct {
-	void (*SetVal)(LDD_TDeviceData *arg);
-	void (*ClrVal)(LDD_TDeviceData *arg);
-} out_pin_t;
-
-typedef struct {
-	out_pin_t lcd_rs;
-	out_pin_t lcd_en;
-	out_pin_t lcd_bl;
-	out_pin_t lcd_db4;
-	out_pin_t lcd_db5;
-	out_pin_t lcd_db6;
-	out_pin_t lcd_db7;
-} lcd_pins_t;
-
 /**
  * @brief init lcd, 4 bit mode, increase counter.
  * 
  * @return false if lcd_pins is null, true otherwise.
  */
-bool lcd_init(lcd_pins_t *lcd_pins);
+bool lcd_init(void);
 
 /**
  * @brief set position of cursor.
